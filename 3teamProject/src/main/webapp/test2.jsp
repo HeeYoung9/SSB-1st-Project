@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	테스트 테스트 테스트 테스트
-	테스트 테스트 테스트 테스트
-	테스트 테스트 테스트 테스트
-	테스트 테스트 테스트 테스트
+	현정: 풀 리퀘스트 테스트
 </body>
 </html>
