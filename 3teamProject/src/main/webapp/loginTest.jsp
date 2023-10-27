@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> login test </h1>
-
-¾î·ÆÀ¾´Ï´Ù.
-
+ <h1>loginTest.jsp</h1>
+ 
+ Âü ¾î·Æ³×¿ä...
 </body>
 </html>
