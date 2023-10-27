@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	풀 리퀘스트 테스트 1
+	풀 리퀘스트 테스트 2
 </body>
 </html>
