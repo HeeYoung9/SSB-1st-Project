@@ -1,0 +1,32 @@
+.quick-menu{
+    float: right;
+    width: 150px;
+    height: 100%;
+}
+
+.logo{
+    width: 200px;
+    height: 150px;
+    <!--background-color: wheat; -->
+}
+
+.my-menu{
+    left: -100%;
+    transition: 600ms;
+    z-index: 1;
+}
+
+.drag{
+    left: 0%;
+}
+.move-test-btn{
+  left :0px;
+  transition: 4000ms;
+}
+#test-btn{
+  position: fixed;
+  width: 20px;
+  height: 100px;
+  margin-top: 10%;
+  transition: 4000ms;
+}
