@@ -1,6 +1,7 @@
 package com.ssb.member.db;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MemberDTO {
 	
@@ -12,12 +13,12 @@ public class MemberDTO {
 	private String member_gender;
 	private String member_email;
 	private String member_phone;
-	private Date member_regdate;
+	private Timestamp member_regdate;
 	private int member_payment;
 	private int member_point;
 	private String member_grade;
 	private String member_situation;
-	private Date member_outdate;
+	private Timestamp member_outdate;
 	private String member_agree;
 	
 	public MemberDTO() {
@@ -74,10 +75,10 @@ public class MemberDTO {
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
-	public Date getMember_regdate() {
+	public Timestamp getMember_regdate() {
 		return member_regdate;
 	}
-	public void setMember_regdate(Date member_regdate) {
+	public void setMember_regdate(Timestamp member_regdate) {
 		this.member_regdate = member_regdate;
 	}
 	public int getMember_payment() {
@@ -104,10 +105,10 @@ public class MemberDTO {
 	public void setMember_situation(String member_situation) {
 		this.member_situation = member_situation;
 	}
-	public Date getMember_outdate() {
+	public Timestamp getMember_outdate() {
 		return member_outdate;
 	}
-	public void setMember_outdate(Date member_outdate) {
+	public void setMember_outdate(Timestamp member_outdate) {
 		this.member_outdate = member_outdate;
 	}
 	public String getMember_agree() {
