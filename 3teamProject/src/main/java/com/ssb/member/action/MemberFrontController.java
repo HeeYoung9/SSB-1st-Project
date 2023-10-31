@@ -31,6 +31,15 @@ public class MemberFrontController extends HttpServlet {
 		System.out.println("\n-------------------------- 2. 가상주소 매핑 시작 -------------------------------");
 		Action action = null;
 		ActionForward forward = null;
+		
+		if(command.equals("/MemberJoin.me")) {
+			System.out.println("C : /MemberJoin.me 매핑");
+			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./home/join.html");
+			forward.setRedirect(false);
+		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		
 		System.out.println("\n-------------------------- 3. 가상주소 이동 시작 -------------------------------");
