@@ -16,7 +16,7 @@ import com.ssb.util.ActionForward;
 public class MemberFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C : MemberFrontController_doProcess()");
+		System.out.println("C : MemberFrontController_doProcess() 호출");
 		
 		System.out.println("\n-------------------------- 1. 가상주소 계산 시작 -------------------------------");
 		// URI = URL - (프로토콜 - IP -포트번호)
@@ -31,6 +31,27 @@ public class MemberFrontController extends HttpServlet {
 		System.out.println("\n-------------------------- 2. 가상주소 매핑 시작 -------------------------------");
 		Action action = null;
 		ActionForward forward = null;
+		
+		if(command.equals("/MemberJoin.me")) {
+			System.out.println("C : /MemberJoin.me 매핑");
+			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./home/join.html");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("MemberJoinAction.me")) {
+			System.out.println("C : /MemberJoin.me 매핑");
+			System.out.println("C : 패턴2 - DB처리X, 뷰페이지 이동");
+			
+			action = new MemberJoinAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		
 		System.out.println("\n-------------------------- 3. 가상주소 이동 시작 -------------------------------");
@@ -50,11 +71,11 @@ public class MemberFrontController extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C : MemberFrontController_doGet()");
+		System.out.println("C : MemberFrontController_doGet() 호출");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C : MemberFrontController_doPost()");
+		System.out.println("C : MemberFrontController_doPost() 호출");
 	}
 	
 	
