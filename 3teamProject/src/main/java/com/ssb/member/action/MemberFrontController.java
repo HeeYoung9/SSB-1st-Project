@@ -37,10 +37,10 @@ public class MemberFrontController extends HttpServlet {
 			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
 			
 			forward = new ActionForward();
-			forward.setPath("./home/join.html");
+			forward.setPath("/templete/home/join.html");
 			forward.setRedirect(false);
 			
-		}else if(command.equals("MemberJoinAction.me")) {
+		}else if(command.equals("/MemberJoinAction.me")) {
 			System.out.println("C : /MemberJoin.me 매핑");
 			System.out.println("C : 패턴2 - DB처리X, 뷰페이지 이동");
 			
@@ -72,10 +72,12 @@ public class MemberFrontController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("C : MemberFrontController_doGet() 호출");
+		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("C : MemberFrontController_doPost() 호출");
+		doProcess(request, response);
 	}
 	
 	
