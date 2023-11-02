@@ -9,6 +9,7 @@
 <body>
 	<%
 		// response.sendRedirect("./NoticeBoardWrite.bo");
+		// response.sendRedirect("./AdminMain.ad");
 		response.sendRedirect("./AdminLogin.ad");
 	%>
 </body>

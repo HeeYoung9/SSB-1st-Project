@@ -37,17 +37,17 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-3">
-									<form>
+									<form action="./AdminLoginAction.ad" method="post">
 										<div class="mb-3">
 											<label class="form-label">아이디</label>
-											<input class="form-control form-control-lg" type="text" name="id" placeholder="아이디를 입력하세요" />
+											<input class="form-control form-control-lg" type="text" name="adminId" placeholder="아이디를 입력하세요" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">비밀번호</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="비밀번호를 입력하세요" />
+											<input class="form-control form-control-lg" type="password" name="adminPw" placeholder="비밀번호를 입력하세요" />
 										</div>
 										<div class="d-grid gap-2 mt-3">
-											<a href="./NoticeBoardWrite.bo" class="btn btn-lg btn-primary">로그인</a>
+											<input type="submit" value="로그인" class="btn btn-lg btn-primary">
 										</div>
 									</form>
 								</div>

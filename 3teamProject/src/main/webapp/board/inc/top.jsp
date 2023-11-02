@@ -5,6 +5,8 @@
 	<i class="hamburger align-self-center"></i>
     </a>
     <div>
-		<img class="logout-button" alt="login" src="./img/icons/logout.png" width="25" height="25">
+    	<a href="">
+			<img class="logout-button" alt="login" src="./img/icons/logout.png" width="25" height="25">
+ 		</a>   
     </div>
 </header>
