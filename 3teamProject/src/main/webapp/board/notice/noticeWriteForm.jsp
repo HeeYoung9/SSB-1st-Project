@@ -17,7 +17,7 @@
 
 	<title>공지사항</title>
 
-	<link href="./admin/css/app.css" rel="stylesheet">
+	<link href="./css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -72,6 +72,6 @@
 		</div>
 		<!-- 메인 -->		
 	</div>
-	<script src="./admin/js/app.js"></script>
+	<script src="./js/app.js"></script>
 </body>
 </html>

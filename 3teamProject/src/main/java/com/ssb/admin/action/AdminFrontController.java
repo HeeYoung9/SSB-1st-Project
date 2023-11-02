@@ -1,4 +1,4 @@
-package com.ssb.board.action;
+package com.ssb.admin.action;
 
 import java.io.IOException;
 
@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
-@WebServlet("*.bo")
-public class BoardFrontController extends HttpServlet{
-
+@WebServlet("*.ad")
+public class AdminFrontController extends HttpServlet {
+	
 	protected void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C: BoardFrontController_doProcess() 호출");
+		System.out.println("C: AdminFrontController_doProcess() 호출");
 		
 		/****************************** 1. 가상주소 계산 시작 ****************************/
 		System.out.println("\n---------- C: 1. 가상주소 계산 시작 -----------");
@@ -36,12 +36,12 @@ public class BoardFrontController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/NoticeBoardWrite.bo")) {
-			System.out.println("C: /NoticeBoardWrite.bo 호출");
+		if(command.equals("/AdminLogin.ad")) {
+			System.out.println("C: /AdminLogin.ad 호출");
 			System.out.println("C: 패턴1 - DB사용 X, 페이지 이동");
 			
 			forward = new ActionForward();
-			forward.setPath("./board/notice/noticeWriteForm.jsp");
+			forward.setPath("./admin/loginForm.jsp");
 			forward.setRedirect(false);
 		}
 		
@@ -73,14 +73,14 @@ public class BoardFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doGet() 호출");
+		System.out.println("\nC: AdminFrontController_doGet() 호출");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doPost() 호출");
+		System.out.println("\nC: AdminFrontController_doPost() 호출");
 		doProcess(request, response);
 	}
 	

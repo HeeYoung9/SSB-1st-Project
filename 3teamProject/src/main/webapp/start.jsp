@@ -8,7 +8,8 @@
 </head>
 <body>
 	<%
-		response.sendRedirect("./NoticeBoardWrite.bo");
+		// response.sendRedirect("./NoticeBoardWrite.bo");
+		response.sendRedirect("./AdminLogin.ad");
 	%>
 </body>
 </html>

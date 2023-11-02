@@ -10,7 +10,7 @@
 					게시판
 				</li>
 
-				<li class="sidebar-item active">
+				<li class="sidebar-item">
 					<a class="sidebar-link" href="./NoticeBoardWrite.bo">
                		<i class="align-middle" data-feather=""></i> 
 					<span class="align-middle">공지사항</span>
