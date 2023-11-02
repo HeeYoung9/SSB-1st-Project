@@ -8,6 +8,7 @@ public class BoardDTO {
 	private String admin_user_id;  
 	private String member_user_id;
 	private String board_type;
+	private String board_subject;
 	private String board_content;
 	
 	private Date board_writeTime;
@@ -15,8 +16,7 @@ public class BoardDTO {
 	private String board_file;
 	
 	private int orders_id;
-	private double rboard_rating;
-	
+	private double rating;
 	public int getBoard_id() {
 		return board_id;
 	}
@@ -40,6 +40,12 @@ public class BoardDTO {
 	}
 	public void setBoard_type(String board_type) {
 		this.board_type = board_type;
+	}
+	public String getBoard_subject() {
+		return board_subject;
+	}
+	public void setBoard_subject(String board_subject) {
+		this.board_subject = board_subject;
 	}
 	public String getBoard_content() {
 		return board_content;
@@ -71,19 +77,20 @@ public class BoardDTO {
 	public void setOrders_id(int orders_id) {
 		this.orders_id = orders_id;
 	}
-	public double getRboard_rating() {
-		return rboard_rating;
+	public double getRating() {
+		return rating;
 	}
-	public void setRboard_rating(double rboard_rating) {
-		this.rboard_rating = rboard_rating;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 	
 	@Override
 	public String toString() {
 		return "BoardDTO [board_id=" + board_id + ", admin_user_id=" + admin_user_id + ", member_user_id="
-				+ member_user_id + ", board_type=" + board_type + ", board_content=" + board_content
-				+ ", board_writeTime=" + board_writeTime + ", board_readCount=" + board_readCount + ", board_file="
-				+ board_file + ", orders_id=" + orders_id + ", rboard_rating=" + rboard_rating + "]";
+				+ member_user_id + ", board_type=" + board_type + ", board_subject=" + board_subject
+				+ ", board_content=" + board_content + ", board_writeTime=" + board_writeTime + ", board_readCount="
+				+ board_readCount + ", board_file=" + board_file + ", orders_id=" + orders_id + ", rating=" + rating
+				+ "]";
 	}
 	
 }
