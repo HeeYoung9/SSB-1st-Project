@@ -5,10 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link href="../css/join.css" rel="stylesheet"/>
+<link href="./join/join.css" rel="stylesheet"/>
 </head>
-
-
+<body>
+<script type="text/javascript">
+  	function check(){
+  		// 아이디 입력여부 체크
+  		var id = document.fr.member_user_id.value;
+  		if(id == ""){
+  			alert(' 아이디를 입력하세요! ');
+  			document.fr.id.focus();
+  			return false;
+  		}
+  	}  
+</script>
 
 <!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
 <div class="container-fluid">
@@ -25,13 +35,13 @@
 
 <!-- 메인 컨테이너 -->
 <div class="main-container" style="text-align: center; margin-top: 5%;">
-		<img alt="SSB_black" src="../img/SSB_black.png" width="150px" style="text-align: left;">
+		<img alt="SSB_black" src="./templete/img/SSB_black.png" width="150px" style="text-align: left;">
 	
 
 	<div class="form-container">
 
 		<main class="form-signin m-auto" style="width: 480px;">
-			<form action="./MemberJoinAction.me" method="post">
+			<form action="./MemberJoinAction.me" method="post" name="fr" onsubmit="check();">
 				<h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원가입</h1>
 
 
@@ -45,7 +55,7 @@
 				</div>
 
 				<div class="form-floating d-flex">
-					<input type="password" name="member_pw1" class="form-control input-cc" id="floatingPassword" placeholder="Password" oninput="removePlaceholder('floatingPassword')"> 
+					<input type="password" name="member_pw" class="form-control input-cc" id="floatingPassword" placeholder="Password" oninput="removePlaceholder('floatingPassword')"> 
 					<label for="floatingPassword">비밀번호</label>
 				</div>
 				<div class="form-floating d-flex">
@@ -56,10 +66,8 @@
 				<div class="form-floating d-flex">
 				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc" id="floatingEmail" placeholder="Email" oninput="removePlaceholder('floatingEmail')">
 				    <label for="floatingEmail" class="flex-grow-4">이메일 입력</label>
-            <!-- <div class="input-group"> -->
-              <span class="input-group-text">@</span>
+             			 <span class="input-group-text">@</span>
 				      <input type="text" name="member_email" class="form-control flex-grow-1 input-cc " id="domain-txt" placeholder="" >
-            <!-- </div>   -->
 				    <select class="form-control flex-grow-1" id="domain-list">
 				        <option value="type">직접 입력</option>
 				        <option value="naver.com">naver.com</option>
@@ -70,58 +78,48 @@
 				    </select>
 				</div>
 					
-					
+<!-- 				<div class="form-floating d-flex"> -->
+<!-- 				    <div class="form-check form-check-inline"> -->
+<!-- 				        <input type="radio" name="member_phone" class="form-check-input" id="floatingKor" value="내국인"> -->
+<!-- 				        <label class="form-check-label" for="floatingKor">내국인</label> -->
+<!-- 				    </div> -->
+<!-- 				    <div class="form-check form-check-inline"> -->
+<!-- 				        <input type="radio" name="member_phone" class="form-check-input" id="floatingFor" value="외국인"> -->
+<!-- 				        <label class="form-check-label" for="floatingFor">외국인</label> -->
+<!-- 				    </div> -->
+<!-- 				</div> -->
+				
 
-				<div class="form-check d-inline-block mr-1">
-					<input class="form-check-input" type="button" name="flexRadioDefault" id="flexRadioDefault1"> 
-          			<label class="form-check-label" for="flexRadioDefault1">내국인</label>
-				</div>
-				<div class="form-check d-inline-block ">
-					<input class="form-check-input" type="button" name="flexRadioDefault" id="flexRadioDefault2"> 
-          			<label class="form-check-label" for="flexRadioDefault2">외국인</label>
-				</div>
-
-				<div class="form-floating d-flex mt-3">
-					<input type="text" class="form-control input-cc " id="floatingName" placeholder="Name" oninput="removePlaceholder('floatingName')"> 
+				<div class="form-floating d-flex mt-2">
+					<input type="text" name="member_name" class="form-control input-cc " id="floatingName" placeholder="Name" oninput="removePlaceholder('floatingName')"> 
           			<label for="floatingName">이름</label>
 				</div>
 
-				<div class="form-floating ">
-					<div class="row">
-						<div class="col">
-							<select class="form-select" id="year">
-								<option value="2023">2023</option>
-							</select> <label for="year" class="d-inline">년</label>
-						</div>
-						<div class="col">
-							<select class="form-select" id="month">
-								<option value="1">1</option>
-							</select> <label for="month" class="d-inline">월</label>
-						</div>
-						<div class="col">
-							<select class="form-select" id="day">
-								<option value="1">1</option>
-							</select> <label for="day" class="d-inline">일</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-floating d-flex mt-3">
-					<input type="text" class="form-control input-cc " id="floatingName" placeholder="Name" oninput="removePlaceholder('floatingName')"> 
-          			<label for="floatingName">생년월일</label>
-				</div>
-
-				<div class="form-check d-inline-block mr-1">
-					<input class="form-check-input" type="radio" name="member_gender" id="flexRadioGender1" checked> 
-					<label class="form-check-label" for="flexRadioGender1">남자</label>
-				</div>
-				<div class="form-check d-inline-block ">
-					<input class="form-check-input" type="radio" name="member_gender" id="flexRadioGender2"> 
-					<label class="form-check-label" for="flexRadioGender2">여자</label>
-				</div>
-
-
 				<div class="form-floating d-flex">
-					<input type="tel" name="member_phone" class="form-control input-cc" id="floatingTel" placeholder="Tel" oninput="removePlaceholder('floatingTel')"> 
+					<input type="text" class="form-control input-cc " id="floatingBirth" placeholder="" oninput="removePlaceholder('floatingName')"> 
+          			<label for="floatingBirth">생년월일</label>
+				</div>
+
+<!-- 				<div class="form-floating d-flex"> -->
+<!-- 					<input type="radio" name="member_phone" class="form-control input-cc" id="floatingGender1" placeholder="Tel" >  -->
+<!-- 					<label for="floatingGender1">남</label> -->
+					
+<!-- 					<input type="radio" name="member_phone" class="form-control input-cc" id="floatingGender2" placeholder="Tel" >  -->
+<!-- 					<label for="floatingGender2">여</label> -->
+<!-- 				</div> -->
+				<div class="form-floating d-flex">
+				    <div class="form-check form-check-inline">
+				        <input type="radio" name="member_gender" class="form-check-input" id="floatingKor" value="내국인">
+				        <label class="form-check-label" for="floatingKor">남</label>
+				    </div>
+				    <div class="form-check form-check-inline">
+				        <input type="radio" name="member_gender" class="form-check-input" id="floatingFor" value="외국인">
+				        <label class="form-check-label" for="floatingFor">여</label>
+				    </div>
+				</div>
+			
+				<div class="form-floating d-flex">
+					<input type="text" name="member_phone" class="form-control input-cc" id="floatingTel" placeholder="ex)'19990101'" oninput="removePlaceholder('floatingTel')"> 
 					<label for="floatingTel">전화번호</label>
 				</div>
 
@@ -148,7 +146,7 @@
 
 <br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="../js/join.js"></script>
+<script src="./join/join.js"></script>
 </body>
 
 </html>

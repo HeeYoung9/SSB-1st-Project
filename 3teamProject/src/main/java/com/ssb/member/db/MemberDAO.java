@@ -27,14 +27,14 @@ public class MemberDAO {
 		Context initCTX = new InitialContext();
 		
 		// 프로젝트안에 작성된 디비 연결정보(context.xml)를 불러오기
-		DataSource ds = (DataSource) initCTX.lookup("java:com/env/jdbc/mvc");
+		DataSource ds = (DataSource)initCTX.lookup("java:comp/env/jdbc/ssb");
 		
 		// 디비 연결 수행
 		con = ds.getConnection();
 		System.out.println(" DAO : 디비연결 성공!(커넥션풀)");
 		System.out.println(" DAO : "+ con);
 		
-		return null;
+		return con;
 	}
 	
 	// 디비 연결(자원) 해제 메서드
@@ -54,6 +54,7 @@ public class MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		try {
 			con = getcon();
+			System.out.println("DAO : DB 연결!");
 			
 			sql = "insert into member (member_user_id,member_pw,member_name,member_birth,member_gender,member_email,member_phone,member_regdate,member_situation,member_agree) "
 					+ "values(?,?,?,?,?,?,?,?,?,?)";

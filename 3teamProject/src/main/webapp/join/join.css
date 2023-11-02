@@ -43,10 +43,7 @@ select.box {
     margin-right: 5px; /* Add some margin between elements */
 }
 
-/* .info .box#domain-list option { */
-/*   font-size: 14px; */
-/*   background-color: #ffffff; */
-/* } */
+
 .input-cc:not(:placeholder-shown) {
     border: 1px solid skyblue;
 }

@@ -38,6 +38,9 @@ public class MemberJoinAction implements Action {
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
 		
+		// 회원가입 메서드를 호출
+		dao.insertMember(dto);
+		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
 		forward.setPath("./MemberLogin.me");
