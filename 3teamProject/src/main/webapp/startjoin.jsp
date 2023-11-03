@@ -17,7 +17,7 @@
 		System.out.println(" * 주소줄에 .jsp 호출X");
 	
 		//실행주소
-		response.sendRedirect("./MemberJoin.me");
+		response.sendRedirect("./MemberJoin.me"); 
 	%>
 </body>
 </html>
