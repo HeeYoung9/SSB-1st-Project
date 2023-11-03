@@ -56,20 +56,20 @@ public class MemberDAO {
 			con = getcon();
 			System.out.println("DAO : DB 연결!");
 			
-			sql = "insert into member (member_user_id,member_pw,member_name,member_birth,member_gender,member_email,member_phone,member_regdate,member_situation,member_agree) "
-					+ "values(?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into member (member_user_id,member_pw,member_name,member_birth,member_gender,"
+					+ "member_email,member_phone,member_regdate,member_situation,member_agree) values(?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getMember_user_id());
 			pstmt.setString(2, dto.getMember_pw());
 			pstmt.setString(3, dto.getMember_name());
 			pstmt.setDate(4, dto.getMember_birth());
-			pstmt.setString(5, dto.getMember_user_id());
-			pstmt.setString(6, dto.getMember_user_id());
-			pstmt.setString(7, dto.getMember_user_id());
-			pstmt.setString(8, dto.getMember_user_id());
-			pstmt.setString(9, dto.getMember_user_id());
-			pstmt.setString(10, dto.getMember_user_id());
+			pstmt.setString(5, dto.getMember_gender());
+			pstmt.setString(6, dto.getMember_email());
+			pstmt.setString(7, dto.getMember_phone());
+			pstmt.setTimestamp(8, dto.getMember_regdate());
+			pstmt.setString(9, dto.getMember_situation());
+			pstmt.setString(10, dto.getMember_agree());
 			
 			// 4. sql 실행
 			pstmt.executeUpdate();

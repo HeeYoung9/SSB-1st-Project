@@ -37,7 +37,7 @@ public class MemberFrontController extends HttpServlet {
 			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
 			
 			forward = new ActionForward();
-			forward.setPath("./join/join.html");
+			forward.setPath("./join/join.jsp");
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/MemberJoinAction.me")) {
