@@ -7,16 +7,17 @@ public class BoardDTO {
 	private int board_id; 			
 	private String admin_user_id;  
 	private String member_user_id;
+	private int orders_id;
+	
 	private String board_type;
 	private String board_subject;
 	private String board_content;
-	
 	private Date board_writeTime;
 	private int board_readCount;
 	private String board_file;
 	
-	private int orders_id;
 	private double rating;
+	
 	public int getBoard_id() {
 		return board_id;
 	}
@@ -34,6 +35,12 @@ public class BoardDTO {
 	}
 	public void setMember_user_id(String member_user_id) {
 		this.member_user_id = member_user_id;
+	}
+	public int getOrders_id() {
+		return orders_id;
+	}
+	public void setOrders_id(int orders_id) {
+		this.orders_id = orders_id;
 	}
 	public String getBoard_type() {
 		return board_type;
@@ -70,12 +77,6 @@ public class BoardDTO {
 	}
 	public void setBoard_file(String board_file) {
 		this.board_file = board_file;
-	}
-	public int getOrders_id() {
-		return orders_id;
-	}
-	public void setOrders_id(int orders_id) {
-		this.orders_id = orders_id;
 	}
 	public double getRating() {
 		return rating;

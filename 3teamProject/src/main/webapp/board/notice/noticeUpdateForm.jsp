@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,21 +39,24 @@
   <main class="content">
 	<article>
 		<div class="container" role="main">
-			<h3>공지사항 작성</h3>
+			<h3>공지사항 수정</h3>
 
-			<form action="./NoticeWriteAction.bo" method="post">
+			<form action="./NoticeUpdateProAction.bo?pageNum=${pageNum }" method="post">
+			<!-- 폼태그 안의 데이터는 DB로 전달 -->
+			<!-- 제목 중복 가능하므로 글번호로 구분해야함 -->
+			<input type="hidden" name="boardId" value="${bdto.board_id }">
 				<div class="mb-3">
 					<label for="subject">제목</label>
-					<input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해 주세요" required>
+					<input type="text" class="form-control" name="subject" id="subject" value="${bdto.board_subject }">
 				</div>
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
+					<textarea class="form-control" rows="20" name="content" id="content"><c:out value="${bdto.board_content}"/></textarea>
 				</div>
 					
 				<div>
-					<input type="submit" value="등록" class="btn btn-sm btn-primary" id="btnSave">
+					<input type="submit" value="수정" class="btn btn-sm btn-primary" id="btnSave">
 	 				<!--<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>-->					
 	 			</div>
 			</form>					

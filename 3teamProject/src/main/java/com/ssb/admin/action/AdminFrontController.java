@@ -36,15 +36,7 @@ public class AdminFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/AdminMain.ad")) {
-			System.out.println("C: /AdminLogin.ad 호출");
-			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
-			
-			forward = new ActionForward();
-			forward.setPath("./admin/adminMain.jsp");
-			forward.setRedirect(false);
-		}
-		else if(command.equals("/AdminLogin.ad")) {
+		if(command.equals("/AdminLogin.ad")) {
 			System.out.println("C: /AdminLogin.ad 호출");
 			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
 			
@@ -63,6 +55,14 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		else if(command.equals("/AdminMain.ad")) {
+			System.out.println("C: /AdminMain.ad 호출");
+			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./admin/adminMain.jsp");
+			forward.setRedirect(false);
 		}
 		else if(command.equals("/AdminLogout.ad")) {
 			System.out.println("C: /AdminLogout.ad 호출");

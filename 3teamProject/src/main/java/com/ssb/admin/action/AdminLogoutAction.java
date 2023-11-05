@@ -22,7 +22,7 @@ public class AdminLogoutAction implements Action {
 		session.invalidate();
 		
 		// JS 사용 페이지 이동
-		JSMoveFunction.alertLocation(response, "안전하게 로그아웃 되었습니다.", "./AdminMain.ad");
+		JSMoveFunction.alertLocation(response, "안전하게 로그아웃 되었습니다.", "./AdminLogin.ad");
 		return null;
 	}
 

@@ -36,15 +36,86 @@ public class BoardFrontController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/NoticeBoardWrite.bo")) {
-			System.out.println("C: /NoticeBoardWrite.bo 호출");
-			System.out.println("C: 패턴1 - DB사용 X, 페이지 이동");
+		if(command.equals("/NoticeWrite.bo")) {
+			System.out.println("C: /NoticeWrite.bo 호출");
+			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
 			
 			forward = new ActionForward();
 			forward.setPath("./board/notice/noticeWriteForm.jsp");
 			forward.setRedirect(false);
 		}
-		
+		else if(command.equals("/NoticeWriteAction.bo")) {
+			System.out.println("C: /NoticeWriteAction.bo 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// NoticeWriteAction 객체 생성
+			action = new NoticeWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/NoticeList.bo")) {
+			System.out.println("C: /NoticeList.bo 호출");
+			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
+			
+			// NoticeListAction 객체 생성
+			action = new NoticeListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/NoticeContent.bo")) {
+			System.out.println("C: /NoticeContent.bo 호출");
+			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
+			
+			// BoardContentAction 객체 생성
+			action = new NoticeContentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/NoticeUpdate.bo")) {
+			System.out.println("C: /NoticeUpdate.bo 호출");
+			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
+			
+			// NoticeUpdateAction 객체 생성
+			action = new NoticeUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/NoticeUpdateProAction.bo")) {
+			System.out.println("C: /NoticeUpdateProAction.bo 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// BoardUpdateProAction 객체 생성 
+			action = new NoticeUpdateProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/NoticeDeleteAction.bo")) {
+			System.out.println("C: /NoticeDeleteAction.bo 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// BoardDeleteAction 객체 생성
+			action = new NoticeDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+		}
 		System.out.println("---------- C: 2. 가상주소 매핑 끝   -----------");
 		/****************************** 2. 가상주소 매핑 끝 ******************************/
 		
