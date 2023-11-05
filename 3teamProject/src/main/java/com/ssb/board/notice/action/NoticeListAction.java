@@ -1,4 +1,4 @@
-package com.ssb.board.action;
+package com.ssb.board.notice.action;
 
 import java.util.ArrayList;
 
