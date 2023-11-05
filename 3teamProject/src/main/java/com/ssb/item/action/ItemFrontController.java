@@ -20,25 +20,44 @@ import com.ssb.util.ActionForward;
 @WebServlet("*.bo")	// 컨트롤러 주소 매핑
 public class ItemFrontController extends HttpServlet {
 	
-
+	
 	protected void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 			System.out.println(" C : ItemFrontController_doProcess()");
 
 
 			/***********************1. 가상주소 계산 시작 **************************/
+			System.out.println("\n\n---------- C : 1. 가상주소 계산 시작 -----------");
 			String requestURI = request.getRequestURI();
+			System.out.println(" requestURI: " + requestURI);
 			String CTXPath = request.getContextPath();
+			System.out.println(" CTXPath: " + CTXPath);
 			String command = requestURI.substring(CTXPath.length());
+			System.out.println(" command: " + command);
+			System.out.println("---------- C : 1. 가상주소 계산 끝 -----------");
 			/***********************1. 가상주소 계산 끝  ***************************/
 			
 			
 			/***********************2. 가상주소 매핑 시작 **************************/
+			System.out.println("\n---------- C: 2. 가상주소 매핑 시작 -----------");
 			Action action = null;
 			ActionForward forward = null;
 
+
+			//------------(관리자) 상품 정보 리스트----------
+			if (command.equals("/ItemMgt.bo")) {
+				System.out.println(" C : /ItemMgt.bo 호출 ");
+				System.out.println(" C : 패턴 3 - DB정보사용 O, 화면 출력 ");
+				action = new ItemMgtAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
             //----------------상품 등록----------------
-			if (command.equals("/ItemAdd.bo")) {
+			else if (command.equals("/ItemAdd.bo")) {
 				forward = new ActionForward();
 				forward.setPath("./item/itemAddForm.jsp");
 				forward.setRedirect(false);	
@@ -51,6 +70,7 @@ public class ItemFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			
 			//----------------상품 수정----------------
 			else if (command.equals("/ItemEdit.bo")) {
 				action = new ItemEditAction();
@@ -68,6 +88,7 @@ public class ItemFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			
 			//----------------상품 삭제----------------
 			else if (command.equals("/ItemDelete.bo")) {
 				forward = new ActionForward();
@@ -78,15 +99,7 @@ public class ItemFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			//------------(관리자)상품 리스트----------
-			else if (command.equals("/AdminItemList.bo")) {
-				action = new AdminItemListAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			
 			//----------------상품 상세----------------
 			else if (command.equals("/ItemDetail.bo")) {
 				action = new ItemDetailAction();
@@ -96,63 +109,42 @@ public class ItemFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			//--------------상품 Q&A 작성?--------------
-			else if (command.equals("/QnaWrite.bo")) {
-				forward = new ActionForward();
-//				forward.setPath("./board/qnawriteform.jsp");
-				forward.setRedirect(false);	
-			}			
-			else if (command.equals("/QnaWriteAction.bo")) {
-//				action = new QnaWriteAction();
-				try {
-				  forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-	
 			
-			//---------------베스트 리뷰---------------
-			
-			//----------------리뷰 작성----------------
-			
-			//----------------리뷰 목록----------------
-			
-			//----------------위시 상품----------------
-			
-			//----------------위시 취소----------------
-
-			//--------------- ???? ????----------------
-
-			//--------------- ???? ????----------------
-			
-			
-
+			System.out.println("\n---------- C: 2. 가상주소 매핑 끝 -----------");
 			/***********************2. 가상주소 매핑 끝  **************************/
 			
 			
 			/***********************3. 가상주소 이동 시작**************************/
+			System.out.println("\n---------- C: 3. 가상주소 이동 시작 -----------");
 			if(forward != null) { // ActionForward 포워딩 방식에 따라 수행
 				if(forward.isRedirect()) { // true
+					System.out.println(" C : 이동주소 : "+forward.getPath());
+					System.out.println(" C : 이동방법 : sendRedirect() 방식 ");
 					response.sendRedirect(forward.getPath()); 
 				}else { 				   // false
+					System.out.println(" C : 이동주소 : "+forward.getPath());
+					System.out.println(" C : 이동방법 : forward() 방식 ");
 					RequestDispatcher dis = 
 							request.getRequestDispatcher(forward.getPath());
 					dis.forward(request, response);
 				}			
 			}		
+			System.out.println("\n---------- C: 3. 가상주소 이동 끝 -----------");
 			/***********************3. 가상주소 이동 끝**************************/
 			
 	} //doProcess
 	
-	
+	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("\n\n C : ItemFrontController_doGET()");
 		doProcess(request, response);
 	}
-
+	
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("\n\n C : ItemFrontController_doPOST()");
 		doProcess(request, response);
 	}
 
