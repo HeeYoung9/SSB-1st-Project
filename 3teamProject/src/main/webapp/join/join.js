@@ -14,3 +14,4 @@ domainListEl.addEventListener('change', (event) => {
     domainInputEl.disabled = false
   }
 })
+  

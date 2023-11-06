@@ -11,15 +11,92 @@
 </head>
 <body>
 <script type="text/javascript">
-  	function check(){
-  		// 아이디 입력여부 체크
-  		var id = document.fr.member_user_id.value;
-  		if(id == ""){
-  			alert(' 아이디를 입력하세요! ');
-  			document.fr.id.focus();
-  			return false;
-  		}
-  	}  
+function check(){
+    // 아이디 입력여부 체크
+    var id = document.fr.member_user_id.value;
+    if(id == ""){
+      alert('아이디를 입력하세요!');
+      document.fr.member_user_id.focus();
+      return false;
+    }
+
+    // 비밀번호 입력여부 체크
+    var pw = document.fr.member_pw.value;
+    if(pw == ""){
+      alert('비밀번호를 입력하세요!');
+      document.fr.member_pw.focus();
+      return false;
+    }
+
+    // 비밀번호 유효성 체크 (8자 이상)
+    if(pw.length < 8){
+      alert('비밀번호는 최소 8자 이상이어야 합니다.');
+      document.fr.member_pw.focus();
+      return false;
+    }
+
+    // 비밀번호 확인 입력여부 체크
+    var pw2 = document.fr.member_pw2.value;
+    if(pw2 == ""){
+      alert('비밀번호 확인을 입력하세요!');
+      document.fr.member_pw2.focus();
+      return false;
+    }
+
+    // 비밀번호와 비밀번호 확인 일치 여부 체크
+    if(pw != pw2){
+      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+      document.fr.member_pw2.focus();
+      return false;
+    }
+
+    // 이메일 입력여부 체크 (이메일 주소 또는 직접 입력)
+    var email = document.fr.member_email.value;
+    var email2 = document.fr.member_email2.value;
+    var domain = document.fr.domain.value;
+    if(email == "" || (domain == "type" && email2 == "")){
+      alert('이메일을 입력하세요!');
+      document.fr.member_email.focus();
+      return false;
+    }
+
+    // 생년월일 입력여부 체크
+    var birth = document.fr.member_birth.value;
+    if(birth == ""){
+      alert('생년월일을 입력하세요!');
+      document.fr.member_birth.focus();
+      return false;
+    }
+    
+    // 생년월일 유효성 체크 (8자)
+    if(birth.length < 8){
+      alert("생년월일은 8자로 입력하세요.\n ex) '20000101'");
+      document.fr.member_pw.focus();
+      return false;
+    }
+
+    // 성별 선택여부 체크
+    var gender = document.querySelector('input[name="member_gender"]:checked');
+    if(!gender){
+      alert('성별을 선택하세요!');
+      return false;
+    }
+
+    // 전화번호 입력여부 체크
+    var phone = document.fr.member_phone.value;
+    if(phone == ""){
+      alert('전화번호를 입력하세요!');
+      document.fr.member_phone.focus();
+      return false;
+    }
+
+    // 마케팅 수신 동의 체크여부 체크
+//     var agree = document.querySelector('input[name="member_agree"]:checked');
+//     if(!agree){
+//       alert('마케팅 수신 동의를 체크하세요!');
+//       return false;
+//     }
+  }   
 </script>
 
 <!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
@@ -50,23 +127,23 @@
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
-							<input type="text" name="member_user_id" class="form-control input-cc" id="floatingId" placeholder="ID"> 
+							<input type="text" name="member_user_id" class="form-control input-cc" id="floatingId" placeholder=""> 
 							<label for="floatingId">아이디</label>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-floating d-flex">
-					<input type="password" name="member_pw" class="form-control input-cc" id="floatingPassword" placeholder="Password"> 
+					<input type="password" name="member_pw" class="form-control input-cc" id="floatingPassword" placeholder=""> 
 					<label for="floatingPassword">비밀번호</label>
 				</div>
 				<div class="form-floating d-flex">
-					<input type="password" name="member_pw2" class="form-control input-cc" id="floatingCheckPassword" placeholder="Password"> 
+					<input type="password" name="member_pw2" class="form-control input-cc" id="floatingCheckPassword" placeholder=""> 
 					<label for="floatinCheckPassword">비밀번호 확인</label>
 				</div>
 
 				<div class="form-floating d-flex">
-				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc" id="floatingEmail" placeholder="Email">
+				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc" id="floatingEmail" placeholder="">
 				    <label for="floatingEmail" class="flex-grow-4">이메일 입력</label>
              			 <span class="input-group-text">@</span>
 				      <input type="text" name="member_email2" class="form-control flex-grow-1 input-cc " id="domain-txt" placeholder=''>
@@ -82,13 +159,13 @@
 					
 
 				<div class="form-floating d-flex mt-2">
-					<input type="text" name="member_name" class="form-control input-cc " id="floatingName" placeholder="Name"> 
+					<input type="text" name="member_name" class="form-control input-cc " id="floatingName" placeholder=""> 
           			<label for="floatingName">이름</label>
 				</div>
 
 				<div class="form-floating d-flex">
 					<input type="text" name="member_birth" class="form-control input-cc " id="floatingBirth" placeholder="" > 
-          			<label for="floatingBirth">생년월일</label>
+          			<label for="floatingBirth">생년월일 ex)'20000101'</label>
 				</div>
 
 				<div class="form-floating d-flex">
@@ -103,19 +180,21 @@
 				</div>
 				
 				<div class="form-floating d-flex">
-					<input type="text" name="member_phone" class="form-control input-cc" id="floatingTel" placeholder="ex)'19990101'"> 
-					<label for="floatingTel">전화번호</label>
+					<input type="text" name="member_phone" class="form-control input-cc" id="floatingTel" placeholder=""> 
+					<label for="floatingTel"><span>전화번호 '-' 제외 입력</span></label>
 				</div>
 				
-				<div class="form-floating d-flex ">
-					<input type="radio" name="member_agree" class="form-check-input" id="floatingAgree" value="Y">
-				    <label class="form-check-label" for="floatingAgree">마케팅 수신 동의</label>
+				<div class="form-floating d-flex">
+				    <div class="form-check form-check-inline">
+				        <input type="checkbox" name="member_agree" class="form-check-input" id="floatingAgree" value="Y">
+				        <label class="form-check-label" for="floatingAgree">마케팅 수신 동의</label>
+				    </div>
 				</div>
 				
 				<div class="info">
 					<span><button style="border: none; background-color: none; font-size: 8px;" onclick="location.href='#'">고객 센터</button></span>
 				</div>
-				<div style="text-align: center; margin-top: 5%;">
+				<div class="form-floating" style="text-align: center; margin-top: 5%;">
 					<button class="btn btn-outline-dark w-25 py-2" type="submit" name="member_situation" value="가입">회원가입</button>
 					<button class="btn btn-outline-dark w-25 py-2" type="button" style="margin-left: 10%" onclick=history.go(-1);>취소</button>
 				</div>

@@ -41,8 +41,8 @@ public class MemberDAO {
 	public void CloseDB() {
 			try {
 				if(rs != null) rs.close();
-				if(pstmt != null) rs.close();
-				if(con != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
 				
 				System.out.println(" DAO :  디비 자원해제 완료!");
 			} catch (SQLException e) {
