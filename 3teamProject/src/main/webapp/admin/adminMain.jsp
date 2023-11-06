@@ -24,6 +24,15 @@
 	
 </head>
 <body>
+  <!-- 
+	  로그인을 수행한 관리자만 접근 가능 
+	  로그인 없이 접근한 경우 로그인페이지로 이동
+   -->
+  <%-- <c:if test="${id == null }"> --%>
+  <c:if test="${empty adminId }">
+	<c:redirect url="./AdminLogin.ad"/>  	
+  </c:if>
+
   <div class="wrapper">
 	
   <!-- 사이드바 -->
