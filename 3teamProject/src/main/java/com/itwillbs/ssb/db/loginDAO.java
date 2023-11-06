@@ -61,11 +61,9 @@ public class loginDAO {
         return result;
     }
 
-    // 다른 메서드 추가
-    // ...
-
+   
     public static void main(String[] args) {
         loginDAO dao = new loginDAO();
-        // DAO 객체를 사용하여 원하는 작업 수행
+ 
     }
 }

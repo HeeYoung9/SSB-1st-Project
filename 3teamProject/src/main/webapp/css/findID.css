@@ -1,0 +1,33 @@
+#find_id_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.find_id-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.find_id-form-container label {
+    margin-bottom: 10px;
+}
+
+.find_id-form-container input[type="email"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.find_id-form-container button {
+    padding: 10px 20px;
+    background-color: #464545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

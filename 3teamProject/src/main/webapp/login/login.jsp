@@ -19,7 +19,7 @@
             <button class="login-button">장바구니</button>
         </div>
     </header><br>
-    <!-- header 끝 -->\
+    <!-- header 끝 -->
 
     <div id="login_wrap">
         <div class="main-container">
@@ -36,9 +36,13 @@
                         <label for="floatingPassword">비밀번호</label>
                     </div>
                     <div class="info">
-                        <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;">아이디 찾기</button></span>
+                        <span>
+    					<button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="window.open('findID.jsp', '_blank')">아이디 찾기</button>
+						</span>
                         <span>&nbsp;</span>
-                        <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="goToCenter();">비밀번호 찾기</button></span>
+                        <span>
+    					<button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="window.open('findPassword.jsp', '_blank')">비밀번호 찾기</button>
+						</span>
                         <span>&nbsp;</span>
                         <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;">회원가입</button></span>
                     </div>
@@ -72,9 +76,10 @@
                             });
                         }
                     </script>
-                    <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
-                        <img src="../img/naver_login.png" />
-                    </a>
+                    <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=253324653095-4p0h7jpcqct6512k21j23k72qkphd812.apps.googleusercontent.com&redirect_uri=https://naver.com&response_type=code&scope=openid%20email%20profile">
+    				<img src="../img/google_login.png" alt="구글 계정 로그인" /> <!-- 여기서 임시로 리다이렉트할 주소를 네이버로 해뒀습니다. 메인페이지 주소를 추후에 google developer에서 api 관리에 들어가서 수정할수 있습니다. -->
+					</a>
+
                 </div>
             </div>
         </div>
