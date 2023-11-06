@@ -170,7 +170,7 @@ function check(){
 
 				<div class="form-floating d-flex">
 				    <div class="form-check form-check-inline">
-				        <input type="radio" name="member_gender" class="form-check-input" id="floatingKor" value="M">
+				        <input type="radio" name="member_gender" class="form-check-input" id="floatingKor" value="M" checked>
 				        <label class="form-check-label" for="floatingKor">남</label>
 				    </div>
 				    <div class="form-check form-check-inline">
@@ -187,7 +187,7 @@ function check(){
 				<div class="form-floating d-flex">
 				    <div class="form-check form-check-inline">
 				        <input type="checkbox" name="member_agree" class="form-check-input" id="floatingAgree" value="Y">
-				        <label class="form-check-label" for="floatingAgree">마케팅 수신 동의</label>
+				        <label class="form-check-label" for="floatingAgree">마케팅 수신 동의(선택)</label>
 				    </div>
 				</div>
 				
