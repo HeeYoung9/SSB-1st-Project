@@ -18,11 +18,14 @@ public class ActionForward {
 	
 	
 	public ActionForward() {
-		System.out.println("----------------------------------");
-		System.out.println("티켓정보 생성");
-		System.out.println("목적지 x, 방식 x");
-		System.out.println("----------------------------------");
+		System.out.println("\n----------------------------------");
+		System.out.println("\t 티켓정보 생성");
+		System.out.println("\t 목적지 x, 방식 x");
+		System.out.println("----------------------------------\n");
 	}
+	
+	
+	// alt shift s + r  (get/set)
 	public String getPath() {
 		return path;
 	}
@@ -39,6 +42,7 @@ public class ActionForward {
 	}
 	
 	
+	// alt shift s + s
 	@Override
 	public String toString() {
 		return "ActionForward(티켓) [path(목적지)=" + path + ", isRedirect=(방법)" + isRedirect + "]";
