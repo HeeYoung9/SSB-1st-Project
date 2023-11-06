@@ -1,0 +1,277 @@
+/* body 시작*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* body 끝 */
+
+/* 메인 바디 상품페이지 */
+
+.justify-content-center {
+	margin-right: calc(-5 * var(--bs-gutter-x));
+	margin-left: calc(-5 * var(--bs-gutter-x));
+}
+
+/* header 시작*/
+.header {
+    background-color: #000;
+    color: #000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.login-button,
+.signup-button {
+    background-color: #555;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: #777;
+}
+/* header 끝 */
+
+
+
+/* section 시작 */
+.section {
+    display: flex;
+    width:100vw;
+}
+
+
+ /* 아코디언 버튼이 줄바꿈되지 않도록 설정 */
+/* .accordion {
+    white-space: nowrap;
+} */
+/* 버튼을 블록 요소로 설정하여 줄바꿈을 방지합니다 */
+/* .accordion-btn {
+    display: block; 
+    width: 50px;
+} */
+
+.accordion-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-btn.active {
+    background: #f9f9f9;
+}
+
+.accordion-btn.active + .accordion-content {
+    max-height: 1000px;
+}
+
+
+/* section 오른쪽 */
+.right-section {
+    flex: 85%;
+    padding: 15px;
+}
+
+/* section 끝 */
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width:100vw;
+    
+}
+
+/* 검색창 (배경색 없는것. 지금 적용 안돼있음.)*/
+
+
+.inwrite {
+	width: 150px;
+	height: 35px;
+	background: transparent;
+	border-color: transparent;
+	outline: none;
+	color: white;
+	padding: 0 0 0 2px;
+	border-bottom: 1px solid gray;
+	
+	}
+	
+.searchbtn {
+	background: transparent;
+	color:black;
+	border-color: transparent;
+	padding: 0 0 0 6px;
+	
+}
+
+/* 검색창 챗 테스트 */
+
+
+/* 기본 검색 창 스타일 */
+.search-box {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* 검색 입력 필드 스타일 */
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+/* 검색 아이콘 스타일 */
+.search-icon {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #555;
+  border: none;
+}
+
+/* 검색 아이콘 호버 효과 */
+.search-icon:hover {
+  color: #333;
+}
+
+
+/* 검색 입력 필드에 포커스를 받았을 때 버튼 표시 (선택적) */
+.search-input:focus + .search-button {
+  display: block;
+}
+
+
+/* 이벤트 슬라이드 */
+
+.d-block{
+	width:100%;
+	height: 570px;
+}
+
+
+
+/* 메인 메뉴바 오픈 */
+
+.menu {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            color: black;
+            padding: 20px 0;
+            height: auto;
+            text-align: center;
+            justify-content: space-around;
+            z-index:3;
+        }
+ .menu a {
+            color: black;
+            text-decoration: none;
+            padding: 15px;
+            font-size: x-large;
+    
+        }
+.submenu {
+	display: inline-block;
+
+
+ }
+        
+
+.submenu-content {
+	display: none;
+	position: absolute;
+	text-align: left;
+	
+
+
+}
+
+
+.submenu-content a {
+	display: block;
+	color: black;
+    padding: 10px;
+}
+
+.submenu:hover .submenu-content{
+	 display: block;
+    position: absolute;
+  
+ 
+}
+
+/* 더보기 버튼 */
+
+.more {
+  margin-top: 2px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: transparent; /* 배경색상 변경 */
+  color: black; /* 텍스트 색상 변경 */
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 버튼에 호버 효과 추가 */
+  text-decoration: none;
+  float: right;
+
+}
+
+.more:hover {
+  background-color: LightGray; /* 호버 시 배경색상 변경 */
+  color: white;
+}
+
+
+/* 이미지 반전 */
+
+a{
+	text-decoration: none;
+	color:black;
+}
+ 
+
