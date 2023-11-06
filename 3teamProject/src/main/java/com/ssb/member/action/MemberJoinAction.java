@@ -1,6 +1,7 @@
 package com.ssb.member.action;
 
 
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,7 @@ public class MemberJoinAction implements Action {
 		Date sqlBirth = new java.sql.Date(Date.getTime());
 		// member_agree
 		String member_agree = request.getParameter("member_agree");
-		if(member_agree == null) {
+		if(member_agree==null) {
 			member_agree = "N";
 		}
 		
@@ -64,7 +65,21 @@ public class MemberJoinAction implements Action {
 		
 		System.out.println("M : "+forward);
 		
-		return forward;
+		// 페이지 이동(js) -> 메인페이지로 이동
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("if(confirm('로그인하시겠습니까?')){");
+		out.println("location.href='./MemberLogin.me';");
+		out.println("}else{");
+		out.println("location.href='./Main.in';");
+		out.println("}");
+		out.println("</script>");
+		out.close();
+		
+		return null; // 이미 JS페이지 이동을 완료, 컨트롤러 사용해서 페이지이동X
+		
+//		return forward;
 	}
 
 }

@@ -51,6 +51,13 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberLogin.me")) {
+			System.out.println("C : /MemberLogin.me 매핑");
+			System.out.println("C : 패턴 1 - DB사용X, view페이지 출력 ");
+			
+			forward = new ActionForward();
+			forward.setPath("./login/login.jsp");
+			forward.setRedirect(false);
 		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		

@@ -102,7 +102,7 @@ function check(){
 <!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
 <div class="container-fluid">
 	<!-------------------  로고 넣는 곳 시작 --------------->
-	<div class="logo" style="margin-left: 25%;">
+	<div class="logo" style="margin-left: 24%;">
 <!-- 		<img alt="SSB_black" src="../img/SSB_black.png" width="150px"> -->
 	</div>
 	<!------------------  로고 넣는 곳  끝----------------->
@@ -120,9 +120,9 @@ function check(){
 	<div class="form-container">
 
 		<main class="form-signin m-auto" style="width: 480px; /*border: 1px solid red;*/">
+			<!-- form 시작 -->
 			<form action="./MemberJoinAction.me" method="post" name="fr" onsubmit="return check();">
 				<h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원가입</h1>
-
 
 				<div class="col">
 					<div class="input-group">
@@ -156,7 +156,6 @@ function check(){
 				        <option value="kakao.com">kakao.com</option>
 				    </select>
 				</div>
-					
 
 				<div class="form-floating d-flex mt-2">
 					<input type="text" name="member_name" class="form-control input-cc " id="floatingName" placeholder=""> 
@@ -199,7 +198,7 @@ function check(){
 					<button class="btn btn-outline-dark w-25 py-2" type="button" style="margin-left: 10%" onclick=history.go(-1);>취소</button>
 				</div>
 			</form>
-
+			<!-- form 끝 -->
 		</main>
 	</div>
 
