@@ -43,8 +43,9 @@
     
 }
 .main-container {
-    width: 70%;
+    width: 480px;
     text-align: center; /* 가운데 정렬 추가 */
+    
 }
 .form-container .info {
     margin-top: 20px; /* 상단 간격 조정 */

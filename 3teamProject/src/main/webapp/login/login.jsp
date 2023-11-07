@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSB Layout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link href="../css/login.css" rel="stylesheet">
+    <link href="./css/login.css" rel="stylesheet">
 </head>
 <body>
     <!-- header 시작 -->
     <header class="header">
         <div class="logo">
-            <img src="../img/SSB_gold.png" style="width: 200px;">
+            <img src="./img/SSB_gold.png" style="width: 200px;">
         </div>
         <div>
             <button class="login-button">메인페이지</button>
             <button class="login-button">장바구니</button>
         </div>
     </header><br>
-    <!-- header 끝 -->\
+    <!-- header 끝 -->
 
     <div id="login_wrap">
         <div class="main-container">
 
-            <div class="form-container">
+            <div class="form-container" style="width: 380px;" >
                 <h1 class="h3 mb-3 fw-normal">로그인</h1>
                 <form action="loginProcess.jsp" method="POST">
                     <div class="form-floating">
@@ -40,7 +40,11 @@
                         <span>&nbsp;</span>
                         <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="goToCenter();">비밀번호 찾기</button></span>
                         <span>&nbsp;</span>
-                        <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;">회원가입</button></span>
+                        <span>
+                        	<button style="border: none; background-color: transparent; font-size: 12px; border: none;">
+                        		<a href="./MemberJoin.me">회원가입</a>
+                        	</button>
+                        </span>
                     </div>
                     <div >
                         <button class="login-button-custom" type="submit">로그인</button>
@@ -48,7 +52,7 @@
                 </form>
                 <br>
                 <div class="d-grid gap-2" style="text-align: center;">
-                    <a href="javascript:kakaoLogin();"><img src="../img/kakao_login.png" alt="카카오계정 로그인" /></a>
+                    <a href="javascript:kakaoLogin();"><img src="./img/kakao_login.png" alt="카카오계정 로그인" /></a>
                     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
                     <script>
                         window.Kakao.init('7dab86842cbd0450f16b4b7691565447');
@@ -73,7 +77,7 @@
                         }
                     </script>
                     <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
-                        <img src="../img/naver_login.png" />
+                        <img src="./img/naver_login.png" />
                     </a>
                 </div>
             </div>

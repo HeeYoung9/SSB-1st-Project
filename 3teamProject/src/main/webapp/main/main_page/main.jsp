@@ -84,7 +84,7 @@
 		<!-- ID 세션값이 null 일때 보일 버튼 -->
 		<c:if test="${sessionScope.loginId ==null }">
 			<div>
-				<button class="login-button">login</button>
+				<button class="login-button"><a href="./MemberLogin.me">login</a> </button>
 				<button class="signup-button">
 					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
 				</button>
