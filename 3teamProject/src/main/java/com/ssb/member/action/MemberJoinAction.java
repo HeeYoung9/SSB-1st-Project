@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ import com.ssb.member.db.MemberDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
+@WebServlet("/PP")
 public class MemberJoinAction implements Action {
 
 	@Override

@@ -41,8 +41,8 @@
                         <span><button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="goToCenter();">비밀번호 찾기</button></span>
                         <span>&nbsp;</span>
                         <span>
-                        	<button style="border: none; background-color: transparent; font-size: 12px; border: none;">
-                        		<a href="./MemberJoin.me">회원가입</a>
+                        	<button style="border: none; background-color: transparent; font-size: 12px; border: none;" onclick="location.href='./MemberJoin.me';">
+                        		회원가입
                         	</button>
                         </span>
                     </div>
