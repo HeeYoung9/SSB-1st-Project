@@ -131,7 +131,7 @@
 						<div class="form-floating">
 							<input type="text" name="member_user_id" class="form-control input-cc inputId" id="floatingId" placeholder=""> 
 							<label for="floatingId">아이디</label>
-							<font id = "checkId" size="2"></font>
+							<font id="checkId" size="2" class="position-absolute top-50 start-20 translate-middle-y" style="right: 9px; margin-top: 2px"></font>
 						</div>
 					</div>
 				</div>

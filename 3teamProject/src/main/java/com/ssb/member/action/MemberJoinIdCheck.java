@@ -33,8 +33,8 @@ public class MemberJoinIdCheck implements Action {
 			System.out.println("사용 가능한 아이디입니다.");
 		}
 		
-		out.write("{\"result\": " + idCheck + "}"); // -> ajax 결과값인 result가 됨
-		// -> String으로 값을 내보낼 수 있도록 + ""를 해준다
+		out.write(idCheck + ""); // -> ajax 결과값인 result가 됨
+		// -> String으로 값을 내보낼 수 있도록 해준다
 		
 		return null;
 	}

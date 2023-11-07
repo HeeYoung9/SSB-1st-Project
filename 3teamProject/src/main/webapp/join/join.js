@@ -28,9 +28,19 @@ $('.inputId').focusout(function(){
 			if(result == -1){
 				$("#checkId").html('사용할 수 없는 아이디입니다.');
 				$("#checkId").attr('color','red');
+				$("#floatingId").css({
+					'border-color' : 'red',
+					'border-width' : '2px'
+				});
+				$("#floatingId").focus();
 			}else{
 				$("#checkId").html('사용할 수 있는 아이디입니다.');
 				$("#checkId").attr('color','skyblue');
+				$("#floatingId").css({
+					'border-color' : '',
+					'border-width' : ''
+				});
+				
 			}
 		},
 		error : function(){
