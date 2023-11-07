@@ -21,7 +21,7 @@ public class MemberJoinIdCheck implements Action {
 		PrintWriter out = response.getWriter();
 		
 		// 정보 저장
-		String member_user_id = request.getParameter("member_user_id");
+		String member_user_id = request.getParameter("userId");
 	
 		MemberDAO dao = new MemberDAO();
 		int idCheck = dao.checkId(member_user_id);

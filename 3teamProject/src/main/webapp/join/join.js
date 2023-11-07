@@ -22,8 +22,8 @@ $('.inputId').focusout(function(){
 	$.ajax({
 		url : "./MemberJoinIdCheck.me",
 		type : "post",
-		data : {userId: userId},
-		dataType : 'json',
+		data : {"userId": userId},
+		dataType : 'text',
 		success : function(result){
 			if(result == -1){
 				$("#checkId").html('사용할 수 없는 아이디입니다.');

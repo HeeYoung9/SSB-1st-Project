@@ -86,6 +86,7 @@ public class MemberDAO {
 	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
 	public int checkId(String member_user_id) { // 유저가 입력한 값을 매개변수로 한다
 		int idCheck = -1;
+		System.out.println(member_user_id);
 		try {
 			con = getcon();
 			
