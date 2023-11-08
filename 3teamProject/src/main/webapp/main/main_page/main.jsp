@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 <html>
+<!-- header js 코드 영역 접어둠. -->
 <script type="text/javascript">
 	function toggleCategory() {
 		var categoryContent = document.querySelector('.category-content');
@@ -22,7 +25,7 @@
 	}
 </script>
 
-<!-- 상단 메뉴바 오픈 및 영역 확장 -->
+<!-- 상단 메뉴바 오픈 및 영역 확장 js 코드 접어둠.-->
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 
@@ -64,101 +67,11 @@
 </head>
 
 <body>
-
-	<!-- header 시작 -->
-	<header class="header">
-		<div class="logo">
-			<a href="./Main.in"><img src="./main/item_img/SSB_gold.png"
-				style="width: 200px;"></a>
-		</div>
-		<div>
-			<form role="search" style="display: flex;" class="search-box">
-				<input class="search-input" type="text" placeholder="내 스타일 찾기"
-					style="width: 80%;">
-				<button type="submit" class="search-icon">
-					<img width="38" height="38" src="./main/img/hoodie.png" alt="검색버튼" />
-				</button>
-			</form>
-		</div>
-
-		<!-- ID 세션값이 null 일때 보일 버튼 -->
-		<c:if test="${sessionScope.loginId ==null }">
-			<div>
-				<button class="login-button">login</button>
-				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
-				</button>
-			</div>
-		</c:if>
-
-		<!-- ID 세션값이 있을때 보일 버튼 -->
-		<c:if test="${sessionScope.loginId != null }">
-			<div>
-				<button class="login-button">logout</button>
-				<button class="signup-button">My Page</button>
-				<button class="signup-button">찜</button>
-				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
-				</button>
-			</div>
-		</c:if>
-	</header>
-	<!-- header 끝 -->
-
-	<!-- 상단 메인 메뉴바 시작 -->
-	<div class="menu">
-		<div class="submenu">
-			<a href="#"><b>New arriva</b>l</a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">베스트</a> <a href="#">추천제품</a>
-			</div>
-
-		</div>
-		<div class="submenu">
-			<a href="#"><b>Sports</b></a>
-			<div class="submenu-content">
-				<a href="#">골프</a> <a href="#">테니스</a> <a href="#">런닝</a> <a href="#">배드민턴</a> <a href="#">농구</a> <a href="#">축구</a>
-				<a href="#">요가/필라테스</a> <a href="#">보드</a> <a href="#">겨울스키/보드</a> <a href="#">야구</a> <a href="#">헬스</a> <a href="#">수영</a> <a href="#">기타</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Clothing</b></a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">아우터</a> <a href="#">상의</a> <a href="#">하의</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Shoes</b></a>
-			<div class="submenu-content">
-				<a href="#">실내스포츠</a> <a href="#">액티비티</a> <a href="#">릴렉스</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Accessories</b></a>
-			<div class="submenu-content">
-				<a href="#">가방</a> <a href="#">모자</a> <a href="#">라켓</a> <a href="#">양말</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Outlet</b></a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">Shoes</a> <a href="#">Clothing</a> <a href="#">Acc</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>For rental</b></a>
-			<div class="submenu-content">
-				<a href="#">골프</a> <a href="#">캠핑</a> <a href="#">겨울스포츠</a>
-			</div>
-		</div>
-	</div>
-	<!-- 상단 메인 메뉴바 끝 -->
-
+<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+<div class="header">
+	<jsp:include page="../Mcommon/top.jsp" />
+</div>
+<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 
 	<!-- section 시작 -->
@@ -168,8 +81,8 @@
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
 		<!-- 우측 영역 내용 추가 -->
-		<div class="right-section" style="margin-top: 8%;">
-			<h2>Welcome to SSB Style</h2>
+		<div class="right-section" style="margin-top: 170px;">
+			<h2>Welcome to <b style="color:blue;">S</b>SB Style</h2>
 			<p>Find your style in the Sports style box.</p>
 
 			<!-- 이벤트 슬라이드 시작 -->
@@ -189,8 +102,9 @@
 					<!-- 실제 JSP 코드 종료 부분 -->
 
 					<div class="carousel-item">
-						<a href="#"><img class="d-block"
+						<a href="#"><img class="d-block" 
 							src="./main/img/blackFriday.png" alt="블랙프라이데이"> </a>
+							<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">
@@ -216,7 +130,7 @@
 
 			<div class="container px-4 px-lg-5 mt-5">
 				<div
-					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
+					class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
 					<div class="col mb-5">
 						<div class="card h-100">
 							<!-- brand logo -->
@@ -238,8 +152,8 @@
 								</div>
 							</div>
 							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent garo">
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -280,7 +194,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -312,7 +226,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -352,7 +266,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -386,7 +300,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -418,7 +332,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -463,7 +377,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -504,7 +418,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -546,7 +460,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -587,7 +501,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -629,7 +543,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -670,7 +584,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -717,7 +631,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -759,7 +673,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -801,7 +715,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -843,7 +757,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -886,7 +800,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a
@@ -929,7 +843,7 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 10px;"><a
+								<span class="text-center" style="margin-left: 5px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
 										width="20" height="20" src="./main/img/heart.png" alt="하트" />
 										wish</a></span> <span class="text-center"><a

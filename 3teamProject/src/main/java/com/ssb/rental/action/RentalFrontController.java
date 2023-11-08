@@ -1,9 +1,10 @@
-package com.ssb.main.action;
+package com.ssb.rental.action;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +14,13 @@ import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
 
+@WebServlet("*.re")
 
-
-public class MainFrontController extends HttpServlet{
+public class RentalFrontController extends HttpServlet{
 	
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println(" C : MainFrontController doProcess() 호출!");
+	System.out.println(" C : RentalFrontController doProcess() 호출!");
 	System.out.println(" C : GET/POST방식 모두 처리!");
 	
 	System.out.println("\n ----------------1. 가상주소 계산 시작 ----------------------");
@@ -42,25 +43,32 @@ public class MainFrontController extends HttpServlet{
 	Action action = null;
 	ActionForward forward = null; 
 	
-	if(command.equals("/Main.in")) {
-		System.out.println(" C : /Main.in 매핑 ");
-		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력"); // 디비랑 다 완성되면 패턴 3으로 변경. 일단은 패턴 1사용!
+	if(command.equals("/RentalMain.re")) {
+		System.out.println(" C : /RentalMain.re 매핑 ");
+		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력");
 		
-		forward = new ActionForward();
-		forward.setPath("./main/main_page/main.jsp");
-		forward.setRedirect(false);
+		action = new RentalMainAction();
 		
-		
-	/*	action = new MainAction();
 		try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} */
-		
+		}
 		
 		System.out.println(" C : "+forward); //toString()을 오버라이딩했으므로 객체의 문자열 정보가 호출 됨.
+		
+	}else if(command.equals("/RentalItem.re")) {
+		System.out.println(" C : /RentalItem.re 매핑 ");
+		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력");
+		
+		action = new RentalItemAction();
+		try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
 	
 	System.out.println(" ----------------2. 가상주소 매핑 종료 ----------------------");
 	

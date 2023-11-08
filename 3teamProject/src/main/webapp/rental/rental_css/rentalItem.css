@@ -1,11 +1,13 @@
+
 /* 상품목록 부분 크기 조절 */
 .container {
   display: flex;
   flex-direction: row; /* 또는 column */
   justify-content: center; /* 가운데 정렬 */
-   width: 90%;
+   width: 75%;
   margin: 0 auto;
 }
+
 
 /* body 시작*/
 
@@ -19,6 +21,7 @@ html, body {
 
 
 body {
+
     font-family: Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -36,7 +39,7 @@ body {
 
 /* header 시작*/
 .header {
-    background-color: #000;
+    background-color: white;
     color: #000;
     padding: 20px;
     /* display: flex;
@@ -47,7 +50,7 @@ body {
     left: 0;
     width: 100%;
     height: 100px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 그림자 효과 추가 */
     z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
 }
 
@@ -97,7 +100,9 @@ button {
 /* section 시작 */
 .section {
     display: flex;
-  
+    margin-top: 400px;
+   
+ 
 }
 
 
@@ -142,6 +147,7 @@ button {
 .right-section {
     flex: 85%;
     padding: 15px;
+  
 }
 
 /* section 끝 */
@@ -177,8 +183,6 @@ button {
 	padding: 0 0 0 6px;
 	
 }
-
-/* 검색창 챗 테스트 */
 
 
 /* 기본 검색 창 스타일 */
@@ -256,6 +260,8 @@ button {
         }
 .submenu {
 	display: inline-block;
+	margin-left: 100px;
+	margin-right: 100px;
 
 
  }
@@ -308,11 +314,82 @@ button {
 }
 
 
-/* 이미지 반전 */
+/* 제품 상세 섹션 추가 스타일  */
 
-a{
-	text-decoration: none;
-	color:black;
+.subscript {
+    font-family: Arial, sans-serif;
+    margin: 5%;
+    
+  
 }
- 
 
+.product-container {
+    display: flex;
+    margin-top: 200px;
+
+}
+
+.product-image {
+    flex: 1;
+    padding: 10px;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-details {
+    flex: 1;
+    padding: 10px;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.reserve-button {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.product-description {
+    margin: 20px;
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.product-description img {
+    max-width: 100%;
+    height: auto;
+}
+
+.reviews, .questions {
+    margin: 20px;
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+h2 {
+    font-size: 18px;
+}
+
+/* top 퀵 메뉴 고정 */
+.top{
+	position: fixed;
+	border: 1px solid black;
+	background-color: black;
+	right: 100px;
+	bottom: 25px;
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.top>a{
+	color: white;
+	font-size: small;
+}
