@@ -34,8 +34,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="hidden" id="checkArray" name="checkArray">
-	<input type="button" value="삭제" onclick="deleteCart()">
-	<input type="submit" value="주문" onclick="arrayData()">
 </body>
 </html>

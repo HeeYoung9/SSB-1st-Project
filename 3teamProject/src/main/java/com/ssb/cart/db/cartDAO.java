@@ -106,13 +106,14 @@ public class cartDAO {
 		}
 		return dtoArray;
 	}
-
+	
+	//배송지 조회 메서드
 	public ArrayList<locationDTO> getlocation(String member_id) {
 		ArrayList<locationDTO> dtoArray = new ArrayList<locationDTO>();
 		locationDTO dto = null;
 		try {
 			con = getCon();
-			sql = "";
+			sql = "SELECT * FROM location WHERE member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
 			System.out.println("전송된 쿼리 : " + pstmt);
@@ -138,5 +139,29 @@ public class cartDAO {
 		}
 		return dtoArray;
 	}
-
+	
+	//배송지 등록 메서드
+	public int insertLocation(locationDTO dto) {
+		int result = -1;
+		try {
+			con = getCon();
+			sql = "INSERT INTO location VALUES(DEFAULT,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getLocation_name());
+			pstmt.setString(2, dto.getLocation_phone());
+			pstmt.setString(3, dto.getLocation_postcode());
+			pstmt.setString(4, dto.getLocation_add());
+			pstmt.setString(5, dto.getLocationD_add());
+			pstmt.setString(6, dto.getLocation_title());
+			pstmt.setString(7, dto.getLocation_requested());
+			pstmt.setInt(8, dto.getMember_id());
+			System.out.println("전송된 쿼리 : " + pstmt);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
 }

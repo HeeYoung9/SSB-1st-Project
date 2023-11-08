@@ -63,6 +63,24 @@ public class mainController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/locationInsert.bo")) {
+			System.out.println("C : /locationInsert.bo 호출");
+			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./location/locationInsert.jsp");
+			forward.setRedirect(false);
+		}else if (command.equals("/locationInsertAction.bo")) {
+			System.out.println("C : /locationInsert.bo 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			action = new locationInsertAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		/*********************** 2. 가상주소 매핑 끝 **************************/
