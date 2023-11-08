@@ -1,4 +1,4 @@
-package com.itwillbs.ssb.db;
+package com.ssb.cart.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class cartAjaxDAO {
+public class ajaxDAO {
 	// 공통 변수 선언
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
@@ -45,7 +45,7 @@ public class cartAjaxDAO {
 
 	// 옵션 선택 메서드
 	public ArrayList<optionsDTO> getOptions(String item_id) {
-		ArrayList<optionsDTO> dtoArr = new ArrayList<optionsDTO>();
+		ArrayList<optionsDTO> dtoArray = new ArrayList<optionsDTO>();
 		optionsDTO dto = null;
 		try {
 			con = getCon();
@@ -60,7 +60,7 @@ public class cartAjaxDAO {
 				dto.setOptions_value(rs.getString("options_value"));
 				dto.setOptions_price(rs.getInt("options_price"));
 				dto.setOptions_quantity(rs.getInt("options_quantity"));
-				dtoArr.add(dto);
+				dtoArray.add(dto);
 				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public class cartAjaxDAO {
 		} finally {
 			CloseDB();
 		}
-		return dtoArr;
+		return dtoArray;
 	}
 
 	// 장바구니 수정 메서드

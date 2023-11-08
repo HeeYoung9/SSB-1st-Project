@@ -1,4 +1,4 @@
-package com.itwillbs.ssb.action;
+package com.ssb.cart.action;
 
 import java.io.IOException;
 
@@ -17,22 +17,22 @@ public class mainController extends HttpServlet {
 
 		/*********************** 1. 가상주소 계산 시작 **************************/
 		String requestURI = request.getRequestURI();
-		System.out.println("\t requestURI : " + requestURI);
+		System.out.println("requestURI : " + requestURI);
 		String CTXPath = request.getContextPath();
-		System.out.println("\t CTXPath : " + CTXPath);
+		System.out.println("CTXPath : " + CTXPath);
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("\t command : " + command);
+		System.out.println("command : " + command);
 		/*********************** 1. 가상주소 계산 끝 **************************/
 
 		/*********************** 2. 가상주소 매핑 시작 **************************/
-		System.out.println("\n\n C : 2. 가상주소 매핑 시작------------------");
+		System.out.println("C : 2. 가상주소 매핑 시작------------------");
 		Action action = null;
 		ActionForward forward = null;
 		
 		//수정
 		if (command.equals("/CartList.bo")) {
-			System.out.println("\t C : /CartList.bo 호출 ");
-			System.out.println("\t C : 패턴 3 - DB사용O, 페이지 출력");
+			System.out.println("C : /CartList.bo 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new cartAction();
 
@@ -42,10 +42,21 @@ public class mainController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (command.equals("/Order.bo")) {
-			System.out.println("\t C : /Order.bo 호출 ");
-			System.out.println("\t C : 패턴 3 - DB사용O, 페이지 출력");
+			System.out.println("C : /Order.bo 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new orderAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/location.bo")) {
+			System.out.println("C : /location.bo 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			action = new locationAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -59,12 +70,12 @@ public class mainController extends HttpServlet {
 		/*********************** 3. 가상주소 이동 시작 **************************/
 		if (forward != null) {
 			if (forward.isRedirect()) { // true
-				System.out.println("\t C : 이동주소 : " + forward.getPath());
-				System.out.println("\t C : 이동방법 : sendRedirect() 방식 ");
+				System.out.println("C : 이동주소 : " + forward.getPath());
+				System.out.println("C : 이동방법 : sendRedirect() 방식");
 				response.sendRedirect(forward.getPath());
 			} else { // false
-				System.out.println("\t C : 이동주소 : " + forward.getPath());
-				System.out.println("\t C : 이동방법 : forward() 방식 ");
+				System.out.println("C : 이동주소 : " + forward.getPath());
+				System.out.println("C : 이동방법 : forward() 방식");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}

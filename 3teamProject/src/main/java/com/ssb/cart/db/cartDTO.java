@@ -1,4 +1,4 @@
-package com.itwillbs.ssb.db;
+package com.ssb.cart.db;
 
 public class cartDTO {
 	//cart테이블
