@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ import com.ssb.member.db.MemberDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
+@WebServlet("/PP")
 public class MemberJoinAction implements Action {
 
 	@Override
@@ -25,6 +27,9 @@ public class MemberJoinAction implements Action {
 		String member_email = request.getParameter("member_email");
 		String member_email2 = request.getParameter("member_email2");
 		String domain = request.getParameter("domain");
+		System.out.println(member_email); 
+		System.out.println(member_email2); 
+		System.out.println(domain); 
 		String completeEmail = member_email +"@"+(domain.equals("type")? member_email2:domain);
 		// member_birth
 		String member_birth = request.getParameter("member_birth");
@@ -59,11 +64,11 @@ public class MemberJoinAction implements Action {
 		dao.insertMember(dto);
 		
 		// 페이지 이동
-		ActionForward forward = new ActionForward();
-		forward.setPath("./MemberLogin.me");
-		forward.setRedirect(true);
-		
-		System.out.println("M : "+forward);
+//		ActionForward forward = new ActionForward();
+//		forward.setPath("./MemberLogin.me");
+//		forward.setRedirect(true);
+//		
+//		System.out.println("M : "+forward);
 		
 		// 페이지 이동(js) -> 메인페이지로 이동
 		response.setContentType("text/html; charset=UTF-8");

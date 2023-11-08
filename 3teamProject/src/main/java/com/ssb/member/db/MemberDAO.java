@@ -80,6 +80,40 @@ public class MemberDAO {
 		} finally {
 			CloseDB();
 		}
-		// 회원가입 메서드 - insertMember(dto)
 	}
+	// 회원가입 메서드 - insertMember(dto)
+	
+	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
+	public int checkId(String member_user_id) { // 유저가 입력한 값을 매개변수로 한다
+		int idCheck = -1;
+		System.out.println(member_user_id);
+		try {
+			con = getcon();
+			
+			sql = "select * from member where member_user_id = ? "; // 입력값이 테이블에 있는지 확인
+			pstmt = con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setString(1, member_user_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(member_user_id.contains("admin")) {
+				idCheck = -1; // "admin" 이 포함된 경우, 생성 불가능
+			}else if(rs.next()) {
+				idCheck = -1; // 이미 존재하는 경우, 생성 불가능
+			}else {
+				idCheck = 1; // 존재하지 않는 경우, 생성 가능
+			}
+			
+			System.out.println("DAO : 회원가입 아이디 중복체크 완료("+idCheck+")");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+		
+		return idCheck;
+	}
+	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
 }

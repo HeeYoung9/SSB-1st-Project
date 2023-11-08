@@ -69,7 +69,7 @@
 	<!-- header 시작 -->
 	<header class="header">
 		<div class="logo">
-			<a href="./Main.in"><img src="./main/item_img/SSB_gold.png"
+			<a href="./Main.in"><img src="../main/item_img/SSB_gold.png"
 				style="width: 200px;"></a>
 		</div>
 		<div>
@@ -85,9 +85,9 @@
 		<!-- ID 세션값이 null 일때 보일 버튼 -->
 		<c:if test="${sessionScope.loginId ==null }">
 			<div>
-				<button class="login-button"><a href="./MemberLogin.me">login</a> </button>
+				<button class="login-button"><a href="../MemberLogin.me">login</a> </button>
 				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
+					<img width="20" height="15" src="../main/img/market.png" alt="장바구니" />cart
 				</button>
 			</div>
 		</c:if>
@@ -99,7 +99,7 @@
 				<button class="signup-button">My Page</button>
 				<button class="signup-button">찜</button>
 				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
+					<img width="20" height="15" src="../main/img/market.png" alt="장바구니" />cart
 				</button>
 			</div>
 		</c:if>

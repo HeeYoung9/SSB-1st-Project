@@ -13,5 +13,38 @@ domainListEl.addEventListener('change', (event) => {
     domainInputEl.value = ""
     domainInputEl.disabled = false
   }
-})
+});
   
+// 아이디 중복 확인 구현  
+$('.inputId').focusout(function(){
+	let userId =  $('.inputId').val(); // inputId에 입력되는 값
+	
+	$.ajax({
+		url : "./MemberJoinIdCheck.me",
+		type : "post",
+		data : {"userId": userId},
+		dataType : 'text',
+		success : function(result){
+			if(result == -1){
+				$("#checkId").html('사용할 수 없는 아이디입니다.');
+				$("#checkId").attr('color','red');
+				$("#floatingId").css({
+					'border-color' : 'red',
+					'border-width' : '2px'
+				});
+				$("#floatingId").focus();
+			}else{
+				$("#checkId").html('사용할 수 있는 아이디입니다.');
+				$("#checkId").attr('color','skyblue');
+				$("#floatingId").css({
+					'border-color' : '',
+					'border-width' : ''
+				});
+				
+			}
+		},
+		error : function(){
+			alert("서버요청실패");
+		}
+	})
+});

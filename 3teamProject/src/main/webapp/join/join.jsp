@@ -8,96 +8,98 @@
 <title>Document</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <link href="./join/join.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	function check(){
+	    // 아이디 입력여부 체크
+	    var id = document.fr.member_user_id.value;
+	    if(id == ""){
+	      alert('아이디를 입력하세요!');
+	      document.fr.member_user_id.focus();
+	      return false;
+	    }
+	
+	    // 비밀번호 입력여부 체크
+	    var pw = document.fr.member_pw.value;
+	    if(pw == ""){
+	      alert('비밀번호를 입력하세요!');
+	      document.fr.member_pw.focus();
+	      return false;
+	    }
+	
+	    // 비밀번호 유효성 체크 (8자 이상)
+	    if(pw.length < 8){
+	      alert('비밀번호는 최소 8자 이상이어야 합니다.');
+	      document.fr.member_pw.focus();
+	      return false;
+	    }
+	
+	    // 비밀번호 확인 입력여부 체크
+	    var pw2 = document.fr.member_pw2.value;
+	    if(pw2 == ""){
+	      alert('비밀번호 확인을 입력하세요!');
+	      document.fr.member_pw2.focus();
+	      return false;
+	    }
+	
+	    // 비밀번호와 비밀번호 확인 일치 여부 체크
+	    if(pw != pw2){
+	      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+	      document.fr.member_pw2.focus();
+	      return false;
+	    }
+	
+	    // 이메일 입력여부 체크 (이메일 주소 또는 직접 입력)
+	    var email = document.fr.member_email.value;
+	    var email2 = document.fr.member_email2.value;
+	    var domain = document.fr.domain.value;
+	    if(email == "" || (domain == "type" && email2 == "")){
+	      alert('이메일을 입력하세요!');
+	      document.fr.member_email.focus();
+	      return false;
+	    }
+	
+	    // 생년월일 입력여부 체크
+	    var birth = document.fr.member_birth.value;
+	    if(birth == ""){
+	      alert('생년월일을 입력하세요!');
+	      document.fr.member_birth.focus();
+	      return false;
+	    }
+	    
+	    // 생년월일 유효성 체크 (8자)
+	    if(birth.length < 8){
+	      alert("생년월일은 8자로 입력하세요.\n ex) '20000101'");
+	      document.fr.member_pw.focus();
+	      return false;
+	    }
+	
+	    // 성별 선택여부 체크
+	    var gender = document.querySelector('input[name="member_gender"]:checked');
+	    if(!gender){
+	      alert('성별을 선택하세요!');
+	      return false;
+	    }
+	
+	    // 전화번호 입력여부 체크
+	    var phone = document.fr.member_phone.value;
+	    if(phone == ""){
+	      alert('전화번호를 입력하세요!');
+	      document.fr.member_phone.focus();
+	      return false;
+	    }
+	
+	    // 마케팅 수신 동의 체크여부 체크
+	//     var agree = document.querySelector('input[name="member_agree"]:checked');
+	//     if(!agree){
+	//       alert('마케팅 수신 동의를 체크하세요!');
+	//       return false;
+	//     }
+	  }   
+</script>
 </head>
 <body>
-<script type="text/javascript">
-function check(){
-    // 아이디 입력여부 체크
-    var id = document.fr.member_user_id.value;
-    if(id == ""){
-      alert('아이디를 입력하세요!');
-      document.fr.member_user_id.focus();
-      return false;
-    }
 
-    // 비밀번호 입력여부 체크
-    var pw = document.fr.member_pw.value;
-    if(pw == ""){
-      alert('비밀번호를 입력하세요!');
-      document.fr.member_pw.focus();
-      return false;
-    }
-
-    // 비밀번호 유효성 체크 (8자 이상)
-    if(pw.length < 8){
-      alert('비밀번호는 최소 8자 이상이어야 합니다.');
-      document.fr.member_pw.focus();
-      return false;
-    }
-
-    // 비밀번호 확인 입력여부 체크
-    var pw2 = document.fr.member_pw2.value;
-    if(pw2 == ""){
-      alert('비밀번호 확인을 입력하세요!');
-      document.fr.member_pw2.focus();
-      return false;
-    }
-
-    // 비밀번호와 비밀번호 확인 일치 여부 체크
-    if(pw != pw2){
-      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-      document.fr.member_pw2.focus();
-      return false;
-    }
-
-    // 이메일 입력여부 체크 (이메일 주소 또는 직접 입력)
-    var email = document.fr.member_email.value;
-    var email2 = document.fr.member_email2.value;
-    var domain = document.fr.domain.value;
-    if(email == "" || (domain == "type" && email2 == "")){
-      alert('이메일을 입력하세요!');
-      document.fr.member_email.focus();
-      return false;
-    }
-
-    // 생년월일 입력여부 체크
-    var birth = document.fr.member_birth.value;
-    if(birth == ""){
-      alert('생년월일을 입력하세요!');
-      document.fr.member_birth.focus();
-      return false;
-    }
-    
-    // 생년월일 유효성 체크 (8자)
-    if(birth.length < 8){
-      alert("생년월일은 8자로 입력하세요.\n ex) '20000101'");
-      document.fr.member_pw.focus();
-      return false;
-    }
-
-    // 성별 선택여부 체크
-    var gender = document.querySelector('input[name="member_gender"]:checked');
-    if(!gender){
-      alert('성별을 선택하세요!');
-      return false;
-    }
-
-    // 전화번호 입력여부 체크
-    var phone = document.fr.member_phone.value;
-    if(phone == ""){
-      alert('전화번호를 입력하세요!');
-      document.fr.member_phone.focus();
-      return false;
-    }
-
-    // 마케팅 수신 동의 체크여부 체크
-//     var agree = document.querySelector('input[name="member_agree"]:checked');
-//     if(!agree){
-//       alert('마케팅 수신 동의를 체크하세요!');
-//       return false;
-//     }
-  }   
-</script>
 
 <!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
 <div class="container-fluid">
@@ -127,8 +129,9 @@ function check(){
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
-							<input type="text" name="member_user_id" class="form-control input-cc" id="floatingId" placeholder=""> 
+							<input type="text" name="member_user_id" class="form-control input-cc inputId" id="floatingId" placeholder=""> 
 							<label for="floatingId">아이디</label>
+							<font id="checkId" size="2" class="position-absolute top-50 start-20 translate-middle-y" style="right: 9px; margin-top: 2px"></font>
 						</div>
 					</div>
 				</div>
@@ -145,8 +148,10 @@ function check(){
 				<div class="form-floating d-flex">
 				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc" id="floatingEmail" placeholder="">
 				    <label for="floatingEmail" class="flex-grow-4">이메일 입력</label>
+				    
              			 <span class="input-group-text">@</span>
-				      <input type="text" name="member_email2" class="form-control flex-grow-1 input-cc " id="domain-txt" placeholder=''>
+             			 
+				    <input type="text" name="member_email2" class="form-control flex-grow-1 input-cc " id="domain-txt" placeholder=''>
 				    <select name="domain" class="form-control flex-grow-1" id="domain-list">
 				        <option value="type">직접 입력</option>
 				        <option value="naver.com">naver.com</option>

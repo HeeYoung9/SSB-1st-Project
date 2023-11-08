@@ -1,4 +1,4 @@
-package com.ssb.login.action;
+package com.itwillbs.ssb.action;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
-@WebServlet("*.lg ")
+@WebServlet("*.lgs")
 public class loginController extends HttpServlet {
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
