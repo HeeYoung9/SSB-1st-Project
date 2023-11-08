@@ -18,7 +18,7 @@ public class findIDController extends HttpServlet {
 
         findIDDAO dao = new findIDDAO(); // DAO 인스턴스 한 번만 생성
 
-        if (email != null && !email.equals("")) {
+        if (email != null && !email.equals(" ")) {
             // 이메일 전송 코드
             boolean emailSent = dao.sendEmail(email);
 
