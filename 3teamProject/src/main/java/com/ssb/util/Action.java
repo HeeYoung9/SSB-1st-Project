@@ -1,4 +1,4 @@
-package com.itwillbs.ssb.util;
+package com.ssb.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

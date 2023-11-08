@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.ssb.db.cartDAO;
-import com.itwillbs.ssb.db.optionsDTO;
-import com.itwillbs.ssb.util.Action;
-import com.itwillbs.ssb.util.ActionForward;
+import com.ssb.util.Action;
+import com.ssb.util.ActionForward;
 @WebServlet("*.bo")
 public class mainController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

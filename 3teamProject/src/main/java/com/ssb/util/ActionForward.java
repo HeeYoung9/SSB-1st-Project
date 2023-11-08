@@ -1,4 +1,4 @@
-package com.itwillbs.ssb.util;
+package com.ssb.util;
 
 /**
  * ActionForward - 페이지 이동에 필요한 정보를 저장하는 객체 (기차표-티켓) 이동할 주소 : path (목적지) 이동할 방식 :

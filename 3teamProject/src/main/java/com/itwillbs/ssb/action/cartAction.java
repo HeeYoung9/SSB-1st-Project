@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.ssb.db.cartDAO;
 import com.itwillbs.ssb.db.cartDTO;
-import com.itwillbs.ssb.util.Action;
-import com.itwillbs.ssb.util.ActionForward;
+import com.ssb.util.Action;
+import com.ssb.util.ActionForward;
 
 public class cartAction implements Action{
 

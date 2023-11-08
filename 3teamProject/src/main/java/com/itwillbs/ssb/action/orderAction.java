@@ -6,10 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.ssb.db.cartDAO;
-import com.itwillbs.ssb.db.cartDTO;
 import com.itwillbs.ssb.db.orderDTO;
-import com.itwillbs.ssb.util.Action;
-import com.itwillbs.ssb.util.ActionForward;
+import com.ssb.util.Action;
+import com.ssb.util.ActionForward;
 
 public class orderAction implements Action {
 
