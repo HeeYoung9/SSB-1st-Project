@@ -98,7 +98,9 @@ public class MemberDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			if(member_user_id.contains("admin")) {
+				idCheck = -1; // "admin" 이 포함된 경우, 생성 불가능
+			}else if(rs.next()) {
 				idCheck = -1; // 이미 존재하는 경우, 생성 불가능
 			}else {
 				idCheck = 1; // 존재하지 않는 경우, 생성 가능

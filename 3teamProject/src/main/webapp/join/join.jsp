@@ -123,7 +123,7 @@
 
 		<main class="form-signin m-auto" style="width: 480px; /*border: 1px solid red;*/">
 			<!-- form 시작 -->
-			<form action="./MemberJoinAction.me" method="post" name="fr" enctype="multipart/form-data" onsubmit="return check();">
+			<form action="./MemberJoinAction.me" method="post" name="fr" onsubmit="return check();">
 				<h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원가입</h1>
 
 				<div class="col">
