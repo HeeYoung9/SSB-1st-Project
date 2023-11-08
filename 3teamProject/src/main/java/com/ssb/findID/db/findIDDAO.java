@@ -13,7 +13,7 @@ public class findIDDAO {
     private Connection con = null;
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
-    private String sql = " ";
+    private String sql = "";
 
     // 데이터베이스 연결을 위한 메서드
     private Connection getCon() throws Exception {

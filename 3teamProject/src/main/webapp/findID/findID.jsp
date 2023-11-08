@@ -30,7 +30,7 @@
 
             // AJAX 요청을 사용하여 서버에 이메일 전송 요청을 보내는 코드
             $.ajax({
-                type: 'PO ST',
+                type: 'POST',
                 url: 'findIDController',
                 data: { email: userEmail },
                 success: function(data) {
