@@ -3,28 +3,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>login Process</title>
+    <title>loginProcess</title>
 </head>
 <body>
     <%
-        String member_user_id = request.getParameter("member_user_id"); // 수정된 부분
-        String member_pw = request.getParameter("member_pw"); // 수정된 부분
+        String member_user_id = request.getParameter("member_user_id");
+        String member_pw = request.getParameter("member_pw");
         
-        com.ssb.login.db.loginDAO dao = new com.ssb.login.db.loginDAO(); // 패키지 경로 수정
+        com.itwillbs.ssb.db.loginProcessDAO dao = new com.itwillbs.ssb.db.loginProcessDAO();
         boolean loginResult = dao.login(member_user_id, member_pw);
         
         if (loginResult) {
     %>
             <script>
                 alert("로그인 성공");
-                location.replace("http://localhost:8080/3teamProject/main/main_page/main.jsp");
+                window.location.href = "./Main.in"; // 로그인 성공 시 Main.in 페이지로 이동
             </script>
     <%
         } else {
     %>
             <script>
                 alert("로그인 실패");
-                location.replace("login.jsp");
+                window.location.href = "./login.lg"; // 로그인 실패 시 login.lg 페이지로 이동
             </script>
     <%
         }

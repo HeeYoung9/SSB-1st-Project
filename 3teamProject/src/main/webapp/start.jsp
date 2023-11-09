@@ -18,7 +18,8 @@
 	    System.out.println(" * 주소줄에 .jsp 호출X ");  
 	
 	    // 실행주소 
-		response.sendRedirect("./CartList.bo?member_id=1");
+		response.sendRedirect("./login.lg");
+	    // 로그인 페이지로 이도
 	%>
 	
 	

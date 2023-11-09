@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
-@WebServlet("*.lgs")
+@WebServlet("*.lg")
 public class loginController extends HttpServlet {
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,10 +24,6 @@ public class loginController extends HttpServlet {
         if (command.equals("/login.lg")) {
             forward = new ActionForward(); // ActionForward 객체 생성
             forward.setPath("./login/login.jsp"); // login.jsp로 경로 설정
-            forward.setRedirect(false); // forward 방식 설정
-        } else if (command.equals("/loginProcess.lg")) {
-            forward = new ActionForward(); // ActionForward 객체 생성
-            forward.setPath("./login/loginProcess.jsp"); // loginProcess.jsp로 경로 설정
             forward.setRedirect(false); // forward 방식 설정
         }
 

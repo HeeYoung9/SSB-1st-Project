@@ -24,44 +24,45 @@
         </form>
 	</div>
 
-    <script>
-        function sendEmail() {
-            const userEmail = document.getElementById("email").value;
+<script>
+    function sendEmail() {
+        const userEmail = document.getElementById("email").value;
 
-            // AJAX 요청을 사용하여 서버에 이메일 전송 요청을 보내는 코드
-            $.ajax({
-                type: 'POST',
-                url: 'findIDController',
-                data: { email: userEmail },
-                success: function(data) {
-                    alert(data);
-                    document.getElementsByTagName("h1")[0].innerText = "인증 코드 입력 페이지";
-                    document.getElementsByTagName("label")[0].innerText = "인증 코드";
-                    document.getElementsByTagName("button")[0].innerText = "완료";
-                    document.forms[0].setAttribute("onsubmit", "submitCode(); return false;");
-                },
-                error: function(error) {
-                    console.error("Error:", error);
-                }
-            });
-        }
+        // AJAX 요청을 사용하여 서버에 이메일 전송 요청을 보내는 코드
+        $.ajax({
+            type: 'POST',
+            url: 'findIDController.fi', // 수정된 URL
+            data: { email: userEmail },
+            success: function(data) {
+                alert(data);
+                document.getElementsByTagName("h1")[0].innerText = "인증 코드 입력 페이지";
+                document.getElementsByTagName("label")[0].innerText = "인증 코드";
+                document.getElementsByTagName("button")[0].innerText = "완료";
+                document.forms[0].setAttribute("onsubmit", "submitCode(); return false;");
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+    }
 
-        function submitCode() {
-            const userCode = document.getElementById("code").value;
+    function submitCode() {
+        const userCode = document.getElementById("code").value;
 
-            // AJAX 요청을 사용하여 서버에 인증 코드 검증 요청을 보내는 코드
-            $.ajax({
-                type: 'POST',
-                url: 'findIDController',
-                data: { code: userCode },
-                success: function(data) {
-                    alert(data);
-                },
-                error: function(error) {
-                    console.error("Error:", error);
-                }
-            });
-        }
-    </script>
+        // AJAX 요청을 사용하여 서버에 인증 코드 검증 요청을 보내는 코드
+        $.ajax({
+            type: 'POST',
+            url: 'findIDController.fi', // 수정된 URL
+            data: { code: userCode },
+            success: function(data) {
+                alert(data);
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
