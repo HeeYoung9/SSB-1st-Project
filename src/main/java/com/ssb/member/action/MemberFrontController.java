@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ssb.login.action.logoutAction;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -61,7 +60,7 @@ public class MemberFrontController extends HttpServlet {
 			forward.setRedirect(false);
 		}else if(command.equals("/MemberJoinIdCheck.me")) { // Ajax 아이디 중복 체크 매핑
 		    System.out.println("C : /MemberJoinIdCheck.me 매핑");
-		    System.out.println("C : Ajax 패턴 - DB사용o, 가만히 ");
+		    System.out.println("C : Ajax 패턴 - DB사용o, 비동기 ");
 		    
 		    action = new MemberJoinIdCheck();
 		    try {
@@ -71,7 +70,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MemberJoinPwCheck.me")) { // Ajax 비밀번호 체크 매핑
 		    System.out.println("C : /MemberJoinPwCheck.me 매핑");
-		    System.out.println("C : Ajax 패턴 - DB사용x, 가만히 ");
+		    System.out.println("C : Ajax 패턴 - DB사용x, 비동기 ");
 		    
 		    action = new MemberJoinPwCheck();
 		    try {
@@ -79,17 +78,24 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MemberLogout.me")) {
-			System.out.println("C : /MemberLogout.me 매핑");
-		    System.out.println("C : 패턴3 - DB사용x, 페이지 이동 ");
-		    
-		    action = new logoutAction();
-		    try {
-				forward=action.execute(request, response);
+		}else if(command.equals("/MemberResign.me")) {
+			System.out.println("C : /MemberResign.me 매핑");
+			System.out.println("C : 패턴1 - DB사용x, view 페이지 출력");
+			
+			forward = new ActionForward();
+			forward.setPath("./resign/resign.jsp");
+			forward.setRedirect(true);
+		}else if(command.equals("/MemberResignAction.me")) {
+			System.out.println("C : /MemberResignAction.me 매핑");
+			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
+			
+			action = new MemberResignAction();
+			
+			try {
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		    
 		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		

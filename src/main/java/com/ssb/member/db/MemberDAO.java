@@ -85,19 +85,19 @@ public class MemberDAO {
 	
 	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
 	public int checkId(String member_user_id) { // 유저가 입력한 값을 매개변수로 한다
-		int idCheck = 1;
+		int result = 1;
 		String input = member_user_id;
 //		System.out.println("input : " +input);
 		
 		if(member_user_id.contains("admin")) {
 			// "admin" 이 포함된 경우, 생성 불가능
-			idCheck = -1; 
+			result = -1; 
 		}else if(member_user_id.equals("") || member_user_id == null){
 			// 아이디가 비어있거나 null인 경우, 생성 불가능
-			idCheck = -1;
+			result = -1;
 		}else if(!input.matches("^[a-zA-Z0-9]*$")){
 			// 영문과 숫자로만 이루어져 있지 않은 경우, 생성 불가능
-			idCheck = 0;
+			result = 0;
 		}else {
 			// 나머지 경우는 생성 가능
 			try {
@@ -113,7 +113,7 @@ public class MemberDAO {
 				
 				if (rs.next()) {
 					// 이미 존재하는 경우, 생성 불가능
-					idCheck = -1; 
+					result = -1; 
 				}
 				
 			} catch (Exception e) {
@@ -122,11 +122,50 @@ public class MemberDAO {
 				CloseDB();
 			}
 		}
-		System.out.println("DAO : 회원가입 아이디 제어 완료("+idCheck+")");
+		System.out.println("DAO : 회원가입 아이디 제어 완료("+result+")");
 		
-		return idCheck;
+		return result;
 	}
-	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id
+	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
 
-	
+	// 회원정보 삭제 메서드 - deleteMember(dto)
+	public int deleteMember(MemberDTO dto) {
+		int result = -1;
+		
+		try {
+			con =getcon();
+			
+			sql ="select pw from member where member_user_id = ?";
+			pstmt=con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setString(1, dto.getMember_user_id());
+			
+			rs = pstmt.executeQuery();
+			
+			// 데이터 처리
+			if(rs.next()) {
+				if(dto.getMember_pw().equals(rs.getString("member_pw"))) {
+					sql = "delete from member where id =?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, dto.getMember_user_id());
+					
+					result = pstmt.executeUpdate(); // 1 삭제완료
+				}else {
+					result = 0; // 비밀번호 오류
+				}
+			}else {
+				result = -1; // 회원정보 없음
+			}
+			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+		
+		return result;
+	}
 }

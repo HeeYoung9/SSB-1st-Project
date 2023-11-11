@@ -2,6 +2,7 @@
 
 .logo{
     width: 200px;
+    margin-top: 5%
 }
 
 .drag{
@@ -54,6 +55,3 @@ select.box {
 .form-floating font {
     margin-right: 5px;
 }
-
-
-
