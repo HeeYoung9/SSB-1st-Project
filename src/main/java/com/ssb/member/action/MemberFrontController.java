@@ -34,7 +34,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		if(command.equals("/MemberJoin.me")) {
 			System.out.println("C : /MemberJoin.me 매핑");
-			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
+			System.out.println("C : 패턴1 - DB처리X, view페이지 출력");
 			
 			forward = new ActionForward();
 			forward.setPath("./join/join.jsp");
@@ -42,7 +42,7 @@ public class MemberFrontController extends HttpServlet {
 			
 		}else if(command.equals("/MemberJoinAction.me")) {
 			System.out.println("C : /MemberJoin.me 매핑");
-			System.out.println("C : 패턴2 - DB처리X, 뷰페이지 이동");
+			System.out.println("C : 패턴2 - DB처리2, 페이지 이동");
 			
 			action = new MemberJoinAction();
 			
@@ -100,6 +100,17 @@ public class MemberFrontController extends HttpServlet {
 			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
 			
 			action = new MemberResignAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/AdMemberList.me")) {
+			System.out.println("C : /AdMemberList.me 매핑");
+			System.out.println("C : 패턴3 - DB사용O, view페이지 출력");
+			
+			action = new AdMemberListAction();
 			
 			try {
 				forward = action.execute(request, response);

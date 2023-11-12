@@ -1,10 +1,11 @@
 package com.ssb.member.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,7 +22,7 @@ public class MemberDAO {
 	
 	// 공통메서드(기능)
 	// 디비연결 메서드
-	private Connection getcon() throws Exception {
+	private Connection getCon() throws Exception {
 		
 		// 프로젝트의 정보를 확인(JNDI)
 		Context initCTX = new InitialContext();
@@ -53,7 +54,7 @@ public class MemberDAO {
 	// 회원가입 메서드 - insertMember(dto)
 	public void insertMember(MemberDTO dto) {
 		try {
-			con = getcon();
+			con = getCon();
 			System.out.println("DAO : DB 연결!");
 			
 			sql = "insert into member (member_user_id,member_pw,member_name,member_birth,member_gender,"
@@ -102,7 +103,7 @@ public class MemberDAO {
 		else {
 			// 나머지 경우는 생성 가능
 			try {
-				con = getcon();
+				con = getCon();
 				
 				sql = "select * from member where member_user_id = ? "; // 입력값이 테이블에 있는지 확인
 				pstmt = con.prepareStatement(sql);
@@ -127,14 +128,14 @@ public class MemberDAO {
 		
 		return result;
 	}
-	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
+	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 
 	// 회원정보 삭제 메서드 - deleteMember(dto)
 	public int deleteMember(MemberDTO dto) {
 		int result = -1;
 		
 		try {
-			con =getcon();
+			con =getCon();
 			
 			sql ="select pw from member where member_user_id = ?";
 			pstmt=con.prepareStatement(sql);
@@ -169,4 +170,258 @@ public class MemberDAO {
 		
 		return result;
 	}
+	// 회원정보 삭제 메서드 - deleteMember(dto
+
+	// 회원정보 조회 메서드 - getMemberList(id)
+	public ArrayList<MemberDTO> getMemberList() {
+		ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
+		
+		try {
+			con = getCon();
+			sql = "select * from member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				
+				dto.setMember_id(rs.getInt("member_id"));
+				dto.setMember_user_id(rs.getString("member_user_id"));
+				dto.setMember_pw(rs.getString("member_pw"));
+				dto.setMember_name(rs.getString("member_name"));
+				dto.setMember_birth(rs.getDate("member_birth"));
+				dto.setMember_gender(rs.getString("member_gender"));
+				dto.setMember_email(rs.getString("member_email"));
+				dto.setMember_phone(rs.getString("member_phone"));
+				dto.setMember_regdate(rs.getTimestamp("member_regdate"));
+				dto.setMember_payment(rs.getInt("member_payment"));
+				dto.setMember_point(rs.getInt("member_point"));
+				dto.setMember_grade(rs.getString("member_grade"));
+				dto.setMember_situation(rs.getString("member_situation"));
+				dto.setMember_outdate(rs.getTimestamp("member_outdate"));
+				dto.setMember_agree(rs.getString("member_agree"));
+				
+				memberList.add(dto);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberList;
+	}
+	// 회원정보 조회 메서드 - getMemberList(id)
+	
+	// 회원정보 개수 계산 메서드 - getBoardCount()
+		public int getMemberCount(){
+			int result = 0;
+			
+			try {
+				// 1. 드라이버 로드
+				// 2. 디비 연결
+				con = getCon();
+				
+				// 3. sql 작성(select) & pstmt 객체
+				sql = "select count(*) from member";
+				pstmt  =  con.prepareStatement(sql);
+				
+				// 4. sql 실행
+				rs = pstmt.executeQuery();
+				System.out.println(" SQL 실행! ");
+				
+				// 5. 데이터 처리 - 개수를 저장
+				if(rs.next()) {
+					result = rs.getInt(1);
+				}
+				
+				System.out.println(" DAO : 개수 "+result+"개");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+			
+			return result;
+		}
+	// 회원정보 개수 계산 메서드 - getBoardCount()
+	
+	// 회원정보 개수 계산 메서드 - getBoardCount(String search) - 검색기능
+	public int getMemberCount(String search){
+		int result = 0;
+		
+		try {
+			// 1. 드라이버 로드
+			// 2. 디비 연결
+			con = getCon();
+			
+			// 3. sql 작성(select) & pstmt 객체
+			sql = "select count(*) from member where member_user_id like ? or member_name like ?";
+			pstmt  =  con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, "%"+search+"%");
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			System.out.println(" SQL 실행! ");
+			
+			// 5. 데이터 처리 - 개수를 저장
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			System.out.println(" DAO : 개수 "+result+"개");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return result;
+	}
+	// 회원정보 개수 계산 메서드 - getBoardCount(String search)
+	
+	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
+	public ArrayList<MemberDTO> getMemberList(int startRow, int pageSize) {
+	    // 글정보를 저장하는 배열
+	    ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
+	    try {
+	        // 디비연결정보
+	        // 1. 드라이버 로드
+	        // 2. 디비 연결
+	        con = getCon();
+
+	        // 3. SQL 작성(select) & pstmt 객체
+	        sql = "select * from member order by member_id desc limit ?,?";
+	        pstmt = con.prepareStatement(sql);
+
+	        // ???
+	        pstmt.setInt(1, startRow - 1); // 시작행번호-1
+	        pstmt.setInt(2, pageSize); // 개수
+
+	        // 4. SQL 실행
+	        rs = pstmt.executeQuery();
+
+	        // 5. 데이터 처리
+	        // 글 정보 전부 가져오기
+	        // BoardBean 객체 여러개 => ArrayList 저장
+	        while (rs.next()) {
+	            // 글 하나의 정보 => BoardBean 저장
+	            MemberDTO dto = new MemberDTO();
+
+	            dto.setMember_id(rs.getInt("member_id"));
+	            dto.setMember_user_id(rs.getString("member_user_id"));
+	            dto.setMember_pw(rs.getString("member_pw"));
+	            dto.setMember_name(rs.getString("member_name"));
+
+	            // member_birth 처리
+	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
+	            dto.setMember_birth(sqlDate);
+
+
+	            dto.setMember_gender(rs.getString("member_gender"));
+	            dto.setMember_email(rs.getString("member_email"));
+	            dto.setMember_phone(rs.getString("member_phone"));
+	            dto.setMember_regdate(rs.getTimestamp("member_regdate"));
+	            dto.setMember_payment(rs.getInt("member_payment"));
+	            dto.setMember_point(rs.getInt("member_point"));
+	            dto.setMember_grade(rs.getString("member_grade"));
+	            dto.setMember_situation(rs.getString("member_situation"));
+	            dto.setMember_outdate(rs.getTimestamp("member_outdate"));
+	            dto.setMember_agree(rs.getString("member_agree"));
+
+	            // 글 하나의 정보를 배열의 한 칸에 저장
+	            memberList.add(dto);
+
+	        } // while
+
+	        System.out.println("DAO: 게시판 글 목록 조회 성공!");
+	        System.out.println("DAO: " + memberList.size());
+
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // SQLException 출력
+	    } catch (Exception e) {
+	        e.printStackTrace(); // 그 외 예외 출력
+	    } finally {
+	        CloseDB();
+	    }
+
+	    return memberList;
+	}
+	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
+
+	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize, String search)
+	public ArrayList<MemberDTO> getMemberList(int startRow, int pageSize, String search) {
+	    // 글정보를 저장하는 배열
+	    ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
+	    try {
+	        // 디비연결정보
+	        // 1. 드라이버 로드
+	        // 2. 디비 연결
+	        con = getCon();
+
+	        // 3. SQL 작성(select) & pstmt 객체
+	        sql = "select * from member "
+	                + "where member_user_id like ? or member_name like ? "
+	                + "order by member_id limit ?,?";
+	        pstmt = con.prepareStatement(sql);
+
+	        // ???
+	        pstmt.setString(1, "%" + search + "%"); // %검색어%
+	        pstmt.setString(2, "%" + search + "%"); // %검색어%
+	        pstmt.setInt(3, startRow - 1); // 시작행번호-1
+	        pstmt.setInt(4, pageSize); // 개수
+
+	        // 4. SQL 실행
+	        rs = pstmt.executeQuery();
+
+	        // 5. 데이터 처리
+	        // 글 정보 전부 가져오기
+	        // BoardBean 객체 여러개 => ArrayList 저장
+	        while (rs.next()) {
+	            MemberDTO dto = new MemberDTO();
+
+	            dto.setMember_id(rs.getInt("member_id"));
+	            dto.setMember_user_id(rs.getString("member_user_id"));
+	            dto.setMember_pw(rs.getString("member_pw"));
+	            dto.setMember_name(rs.getString("member_name"));
+
+	            // member_birth 처리
+	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
+	            dto.setMember_birth(sqlDate);
+
+
+	            dto.setMember_gender(rs.getString("member_gender"));
+	            dto.setMember_email(rs.getString("member_email"));
+	            dto.setMember_phone(rs.getString("member_phone"));
+	            dto.setMember_regdate(rs.getTimestamp("member_regdate"));
+	            dto.setMember_payment(rs.getInt("member_payment"));
+	            dto.setMember_point(rs.getInt("member_point"));
+	            dto.setMember_grade(rs.getString("member_grade"));
+	            dto.setMember_situation(rs.getString("member_situation"));
+	            dto.setMember_outdate(rs.getTimestamp("member_outdate"));
+	            dto.setMember_agree(rs.getString("member_agree"));
+
+	            // 글 하나의 정보를 배열의 한 칸에 저장
+	            memberList.add(dto);
+
+	        } // while
+
+	        System.out.println(" DAO: 게시판 글 목록 조회 성공!");
+	        System.out.println(" DAO: " + memberList.size());
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        CloseDB();
+	    }
+
+	    return memberList;
+	}
+									
+	
+	
+	
 }
