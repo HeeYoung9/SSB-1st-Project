@@ -19,22 +19,7 @@ public class MemberJoinPwCheck implements Action {
 //		String result = "";
 //		
 		PrintWriter out = response.getWriter();
-//		
-//		if(member_pw.matches("^[a-zA-Z]$")) { // 대소문자
-//			System.out.println("대소문자 포함!");
-//			result = "1";
-//		}else if(member_pw.matches("^[0-9]$")) { // 숫자
-//			System.out.println("숫자 포함!");
-//			result = "2";
-//		}else if(member_pw.matches("^[a-zA-Z]$")) { // 특수문자
-//			System.out.println("특수문자 포함!");
-//			result = "3";
-//		}else if(member_pw.length()>=8 || member_pw.length()<=20) { // 8~20자 이내
-//			System.out.println("8~20자 이내 충족!");
-//			result = "4";
-//		}else {
-//			System.out.println("예외 경우 발생!");
-//		}
+
 		
 		boolean containsAlphabetCase = member_pw.matches(".*[a-zA-Z].*"); // 대소문자
 		boolean containsNumber = member_pw.matches(".*\\d.*");	// 숫자

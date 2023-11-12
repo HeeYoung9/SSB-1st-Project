@@ -45,52 +45,53 @@
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
-							<input type="text" name="member_user_id" class="form-control input-cc inputId" id="floatingId" placeholder=""> 
-							<label for="floatingId">아이디</label>
+							<input type="text" name="member_user_id" class="form-control input-cc inputId" id="floatingId" maxlength="40" placeholder=""> 
+							<label for="floatingId">아이디(필수)</label>
 							<font id="checkId" size="2" class="position-absolute top-50 start-20 translate-middle-y" style="right: 9px; margin-top: 2px"></font>
 						</div>
 					</div>
 				</div>
-				<!-- 비밀번호 -->
-<!-- 				<div class="form-floating d-flex"> -->
-<!-- 					<input type="password" name="member_pw" class="form-control input-cc inputPw" id="floatingPassword" placeholder="">  -->
-<!-- 					<label for="floatingPassword">비밀번호</label> -->
-<!-- 					<font>대소문자 &#10003;</font> -->
-<!-- 					<font>숫자 &#10003;</font> -->
-<!-- 					<font>특수문자 &#10003;</font> -->
-<!-- 					<font>8~20자 이내 &#10003;</font> -->
-<!-- 				</div> -->
 				
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
-							<input type="password" name="member_pw" class="form-control input-cc inputPw" id="floatingPassword" placeholder=""> 
-							<label for="floatingPassword">비밀번호</label>
+							<input type="password" name="member_pw" class="form-control input-cc inputPw" id="floatingPassword" maxlength="40" placeholder=""> 
+							<label for="floatingPassword">비밀번호(필수)</label>
 							<div class="password-hints">
-								<font class="hint1">대소문자 &#10003;</font>
-								<font class="hint2">숫자 &#10003;</font>
-								<font class="hint3">특수문자 &#10003;</font>
-								<font class="hint4">8~20자 이내 &#10003;</font>
+								<font class="hint1" color="red">대소문자 &#10003;</font>
+								<font class="hint2" color="red">숫자 &#10003;</font>
+								<font class="hint3" color="red">특수문자 &#10003;</font>
+								<font class="hint4" color="red">8~20자 이내 &#10003;</font>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- 비밀번호 확인 -->
-				<div class="form-floating d-flex">
-					<input type="password" name="member_pw2" class="form-control input-cc " id="floatingCheckPassword" placeholder=""> 
-					<label for="floatinCheckPassword">비밀번호 확인</label>
+<!-- 				<div class="form-floating d-flex"> -->
+<!-- 					<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder="">  -->
+<!-- 					<label for="floatinCheckPassword">비밀번호 확인</label> -->
+<!-- 				</div> -->
+				
+				<div class="col">
+					<div class="input-group">
+						<div class="form-floating">
+							<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder=""> 
+							<label for="floatinCheckPassword">비밀번호 확인</label>
+							<font id="pwDoubleCheck" size="2" color="red" class="position-absolute top-50 start-20 translate-middle-y" style="right: 9px; margin-top: 2px"></font>
+						</div>
+					</div>
 				</div>
 				
 				<!-- 이메일 입력-->
 				<div class="form-floating d-flex">
-				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc" id="floatingEmail" placeholder="">
+				    <input type="text" name="member_email" class="form-control flex-grow-1 input-cc " id="floatingEmail" placeholder="">
 				    <label for="floatingEmail" class="flex-grow-4">이메일 입력</label>
 				    
-             			 <span class="input-group-text">@</span>
+             			 <span class="input-group-text align-items-end">@</span>
              			 
 				    <input type="text" name="member_email2" class="form-control flex-grow-1 input-cc " id="domain-txt" placeholder=''>
 				    <select name="domain" class="form-control flex-grow-1" id="domain-list">
-				        <option value="type">직접 입력</option>
+				        <option value="type" style="vertical-align: middle;">직접 입력</option>
 				        <option value="naver.com">naver.com</option>
 				        <option value="google.com">google.com</option>
 				        <option value="hanmail.net">hanmail.net</option>
@@ -141,7 +142,7 @@
 <!-- 					<span><button style="border: none; background-color: none; font-size: 8px;" onclick="location.href='#'">고객 센터</button></span> -->
 <!-- 				</div> -->
 				<div class="form-floating" style="text-align: center; margin-top: 5%;">
-					<button class="btn btn-outline-dark w-25 py-2" type="submit" name="member_situation" value="가입">회원가입</button>
+					<button class="btn btn-outline-dark w-25 py-2" id="submitButton" type="submit" name="member_situation" value="가입" disabled>회원가입</button>
 					<button class="btn btn-outline-dark w-25 py-2" type="button" style="margin-left: 10%" onclick=history.go(-1);>취소</button>
 				</div>
 			</form>

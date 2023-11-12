@@ -57,7 +57,7 @@ public class loginController extends HttpServlet {
 		    System.out.println("C : /MemberJoinIdCheck.me 매핑");
 		    System.out.println("C : 패턴 - DB사용o, 가만히 ");
 		    
-
+		    
 		    try {
 				action.execute(request, response);
 			} catch (Exception e) {

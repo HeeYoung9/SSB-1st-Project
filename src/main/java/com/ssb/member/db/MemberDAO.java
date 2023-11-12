@@ -83,9 +83,9 @@ public class MemberDAO {
 	}
 	// 회원가입 메서드 - insertMember(dto)
 	
-	// 회원가입 아이디 중복체크 메서드 - checkId(member_user_id)
+	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 	public int checkId(String member_user_id) { // 유저가 입력한 값을 매개변수로 한다
-		int result = 1;
+		int result = 2;
 		String input = member_user_id;
 //		System.out.println("input : " +input);
 		
@@ -94,11 +94,12 @@ public class MemberDAO {
 			result = -1; 
 		}else if(member_user_id.equals("") || member_user_id == null){
 			// 아이디가 비어있거나 null인 경우, 생성 불가능
-			result = -1;
-		}else if(!input.matches("^[a-zA-Z0-9]*$")){
-			// 영문과 숫자로만 이루어져 있지 않은 경우, 생성 불가능
 			result = 0;
-		}else {
+		}else if(!input.matches("^(?=.*[a-zA-Z])[a-zA-Z0-9]+$")){
+			// 영문과 숫자로만 이루어져 있지 않은 경우+ 생성 불가능
+			result = 1;
+		}
+		else {
 			// 나머지 경우는 생성 가능
 			try {
 				con = getcon();

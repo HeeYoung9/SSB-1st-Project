@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.form-control {
+        font-size: 14px; 
+}
+
 .logo{
     width: 200px;
     margin-top: 5%

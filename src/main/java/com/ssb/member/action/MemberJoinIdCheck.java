@@ -30,11 +30,15 @@ public class MemberJoinIdCheck implements Action {
 		
 		// 성공여부 확인
 		if(result == -1) {
-			System.out.println("이미 존재하거나 'admin'을 포함하는 아이디입니다.");
+			System.out.println("이미 존재하거나 'admin'을 포함하는 아이디");
 		} else if (result == 0) {
-			System.out.println("영문,숫자가 아닙니다.");
+			System.out.println("공백");
 		} else if (result == 1) {
-			System.out.println("사용 가능한 아이디입니다.");
+			System.out.println("영문,숫자");
+		} else if(result == 2){
+			System.out.println("사용 가능한 아이디");
+		} else {
+			System.out.println("예외 발생!");
 		}
 		
 		out.write(result + ""); // -> ajax 결과값인 result가 됨

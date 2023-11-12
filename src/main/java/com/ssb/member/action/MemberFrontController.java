@@ -78,6 +78,16 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberJoinPwDoubleCheck.me")) { // Ajax 비밀번호 체크 매핑
+		    System.out.println("C : /MemberJoinPwCheck.me 매핑");
+		    System.out.println("C : Ajax 패턴 - DB사용x, 비동기 ");
+		    
+		    action = new MemberJoinPwDoubleCheck();
+		    try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/MemberResign.me")) {
 			System.out.println("C : /MemberResign.me 매핑");
 			System.out.println("C : 패턴1 - DB사용x, view 페이지 출력");
