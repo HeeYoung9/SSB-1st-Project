@@ -13,28 +13,6 @@
 	
 	<input type="button" value="장바구니" onclick="location.href='./cartList.ca?member_id=1'">
 	<input type="button" value="배송지" onclick="location.href='./location.lo?member_id=1'">
-	<!-- <input type="button" value="위시리스트" onclick="location.href=''"> -->
+	<input type="button" value="위시리스트" onclick="location.href='./wishlist.wl?member_id=1'">
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

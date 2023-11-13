@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+D:\itwill_git\origin\SSB-1st-Project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+670811707.index
+4216509496.index
+265123945.index
+1132700243.index
+2657240866.index

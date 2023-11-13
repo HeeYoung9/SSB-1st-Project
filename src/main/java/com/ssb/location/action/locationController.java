@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
-import com.ssb.util.JSMoveFunction;
 
 @WebServlet("*.lo")
 public class locationController extends HttpServlet {
@@ -47,36 +46,18 @@ public class locationController extends HttpServlet {
 			System.out.println("C : /locationInsert.lo 호출");
 			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
 			
-			forward = new ActionForward();
-			forward.setPath("./location/locationReWrite.jsp");
-			forward.setRedirect(false);
-			
-		}else if (command.equals("/locationInsertAction.lo") || command.equals("/locationReWriteAction.lo")) {
-			System.out.println("C : /locationInsert.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
-			
-			action = new locationReWriteAction();
+			action = new locationInsert();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/locationTest.lo")) {
-			System.out.println("C : /locationTest.lo 호출");
-			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
+		}else if (command.equals("/locationInsertAction.lo")) {
+			System.out.println("C : /locationInsert.lo 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
-			//response.getWriter().print("<script>window.open('./location.lo?member_id=1','location','width=400, height=300, top=10, left=10');</script>");
-			
-			forward = new ActionForward();
-			forward.setPath("./location/locationTest.jsp");
-			forward.setRedirect(false);
-			
-		}else if (command.equals("/locationReWrite.lo")) {
-			System.out.println("C : /locationReWrite.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용), 페이지 출력");
-			
-			action = new locationReWrite();
+			action = new locationInsertAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -94,15 +75,6 @@ public class locationController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/locationModifyPopup.lo")) {
-			System.out.println("C : /locationModifyPopup.lo 호출");
-			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
-			
-			//response.getWriter().print("<script>window.open('./location.lo?member_id=1','location','width=400, height=300, top=10, left=10');</script>");
-			
-			forward = new ActionForward();
-			forward.setPath("./location/locationModifyPopup.jsp");
-			forward.setRedirect(false);
 		}
 
 		/*********************** 2. 가상주소 매핑 끝 **************************/

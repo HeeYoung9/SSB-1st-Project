@@ -6,8 +6,6 @@ import com.ssb.util.DAO;
 
 public class locationDAO extends DAO{
 	
-	
-	
 	// 배송지 조회 메서드
 	public ArrayList<locationDTO> getlocation(String member_id) {
 		ArrayList<locationDTO> dtoArray = new ArrayList<locationDTO>();
@@ -67,7 +65,7 @@ public class locationDAO extends DAO{
 	}
 	
 	//배송지 수정 메서드
-	public int reWriteLocation(locationDTO dto) {
+	public int rewriteLocation(locationDTO dto) {
 		int result = -1;
 		try {
 			con = getCon();

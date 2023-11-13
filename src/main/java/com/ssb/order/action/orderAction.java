@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.cart.db.cartDAO;
-import com.ssb.order.db.orderDTO;
+import com.ssb.cart.db.orderDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
