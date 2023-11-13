@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
 <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Item Management</title>
+    <title>SSB 상품 관리</title>
 
 
 <!-----------------------------------  현정씨 ▼ ---------------------------------------------->
@@ -34,99 +34,60 @@
 <!------- common CSS  ------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/adItem/css/itemMgt.css">
 
-
 </head>
 <body>
 
 
-  <div class="wrapper">
 	
-  <!-- 사이드바 시작 -->
-  <nav id="sidebar" class="sidebar js-sidebar">
-  	<div class="sidebar-content js-simplebar">
-	  <a class="sidebar-brand" href="./AdminMain.ad">
-        <span class="align-middle">SSB</span>
-      </a>
 
-	  <ul class="sidebar-nav">
-		<li class="sidebar-header">
-			게시판 관리
-		</li>
-
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./NoticeList.no">
-              <i class="align-middle" data-feather=""></i> 
-			  <span class="align-middle">공지사항</span>
-            </a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./InquiryList.iq">
-              <i class="align-middle" data-feather=""></i> 
-               <span class="align-middle">Q&A</span>
-            </a>
-		</li>				
-
-		<li class="sidebar-header">
-		</li>
-
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather=""></i> 
-              <span class="align-middle">회원관리</span>
-           	</a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather=""></i> 
-              <span class="align-middle">주문관리</span>
-            </a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./ItemMgt.it">
-              <i class="align-middle" data-feather=""></i> 
-              <span class="align-middle">상품관리</span>
-            </a>
-		</li>
-					
-	  </ul>
-  	</div>
-  </nav>
-  <!-- 사이드바 끝 -->
+<!-----------------------------------  현정씨 ▼ ---------------------------------------------->
+ 
+ 
+  <div class="wrapper">
+   <!-- 사이드바 -->
+  <jsp:include page="../board/inc/sidebar.jsp"/>
+  <!-- 사이드바 -->
 		
-  <!-- 메인 시작 -->
+  <!-- 메인 -->
   <div class="main">
 	<header class="navbar navbar-expand navbar-light navbar-bg">
 		<a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
-        </a>       
-    		<a href="./Main.in">
-			  <img class="home" alt="home" src="./adImg/icons/home.png" width="22" height="22">
- 			</a>    
-		<c:if test="${sessionScope.userId == null }">
+        </a>
+<%-- 		<c:if test="${sessionScope.adminId == null }">
     		<a href="./AdminLogin.ad">
-			  <img class="log-button" alt="login" src="./adImg/icons/login.png" width="25" height="25">
+			  <img class="log-button" alt="login" src="./img/icons/login.png" width="25" height="25">
  			</a>    
 		</c:if>
-		<c:if test="${sessionScope.userId != null }">
+		<c:if test="${sessionScope.adminId != null }">
     		<a href="./AdminLogout.ad">
-			  <img class="log-button" alt="logout" src="./adImg/icons/logout.png" width="25" height="25">
+			  <img class="log-button" alt="logout" src="./img/icons/logout.png" width="25" height="25">
  			</a>   
-    	</c:if>	
+    	</c:if>	 --%>
 	</header>
 <!-----------------------------------  현정씨 ▲ ---------------------------------------------->
 
-    <main id="item">
+
+
+
+    <main id="item" style="width:1500px;" align="center">
         <section class="list">
             <span>
+            	<img class="Mgt" src="./main/item_img/itemMgt.png" width="60" height="60">
                 <h1>상품 관리</h1>
+
                 <%-- 검색창 --%>
-                <span class="search-bar">
-                    <input type="text" id="searchInput" placeholder="   상품명을 입력해 주세요">
-                    <button id="searchButton">검색</button>
-                      <button id="addButton" onclick="location.href='./itemAddForm.it';">상품 등록</button>
-					  <!-- <input type="button" value="상품 등록" class="addButton" onclick="location.href='./itemAddForm.it';"> -->
-                    
+                <span id="search-bar">
+                	<form id="searchForm">
+                    <input type="text" name="search" id="searchInput" placeholder="   상품명을 입력해 주세요">
+                    <button type="submit" id="searchButton">검색</button>
+					</form>
+				</span>
+
+                <span id="btn-line">
+                    <button id="addButton" onclick="location.href='./itemAddForm.it';">상품 등록</button>
                     <button id="editButton">상품 수정</button>
+                </span>
                 </span>
             </span>
             <table class="sort">
@@ -145,7 +106,7 @@
                 <thead>
                     <tr>
                         <th><label class="checkbox-inline">
-                            <input type="checkbox" id="cbx_chkAll">
+                            <input type="checkbox" id="cbx_chkAll" >
                         </label></th>
                         <th>제품ID</th>
                         <th>이미지</th>
@@ -162,7 +123,7 @@
                 <c:forEach var="dto" items="${ItemMgt }">
                     <tr style="background-color: white;">
                         <td><label class="checkbox-inline">
-                            <input type="checkbox" name="chk" value="${dto.item_id }">
+                            <input type="checkbox" name="options_id" value="${dto.options_id }">
                         </label></td>
                         
                         <td><c:out value="${dto.item_id }"></c:out></td>
@@ -186,7 +147,7 @@
             
 			<!--- 페이징 --->
             <div class="paging">
-                <button id="deleteButton">상품 삭제</button>
+                <button id="deleteButton" onclick="selectOptions('ItemDeleteAction.it')">상품 삭제</button>
                 
                 <c:if test="${startPage > pageBlock }">
                 <!-- <span class="prev"> -->
@@ -215,8 +176,7 @@
     </footer>
     
 
-    <script src="./item/js/item.js"></script>
+    <script src="./adItem/js/item.js"></script>
     <script src="js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

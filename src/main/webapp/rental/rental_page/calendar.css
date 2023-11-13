@@ -1,0 +1,29 @@
+@charset "EUC-KR";
+
+ #calendar-container {
+  position: relative;
+  display: inline-block;
+}
+
+#calendar-popup {
+  position: absolute;
+  display: none;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 10px;
+  z-index: 1;
+}
+
+#calendar-popup table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calendar-popup th, #calendar-popup td {
+  padding: 5px;
+  text-align: center;
+}
+
+#calendar-popup .current-month {
+  background-color: #e0e0e0;
+}

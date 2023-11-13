@@ -72,7 +72,7 @@ public class NoticeFrontController extends HttpServlet{
 			System.out.println("C: /NoticeContent.no 호출");
 			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
 			
-			// BoardContentAction 객체 생성
+			// NoticeContentAction 객체 생성
 			action = new NoticeContentAction();
 			try {
 				forward = action.execute(request, response);
@@ -108,7 +108,7 @@ public class NoticeFrontController extends HttpServlet{
 			System.out.println("C: /NoticeDeleteAction.no 호출");
 			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 			
-			// BoardDeleteAction 객체 생성
+			// NoticeDeleteAction 객체 생성
 			action = new NoticeDeleteAction();
 			try {
 				forward = action.execute(request, response);
@@ -144,14 +144,14 @@ public class NoticeFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doGet() 호출");
+		System.out.println("\nC: NoticeFrontController_doGet() 호출");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doPost() 호출");
+		System.out.println("\nC: NoticeFrontController_doPost() 호출");
 		doProcess(request, response);
 	}
 	

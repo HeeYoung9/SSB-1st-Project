@@ -16,7 +16,7 @@ public class ItemDTO {
 	private String item_img_logo; // 로고 이미지
 	// category 테이블
 	private int category_id; // 카테고리 ID
-	private int category_code; // 카테고리 구분 (렌탈or판매)
+	private int category_code; // 카테고리 구분 (렌탈=2or판매=1)
 	private String category_sport; // 스포츠
 	private String category_major; // 대분류 (옷/용품/장비)
 	private String category_sub; // 소분류 (상/하의/양말/신발)
@@ -27,10 +27,6 @@ public class ItemDTO {
 	private int options_quantity; // 재고
 	private String options_name; // 옵션명
 	private String options_value; // 옵션값
-	
-	
-	
-	
 	
 
 

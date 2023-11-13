@@ -404,3 +404,28 @@ h2 {
 	border: 1px solid red;
 	
 }
+
+a{
+color: black;}
+
+
+
+/* 예약달력 스타일 */
+#calendar {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .day {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      margin: 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+
+    .reserved {
+      background-color: #ff9999;
+    }

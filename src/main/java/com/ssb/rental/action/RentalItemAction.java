@@ -9,14 +9,13 @@ import com.ssb.rental.db.RentalDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
+
 public class RentalItemAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("RentalItemAction_execute() 호출");
-		
-		request.setCharacterEncoding("UTF-8");
-		
+
 			
 		// 전달정보 저장
 		int rItemId = Integer.parseInt(request.getParameter("rental_item_id"));

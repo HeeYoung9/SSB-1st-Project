@@ -11,10 +11,6 @@
 <meta name="author" content="AdminKit">
 <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
 <title>SSB 관리자 페이지</title>
 
 <!-- Bootstrap CSS -->
@@ -44,44 +40,49 @@
 
 	  <ul class="sidebar-nav">
 		<li class="sidebar-header">
-			게시판 관리
 		</li>
 
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="./NoticeList.no">
-              <i class="align-middle" data-feather=""></i> 
-			  <span class="align-middle">공지사항</span>
-            </a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./InquiryList.iq">
-              <i class="align-middle" data-feather=""></i> 
-               <span class="align-middle">Q&A</span>
-            </a>
-		</li>				
-
-		<li class="sidebar-header">
-		</li>
-
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather=""></i> 
+			<a class="sidebar-link" href="./AdMemberList.me">
+              <i class="align-middle" data-feather="user"></i> 
               <span class="align-middle">회원관리</span>
            	</a>
 		</li>
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather=""></i> 
+              <i class="align-middle" data-feather="shopping-cart"></i> 
               <span class="align-middle">주문관리</span>
             </a>
 		</li>
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="./ItemMgt.it">
-              <i class="align-middle" data-feather=""></i> 
+              <i class="align-middle" data-feather="box"></i> 
               <span class="align-middle">상품관리</span>
             </a>
 		</li>
 					
+		<li class="sidebar-header">
+			게시판
+		</li>
+
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./NoticeList.no">
+              <i class="align-middle" data-feather="edit-2"></i> 
+			  <span class="align-middle">Notice</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./InquiryList.iq">
+              <i class="align-middle" data-feather="edit-2"></i> 
+               <span class="align-middle">Q&A</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./ReviewList.rv">
+              <i class="align-middle" data-feather="edit-2"></i> 
+               <span class="align-middle">Review</span>
+            </a>
+		</li>							
 	  </ul>
   	</div>
   </nav>

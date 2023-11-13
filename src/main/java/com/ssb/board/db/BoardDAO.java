@@ -10,8 +10,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.ssb.reply.db.ReplyDTO;
-
 public class BoardDAO {
 
 	// 공통 변수 선언
@@ -44,7 +42,8 @@ public class BoardDAO {
 		}
 			
 	}
-			
+	
+	
 	// 공지글 작성하기 메서드 - insertNoticeBoard(BoardDTO)
 	public void insertNoticeBoard(BoardDTO bdto) {
 		int boardId = 0;
@@ -64,7 +63,7 @@ public class BoardDAO {
 			// 5. 데이터 처리
 			if(rs.next()) {
 				// board_id = rs.getInt("max(bno)") + 1;
-				// => getInt(int columnIndex):
+				// => getInt(int columnIndex)
 				boardId = rs.getInt(1) + 1; 
 			} else {
 				boardId = 1;
@@ -73,17 +72,17 @@ public class BoardDAO {
 			System.out.println("DAO: 글번호: " + boardId);
 				
 			// 3. SQL 구문(insert) & pstmt 객체
-			sql = "insert into board_remaster(board_id, board_type, board_subject, board_content, "
-					+ "board_writeTime, board_readCount) "
-					+ "values(?, ?, ?, ?, now(), ?)";
+			sql = "insert into board_remaster(board_id, admin_user_id, board_type, board_subject, board_content, "
+					+ "board_writeTime, board_readCount) values(?, ?, ?, ?, ?, now(), ?)";
 			pstmt = con.prepareStatement(sql);
 				
 			// ?
 			pstmt.setInt(1, boardId);
-			pstmt.setString(2, "N");
-			pstmt.setString(3, bdto.getBoard_subject());
-			pstmt.setString(4, bdto.getBoard_content());
-			pstmt.setInt(5, 0);
+			pstmt.setString(2, bdto.getAdmin_user_id());
+			pstmt.setString(3, "N");
+			pstmt.setString(4, bdto.getBoard_subject());
+			pstmt.setString(5, bdto.getBoard_content());
+			pstmt.setInt(6, 0);
 				
 			// 4. SQL 실행
 			pstmt.executeUpdate();
@@ -127,6 +126,7 @@ public class BoardDAO {
 			System.out.println("DAO: 글번호: " + boardId);
 			
 			// 3. SQL 구문(insert) & pstmt 객체
+			// member_user_id, orders_id 추가
 			sql = "insert into board_remaster(board_id, board_type, inquiry_type, "
 					+ "board_subject, board_content, board_writeTime) "
 					+ "values(?, ?, ?, ?, ?, now())";
@@ -231,7 +231,10 @@ public class BoardDAO {
 			con = getCon();
 					
 			// 3. SQL 구문(select) 작성 & pstmt 객체
-			sql = "select * from board_remaster where board_type='N' order by board_id desc limit ?,?";
+			sql = "select board_id, admin_name, board_subject, board_content, board_writeTime, board_readCount "
+					+ "from admin a join board_remaster br "
+					+ "on a.admin_user_id = br.admin_user_id where board_type='N' "
+					+ "order by board_id desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 					
 			// ?
@@ -249,14 +252,14 @@ public class BoardDAO {
 				BoardDTO bdto = new BoardDTO();
 						
 				bdto.setBoard_id(rs.getInt("board_id"));
-				bdto.setBoard_type(rs.getString("board_type"));
+				bdto.setAdmin_name(rs.getString("admin_name"));
 				bdto.setBoard_subject(rs.getString("board_subject"));
 				bdto.setBoard_content(rs.getString("board_content"));
 				bdto.setBoard_writeTime(rs.getDate("board_writeTime"));
 				bdto.setBoard_readCount(rs.getInt("board_readCount"));
 						
 				// 글 하나의 정보를 배열의 한 칸에 저장
-				noticeList.add(bdto);				
+				noticeList.add(bdto);								
 			} // while
 					
 			System.out.println("DAO: 공지사항 글 목록 조회 성공!");
@@ -379,6 +382,7 @@ public class BoardDAO {
 				bdto = new BoardDTO();
 					
 				bdto.setBoard_id(rs.getInt("board_id"));
+				bdto.setInquiry_type(rs.getString("inquiry_type"));
 				bdto.setBoard_subject(rs.getString("board_subject"));							
 				bdto.setBoard_content(rs.getString("board_content"));
 				bdto.setBoard_writeTime(rs.getDate("board_writeTime"));

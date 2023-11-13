@@ -1,83 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
-	<!-- header ½ÃÀÛ -->
+	<!-- header ì‹œìž‘ -->
 	<header class="header">
 		<div class="logo">
-			<a href="./RentalMain.re"><img src="./main/img/SSB_gold.png" alt="SSB ·Î°í"
+			<a href="./RentalMain.re"><img src="./main/img/SSB_gold.png" alt="SSB ë¡œê³ "
 				style="width: 200px;"></a>
 		</div>
 		<div class="fm">
 			<form role="search" class="search-box"> <!--style="display: flex;"  -->
-				<input class="search-input" type="text" placeholder="³» ½ºÅ¸ÀÏ Ã£±â"
+				<input class="search-input" type="text" placeholder="ë‚´ ìŠ¤íƒ€ì¼ ì°¾ê¸°" name="search"
 					style="width: 80%;">
 				<button type="submit" class="search-icon">
-					<img width="38" height="38" src="./main/img/camping.png" alt="°Ë»ö¹öÆ°" />
+					<img width="38" height="38" src="./main/img/camping.png" alt="ê²€ìƒ‰ë²„íŠ¼" />
 				</button>
 			</form>
 		</div>
 
-			<!-- ID ¼¼¼Ç°ªÀÌ null ÀÏ¶§ º¸ÀÏ ¹öÆ° (·Î±×¾Æ¿ô/ ºñÈ¸¿ø»óÅÂ)-->
+			<!-- ID ì„¸ì…˜ê°’ì´ null ì¼ë•Œ ë³´ì¼ ë²„íŠ¼ (ë¡œê·¸ì•„ì›ƒ/ ë¹„íšŒì›ìƒíƒœ)-->
 		<c:if test="${empty sessionScope.userId }">
 			<div class="button-container">
 				<button class="login-button"><a href="./MemberLogin.me" style="color:white;">login</a></button>
 				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="Àå¹Ù±¸´Ï" />cart
+					<img width="20" height="15" src="./main/img/market.png" alt="ìž¥ë°”êµ¬ë‹ˆ" />cart
 				</button>
 			</div>
 		</c:if>
-		<!-- ID ¼¼¼Ç°ªÀÌ null ÀÏ¶§ º¸ÀÏ ¹öÆ° (·Î±×¾Æ¿ô/ ºñÈ¸¿ø»óÅÂ) -->
+		<!-- ID ì„¸ì…˜ê°’ì´ null ì¼ë•Œ ë³´ì¼ ë²„íŠ¼ (ë¡œê·¸ì•„ì›ƒ/ ë¹„íšŒì›ìƒíƒœ) -->
 
-		<!-- ID ¼¼¼Ç°ªÀÌ ÀÖÀ»¶§ º¸ÀÏ ¹öÆ°(·Î±×ÀÎ »óÅÂ) -->
+		<!-- ID ì„¸ì…˜ê°’ì´ ìžˆì„ë•Œ ë³´ì¼ ë²„íŠ¼(ë¡œê·¸ì¸ ìƒíƒœ) -->
 		<c:if test="${!empty sessionScope.userId && not fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<button class="signup-button">My Page</button>
+				<button class="signup-button"><a href="./update.ud">My Page</a></button>
 				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/redHeart.png" alt="ÇÏÆ®" /> Âò</button>
+				<img width="20" height="15" src="./main/img/redHeart.png" alt="í•˜íŠ¸" /> ì°œ</button>
 				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/market.png" alt="Àå¹Ù±¸´Ï" /> cart
+				<img width="20" height="15" src="./main/img/market.png" alt="ìž¥ë°”êµ¬ë‹ˆ" /> cart
 				</button>
 				<button class="login-button"><a href="./MemberLogout.me" style="color:white;">logout
 				</a></button>
 			</div>
 		</c:if>
-		<!-- ID ¼¼¼Ç°ªÀÌ ÀÖÀ»¶§ º¸ÀÏ ¹öÆ° (·Î±×ÀÎ »óÅÂ) -->
+		<!-- ID ì„¸ì…˜ê°’ì´ ìžˆì„ë•Œ ë³´ì¼ ë²„íŠ¼ (ë¡œê·¸ì¸ ìƒíƒœ) -->
 		
-		<!-- ID ¼¼¼Ç°ªÀÌ adminÀÏ¶§ º¸ÀÏ ¹öÆ° (°ü¸®ÀÚÀü¿ë) -->
+		<!-- ID ì„¸ì…˜ê°’ì´ adminì¼ë•Œ ë³´ì¼ ë²„íŠ¼ (ê´€ë¦¬ìžì „ìš©) -->
 		<c:if test="${fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
 				<a style="background-color: transparent; margin-top:10px; " href="./AdminMain.ad">
 				<img width="30" height="30" src="./main/img/admin.png" /></a>
 			</div>
 		</c:if>
-		<!-- ID ¼¼¼Ç°ªÀÌ adminÀÏ¶§ º¸ÀÏ ¹öÆ° (°ü¸®ÀÚÀü¿ë) -->
+		<!-- ID ì„¸ì…˜ê°’ì´ adminì¼ë•Œ ë³´ì¼ ë²„íŠ¼ (ê´€ë¦¬ìžì „ìš©) -->
 	</header>
-	<!-- header ³¡ -->
+	<!-- header ë -->
 	
 	
-	<!-- »ó´Ü ¸ÞÀÎ ¸Þ´º¹Ù ½ÃÀÛ -->
+	<!-- ìƒë‹¨ ë©”ì¸ ë©”ë‰´ë°” ì‹œìž‘ -->
 	<div class="menu">
 		<div class="submenu">
-			<a href="#"><b>Camping</b></a>
+			<a href="./RentalMain.re?category=ìº í•‘"><b>Camping</b></a>
 			<div class="submenu-content">
-				<a href="#">¼¼Æ®</a><a href="#">ÅÙÆ®</a> <a href="#">Å×ÀÌºí&ÀÇÀÚ</a> <a href="#">±×´Ã¸·</a>
+				<a href="#">ì„¸íŠ¸</a><a href="#">í…íŠ¸</a> <a href="#">í…Œì´ë¸”&ì˜ìž</a> <a href="#">ê·¸ëŠ˜ë§‰</a>
 			</div>
 
 		</div>
 		<div class="submenu">
-			<a href="#"><b>Ski/SnowBoard</b></a>
+			<a href="./RentalMain.re?category=ê²¨ìš¸ìŠ¤í¬ì¸ "><b>Ski/SnowBoard</b></a>
 			<div class="submenu-content">
-				<a href="#">½ºÅ°Àåºñ</a> <a href="#">º¸µåÀåºñ</a> <a href="#">°í±Û</a> <a href="#">Àå°©</a>
+				<a href="#">ìŠ¤í‚¤ìž¥ë¹„</a> <a href="#">ë³´ë“œìž¥ë¹„</a> <a href="#">ê³ ê¸€</a> <a href="#">ìž¥ê°‘</a>
 			</div>
 		</div>
 
 		<div class="submenu">
-			<a href="#"><b>Golf</b></a>
+			<a href="./RentalMain.re?category=ê³¨í”„"><b>Golf</b></a>
 			<div class="submenu-content">
-				<a href="#">¸ðÀÚ</a> <a href="#">»óÀÇ</a> <a href="#">ÇÏÀÇ</a> <a href="#">¿øÇÇ½º</a> <a href="#">½Å¹ß</a>
+				<a href="#">ëª¨ìž</a> <a href="#">ìƒì˜</a> <a href="#">í•˜ì˜</a> <a href="#">ì›í”¼ìŠ¤</a> <a href="#">ì‹ ë°œ</a>
 			</div>
 		</div>
 
@@ -85,4 +85,4 @@
 			<a href="./Main.in"><b>For Buy</b></a>
 		</div>
 	</div>
-	<!-- »ó´Ü ¸ÞÀÎ ¸Þ´º¹Ù ³¡ -->
+	<!-- ìƒë‹¨ ë©”ì¸ ë©”ë‰´ë°” ë -->

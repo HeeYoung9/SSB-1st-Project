@@ -24,6 +24,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- 로그인 세션 제어 -->
+  <c:if test="${empty userId }">
+	<c:redirect url="./AdminLogin.ad"/>  	
+  </c:if>
+
   <div class="wrapper">
 	
   <!-- 사이드바 -->
@@ -40,9 +45,9 @@
 	  <div class="container" role="main">
 	    <div class="table-responsive">
 		  <h3>Q&A 관리</h3>
+		  <h6 style="text-align: right;">글 개수: ${count }</h6>
 			<table class="table table-striped table-sm">
 			  <colgroup>
-				<%-- <col style="width:5%;" /> --%>
 				<col style="width:10%;" />
 				<col style="width:10%;" />
 				<col style="width:auto;" />
@@ -60,20 +65,22 @@
 			  </thead>
 			  <tbody>
 			    <c:forEach var="bdto" items="${inquiryList }">
-				  <tr>
-				    <td style="text-align: center;">
+				  <tr style="text-align: center;">
+				    <td>
 				     <c:if test="${!empty bdto.answer_state }">
 				       <font style="color: red;">${bdto.answer_state }</font>
- 				       <%-- <c:out value="${bdto.answer_state }"/> --%>
 				     </c:if>
 				     <c:if test="${bdto.answer_state == null}">답변예정</c:if>
 				    </td>
-				    <td style="text-align: center;"><c:out value="${bdto.inquiry_type }"/></td>
-					<td style="text-align: center;">${bdto.board_subject }</td>
-				    <td style="text-align: center;">${bdto.member_user_id }</td>
-					<td style="text-align: center;">${bdto.board_writeTime }</td>
+				    <td><c:out value="${bdto.inquiry_type }"/></td>
+					<td>
+					 <a href="./InquiryContent.iq?boardId=${bdto.board_id }&pageNum=${pageNum }" style="text-decoration: none;">
+					   ${bdto.board_subject }</a>
+					</td>
+				    <td>${bdto.member_user_id }</td>
+					<td>${bdto.board_writeTime }</td>
 					<td><input type="button" value="관리" class="btn btn-sm btn-primary"
-		  		 			onclick="location.href='./InquiryContent.iq?boardId=${bdto.board_id }&pageNum=${pageNum }';">
+		  		 			onclick="location.href='./InquiryAWriteAction.iq?boardId=${bdto.board_id }&pageNum=${pageNum }';">
 		  		 	</td>
 				  </tr>
 			    </c:forEach>
@@ -90,17 +97,17 @@
   		<ul class="pagination justify-content-center">
 		  <li class="page-item disabled">
 		    <c:if test="${startPage > pageBlock }">
-      		  <a href="./BoardList.bo?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
+      		  <a href="./InquiryList.iq?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
 		    </c:if> 
 		  </li>
 		  <li class="page-item">
 		    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-    		  <a href="./BoardList.bo?pageNum=${i }" class="page-link" href="#">${i }</a>
+    		  <a href="./InquiryList.iq?pageNum=${i }" class="page-link" href="#">${i }</a>
 		    </c:forEach>
 		  </li>
 		  <li class="page-item">
 		    <c:if test="${endPage < pageCount }">
-    		  <a href="./BoardList.bo?pageNum=${startPage+pageBlock }" class="page-link">Next</a>
+    		  <a href="./InquiryList.iq?pageNum=${startPage+pageBlock }" class="page-link">Next</a>
 		    </c:if>
   		</ul>
 	</nav>

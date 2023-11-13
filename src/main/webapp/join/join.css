@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
+.form-control {
+        font-size: 14px; 
+}
+
 .logo{
     width: 200px;
+    margin-top: 5%
 }
 
 .drag{
@@ -54,6 +59,3 @@ select.box {
 .form-floating font {
     margin-right: 5px;
 }
-
-
-

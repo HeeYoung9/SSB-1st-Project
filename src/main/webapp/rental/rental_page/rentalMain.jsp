@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
-<!-- header js ÄÚµå ¿µ¿ª Á¢¾îµÒ. -->
+<!-- header js ì½”ë“œ ì˜ì—­ ì ‘ì–´ë‘ . -->
 <script type="text/javascript">
 	function toggleCategory() {
 		var categoryContent = document.querySelector('.category-content');
@@ -25,7 +25,7 @@
 	}
 </script>
 
-<!-- »ó´Ü ¸Ş´º¹Ù ¿ÀÇÂ ¹× ¿µ¿ª È®Àå jsÄÚµå Á¢¾îµÒ -->
+<!-- ìƒë‹¨ ë©”ë‰´ë°” ì˜¤í”ˆ ë° ì˜ì—­ í™•ì¥ jsì½”ë“œ ì ‘ì–´ë‘  -->
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 
@@ -35,16 +35,16 @@
 		submenus.forEach(function(submenu, index) {
 			const submenuContent = submenuContents[index];
 
-			// ¸Ş´º Ç×¸ñÀ» È£¹öÇÒ ¶§
+			// ë©”ë‰´ í•­ëª©ì„ í˜¸ë²„í•  ë•Œ
 			submenu.addEventListener("mouseover", function() {
-				// ÇØ´ç ¸Ş´º Ç×¸ñÀÇ ÇÏÀ§ ¸Ş´º°¡ Ç¥½ÃµÇ¸é ¸Ş´ºÀÇ ³ôÀÌ¸¦ Á¶Àı
+				// í•´ë‹¹ ë©”ë‰´ í•­ëª©ì˜ í•˜ìœ„ ë©”ë‰´ê°€ í‘œì‹œë˜ë©´ ë©”ë‰´ì˜ ë†’ì´ë¥¼ ì¡°ì ˆ
 				submenuContent.style.display = "block";
 				submenu.style.height = submenuContent.clientHeight + "px";
 			});
 
-			// ¸Ş´º Ç×¸ñ¿¡¼­ ¸¶¿ì½º°¡ ³ª°¥ ¶§
+			// ë©”ë‰´ í•­ëª©ì—ì„œ ë§ˆìš°ìŠ¤ê°€ ë‚˜ê°ˆ ë•Œ
 			submenu.addEventListener("mouseout", function() {
-				// ÇØ´ç ¸Ş´º Ç×¸ñÀÇ ÇÏÀ§ ¸Ş´º°¡ ¼û°ÜÁö¸é ¸Ş´ºÀÇ ³ôÀÌ¸¦ ¿ø·¡´ë·Î º¹¿ø
+				// í•´ë‹¹ ë©”ë‰´ í•­ëª©ì˜ í•˜ìœ„ ë©”ë‰´ê°€ ìˆ¨ê²¨ì§€ë©´ ë©”ë‰´ì˜ ë†’ì´ë¥¼ ì›ë˜ëŒ€ë¡œ ë³µì›
 				submenuContent.style.display = "none";
 				submenu.style.height = "auto";
 			});
@@ -68,50 +68,50 @@
 
 <body>
 
-<!-- Çì´õ/ »ó´Ü¸Ş´º¹Ù ¿µ¿ª top.jsp °øÅë ÆäÀÌÁö »ç¿ë -->
+<!-- í—¤ë”/ ìƒë‹¨ë©”ë‰´ë°” ì˜ì—­ top.jsp ê³µí†µ í˜ì´ì§€ ì‚¬ìš© -->
 	<div class="header">
 	<jsp:include page="../Rcommon/top.jsp" />
 	</div>
-<!-- Çì´õ/ »ó´Ü¸Ş´º¹Ù ¿µ¿ª top.jsp °øÅë ÆäÀÌÁö »ç¿ë -->
+<!-- í—¤ë”/ ìƒë‹¨ë©”ë‰´ë°” ì˜ì—­ top.jsp ê³µí†µ í˜ì´ì§€ ì‚¬ìš© -->
 
 
 
-	<!-- section ½ÃÀÛ -->
+	<!-- section ì‹œì‘ -->
 
 	<section class="section">
 
-		<!-- º»ÀÎ ÆäÀÌÁö¿¡ ¸Â°Ô ¼öÁ¤ÇÏ·Á¸é ¿©±â ¾Æ·¡¼­ºÎÅÍ »èÁ¦ÇÏ°í, »õ·Î ¸¸µé¸é µË´Ï´Ù. È¤½Ã ¹®Á¦ »ı±â¸é ¼½¼Ç±îÁö »èÁ¦ ÇØº¸´Â°Å ÃßÃµ!!!!-->
+		<!-- ë³¸ì¸ í˜ì´ì§€ì— ë§ê²Œ ìˆ˜ì •í•˜ë ¤ë©´ ì—¬ê¸° ì•„ë˜ì„œë¶€í„° ì‚­ì œí•˜ê³ , ìƒˆë¡œ ë§Œë“¤ë©´ ë©ë‹ˆë‹¤. í˜¹ì‹œ ë¬¸ì œ ìƒê¸°ë©´ ì„¹ì…˜ê¹Œì§€ ì‚­ì œ í•´ë³´ëŠ”ê±° ì¶”ì²œ!!!!-->
 
-		<!-- ¿ìÃø ¿µ¿ª ³»¿ë Ãß°¡ -->
+		<!-- ìš°ì¸¡ ì˜ì—­ ë‚´ìš© ì¶”ê°€ -->
 		<div class="right-section" style="margin-top: 170px;">
 			<h2>Welcome to <b style="color:red; ">R</b>SB Style</h2>
 			<p>Find your style in the Rental style box.</p>
 
-			<!-- ÀÌº¥Æ® ½½¶óÀÌµå ½ÃÀÛ -->
+			<!-- ì´ë²¤íŠ¸ ìŠ¬ë¼ì´ë“œ ì‹œì‘ -->
 			<div id="carouselExampleAutoplaying" class="carousel slide"
 				data-bs-ride="carousel" style="margin: 1% 5%;">
 				<div class="carousel-inner">
 
-					<!-- ½ÇÁ¦ JSP ÄÚµå ½ÃÀÛ ºÎºĞ -->
-					<!--  ¼¼ÀÏ ÀÌº¥Æ®  -->
+					<!-- ì‹¤ì œ JSP ì½”ë“œ ì‹œì‘ ë¶€ë¶„ -->
+					<!--  ì„¸ì¼ ì´ë²¤íŠ¸  -->
 
 					<div class="carousel-item active">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/diadora_event.png" alt="µğ¾Æµµ¶óÀÌº¥Æ®½½¶óÀÌµå">
+							src="./main/item_img/diadora_event.png" alt="ë””ì•„ë„ë¼ì´ë²¤íŠ¸ìŠ¬ë¼ì´ë“œ">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
-					<!-- ½ÇÁ¦ JSP ÄÚµå Á¾·á ºÎºĞ -->
+					<!-- ì‹¤ì œ JSP ì½”ë“œ ì¢…ë£Œ ë¶€ë¶„ -->
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block" 
-							src="./main/img/blackFriday.png" alt="ºí·¢ÇÁ¶óÀÌµ¥ÀÌ"> </a>
-							<!-- DB¿¡¼­ ÀÌ¹ÌÁö ÆÄÀÏ °¡Á®¿Ã¶§ ¾÷·Îµå Æú´õ ¹× ÆÄÀÏ¸í °æ·Î·Î -->
+							src="./main/img/blackFriday.png" alt="ë¸”ë™í”„ë¼ì´ë°ì´"> </a>
+							<!-- DBì—ì„œ ì´ë¯¸ì§€ íŒŒì¼ ê°€ì ¸ì˜¬ë•Œ ì—…ë¡œë“œ í´ë” ë° íŒŒì¼ëª… ê²½ë¡œë¡œ -->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/nordisk.png" alt="³ë¸£µğ½ºÅ©"> </a>
+							src="./main/item_img/nordisk.png" alt="ë…¸ë¥´ë””ìŠ¤í¬"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<button class="carousel-control-prev" type="button"
@@ -126,22 +126,28 @@
 					</button>
 				</div>
 			</div>
-				<!-- ÀÌº¥Æ® ½½¶óÀÌµå ³¡ -->
+				<!-- ì´ë²¤íŠ¸ ìŠ¬ë¼ì´ë“œ ë -->
 		
 			<div class="container px-4 px-lg-5 mt-5">
 				<div
 					class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:forEach var="rdto" items="${rentalList }">
 					<div class="col mb-5">
-						<div class="card h-100">
+						<div id="card-box" class="card h-100">
 							<!-- brand logo -->
 							<div class="position-absolute" style="top: 0.5rem; right: 0.5rem">
 							</div>
+							<!-- brand logo -->
+							<c:if test="${!empty rdto.rental_img_logo }">
+							<div class="position-absolute" style="top: 0.5rem; right: 0.5rem">
+								<img height="30" width="50" src="./main/rental_item/${rdto.rental_img_logo }"/>
+							</div>
+							</c:if>
 							<!-- Product image-->
 							<a href="./RentalItem.re?rental_item_id=${rdto.rental_item_id }">
 
 							<img class="card-img-top" width="450" height="300"
-								src="./main/rental_item/${rdto.rental_img_main }" alt="Ä·ÇÎ¿ëÇ°" />
+								src="./main/rental_item/${rdto.rental_img_main }" alt="ìº í•‘ìš©í’ˆ" />
 							
 							<!-- Product details-->
 							<div class="card-body p-4">
@@ -149,44 +155,44 @@
 									<!-- Product name-->
 									<h5 class="fw-bolder">${rdto.rental_item_name }</h5>
 									<!-- Product price-->
-								<fmt:formatNumber value="${rdto.rental_item_price }" />¿ø
+								<fmt:formatNumber value="${rdto.rental_item_price }" />ì›
 								</div>
 							</div> </a>
 							<!-- Product actions-->
-							<div class="box">
+					
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<span class="text-center" style="margin-left: 40px;"><a
 									class="btn btn-outline-dark mt-auto" href="#"><img
-										width="18" height="20" src="./main/img/heart.png" alt="ÇÏÆ®" />
-										wish</a></span> <span class="text-center"><a
-									class="btn btn-outline-dark mt-auto" href="#"><img
-										width="18" height="20" src="./main/item_img/market.png"
-										alt="Àå¹Ù±¸´Ï" /> cart</a></span>
+										width="18" height="20" src="./main/img/heart.png" alt="í•˜íŠ¸" />
+										wish</a></span>
 							</div>
-							</div>
+							
 						</div>
 				
 					</div>
 					</c:forEach>
-				<!-- Ä·ÇÎ ·»Å» Á¦Ç° ³¡ -->
+				<!-- ìº í•‘ ë Œíƒˆ ì œí’ˆ ë -->
+				
+				<!-- ê²€ìƒ‰ì‹œ ì°½ í¬ê¸° ì•ˆê²¹ì¹˜ê²Œ í•„ìš”í•œ divì„ -->
 						<div style="margin-top:-50px; margin-left:900px; z-index:3;">
-							<a href="" class="more"><b> Ä·ÇÎ ¿ëÇ° ´õº¸±â </b></a>
 						</div>
+				<!-- ê²€ìƒ‰ì‹œ ì°½ í¬ê¸° ì•ˆê²¹ì¹˜ê²Œ í•„ìš”í•œ divì„ -->
+				
 					</div>
 			</div>
 			
 		</div>
 		
 
-		<!-- º»ÀÎ ÆäÀÌÁö¿¡ ¸Â°Ô ¼öÁ¤ÇÏ·Á¸é ¿©±â±îÁö »èÁ¦ÇÏ°í, »õ·Î ¸¸µé¸é µË´Ï´Ù. È¤½Ã ¹®Á¦ »ı±â¸é ¼½¼Ç±îÁö »èÁ¦ ÇØº¸´Â°Å ÃßÃµ!!!!-->
+		<!-- ë³¸ì¸ í˜ì´ì§€ì— ë§ê²Œ ìˆ˜ì •í•˜ë ¤ë©´ ì—¬ê¸°ê¹Œì§€ ì‚­ì œí•˜ê³ , ìƒˆë¡œ ë§Œë“¤ë©´ ë©ë‹ˆë‹¤. í˜¹ì‹œ ë¬¸ì œ ìƒê¸°ë©´ ì„¹ì…˜ê¹Œì§€ ì‚­ì œ í•´ë³´ëŠ”ê±° ì¶”ì²œ!!!!-->
 	</section>
-	<!-- section ³¡  -->
+	<!-- section ë  -->
 
-	<!-- footer ½ÃÀÛ -->
+	<!-- footer ì‹œì‘ -->
 	<footer class="footer">
 		<p>&copy; 2023 SSB Style</p>
 	</footer>
-	<!-- footer ³¡ -->
+	<!-- footer ë -->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

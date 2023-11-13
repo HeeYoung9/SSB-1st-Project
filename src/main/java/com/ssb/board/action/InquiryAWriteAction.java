@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.board.db.BoardDAO;
 import com.ssb.board.db.BoardDTO;
-import com.ssb.reply.db.ReplyDAO;
-import com.ssb.reply.db.ReplyDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -17,34 +15,25 @@ public class InquiryAWriteAction implements Action {
 			HttpServletResponse response) throws Exception {
 		System.out.println("\nM: InquiryAWriteAction_execute() 호출");
 		
-		// 한글 처리 (생략 -> 필터 설정)
-		
-		// 전달 정보 pageNum 저장
+		// 전달정보 저장 (boardId, pageNum)
+		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		String pageNum = request.getParameter("pageNum");
-				
-		// ReplyDTO 객체 생성
-		ReplyDTO rdto = new ReplyDTO();
-		rdto.setBoard_id(Integer.parseInt(request.getParameter("boardId")));
-		rdto.setReply_content(request.getParameter("content"));
-		
-		// ReplyDAO 객체 생성 - 문의글 작성하기 메서드
-		ReplyDAO rdao = new ReplyDAO();
-		rdao.insertInquiryABoard(rdto);
-		
-		// BoardDTO 객체 생성
-		BoardDTO bdto = new BoardDTO();
-		bdto.setBoard_id(Integer.parseInt(request.getParameter("boardId")));
-		
+								
+		//      "        - 특정 글의 정보를 가져오는 메서드
 		BoardDAO bdao = new BoardDAO();
-		bdto = bdao.updateAnswerState(bdto);
-		
+		BoardDTO bdto = bdao.getBoard(boardId);
+						
+		// 글정보를 request 영역에 저장
 		request.setAttribute("bdto", bdto);
-		
-		// 페이지 이동 준비
+				
+		// pageNum값도 request 영역에 저장=
+		request.setAttribute("pageNum", pageNum);
+				
+		// 페이지 출력 (./board/inquiry/inquiryAWriteForm.jsp)
 		ActionForward forward = new ActionForward();
-		forward.setPath("./InquiryList.iq");
-		forward.setRedirect(true);
-		
+		forward.setPath("./board/inquiry/inquiryAWriteForm.jsp");
+		forward.setRedirect(false);
+				
 		return forward;
 	}
 

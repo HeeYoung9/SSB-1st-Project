@@ -73,14 +73,15 @@ public class ReplyDAO {
 			System.out.println("DAO: 댓글번호: " + replyId);
 			
 			// 3. SQL 구문(insert) & pstmt 객체
-			sql = "insert into reply(reply_id, board_id, reply_content, reply_writeTime) "
-					+ "values(?, ?, ?, now())";
+			sql = "insert into reply(reply_id, board_id, admin_user_id, reply_content, reply_writeTime) "
+					+ "values(?, ?, ?, ?, now())";
 			pstmt = con.prepareStatement(sql);
 			
 			// ?		
 			pstmt.setInt(1, replyId);
 			pstmt.setInt(2, rdto.getBoard_id());
-			pstmt.setString(3, rdto.getReply_content());
+			pstmt.setString(3, rdto.getAdmin_user_id());
+			pstmt.setString(4, rdto.getReply_content());
 			
 			// 4. SQL 실행
 			pstmt.executeUpdate();
@@ -94,6 +95,48 @@ public class ReplyDAO {
 		
 	} 	
 	// 문의글 답변 작성하기 메서드 - insertInquiryABoard(ReplyDTO rdto)
+	
+	
+	// 특정 글에 해당하는 답변 정보 가져오기 메서드 - getReply(int boardId)
+	public ReplyDTO getReply(int boardId) {
+		ReplyDTO rdto = null; 
+			
+		try {	
+			// 1.2. 디비 연결
+			con = getCon();
+				
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select * from reply where board_id=?";
+			pstmt = con.prepareStatement(sql);
+				
+			// ?
+			pstmt.setInt(1, boardId);		
+				
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			System.out.println("DAO: SQL 실행 성공!");
+				
+			// 5. 데이터 처리
+			if(rs.next()) { // 데이터가 존재할 때				
+				rdto = new ReplyDTO();
+				
+				rdto.setReply_id(rs.getInt("reply_id"));
+				rdto.setBoard_id(rs.getInt("board_id"));						
+				rdto.setReply_content(rs.getString("reply_content"));
+				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));
+			}
+				
+			System.out.println("DAO: 답변 정보 조회 완료!");				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+			
+		return rdto;		
+	}	
+	// 특정 번호에 해당하는 글정보 가져오기 메서드 - getBoard(int boardId)
+
 	
 	// 댓글 작성하기 메서드 - insertReply(ReplyDTO rdto)
 //	public void insertReply(ReplyDTO rdto) {

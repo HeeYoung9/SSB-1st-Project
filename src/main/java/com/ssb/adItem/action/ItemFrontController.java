@@ -44,7 +44,7 @@ public class ItemFrontController extends HttpServlet {
 			ActionForward forward = null;
 
 
-			//------------(관리자) 상품 정보 리스트----------
+			//------------ 상품 관리 리스트------------( O )
 			if (command.equals("/ItemMgt.it")) {
 				System.out.println(" C : /ItemMgt.it 호출 ");
 				System.out.println(" C : 패턴 3 - DB정보사용 O, 화면 출력 ");
@@ -56,7 +56,7 @@ public class ItemFrontController extends HttpServlet {
 				}
 			}
 
-            //----------------상품 등록----------------
+            //----------------상품 등록----------------( O )
 			else if (command.equals("/itemAddForm.it")) {
 				System.out.println("C: /itemAddForm.it 호출");
 				System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
@@ -77,7 +77,7 @@ public class ItemFrontController extends HttpServlet {
 			
 			//----------------상품 수정----------------
 			else if (command.equals("/ItemEdit.it")) {
-				action = new ItemEditAction();
+			//	action = new ItemEditAction();
 				try {
 				  forward = action.execute(request, response);
 				} catch (Exception e) {
@@ -85,7 +85,7 @@ public class ItemFrontController extends HttpServlet {
 				}
 			}
 			else if (command.equals("/ItemEditProAction.it")) {
-				action = new ItemEditProAction();
+			//	action = new ItemEditProAction();
 				try {
 				  forward = action.execute(request, response);
 				} catch (Exception e) {
@@ -93,8 +93,10 @@ public class ItemFrontController extends HttpServlet {
 				}
 			}
 			
-			//----------------상품 삭제----------------
-			else if (command.equals("/ItemDelete.it")) {
+			//----------------상품 삭제----------------( O )
+			else if (command.equals("/ItemDeleteAction.it")) {
+				System.out.println("C: /ItemDeleteAction.it 호출");
+				System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 				forward = new ActionForward();
 				action = new ItemDeleteAction();
 				try {
@@ -106,13 +108,18 @@ public class ItemFrontController extends HttpServlet {
 			
 			//----------------상품 상세----------------
 			else if (command.equals("/ItemDetail.it")) {
-				action = new ItemDetailAction();
+			//	action = new ItemDetailAction();
 				try {
 				  forward = action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
+			
+			
+			
+			
 			
 			System.out.println("\n---------- C: 2. 가상주소 매핑 끝 -----------");
 			/***********************2. 가상주소 매핑 끝  **************************/

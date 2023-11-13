@@ -12,16 +12,14 @@
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-
 <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
 <title>Q&A&nbsp;|&nbsp;SSB</title>
 
+<!-- Bootstrap CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- Bootstrap CSS -->
 </head>
 <body>
   <div class="wrapper">
@@ -37,34 +35,34 @@
   <!-- 게시판 -->
   <main class="content">
 	<article>
-		<div class="container" role="main">
-			<h3>Q&A 작성</h3>
+	  <h3 style="margin-top: -0.5em; margin-bottom: 1em;">Q&A 작성</h3>
 
-			<form action="./InquiryQWriteAction.iq" method="post">
-				<div class="mb-3">
-					<label for="subject" style="margin-right: 20px">문의유형</label>
-					<input type="radio" id="type_0" name="iqType" value="사이즈"><label style="margin-right: 20px" for="type_0">사이즈</label>
-					<input type="radio" id="type_1" name="iqType" value="배송"><label style="margin-right: 20px" for="type_1">배송</label>
-					<input type="radio" id="type_2" name="iqType" value="재입고"><label style="margin-right: 20px" for="type_2">재입고</label>
-					<input type="radio" id="type_3" name="iqType" value="제품상세"><label style="margin-right: 20px" for="type_3">제품상세</label>
-				</div>
-			
-				<div class="mb-3">
-					<label for="subject">제목</label>
-					<input type="text" class="form-control" name="subject" id="subject" placeholder="15자 이내 입력해 주세요" required>
-				</div>
-
-				<div class="mb-3">
-					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
-				</div>
-					
-				<div>
-					<input type="submit" value="작성하기" class="btn btn-sm btn-primary" id="btnSave">
-	 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnList">취소</button> -->					
-	 			</div>
-			</form>					
+	  <div class="container" role="main">
+		<form action="./InquiryQWriteAction.iq" method="post">
+		<div class="mb-3">
+		  <label for="subject" style="margin-right: 20px">문의유형</label>
+		  <input type="radio" id="type_0" name="iqType" value="사이즈"><label style="margin-right: 20px" for="type_0">사이즈</label>
+		  <input type="radio" id="type_1" name="iqType" value="배송"><label style="margin-right: 20px" for="type_1">배송</label>
+		  <input type="radio" id="type_2" name="iqType" value="재입고"><label style="margin-right: 20px" for="type_2">재입고</label>
+		  <input type="radio" id="type_3" name="iqType" value="제품상세"><label style="margin-right: 20px" for="type_3">제품상세</label>
 		</div>
+			
+		<div class="mb-3">
+		  <label for="subject">제목</label>
+		  <input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해 주세요" required>
+		</div>
+
+		<div class="mb-3">
+		  <label for="content">내용</label>
+		  <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
+		</div>
+					
+		<div>
+		  <input type="submit" value="작성하기" class="btn btn-sm btn-primary" id="btnSave">
+	 	  <!-- <button type="button" class="btn btn-sm btn-primary" id="btnList">취소</button> -->					
+	 	</div>
+		</form>					
+	  </div>
 	</article>
   </main>
   <!-- 게시판 -->

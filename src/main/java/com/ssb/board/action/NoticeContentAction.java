@@ -19,20 +19,20 @@ public class NoticeContentAction implements Action {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		String pageNum = request.getParameter("pageNum");
 				
-		// BoardDAO 객체 - 특정 글 조회수 1증가 메서드
+		// BoardDAO 객체 - 특정 공지글 조회수 1증가 메서드
 		BoardDAO bdao = new BoardDAO();
 		bdao.updateReadCount(boardId);
 				
-		//      "        - 특정 글의 정보를 가져오는 메서드
+		//      "        - 특정 공지글의 정보를 가져오는 메서드
 		BoardDTO bdto = bdao.getBoard(boardId);
 						
 		// 글정보를 request 영역에 저장
 		request.setAttribute("bdto", bdto);
 				
-		// pageNum값도 request 영역에 저장 (View페이지에서 리스트 이동할 때 사용)
+		// pageNum값도 request 영역에 저장
 		request.setAttribute("pageNum", pageNum);
 				
-		// 페이지 이동준비 (./board/noticeContent.jsp)
+		// 페이지 이동 준비
 		ActionForward forward = new ActionForward();
 		forward.setPath("./board/notice/noticeContent.jsp");
 		forward.setRedirect(false);

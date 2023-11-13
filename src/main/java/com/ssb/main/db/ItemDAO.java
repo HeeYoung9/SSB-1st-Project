@@ -89,5 +89,158 @@ public class ItemDAO {
 		
 			
 	}
+	
+// 검색어 유무에 따른 글 정보 목록을 가져오는 메서드 -getItemList(String search)
+	public ArrayList getItemList(String search) {
+		ArrayList itemList = new ArrayList();
+		
+		try {
+			con = getCon();
+			sql = "select * from item i join category c on i.category_id = c.category_id where item_name like ? or category_brand like ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, "%"+search+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ItemDTO idto = new ItemDTO();
+				idto.setItem_id(rs.getInt("item_id"));
+				idto.setItem_name(rs.getString("item_name"));
+				idto.setItem_price(rs.getInt("item_price"));
+				idto.setItem_img_main(rs.getString("item_img_main"));
+				idto.setItem_img_sub(rs.getString("item_img_sub"));
+				idto.setItem_img_logo(rs.getString("item_img_logo"));
+				idto.setCategory_id(rs.getInt("category_id"));
+				
+				itemList.add(idto);
+				
+			}
+			System.out.println("DAO : 렌탈아이템 조회 성공!");
+			System.out.println("DAO 조회 행수 : "+itemList.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+		
+		return itemList;
+	}
+	
+	
+	
+	
+// 검색어 유무에 따른 글 정보 목록을 가져오는 메서드 -getItemList(String search)
 
+// 스포츠 카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category)
+	public ArrayList getCategoryItem(String category) {
+		ArrayList categoryList = new ArrayList();
+
+
+		try {
+			con = getCon();
+			sql="select * from item i join category c on i.category_id = c.category_id where category_sport=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				ItemDTO idto = new ItemDTO();
+				idto.setItem_id(rs.getInt("item_id"));
+				idto.setItem_name(rs.getString("item_name"));
+				idto.setItem_price(rs.getInt("item_price"));
+				idto.setItem_img_main(rs.getString("item_img_main"));
+				idto.setItem_img_sub(rs.getString("item_img_sub"));
+				idto.setItem_img_logo(rs.getString("item_img_logo"));
+				idto.setCategory_id(rs.getInt("category_id"));
+
+				categoryList.add(idto);
+
+			}
+			System.out.println("DAo : 카테고리별 목록 조회 완료! ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+
+
+		return categoryList;
+	}
+// 스포츠 카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category)	
+		
+// 소분류(옷 분류)카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category_sub)
+		public ArrayList getCategorySubItem(String category_sub) {
+			ArrayList categorySubList = new ArrayList();
+
+
+			try {
+				con = getCon();
+				sql="select * from item i join category c on i.category_id = c.category_id where category_sub=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, category_sub);
+				rs = pstmt.executeQuery();
+
+				while(rs.next()) {
+					ItemDTO idto = new ItemDTO();
+					idto.setItem_id(rs.getInt("item_id"));
+					idto.setItem_name(rs.getString("item_name"));
+					idto.setItem_price(rs.getInt("item_price"));
+					idto.setItem_img_main(rs.getString("item_img_main"));
+					idto.setItem_img_sub(rs.getString("item_img_sub"));
+					idto.setItem_img_logo(rs.getString("item_img_logo"));
+					idto.setCategory_id(rs.getInt("category_id"));
+
+					categorySubList.add(idto);
+
+				}
+				System.out.println("DAo : 카테고리 소분류별 목록 조회 완료! ");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+
+
+			return categorySubList;
+		}
+//소분류(옷 분류)카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category_sub)	
+	
+// 중분류(신발/옷/용품)카테고리별 제품 목록을 보여주는 메서드 - getCategoryMajorItem(category_major)
+		public ArrayList getCategoryMajorItem(String category_major) {
+			ArrayList categorySubList = new ArrayList();
+
+
+			try {
+				con = getCon();
+				sql="select * from item i join category c on i.category_id = c.category_id where category_major=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, category_major);
+				rs = pstmt.executeQuery();
+
+				while(rs.next()) {
+					ItemDTO idto = new ItemDTO();
+					idto.setItem_id(rs.getInt("item_id"));
+					idto.setItem_name(rs.getString("item_name"));
+					idto.setItem_price(rs.getInt("item_price"));
+					idto.setItem_img_main(rs.getString("item_img_main"));
+					idto.setItem_img_sub(rs.getString("item_img_sub"));
+					idto.setItem_img_logo(rs.getString("item_img_logo"));
+					idto.setCategory_id(rs.getInt("category_id"));
+
+					categorySubList.add(idto);
+
+				}
+				System.out.println("DAo : 카테고리 중분류별 목록 조회 완료! ");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+
+
+			return categorySubList;
+		}
+// 중분류(신발/옷/용품)카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category_major)	
+				
 }

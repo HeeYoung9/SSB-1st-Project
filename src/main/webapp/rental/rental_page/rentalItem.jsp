@@ -50,6 +50,8 @@
 		});
 	});
 </script>
+
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,10 +84,24 @@
 			</div>
 			<div class="product-details">
 				<h1>${rdto.rental_item_name }</h1>
-				<h2>${rdto.rental_opt_value }</h2>
-				<p><fmt:formatNumber value="${rdto.rental_item_price }" />원</p>
-				<p>리뷰 별점: 4.5/5</p>
-				<button class="reserve-button">예약하기</button>
+				<hr>
+				<h2>대여기간 : ${rdto.rental_opt_value }</h2>
+				<p>금액 : <fmt:formatNumber value="${rdto.rental_item_price }" />원</p>
+				<p>
+				
+				<c:forEach begin="1" end="4" step="1">
+				<img width="20" height="20" src="./rental/icon/star.png" /> 
+				</c:forEach>
+				<img width="20" height="20" src="./rental/icon/harfStar.png" /> 
+				<a href="리뷰게시판">
+				4.5/5  리뷰 426개 </a></p>
+				
+				<!-- 예약 달력!!!  -->
+				<jsp:include page="calendar.html" />
+				
+				
+				<button class="reserve-button"><a href="#" style="color:white;">
+				예약하기</a></button>
 			</div>
 		</div>
 		<div class="product-description">

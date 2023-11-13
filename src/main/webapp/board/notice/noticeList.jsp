@@ -11,10 +11,6 @@
 <meta name="author" content="AdminKit">
 <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
 <title>공지사항&nbsp;|&nbsp;SSB</title>
 
 <!-- Bootstrap CSS -->
@@ -28,7 +24,6 @@
 	  로그인을 수행한 관리자만 접근 가능 
 	  로그인 없이 접근한 경우 로그인페이지로 이동
    -->
-  <%-- <c:if test="${id == null }"> --%>
   <c:if test="${empty userId }">
 	<c:redirect url="./AdminLogin.ad"/>  	
   </c:if>
@@ -45,35 +40,34 @@
 
   <!-- 게시판 -->
   <main class="content">
-	<article>
+    <article>
 	  <div class="container" role="main">
 	    <div class="table-responsive">
 		  <h3>공지사항 관리</h3>
-		  <h6>공지글 개수: ${count }</h6>
+		  <h6 style="text-align: right;">글 개수: ${count }</h6>
 			<table class="table table-striped table-sm">
 			  <colgroup>
-				<col style="width: 50%" />
-				<col style="width: auto" />
-				<col style="width: auto;" />
+				<col style="width: 10%" />
+				<col style="width: 70%" />
+				<col style="width: 20%" />
 			  </colgroup>		
 			  <thead>		
 			  	<tr style="text-align: center;">
+			  	 <th>작성자</th>
 			  	 <th>제목</th>
 			  	 <th>등록일</th>
-			  	 <th>관리</th>
 			  	</tr>
 			  </thead>
 			  <tbody>
 			    <c:forEach var="bdto" items="${noticeList }">
-				  <tr>
-					<td style="text-align: center;">${bdto.board_subject }</td>
-					<td style="text-align: center;">${bdto.board_writeTime }</td>
-					<td style="text-align: center;">
-					 <input type="button" value="수정" class="btn btn-sm btn-primary"
-		  		 			onclick="location.href='./NoticeUpdate.no?boardId=${bdto.board_id }&pageNum=${pageNum }';">
-					 <input type="button" value="삭제" class="btn btn-sm btn-primary"
-		  		 			onclick="location.href='./NoticeDeleteAction.no?boardId=${bdto.board_id }&pageNum=${pageNum }';">
-		  		 	</td>
+				  <tr style="text-align: center;">
+				    <td><c:out value="${bdto.admin_name }"/></td>
+					<td>
+					  <a href="./NoticeContent.no?boardId=${bdto.board_id }&pageNum=${pageNum }" style="text-decoration: none;">
+					    ${bdto.board_subject }
+					  </a>
+					</td>
+					<td>${bdto.board_writeTime }</td>
 				  </tr>
 			    </c:forEach>
 			  </tbody>				
@@ -90,17 +84,17 @@
   		<ul class="pagination justify-content-center">
 		  <li class="page-item disabled">
 		    <c:if test="${startPage > pageBlock }">
-      		  <a href="./BoardList.bo?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
+      		  <a href="./NoticeList.no?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
 		    </c:if> 
 		  </li>
 		  <li class="page-item">
 		    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-    		  <a href="./BoardList.bo?pageNum=${i }" class="page-link" href="#">${i }</a>
+    		  <a href="./NoticeList.no?pageNum=${i }" class="page-link" href="#">${i }</a>
 		    </c:forEach>
 		  </li>
 		  <li class="page-item">
 		    <c:if test="${endPage < pageCount }">
-    		  <a href="./BoardList.bo?pageNum=${startPage+pageBlock }" class="page-link">Next</a>
+    		  <a href="./NoticeList.no?pageNum=${startPage+pageBlock }" class="page-link">Next</a>
 		    </c:if>
   		</ul>
 	</nav>
@@ -121,5 +115,6 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="./js/app.js"></script>
+  
 </body>
 </html>

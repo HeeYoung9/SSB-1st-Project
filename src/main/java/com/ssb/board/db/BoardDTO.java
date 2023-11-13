@@ -5,7 +5,8 @@ import java.sql.Date;
 public class BoardDTO {
 
 	private int board_id; 			
-	private String admin_user_id;  
+	private String admin_user_id;
+	private String admin_name; // 관리자 테이블에서 가져옴
 	private String member_user_id;
 	private int orders_id;
 	
@@ -33,6 +34,13 @@ public class BoardDTO {
 	}
 	public void setAdmin_user_id(String admin_user_id) {
 		this.admin_user_id = admin_user_id;
+	}
+	
+	public String getAdmin_name() {
+		return admin_name;
+	}
+	public void setAdmin_name(String admin_name) {
+		this.admin_name = admin_name;
 	}
 	
 	public String getMember_user_id() {

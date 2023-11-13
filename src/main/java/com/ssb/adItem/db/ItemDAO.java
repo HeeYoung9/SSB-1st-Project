@@ -112,8 +112,11 @@ public class ItemDAO {
 	}
 	// (1) 상품 관리 페이지를 가져오는 메서드 - getItemMgt(int startRow,int pageSize) 끝
 
-	// (2) 상품 관리 페이지를 가져오는 메서드 (검색 기능) - getItemMgt (int startRow, int pageSize,
-	// String search) 시작
+	
+	
+	
+	
+	// (2) 상품 관리 페이지를 가져오는 메서드 (검색 기능) - getItemMgt (int startRow, int pageSize, String search) 시작
 	public ArrayList getItemMgt(int startRow, int pageSize, String search) {
 		ArrayList ItemMgt = new ArrayList();
 		try {
@@ -160,9 +163,12 @@ public class ItemDAO {
 
 		return ItemMgt;
 	}
-	// (2) 상품 관리 페이지를 가져오는 메서드 (검색 기능) - getItemMgt (int startRow, int pageSize,
-	// String search) 끝
+	// (2) 상품 관리 페이지를 가져오는 메서드 (검색 기능) - getItemMgt (int startRow, int pageSize, String search) 끝
 
+	
+	
+	
+	
 	// (3) 상품 개수 계산 메서드 - getItemCount() 시작
 	public int getItemCount() {
 		int result = 0;
@@ -194,6 +200,10 @@ public class ItemDAO {
 	}
 	// (3) 상품 개수 계산 메서드 - getItemCount() 끝
 
+	
+	
+	
+	
 	// (4) 상품 개수 계산 메서드 - getItemCount(String search) 시작
 	public int getItemCount(String search) {
 		int result = 0;
@@ -225,6 +235,10 @@ public class ItemDAO {
 	}
 	// (4) 상품 개수 계산 메서드 - getItemCount(String search) 끝
 
+	
+	
+	
+	
 	// (5) 특정 상품 정보를 가져오는 메서드 - getItem(ino) 시작
 	public ItemDTO getItem(int ino) {
 		ItemDTO dto = null;
@@ -273,6 +287,10 @@ public class ItemDAO {
 	}
 	// (5) 특정 상품 정보를 가져오는 메서드 - getItem(ino) 시작
 
+	
+	
+	
+	
 	// (6) 특정 상품 정보[재고 수량]을 수정하는 메서드 - quantityItem 시작
 	public int quantityItem(int optionsId, int newQuantity) {
 		int result = 0;
@@ -298,109 +316,74 @@ public class ItemDAO {
 	}
 	// (6) 특정 상품 정보[재고 수량]을 수정하는 메서드 - quantityItem 끝
 
-	// (7) 상품 등록 메서드 - addItem(ItemDTO) 시작
+	
+	
+	
+	
+	// (7) 아이템(상품) 정보를 등록하는 메서드 - addItem 시작
+	public int addItem(ItemDTO dto) {
+	    int itemId = -1;
 
-	/*
-	 * public void addItem(ItemDTO dto) { try { //1.2. 디비연결 con = getCon(); //3. sql
-	 * 작성 & pstmt 객체
-	 * 
-	 * sql =
-	 * "insert into item (item_id, item_name, item_price, item_img_main, item_img_sub, item_img_logo, category_id) "
-	 * +"values (?,?,?,?,?,?,?);"
-	 * +"insert into category (category_id,category_code,category_sport,category_major,category_sub, category_brand) values (?,?,?,?,?,?);"
-	 * +"insert into options (options_id, options_name, options_value, options_price, options_quantity, item_id) values (?,?,?,?,?,?)"
-	 * ;
-	 * 
-	 * 
-	 * sql =
-	 * "insert into item (item_id, item_name, item_price, item_img_main, item_img_sub, item_img_logo, category_id) values (?,?,?,?,?,?,?);"
-	 * ; pstmt = con.prepareStatement(sql); pstmt.setInt(1, dto.getItem_id());
-	 * pstmt.setString(2, dto.getItem_name()); pstmt.setInt(3, dto.getItem_price());
-	 * pstmt.setString(4, dto.getItem_img_main()); pstmt.setString(5,
-	 * dto.getItem_img_sub()); pstmt.setString(6, dto.getItem_img_logo());
-	 * pstmt.setInt(7, dto.getCategory_id()); pstmt.executeUpdate();
-	 * 
-	 * sql =
-	 * "insert into category (category_id,category_code,category_sport,category_major,category_sub, category_brand) values (?,?,?,?,?,?);"
-	 * ; pstmt = con.prepareStatement(sql); pstmt.setInt(1, dto.getCategory_id());
-	 * pstmt.setInt(2, dto.getCategory_code()); pstmt.setString(3,
-	 * dto.getCategory_sport()); pstmt.setString(4, dto.getCategory_major());
-	 * pstmt.setString(5, dto.getCategory_sub()); pstmt.setString(6,
-	 * dto.getCategory_brand()); pstmt.executeUpdate();
-	 * 
-	 * sql =
-	 * "insert into options (options_id, options_name, options_value, options_price, options_quantity, item_id) values (?,?,?,?,?,?);"
-	 * ; pstmt = con.prepareStatement(sql); pstmt.setInt(1, dto.getOptions_id());
-	 * pstmt.setString(2, dto.getOptions_name()); pstmt.setString(3,
-	 * dto.getOptions_value()); pstmt.setInt(4, dto.getOptions_price());
-	 * pstmt.setInt(5, dto.getOptions_quantity()); pstmt.setInt(6,
-	 * dto.getItem_id()); pstmt.executeUpdate();
-	 * 
-	 * 
-	 * pstmt = con.prepareStatement(sql); // ??? pstmt.setInt(1, dto.getItem_id());
-	 * pstmt.setString(2, dto.getItem_name()); pstmt.setInt(3, dto.getItem_price());
-	 * pstmt.setString(4, dto.getItem_img_main()); pstmt.setString(5,
-	 * dto.getItem_img_sub()); pstmt.setString(6, dto.getItem_img_logo());
-	 * pstmt.setInt(7, dto.getCategory_id()); pstmt.setInt(8,
-	 * dto.getCategory_code()); pstmt.setString(9, dto.getCategory_sport());
-	 * pstmt.setString(10, dto.getCategory_major()); pstmt.setString(11,
-	 * dto.getCategory_sub()); pstmt.setString(12, dto.getCategory_brand());
-	 * pstmt.setInt(13, dto.getOptions_id()); pstmt.setString(14,
-	 * dto.getOptions_name()); pstmt.setString(15, dto.getOptions_value());
-	 * pstmt.setInt(16, dto.getOptions_price()); pstmt.setInt(17,
-	 * dto.getOptions_quantity());
-	 * 
-	 * //4. sql 실행 pstmt.executeUpdate();
-	 * 
-	 * System.out.println(" ItemDAO : 상품등록 성공! ");
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } finally { CloseDB(); } }
-	 */
-	// (7) 상품 등록 메서드 - addItem(ItemDTO) 끝
-	
-	
-	
-	
-	public void addItem(ItemDTO dto) {
 	    try {
-	        //1.2. 디비연결
+	        // 1. 디비 연결
 	        con = getCon();
-	        
-	        // 첫 번째 SQL 실행
-	        sql = "insert into item (item_id, item_name, item_price, item_img_main, item_img_sub, item_img_logo, category_id) values (?,?,?,?,?,?,?);";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setInt(1, dto.getItem_id());
-	        pstmt.setString(2, dto.getItem_name());
-	        pstmt.setInt(3, dto.getItem_price());
-	        pstmt.setString(4, dto.getItem_img_main());
-	        pstmt.setString(5, dto.getItem_img_sub());
-	        pstmt.setString(6, dto.getItem_img_logo());
-	        pstmt.setInt(7, dto.getCategory_id());
+
+	        // 2. SQL 실행 
+	        sql = "INSERT INTO item (item_name, item_price, item_img_main, item_img_sub, item_img_logo, category_id) VALUES (?,?,?,?,?,?);";
+	        pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+	        pstmt.setString(1, dto.getItem_name());
+	        pstmt.setInt(2, dto.getItem_price());
+	        pstmt.setString(3, dto.getItem_img_main());
+	        pstmt.setString(4, dto.getItem_img_sub());
+	        pstmt.setString(5, dto.getItem_img_logo());
+	        pstmt.setInt(6, dto.getCategory_id());
 	        pstmt.executeUpdate();
 
-	        // 두 번째 SQL 실행
-	        sql = "insert into category (category_id,category_code,category_sport,category_major,category_sub, category_brand) values (?,?,?,?,?,?);";
+	        // 3. 생성된 키 가져오기
+	        ResultSet generatedKeys = pstmt.getGeneratedKeys();
+
+	        // 4. 생성된 키 확인
+	        if (generatedKeys.next()) {
+	            itemId = generatedKeys.getInt(1);
+	        }
+
+	        System.out.println("ItemDAO : 아이템 등록 성공! Item ID: " + itemId);
+
+	        if (itemId != -1) {
+	            addOption(dto, itemId);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        CloseDB();
+	    }
+
+	    return itemId;
+	}
+	// (7) 아이템(상품) 정보를 등록하는 메서드 - addItem 끝
+
+	
+	
+	
+	
+	// (8) 옵션 정보를 등록하는 메서드 - addOptions 시작
+	public void addOption(ItemDTO dto, int itemId) {
+	    try {
+	        // 1. 디비 연결
+	        con = getCon();
+
+	        // 2. SQL 실행 
+	        sql = "INSERT INTO options (options_name, options_value, options_price, options_quantity, item_id) VALUES (?,?,?,?,?);";
 	        pstmt = con.prepareStatement(sql);
-	        pstmt.setInt(1, dto.getCategory_id());
-	        pstmt.setInt(2, dto.getCategory_code());
-	        pstmt.setString(3, dto.getCategory_sport());
-	        pstmt.setString(4, dto.getCategory_major());
-	        pstmt.setString(5, dto.getCategory_sub());
-	        pstmt.setString(6, dto.getCategory_brand());
+	        pstmt.setString(1, dto.getOptions_name());
+	        pstmt.setString(2, dto.getOptions_value());
+	        pstmt.setInt(3, dto.getOptions_price());
+	        pstmt.setInt(4, dto.getOptions_quantity());
+	        pstmt.setInt(5, itemId);
 	        pstmt.executeUpdate();
 
-	        // 세 번째 SQL 실행
-	        sql = "insert into options (options_id, options_name, options_value, options_price, options_quantity, item_id) values (?,?,?,?,?,?);";
-	        pstmt = con.prepareStatement(sql);
-	        pstmt.setInt(1, dto.getOptions_id());
-	        pstmt.setString(2, dto.getOptions_name());
-	        pstmt.setString(3, dto.getOptions_value());
-	        pstmt.setInt(4, dto.getOptions_price());
-	        pstmt.setInt(5, dto.getOptions_quantity());
-	        pstmt.setInt(6, dto.getItem_id());
-	        pstmt.executeUpdate();
-
-	        System.out.println(" ItemDAO : 상품등록 성공! ");
+	        System.out.println("ItemDAO : 옵션 등록 성공!");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -408,9 +391,154 @@ public class ItemDAO {
 	        CloseDB();
 	    }
 	}
+	// (8) 옵션 정보를 등록하는 메서드 - addOptions 끝
+
 
 	
 	
 	
+	// (9) 카테고리 목록을 불러오는 메서드 - getCategoryList() 시작
+	public ArrayList<ItemDTO> getCategoryList() {
+	    
+		ArrayList<ItemDTO> CategoryList = new ArrayList<>();
 
+	    try {
+	        con = getCon();
+	    
+	        sql = "SELECT * FROM category";
+	        
+	        pstmt = con.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            ItemDTO dto = new ItemDTO();
+	            dto.setCategory_id(rs.getInt("category_id"));
+	            dto.setCategory_code(rs.getInt("category_code"));
+	            dto.setCategory_sport(rs.getString("category_sport"));
+	            dto.setCategory_major(rs.getString("category_major"));
+	            dto.setCategory_sub(rs.getString("category_sub"));
+	            dto.setCategory_brand(rs.getString("category_brand"));
+	            CategoryList.add(dto);
+	        } // while
+	        
+	        System.out.println("\nCategoryDAO: 카테고리 목록을 불러왔다!");
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	    } finally {
+	        CloseDB();
+	    }
+
+	    return CategoryList;
+	}
+
+	// (9) 카테고리 목록을 불러오는 메서드 - getCategoryList() 끝
+	
+	
+	
+
+	
+	// (10) 5개의 값과 일치하는 카테고리ID를 찾아오는 메서드 - findCategoryId() 시작
+	public int findCategoryId(String category_sport, String category_major, String category_sub, String category_brand, int category_code) {
+	    int categoryId = -1; // 기본값 설정 (오류 발생 시 -1을 리턴)
+
+	    try {
+	        con = getCon();
+	        // 새로 등록되는 상품에 (모든 카테고리 조건을 만족하는) 기존의 카테고리ID를 부여함
+	        sql = "SELECT category_id FROM category WHERE category_sport LIKE ? AND category_major LIKE ? AND category_sub LIKE ? AND category_brand LIKE ? AND category_code = ?";
+	        pstmt = con.prepareStatement(sql);
+
+	        pstmt.setString(1, "%" + category_sport + "%");
+	        pstmt.setString(2, category_major);
+	        pstmt.setString(3, category_sub);
+	        pstmt.setString(4, category_brand);
+	        pstmt.setInt(5, category_code);
+
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            categoryId = rs.getInt("category_id");
+	        }
+
+	        System.out.println(" CategoryDAO : 일치하는 카테고리ID를 찾아왔어요 ");
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        CloseDB();
+	    }
+
+	    return categoryId;
+	}
+	// (10) 5개의 값과 일치하는 카테고리ID를 찾아오는 메서드 - findCategoryId() 끝
+
+	
+	
+	
+	
+	// (11) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 시작
+    public void deleteItem(int options_id) {
+    		// 상품 1개에 옵션 n개 존재함
+    	    // 리스트에서 삭제 버튼 누르면 -> 옵션테이블 기준으로 옵션만 하나씩 삭제된다 (한번에 한개만 삭제 가능) 
+    	    // 선택한게 해당 상품의 마지막 옵션일때, 옵션과 상품테이블 행을 동시에 삭제함 (상품만 옵션없이 덜렁 남지 않도록)
+        try {
+        	 con = getCon();
+        	 
+            // 1) 삭제하려는 옵션의 상품ID 조회
+            String getItemId = "SELECT item_id FROM options WHERE options_id = ?";
+            pstmt = con.prepareStatement(getItemId);
+            pstmt.setInt(1, options_id);
+            rs = pstmt.executeQuery();
+
+            int item_id = 0;
+            
+            if (rs.next()) {
+                item_id = rs.getInt("item_id");
+            }
+
+            // 2) 삭제하려는 상품의 옵션 개수 조회
+            String getCountOptions = "SELECT COUNT(*) FROM options WHERE item_id = ?";
+            pstmt = con.prepareStatement(getCountOptions);
+            pstmt.setInt(1, item_id);
+            rs = pstmt.executeQuery();
+
+            int optionsCount = 0;
+            if (rs.next()) {
+                optionsCount = rs.getInt(1);
+            }
+
+            // 3) 해당 옵션이 마지막인 경우, 상품 테이블 정보까지 동시에 삭제함 
+            if (optionsCount == 1) {
+                
+            	// 외래 키 제약 조건 위반을 막기 위해 옵션을 먼저 삭제한다
+                String deleteOptions = "DELETE FROM options WHERE item_id = ?";
+                pstmt = con.prepareStatement(deleteOptions);
+                pstmt.setInt(1, item_id);
+                pstmt.executeUpdate();
+
+                // 그담에 상품 테이블에서도 삭제함
+                String deleteItem = "DELETE FROM item WHERE item_id = ?";
+                pstmt = con.prepareStatement(deleteItem);
+                pstmt.setInt(1, item_id);
+                pstmt.executeUpdate();
+            } 
+            
+        } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        CloseDB();
+	    }
+        
+    }
+    // (11) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 끝
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 } // ItemDAO

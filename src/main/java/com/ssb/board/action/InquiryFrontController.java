@@ -17,7 +17,7 @@ public class InquiryFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C: BoardFrontController_doProcess() 호출");
+		System.out.println("C: InquiryFrontController_doProcess() 호출");
 		
 		/****************************** 1. 가상주소 계산 시작 ****************************/
 		System.out.println("\n---------- C: 1. 가상주소 계산 시작 -----------");
@@ -72,7 +72,7 @@ public class InquiryFrontController extends HttpServlet{
 			System.out.println("C: /InquiryContent.iq 호출");
 			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
 			
-			// BoardContentAction 객체 생성
+			// InquiryContentAction 객체 생성
 			action = new InquiryContentAction();
 			try {
 				forward = action.execute(request, response);
@@ -82,10 +82,22 @@ public class InquiryFrontController extends HttpServlet{
 		}
 		else if(command.equals("/InquiryAWriteAction.iq")) {
 			System.out.println("C: /InquiryAWriteAction.iq 호출");
+			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
+			
+			// InquiryAWriteAction 객체 생성
+			action = new InquiryAWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/InquiryAWriteProAction.iq")) {
+			System.out.println("C: /InquiryAWriteProAction.iq 호출");
 			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 			
-			// InquiryWriteAction 객체 생성
-			action = new InquiryAWriteAction();
+			// InquiryAWriteProAction 객체 생성
+			action = new InquiryAWriteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -120,14 +132,14 @@ public class InquiryFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doGet() 호출");
+		System.out.println("\nC: InquiryFrontController_doGet() 호출");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: BoardFrontController_doPost() 호출");
+		System.out.println("\nC: InquiryFrontController_doPost() 호출");
 		doProcess(request, response);
 	}
 	

@@ -319,4 +319,20 @@ a{
 	color:black;
 }
  
+/* 위시 찜하기 버튼 */
 
+
+
+.btn{
+	border: 1px solid black;
+	
+
+}
+
+
+/* 제품 카드 고정 */
+
+.card-box{
+	width: 291px;
+	height: 491px;
+}

@@ -15,7 +15,7 @@
 <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-<title>공지사항&nbsp;|&nbsp;SSB</title>
+<title>Q&A&nbsp;|&nbsp;SSB</title>
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -29,7 +29,10 @@ font-size : 14pt;
 margin : 10pt;}
 
 .board_info_box {color : #6B6B6B;
-margin : 10pt;}
+border-bottom: 1px solid #ddd;
+/* padding-bottom: 5px; */
+margin : 10pt;
+margin-top: -0.5em;}
 
 .board_author {font-size : 10pt;}
 
@@ -43,9 +46,13 @@ margin : 10pt;}
 margin : 10pt;
 padding-bottom : 10pt;}
 </style>
-
 </head>
 <body>
+  <!-- 로그인 세션 제어 -->
+  <c:if test="${empty userId }">
+	<c:redirect url="./AdminLogin.ad"/>  	
+  </c:if>
+
   <div class="wrapper">
 	
   <!-- 사이드바 -->
@@ -63,31 +70,35 @@ padding-bottom : 10pt;}
 	    <div class="table-responsive">
 		  <h3></h3>
 			<div class="bg-white rounded shadow-sm">
-			  <div class="board_title"><c:out value="${bdto.board_subject}"/></div>
+			  <div class="board_title">
+			    ${bdto.board_subject}
+			  </div>
 				<div class="board_info_box">
-				  <span class="board_date">작성자:<c:out value="${bdto.member_user_id}"/>/문의유형:</span><span class="board_author"><c:out value="${bdto.inquiry_type}"/></span>
+				  <span class="board_date">작성자:<c:out value="${bdto.member_user_id}"/>&nbsp;/&nbsp;문의유형:</span><span class="board_author">${bdto.inquiry_type}</span>
 				</div>
-				<div class="board_content"><pre><c:out value="${bdto.board_content}"/></pre></div>
-				<div>
-					<button type="button" class="btn btn-sm btn-primary" id="btnList"
-						onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">목록</button>
-					<button type="button" class="btn btn-sm btn-primary" id="btnDelete"
-						onclick="location.href='./NoticeDeleteAction.no?boardId=${bdto.board_id }&pageNum=${pageNum }';">삭제</button>
+				<div class="board_content">
+				  <pre>${bdto.board_content}</pre>
+				</div>
+				<div style="text-align: right;">
+				  <button type="button" class="btn btn-sm btn-primary" id="btnList"
+				   	onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">목록</button>
+				  <button type="button" class="btn btn-sm btn-primary" id="btnDelete"
+					onclick="location.href='./NoticeDeleteAction.no?boardId=${bdto.board_id }&pageNum=${pageNum }';">삭제</button>
 				</div>
 			</div>
 			
-			<form action="./InquiryAWriteAction.iq?boardId=${bdto.board_id }&pageNum=${pageNum}" method="post">
+			<form action="./InquiryAWriteProAction.iq?boardId=${bdto.board_id }&pageNum=${pageNum}" method="post">
+			<input type="hidden" name="adminId" value="${sessionScope.userId }">
 			<div class="bg-white rounded shadow-sm">
-			  <div class="board_title">[답변]<c:out value="${bdto.board_subject}"/></div>
-				<div class="board_info_box">
-				  <span class="board_date">작성자:<c:out value="${bdto.admin_user_id}"/>/문의유형:</span><span class="board_author"><c:out value="${bdto.board_readCount}"/></span>
-				</div>
-				<div class="mb-3">
-					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
-				</div>					
-				<div>
-					<input type="submit" value="작성하기" class="btn btn-sm btn-primary" id="btnSave">
-				</div>
+			  <div class="board_title">
+			    [답변]&nbsp;${bdto.board_subject}
+			  </div>
+			  <div class="mb-3">
+				<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
+			  </div>					
+			  <div style="text-align: right;">
+				<input type="submit" value="작성하기" class="btn btn-sm btn-primary" id="btnSave">
+			  </div>
 			</div>			
 			</form>		
 	    </div>

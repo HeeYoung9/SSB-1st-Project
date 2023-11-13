@@ -7,6 +7,12 @@
   margin: 0 auto;
 }
 
+.container:after{
+	
+	display: block;
+	padding-bottom: 100%;
+}
+
 /* body 시작*/
 
 html, body {
@@ -317,20 +323,15 @@ a{
   color: white;
 }
 
-.loce1{
-	z-index:3;
-	margin-top: -1175px;
-	margin-left: 1400px;
-}
 
-.loce2{
-	z-index:3;
-	margin-top: -610px;
-	margin-left: 1350px;
-}
 
-.loce3{
-	z-index:3;
-	margin-top: -45px;
-	margin-left: 1350px;
+/* 기본메인 및 검색 후 제품목록 출력시 제품 겹침 해결 코드 (아직 안됨) */
+
+ #test{
+	width: 220px;
+	height: 515px;
+	/* position: relative;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap; */
 }

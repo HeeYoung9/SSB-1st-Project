@@ -24,7 +24,7 @@ public class AdminLoginAction implements Action {
 		adto.setAdmin_user_id(request.getParameter("adminId"));
 		adto.setAdmin_pw(request.getParameter("adminPw"));
 		
-		// AdminDAO 객체 생성 -> 로그인 체크 메서드
+		// AdminDAO 객체 생성 => 로그인 체크 메서드
 		AdminDAO adao = new AdminDAO();
 		int result = adao.loginAdmin(adto);
 		

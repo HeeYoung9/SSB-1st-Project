@@ -24,8 +24,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-.board_title {font-weight : 700;
-font-size : 22pt;
+.board_title {border-bottom: 1px solid #ddd;
+padding-bottom: 5px;
+font-weight : 700;
+font-size : 20pt;
 margin : 10pt;}
 
 .board_info_box {color : #6B6B6B;
@@ -43,14 +45,17 @@ margin : 10pt;}
 margin : 10pt;
 padding-bottom : 10pt;}
 </style>
-
 </head>
 <body>
+  <!-- 로그인 세션 제어 -->
+  <c:if test="${empty userId }">
+	<c:redirect url="./AdminLogin.ad"/>  	
+  </c:if>
+  
   <div class="wrapper">
-	
+  	
   <!-- 사이드바 -->
   <jsp:include page="../inc/sidebar.jsp"/>
-  <!-- 사이드바 -->
 		
   <!-- 메인 -->
   <div class="main">		
@@ -61,13 +66,13 @@ padding-bottom : 10pt;}
 	<article>
 	  <div class="container" role="main">
 	    <div class="table-responsive">
-		  <h3>공지사항 본문</h3>
+		  <h3></h3>
 			<div class="bg-white rounded shadow-sm">
 			  <div class="board_title"><c:out value="${bdto.board_subject}"/></div>
-				<div class="board_info_box">
-				  <span class="board_date"><c:out value="${bdto.board_writeTime}"/>/View:</span><span class="board_author"><c:out value="${bdto.board_readCount}"/></span>
-				</div>
-				<div class="board_content"><pre><c:out value="${bdto.board_content}"/></pre></div>
+			  <div class="board_info_box">
+			    <span class="board_date"><c:out value="${bdto.board_writeTime}"/>/View:</span><span class="board_author"><c:out value="${bdto.board_readCount}"/></span>
+			  </div>
+			  <div class="board_content"><pre><c:out value="${bdto.board_content}"/></pre></div>
 			</div>
 			<div style="margin-top : 20px">
 				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate"

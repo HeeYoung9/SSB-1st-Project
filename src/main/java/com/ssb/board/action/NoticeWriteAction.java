@@ -19,6 +19,7 @@ public class NoticeWriteAction implements Action {
 		
 		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
+		bdto.setAdmin_user_id(request.getParameter("adminId"));
 		bdto.setBoard_subject(request.getParameter("subject"));
 		bdto.setBoard_content(request.getParameter("content"));
 		
