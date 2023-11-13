@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header>
-		
+		<jsp:include page="../Mcommon/top.jsp" />
 	</header>
 	<main>
 		<table class="table">

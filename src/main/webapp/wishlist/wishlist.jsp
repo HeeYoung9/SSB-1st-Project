@@ -10,10 +10,25 @@
 <link rel="stylesheet" href="./location/location.css">
 </head>
 <body>
-	<input type="button" class="wishlist">
-	<img class="wishlist" src="" alt="위시리스트">
-	<header> </header>
+	<header>
+		<jsp:include page="../Mcommon/top.jsp" />
+	</header>
 	<main>
+	<div class="wishlist" value="7">
+		<img src="" alt="위시리스트">
+	</div>
+	<div class="wishlist" value="8">
+		<img src="" alt="위시리스트">
+	</div>
+	<div class="wishlist" value="9">
+		<img src="" alt="위시리스트">
+	</div>
+	<div class="wishlist" value="10">
+		<img src="" alt="위시리스트">
+	</div>
+	<div class="wishlist" value="11">
+		<img src="" alt="위시리스트">
+	</div>
 		<table class="table">
 			<colgroup>
 				<col width="30%">

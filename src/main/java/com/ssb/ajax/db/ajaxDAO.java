@@ -113,4 +113,24 @@ public class ajaxDAO extends DAO {
 		}
 		return result;
 	}
+
+	public ArrayList<Integer> getWishlist(int member_id) {
+		ArrayList<Integer> item_idArray = new ArrayList<Integer>();
+		try {
+			con = getCon();
+			sql = "SELECT item_id FROM wishlist WHERE member_id = ? ORDER BY wishlist_id";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, member_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				item_idArray.add(rs.getInt("item_id"));
+				System.out.println("위시리스트 추가");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return item_idArray;
+	}
 }

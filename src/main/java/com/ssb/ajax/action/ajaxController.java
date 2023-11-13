@@ -1,6 +1,7 @@
 package com.ssb.ajax.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -67,6 +68,13 @@ public class ajaxController extends HttpServlet {
 			System.out.println("member_id : " + member_id);
 			//정보처리
 			String result = dao.insertWishlist(item_id,member_id);
+			json = gson.toJson(result);
+		} else if (command.equals("/getWishlist.aj")) {
+			// 정보저장
+			int member_id =Integer.parseInt(request.getParameter("member_id"));
+			System.out.println("member_id : " + member_id);
+			//정보처리
+			ArrayList<Integer> result = dao.getWishlist(member_id);
 			json = gson.toJson(result);
 		}
 		/*********************** 2. 가상주소 매핑 끝 **************************/

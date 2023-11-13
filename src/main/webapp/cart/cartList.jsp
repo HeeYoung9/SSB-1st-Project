@@ -18,7 +18,7 @@
 </head>
 <body>
 	<header>
-		
+		<jsp:include page="../Mcommon/top.jsp" />
 	</header>
 	<main>
 		<!-- 참고:아이디 네임 변경하기 -->
