@@ -23,7 +23,7 @@ let idCheck = false; // onsubmit 시에 필요
 let pwCheck = false; // onsubmit 시에 필요 
 let pwCheck2 = false; // onsubmit 시에 필요
 
-// 공백 제어 juery
+// 공백 제어 jquery
 $('.inputId, .inputPw').on('input', function () {
     // 현재 입력된 비밀번호 값 가져오기
     let value = $(this).val();

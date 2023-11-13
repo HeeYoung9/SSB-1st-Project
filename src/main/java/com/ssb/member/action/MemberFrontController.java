@@ -41,7 +41,7 @@ public class MemberFrontController extends HttpServlet {
 			forward.setRedirect(false);
 			
 		}else if(command.equals("/MemberJoinAction.me")) {
-			System.out.println("C : /MemberJoin.me 매핑");
+			System.out.println("C : /MemberJoinAction.me 매핑");
 			System.out.println("C : 패턴2 - DB처리2, 페이지 이동");
 			
 			action = new MemberJoinAction();

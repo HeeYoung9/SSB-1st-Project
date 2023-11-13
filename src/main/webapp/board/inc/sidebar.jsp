@@ -26,7 +26,7 @@
 	  
 	  </li>
 	  <li class="sidebar-item">
-		<a class="sidebar-link" href="index.html">
+		<a class="sidebar-link" href="./AdMemberList.me">
         	<i class="align-middle" data-feather=""></i> 
         	<span class="align-middle">회원관리</span>
 		</a>

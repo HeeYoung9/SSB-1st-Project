@@ -206,6 +206,8 @@ public class MemberDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			CloseDB();
 		}
 		return memberList;
 	}
@@ -317,8 +319,9 @@ public class MemberDAO {
 	            dto.setMember_name(rs.getString("member_name"));
 
 	            // member_birth 처리
-	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
-	            dto.setMember_birth(sqlDate);
+//	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
+//	            dto.setMember_birth(sqlDate);
+	            dto.setMember_birth(rs.getDate("member_birth"));
 
 
 	            dto.setMember_gender(rs.getString("member_gender"));
@@ -389,8 +392,9 @@ public class MemberDAO {
 	            dto.setMember_name(rs.getString("member_name"));
 
 	            // member_birth 처리
-	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
-	            dto.setMember_birth(sqlDate);
+//	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
+//	            dto.setMember_birth(sqlDate);
+	            dto.setMember_birth(rs.getDate("member_birth"));
 
 
 	            dto.setMember_gender(rs.getString("member_gender"));
