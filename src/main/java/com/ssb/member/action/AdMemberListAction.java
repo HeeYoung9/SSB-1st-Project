@@ -54,7 +54,7 @@ public class AdMemberListAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 상품 개수 설정
-		int pageSize = 5;
+		int pageSize = 10;
 
 		// 현 페이지가 몇페이지 인지확인
 		String pageNum = request.getParameter("pageNum");

@@ -285,9 +285,9 @@ public class MemberDAO {
 	}
 	// 회원정보 개수 계산 메서드 - getBoardCount(String search)
 	
-	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
+	// 회원 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
 	public ArrayList<MemberDTO> getMemberList(int startRow, int pageSize) {
-	    // 글정보를 저장하는 배열
+	    // 회원정보를 저장하는 배열
 	    ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
 	    try {
 	        // 디비연결정보
@@ -307,7 +307,7 @@ public class MemberDAO {
 	        rs = pstmt.executeQuery();
 
 	        // 5. 데이터 처리
-	        // 글 정보 전부 가져오기
+	        // 회원 정보 전부 가져오기
 	        // BoardBean 객체 여러개 => ArrayList 저장
 	        while (rs.next()) {
 	            // 글 하나의 정보 => BoardBean 저장
@@ -335,7 +335,7 @@ public class MemberDAO {
 	            dto.setMember_outdate(rs.getTimestamp("member_outdate"));
 	            dto.setMember_agree(rs.getString("member_agree"));
 
-	            // 글 하나의 정보를 배열의 한 칸에 저장
+	            // 회원 하나의 정보를 배열의 한 칸에 저장
 	            memberList.add(dto);
 
 	        } // while
@@ -353,9 +353,9 @@ public class MemberDAO {
 
 	    return memberList;
 	}
-	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
+	// 회원 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize)
 
-	// 글 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize, String search)
+	// 회원 정보 목록을 가져오는 메서드 - getBoardList(int startRow, int pageSize, String search)
 	public ArrayList<MemberDTO> getMemberList(int startRow, int pageSize, String search) {
 	    // 글정보를 저장하는 배열
 	    ArrayList<MemberDTO> memberList = new ArrayList<MemberDTO>();
@@ -366,9 +366,7 @@ public class MemberDAO {
 	        con = getCon();
 
 	        // 3. SQL 작성(select) & pstmt 객체
-	        sql = "select * from member "
-	                + "where member_user_id like ? or member_name like ? "
-	                + "order by member_id limit ?,?";
+	        sql = "select * from member where member_user_id like ? or member_name like ? order by member_id limit ?,?";
 	        pstmt = con.prepareStatement(sql);
 
 	        // ???
@@ -381,7 +379,7 @@ public class MemberDAO {
 	        rs = pstmt.executeQuery();
 
 	        // 5. 데이터 처리
-	        // 글 정보 전부 가져오기
+	        // 회원 정보 전부 가져오기
 	        // BoardBean 객체 여러개 => ArrayList 저장
 	        while (rs.next()) {
 	            MemberDTO dto = new MemberDTO();
@@ -408,7 +406,7 @@ public class MemberDAO {
 	            dto.setMember_outdate(rs.getTimestamp("member_outdate"));
 	            dto.setMember_agree(rs.getString("member_agree"));
 
-	            // 글 하나의 정보를 배열의 한 칸에 저장
+	            // 회원 하나의 정보를 배열의 한 칸에 저장
 	            memberList.add(dto);
 
 	        } // while
