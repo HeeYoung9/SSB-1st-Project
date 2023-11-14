@@ -50,44 +50,49 @@
 
 	  <ul class="sidebar-nav">
 		<li class="sidebar-header">
-			게시판 관리
 		</li>
 
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="./NoticeList.no">
-              <i class="align-middle" data-feather=""></i> 
-			  <span class="align-middle">공지사항</span>
-            </a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./InquiryList.iq">
-              <i class="align-middle" data-feather=""></i> 
-               <span class="align-middle">Q&A</span>
-            </a>
-		</li>				
-
-		<li class="sidebar-header">
-		</li>
-
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="AdMemberList.me">
-              <i class="align-middle" data-feather=""></i> 
+			<a class="sidebar-link" href="./AdMemberList.me">
+              <i class="align-middle" data-feather="user"></i> 
               <span class="align-middle">회원관리</span>
            	</a>
 		</li>
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="#">
-              <i class="align-middle" data-feather=""></i> 
+              <i class="align-middle" data-feather="shopping-cart"></i> 
               <span class="align-middle">주문관리</span>
             </a>
 		</li>
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="./ItemMgt.it">
-              <i class="align-middle" data-feather=""></i> 
+              <i class="align-middle" data-feather="box"></i> 
               <span class="align-middle">상품관리</span>
             </a>
 		</li>
 					
+		<li class="sidebar-header">
+			게시판
+		</li>
+
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./NoticeList.no">
+              <i class="align-middle" data-feather="edit-2"></i> 
+			  <span class="align-middle">Notice</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./InquiryList.iq">
+              <i class="align-middle" data-feather="edit-2"></i> 
+               <span class="align-middle">Q&A</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./ReviewList.rv">
+              <i class="align-middle" data-feather="edit-2"></i> 
+               <span class="align-middle">Review</span>
+            </a>
+		</li>							
 	  </ul>
   	</div>
   </nav>
@@ -125,86 +130,87 @@
                     <input type="text" name="search" id="searchInput" placeholder=" 회원정보조회">
                     <input type="submit" value="검색" id="searchButton"></input>
                       <!-- <button id="addButton" onclick="">회원 등록</button> -->
-					  <!-- <input type="button" value="상품 등록" class="addButton" onclick="location.href='./itemAddForm.it';"> -->
-                    <button id="editButton">회원 수정</button>
+<!--                     <button id="editButton">회원 수정</button> -->
                 </form>
             </span>
-            <table class="sort">
-                <%-- 
-                회원번호 / 아이디 / 비밀번호 / 이름 / 생년월일 / 성별 / 메일주소 / 전화번호 / 가입일시 / 결제금액 / 적립금 / 등급 / 상태 / 탈퇴일시 / 마케팅수신동의
-                --%>
-                <colgroup>
-                    <col style="width: 2.5%" /> 
-                    <col style="width: 4%" />
-                    <col style="width: 7%" />
-                    <col style="width: 9%" />
-                    <col style="width: 5%" />
-                    <col style="width: 6.9%" />
-                    <col style="width: 2.5%" />
-                    <col style="width: 14%" />
-                    <col style="width: 8%" />
-                    <col style="width: 6%" />
-                    <col style="width: 5%" />
-                    <col style="width: 5%" />
-                    <col style="width: 2.5%" />
-                    <col style="width: 2.7%" />
-                    <col style="width: 6%" />
-                    <col style="width: 5%" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th><label class="checkbox-inline">
-                            <input type="checkbox" id="cbx_chkAll">
-                        </label></th>
-                        <th>회원<br>번호</th>
-                        <th>아이디</th>
-                        <th>비밀번호</th>
-                        <th>이름</th>
-                        <th>생년월일</th>
-                        <th>성별</th>
-                        <th>메일주소</th>
-                        <th>전화번호</th>
-                        <th>가입일시</th>
-                        <th>결제금액</th>
-                        <th>적립금</th>
-                        <th>등급</th>
-                        <th>상태</th>
-                        <th>탈퇴일시</th>
-                        <th>마케팅<br>수신동의</th>
-                    </tr>
-                </thead>
-                
-                <%-- 회원 리스트 --%>
-                <c:forEach var="dto" items="${memberList }">
-                    <tr style="background-color: white;">
-                        <td>
-                        	<label class="checkbox-inline">
-                            <input type="checkbox" name="chk" value="${dto.member_id}">
-                        	</label>
-                        </td>
-                        <td>${dto.member_id}</td>
-                        <td>${dto.member_user_id}</td>
-                        <td>${dto.member_pw }</td>
-                        <td>${dto.member_name}</td>
-                        <td>${dto.member_birth }</td>
-                        <td>${dto.member_gender }</td>
-                        <td>${dto.member_email }</td>
-                        <td>${dto.member_phone }</td>
-                        <td>${dto.member_regdate }</td>
-                        <td>${dto.member_payment }</td>
-                        <td>${dto.member_point }</td>
-                        <td>${dto.member_grade }</td>
-                        <td>${dto.member_situation }</td>
-                        <td>${dto.member_outdate }</td>
-                        <td>${dto.member_agree }</td>
-					</tr>
-                </c:forEach>
-            </table>
-            
+           	<form action="./AdMemberDelete.me" method="post" id="deleteForm">
+          		<table class="sort">
+	                <%-- 
+	                회원번호 / 아이디 / 비밀번호 / 이름 / 생년월일 / 성별 / 메일주소 / 전화번호 
+	                가입일시 / 결제금액 / 적립금 / 등급 / 상태 / 탈퇴일시 / 마케팅수신동의
+	                --%>
+	                <colgroup>
+	                    <col style="width: 2.5%" /> 
+	                    <col style="width: 4%" />
+	                    <col style="width: 7%" />
+	                    <col style="width: 9%" />
+	                    <col style="width: 5%" />
+	                    <col style="width: 6.9%" />
+	                    <col style="width: 2.5%" />
+	                    <col style="width: 14%" />
+	                    <col style="width: 8%" />
+	                    <col style="width: 6%" />
+	                    <col style="width: 5%" />
+	                    <col style="width: 5%" />
+	                    <col style="width: 2.5%" />
+	                    <col style="width: 2.7%" />
+	                    <col style="width: 6%" />
+	                    <col style="width: 5%" />
+	                </colgroup>
+	                <thead>
+	                    <tr>
+	                        <th><label class="checkbox-inline">
+	                            <input type="checkbox" id="cbx_chkAll">
+	                        </label></th>
+	                        <th>회원<br>번호</th>
+	                        <th>아이디</th>
+	                        <th>비밀번호</th>
+	                        <th>이름</th>
+	                        <th>생년월일</th>
+	                        <th>성별</th>
+	                        <th>메일주소</th>
+	                        <th>전화번호</th>
+	                        <th>가입일시</th>
+	                        <th>결제금액</th>
+	                        <th>적립금</th>
+	                        <th>등급</th>
+	                        <th>상태</th>
+	                        <th>탈퇴일시</th>
+	                        <th>마케팅<br>수신동의</th>
+	                    </tr>
+	                </thead>
+	                
+	                <%-- 회원 리스트 --%>
+	                <c:forEach var="dto" items="${memberList }">
+	                    <tr style="background-color: white;">
+	                        <td>
+	                        	<label class="checkbox-inline">
+	                            	<input type="checkbox" name="chk" value="${dto.member_id}">
+	                        	</label>
+	                        </td>
+	                        <td>${dto.member_id}</td>
+	                        <td>${dto.member_user_id}</td>
+	                        <td>${dto.member_pw }</td>
+	                        <td>${dto.member_name}</td>
+	                        <td>${dto.member_birth }</td>
+	                        <td>${dto.member_gender }</td>
+	                        <td>${dto.member_email }</td>
+	                        <td>${dto.member_phone }</td>
+	                        <td>${dto.member_regdate }</td>
+	                        <td>${dto.member_payment }</td>
+	                        <td>${dto.member_point }</td>
+	                        <td>${dto.member_grade }</td>
+	                        <td>${dto.member_situation }</td>
+	                        <td>${dto.member_outdate }</td>
+	                        <td>${dto.member_agree }</td>
+						</tr>
+	                </c:forEach>
+           		</table>	
+               	<button type="button" id="deleteButton" onclick="confirmDelete()">회원 삭제</button>
+            </form>
             
 			<!--- 페이징 --->
             <div class="paging">
-                <button onclick="./MemberResignAction.me" id="deleteButton">회원 삭제</button>
                 <c:if test="${startPage > pageBlock }">
                     <a href="./AdMemberList.me?pageNum=${startPage-pageBlock }&search=${param.search}">이전</a>
                 </c:if>

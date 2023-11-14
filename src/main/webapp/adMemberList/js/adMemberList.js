@@ -30,8 +30,6 @@ $(document).ready(function() {
       });
     }, false);
     
-    
-    
     /* select */
   const objTest = {
     의류: ['상의', '하의', '상하의세트', '이너웨어', '수영복/비치웨어'],
@@ -57,8 +55,6 @@ $(document).ready(function() {
     });
   });
   
-  
-  
   $("#img_main").on('change',function(){
 	  var fileName = $("#img_main").val();
 	  $(".upload-main").val(fileName);
@@ -72,4 +68,9 @@ $(document).ready(function() {
 	  $(".upload-logo").val(fileName);
 	});
   
-  
+// submit - confirmDelete 기능
+function confirmDelete() {
+    if (confirm('정말 삭제하시겠습니까?')) {
+        document.getElementById('deleteForm').submit();
+    }
+}  

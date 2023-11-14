@@ -124,7 +124,7 @@ public class MemberFrontController extends HttpServlet {
 			action = new MemberDeleteAction();
 			
 			try {
-				forward = action.execute(request, response);
+				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

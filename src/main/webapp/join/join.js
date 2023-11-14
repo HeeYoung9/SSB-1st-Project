@@ -36,6 +36,9 @@ $('.inputId, .inputPw').on('input', function () {
     }
 });
 
+// 전화번호, 생년월일 제어(숫자만 입력 되게)
+$()
+
 // submit 버튼 업데이트 함수
 function updateSubmitButton() {
     // 필수 사항이 성공했을 때만 submit 버튼 활성화

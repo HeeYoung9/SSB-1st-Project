@@ -52,6 +52,7 @@
 					</div>
 				</div>
 				
+				<!-- 비밀번호  -->
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
@@ -66,12 +67,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- 비밀번호 확인 -->
-<!-- 				<div class="form-floating d-flex"> -->
-<!-- 					<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder="">  -->
-<!-- 					<label for="floatinCheckPassword">비밀번호 확인</label> -->
-<!-- 				</div> -->
 				
+				<!-- 비밀번호 확인 -->				
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
