@@ -88,18 +88,18 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MemberResign.me")) {
-			System.out.println("C : /MemberResign.me 매핑");
+		}else if(command.equals("/MemberCloseAccount.me")) {
+			System.out.println("C : /MemberCloseAccount.me 매핑");
 			System.out.println("C : 패턴1 - DB사용x, view 페이지 출력");
 			
 			forward = new ActionForward();
 			forward.setPath("./resign/resign.jsp");
 			forward.setRedirect(true);
-		}else if(command.equals("/MemberResignAction.me")) {
-			System.out.println("C : /MemberResignAction.me 매핑");
+		}else if(command.equals("/MemberCloseAccountAction.me")) {
+			System.out.println("C : /MemberCloseAccountAction.me 매핑");
 			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
 			
-			action = new MemberDeleteAction();
+			action = new MemberCloseAccountAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -117,8 +117,8 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/AdMemberDelete.me")) {
-			System.out.println("C : /AdMemberDelete.me 매핑");
+		}else if(command.equals("/AdMemberDeleteAction.me")) {
+			System.out.println("C : /AdMemberDeleteAction.me 매핑");
 			System.out.println("C : 패턴2 - DB사용, 페이지 이동");
 			
 			action = new MemberDeleteAction();

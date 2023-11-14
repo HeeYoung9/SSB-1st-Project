@@ -130,7 +130,7 @@ public class MemberDAO {
 	}
 	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 	
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(dto)
 	public int updateMember(MemberDTO dto) {
 		int result = -1;
 		
@@ -170,7 +170,7 @@ public class MemberDAO {
 		
 		return result;
 	}
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(dto)
 
 	// 회원정보 삭제 메서드 - deleteMember(dto)
 	public int deleteMember(int member_id) {
