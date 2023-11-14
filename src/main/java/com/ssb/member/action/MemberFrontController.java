@@ -139,7 +139,7 @@ public class MemberFrontController extends HttpServlet {
 			}else { // false
 				System.out.println("C : "+forward.getPath()+"로, 이동방식 : forward()");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
-				dis.forward(request, response);
+				dis.forward(request, response); 
 			}
 		}
 		System.out.println("-------------------------- 3. 가상주소 이동 끝 ---------------------------------");
