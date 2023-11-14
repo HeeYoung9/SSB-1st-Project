@@ -174,12 +174,12 @@
                     </tr>
                 </thead>
                 
-                <%-- 상품 리스트 --%>
+                <%-- 회원 리스트 --%>
                 <c:forEach var="dto" items="${memberList }">
                     <tr style="background-color: white;">
                         <td>
                         	<label class="checkbox-inline">
-                            <input type="checkbox" name="chk" value="">
+                            <input type="checkbox" name="chk" value="${dto.member_id}">
                         	</label>
                         </td>
                         <td>${dto.member_id}</td>
@@ -197,7 +197,6 @@
                         <td>${dto.member_situation }</td>
                         <td>${dto.member_outdate }</td>
                         <td>${dto.member_agree }</td>
-<%--                         <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${dto.item_price}" />원</td> --%>
 					</tr>
                 </c:forEach>
             </table>
@@ -205,7 +204,7 @@
             
 			<!--- 페이징 --->
             <div class="paging">
-                <button id="deleteButton">회원 삭제</button>
+                <button onclick="./MemberResignAction.me" id="deleteButton">회원 삭제</button>
                 <c:if test="${startPage > pageBlock }">
                     <a href="./AdMemberList.me?pageNum=${startPage-pageBlock }&search=${param.search}">이전</a>
                 </c:if>

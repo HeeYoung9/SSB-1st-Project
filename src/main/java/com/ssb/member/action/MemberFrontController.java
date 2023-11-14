@@ -99,7 +99,7 @@ public class MemberFrontController extends HttpServlet {
 			System.out.println("C : /MemberResignAction.me 매핑");
 			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
 			
-			action = new MemberResignAction();
+			action = new MemberDeleteAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -111,6 +111,17 @@ public class MemberFrontController extends HttpServlet {
 			System.out.println("C : 패턴3 - DB사용O, view페이지 출력");
 			
 			action = new AdMemberListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/AdMemberDelete.me")) {
+			System.out.println("C : /AdMemberDelete.me 매핑");
+			System.out.println("C : 패턴2 - DB사용, 페이지 이동");
+			
+			action = new MemberDeleteAction();
 			
 			try {
 				forward = action.execute(request, response);

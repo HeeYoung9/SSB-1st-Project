@@ -129,9 +129,9 @@ public class MemberDAO {
 		return result;
 	}
 	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
-
-	// 회원정보 삭제 메서드 - deleteMember(dto)
-	public int deleteMember(MemberDTO dto) {
+	
+	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+	public int updateMember(MemberDTO dto) {
 		int result = -1;
 		
 		try {
@@ -160,6 +160,33 @@ public class MemberDAO {
 			}else {
 				result = -1; // 회원정보 없음
 			}
+			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+		
+		return result;
+	}
+	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+
+	// 회원정보 삭제 메서드 - deleteMember(dto)
+	public int deleteMember(int member_id) {
+		int result = 0;
+		
+		try {
+			con =getCon();
+			
+			sql ="delete from member where member_id = ?";
+			pstmt=con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setInt(1, member_id);
+			
+			result = pstmt.executeUpdate();
+			
 			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
 			
 		} catch (Exception e) {

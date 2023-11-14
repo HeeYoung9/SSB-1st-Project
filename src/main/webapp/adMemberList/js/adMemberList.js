@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	$("#cbx_chkAll").click(function() {
 		if ($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
