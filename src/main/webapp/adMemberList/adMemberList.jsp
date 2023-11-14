@@ -204,25 +204,20 @@
             
             
 			<!--- 페이징 --->
-                
             <div class="paging">
                 <button id="deleteButton">회원 삭제</button>
                 <c:if test="${startPage > pageBlock }">
-                <!-- <span class="prev"> -->
                     <a href="./AdMemberList.me?pageNum=${startPage-pageBlock }&search=${param.search}">이전</a>
-                <!-- </span> -->
                 </c:if>
                 
-                <span class="num">
                 <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1"> 
+                <span class="num">
 					<a href="./AdMemberList.me?pageNum=${i }&search=${param.search}" class="on" >${i }</a> 
-				</c:forEach>
                 </span>
+				</c:forEach>
                 
                 <c:if test="${endPage < pageCount }">
-               <!--  <span class="next"> -->
                     <a href="./AdMemberList.me?pageNum=${startPage + pageBlock}&search=${param.search}">다음</a>
-                <!-- </span> -->
                 </c:if>
             </div>
         </section>

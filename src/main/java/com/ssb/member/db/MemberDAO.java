@@ -170,7 +170,7 @@ public class MemberDAO {
 		
 		return result;
 	}
-	// 회원정보 삭제 메서드 - deleteMember(dto
+	// 회원정보 삭제 메서드 - deleteMember(dto)
 
 	// 회원정보 조회 메서드 - getMemberList(id)
 	public ArrayList<MemberDTO> getMemberList() {
@@ -296,7 +296,7 @@ public class MemberDAO {
 	        con = getCon();
 
 	        // 3. SQL 작성(select) & pstmt 객체
-	        sql = "select * from member order by member_id desc limit ?,?";
+	        sql = "select * from member order by member_id limit ?,?";
 	        pstmt = con.prepareStatement(sql);
 
 	        // ???
