@@ -51,10 +51,6 @@ public class MemberDeleteAction implements Action {
         }
 		
 		// 삭제 결과에 따른 페이지 이동
-//		if(result == 1) { // 삭제 완료
-//			JSMoveFunction.alertLocation(response, "회원삭제 완료", "./AdMemberList.me");
-//			return null;
-//		}
 		if (result > 0) { // 삭제 완료
             JSMoveFunction.alertLocation(response, "회원 삭제 완료", "./AdMemberList.me");
         } else {

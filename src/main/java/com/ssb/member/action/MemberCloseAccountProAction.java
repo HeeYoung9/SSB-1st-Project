@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
-public class MemberCloseAccountAction implements Action {
+public class MemberCloseAccountProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberResignAction_execute() 호출");
 		
-		// 마이페이지에서 회원탈퇴 버튼을 누를때 updateAciton 페이지
-		// updateAciton에서 member_id를 세션영역에 저장 후 MemberCloseAccount.me 이동(사유선택하고)
+		//- 회원탈퇴 확인시 MemberCloseAccountAction.me 에서 상태(탈퇴), 탈퇴일시 update 한 후
+		//- 세션 해재 및 메인페이지
 		
 		
 		return null;

@@ -130,6 +130,50 @@ public class MemberDAO {
 	}
 	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 	
+	// 회원정보 조회 메서드 - getMember(member_id)
+	public MemberDTO getMember(String id) {
+		MemberDTO dto = null;
+		try {
+			// 1.2. 디비연결
+			con = getCon();
+			
+			// 3. sql 작성(select) & pstmt 객체
+			sql="select * from itwill_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			
+			// ???
+			pstmt.setString(1, id);
+			
+			// 4. sql 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리 (DB에 저장된 정보(rs)를 DTO로 저장)
+			
+			if(rs.next()) {
+				dto = new MemberDTO();
+				
+//				dto.setId(rs.getString("id"));
+//				dto.setPw(rs.getString("pw"));
+//				dto.setName(rs.getString("name"));
+//				dto.setGender(rs.getString("gender"));
+//				dto.setAge(rs.getInt("age"));
+//				dto.setEmail(rs.getString("email"));
+//				dto.setRegdate(rs.getTimestamp("regdate"));
+			}
+			
+			System.out.println("DAO : 회원정보 조회 완료!");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return dto;
+	}
+	// 회원정보 조회 메서드 - getMember(id)
+	
 	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(dto)
 	public int updateMember(MemberDTO dto) {
 		int result = -1;

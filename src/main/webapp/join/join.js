@@ -201,7 +201,7 @@ function pwDoubleCheck(){
     if (userPw1.trim() === '' && userPw2.trim() === '') {
         $('#pwDoubleCheck').html(""); // 메시지를 지우고
         pwCheck2 = false;
-        updateSubmitButton(); // 제출 버튼을 업데이트합니다.
+        updateSubmitButton(); // 제출 버튼을 업데이트
         return;
     }
 	
@@ -278,7 +278,7 @@ function check() {
 
 	// 생년월일 유효성 체크 (8자)
 	if (birth.length < 8) {
-		document.fr.member_pw.focus();
+		document.fr.member_birth.focus();
 		return false;
 	}
 

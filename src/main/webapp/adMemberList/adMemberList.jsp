@@ -133,7 +133,7 @@
 <!--                     <button id="editButton">회원 수정</button> -->
                 </form>
             </span>
-           	<form action="./AdMemberDelete.me" method="post" id="deleteForm">
+           	<form action="./AdMemberDeleteAction.me" method="post" id="deleteForm">
           		<table class="sort">
 	                <%-- 
 	                회원번호 / 아이디 / 비밀번호 / 이름 / 생년월일 / 성별 / 메일주소 / 전화번호 

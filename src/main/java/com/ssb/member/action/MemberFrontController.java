@@ -87,19 +87,23 @@ public class MemberFrontController extends HttpServlet {
 				action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-		}else if(command.equals("/MemberCloseAccount.me")) {
-			System.out.println("C : /MemberCloseAccount.me 매핑");
-			System.out.println("C : 패턴1 - DB사용x, view 페이지 출력");
-			
-			forward = new ActionForward();
-			forward.setPath("./resign/resign.jsp");
-			forward.setRedirect(true);
+			} 
 		}else if(command.equals("/MemberCloseAccountAction.me")) {
 			System.out.println("C : /MemberCloseAccountAction.me 매핑");
-			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
+			System.out.println("C : 패턴3 - DB사용O, view 페이지 출력");
 			
 			action = new MemberCloseAccountAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberCloseAccountProAction.me")) {
+			System.out.println("C : /MemberCloseAccountProAction.me 매핑");
+			System.out.println("C : 패턴2 - DB사용o, 페이지 이동");
+			
+			action = new MemberCloseAccountProAction();
 			
 			try {
 				forward = action.execute(request, response);
