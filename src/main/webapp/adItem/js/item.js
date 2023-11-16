@@ -19,73 +19,51 @@ $(document).ready(function() {
 
 
 /* (2) form 유효성 검사 */
-    window.addEventListener('load', () => {
-      const forms = document.getElementsByClassName('validation-form');
+window.addEventListener('load', () => {
+	const forms = document.getElementsByClassName('validation-form');
 
-      Array.prototype.filter.call(forms, (form) => {
-        form.addEventListener('submit', function (event) {
-	
-            const categorySport = form.querySelector('select[name="category_sport"]');
-            if (categorySport.value === "") {
-                categorySport.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
-            } else {
-                categorySport.setCustomValidity("");
-            }
+	Array.prototype.filter.call(forms, (form) => {
+		form.addEventListener('submit', function(event) {
 
-            const categoryMajor = form.querySelector('select[name="category_major"]');
-            if (categoryMajor.value === "") {
-                categoryMajor.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
-            } else {
-                categoryMajor.setCustomValidity("");
-            }
+			const categorySport = form.querySelector('select[name="category_sport"]');
+			if (categorySport.value === "") {
+				categorySport.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
+			} else {
+				categorySport.setCustomValidity("");
+			}
 
-            const categorySub = form.querySelector('select[name="category_sub"]');
-            if (categorySub.value === "") {
-                categorySub.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
-            } else {
-                categorySub.setCustomValidity("");
-            }
+			const categoryMajor = form.querySelector('select[name="category_major"]');
+			if (categoryMajor.value === "") {
+				categoryMajor.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
+			} else {
+				categoryMajor.setCustomValidity("");
+			}
 
-            const categoryBrand = form.querySelector('select[name="category_brand"]');
-            if (categoryBrand.value === "") {
-                categoryBrand.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
-            } else {
-                categoryBrand.setCustomValidity("");
-            }
+			const categorySub = form.querySelector('select[name="category_sub"]');
+			if (categorySub.value === "") {
+				categorySub.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
+			} else {
+				categorySub.setCustomValidity("");
+			}
 
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
+			const categoryBrand = form.querySelector('select[name="category_brand"]');
+			if (categoryBrand.value === "") {
+				categoryBrand.setCustomValidity("미선택 상태에서는 제출할 수 없습니다.");
+			} else {
+				categoryBrand.setCustomValidity("");
+			}
 
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
+			if (form.checkValidity() === false) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+
+			form.classList.add('was-validated');
+		}, false);
+	});
+}, false);
   
   
-  
-  
-/* (3) 파일이름을 input 요소의 값으로 설정 (+ 이미지 확장자 가리기 추가함) */
- $("#img_main").on('change', function () {
-    var fileName = $("#img_main").val();
-    var fileNameWithoutExtension = fileName.split('.').slice(0, -1).join('.');
-    $(".upload-main").val(fileNameWithoutExtension);
-});
-
-$("#img_sub").on('change', function () {
-    var fileName = $("#img_sub").val();
-    var fileNameWithoutExtension = fileName.split('.').slice(0, -1).join('.');
-    $(".upload-sub").val(fileNameWithoutExtension);
-});
-
-$("#img_logo").on('change', function () {
-    var fileName = $("#img_logo").val();
-    var fileNameWithoutExtension = fileName.split('.').slice(0, -1).join('.');
-    $(".upload-logo").val(fileNameWithoutExtension);
-});
-
-
 
   
 /* (4) 상품/옵션 삭제 처리 */
@@ -180,9 +158,29 @@ var selects = document.getElementsByClassName("Add-C")[0].getElementsByTagName("
 for (var i = 0; i < selects.length; i++) {
     removeDuplicatesAndSort(selects[i]);
 }
+var selects = document.getElementsByClassName("Add-Z")[0].getElementsByTagName("select");
+for (var i = 0; i < selects.length; i++) {
+    removeDuplicatesAndSort(selects[i]);
+}
 
 
 
+
+/* (7) 상품등록창 - 렌탈 / 판매 구분 */
+function handleCategoryChange() {
+	var selectElement = document.querySelector('select[name="category_code"]');
+
+	// 렌탈 선택 시
+	if (selectElement.value === "2") {
+		document.getElementById('rentalForm').style.display = 'block';
+		document.getElementById('saleForm').style.display = 'none';
+	}
+	// 판매 선택 시
+	else if (selectElement.value === "1") {
+		document.getElementById('rentalForm').style.display = 'none';
+		document.getElementById('saleForm').style.display = 'block';
+	}
+}
 
 
 
@@ -195,7 +193,4 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     console.log('검색어:', searchTerm);
 
 });
-
-
-
 

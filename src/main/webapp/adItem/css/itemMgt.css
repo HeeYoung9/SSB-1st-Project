@@ -1,4 +1,3 @@
-
 /* ================여기부터 [ itemMgt.jsp ]========================= */
 
 
@@ -278,9 +277,17 @@ input[type="checkbox"] {
 	align-items: center;
     justify-content: center;
     }
+    .Add-Z {
+    width: 100%;
+    margin-bottom: 14px;
+	display: flex; 
+	align-items: center;
+    justify-content: center;
+    }
 	
 	.c_label {
-	margin-left: 190px;
+	margin-left: 216px;
+	margin-bottom: 10px;
 	}
 	
     #m_jump, #s_jump, #b_jump{
@@ -309,13 +316,31 @@ input[type="checkbox"] {
     }
     
     
-     select option[value=""][disabled] {
+     select [value=""][disabled] {
 	display: none;
 }
 	
-	
+.filebox {
+    color: #D2D2D2;
+	margin-bottom: 10px;
+    height: 36px;
+    padding: 0 10px;
+    margin-right: 40px;
+}	
 
-.filebox .upload-main .upload-sub .upload-logo {
+.filebox input {
+    border-radius: 1px;
+    color: gray;
+    height: 30px;
+	border-style: none;
+	border: 1px solid #c4c4c4;
+	padding-left: 16px;
+	width: 38%;
+	margin-bottom: 6px;
+	}
+
+
+/* .filebox .upload-main .upload-sub .upload-logo {
     color: #D2D2D2;
 	margin-top: 40px;
 	margin-bottom: 10px;
@@ -324,18 +349,21 @@ input[type="checkbox"] {
     vertical-align: middle;
     border: 1px solid gray;
     
-}
+} */
 
 
-.filebox label {
-    /* display: inline-block; */
-    padding: 2px 20px;
+.filebox > label {
+    display: inline-block;
+    padding: 2px 10px;
     color: #fff;
-    /* vertical-align: middle; */
-    background-color: #999999;
+    vertical-align: middle;
+	background-color: black;
     cursor: pointer;
-    height: 30px;
-    margin-left: 10px;
+    height: 25px;
+    width: 80px;
+    margin-left: 8px;
+    margin-top: 3px;
+    font-size: 13px;
 }
 
 .filebox input[type="file"] {
@@ -346,6 +374,8 @@ input[type="checkbox"] {
     overflow: hidden;
     border: 0;
 }
+
+
 
 /* 
 h4{

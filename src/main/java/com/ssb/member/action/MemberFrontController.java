@@ -130,6 +130,17 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
+		}else if(command.equals("/AdMemberDelete.me")) {
+			System.out.println("C : /AdMemberDelete.me 매핑");
+			System.out.println("C : 패턴2 - DB사용, 페이지 이동");
+			
+			action = new MemberDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		

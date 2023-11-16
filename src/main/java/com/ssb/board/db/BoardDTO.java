@@ -7,6 +7,7 @@ public class BoardDTO {
 	private int board_id; 			
 	private String admin_user_id;
 	private String admin_name; // 관리자 테이블에서 가져옴
+	private String member_name; // 회원 테이블에서 가져옴
 	private String member_user_id;
 	private int orders_id;
 	
@@ -48,6 +49,13 @@ public class BoardDTO {
 	}
 	public void setMember_user_id(String member_user_id) {
 		this.member_user_id = member_user_id;
+	}
+	
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 	
 	public int getOrders_id() {
@@ -123,11 +131,11 @@ public class BoardDTO {
 	
 	@Override
 	public String toString() {
-		return "BoardDTO [board_id=" + board_id + ", admin_user_id=" + admin_user_id + ", member_user_id="
-				+ member_user_id + ", board_type=" + board_type + ", board_subject=" + board_subject
-				+ ", board_content=" + board_content + ", board_writeTime=" + board_writeTime + ", board_readCount="
-				+ board_readCount + ", board_file=" + board_file + ", orders_id=" + orders_id + ", rating=" + rating
-				+ "]";
+		return "BoardDTO [board_id=" + board_id + ", admin_user_id=" + admin_user_id + ", admin_name=" + admin_name
+				+ ", member_user_id=" + member_user_id + ", orders_id=" + orders_id + ", board_type=" + board_type
+				+ ", inquiry_type=" + inquiry_type + ", answer_state=" + answer_state + ", board_subject="
+				+ board_subject + ", board_content=" + board_content + ", board_writeTime=" + board_writeTime
+				+ ", board_readCount=" + board_readCount + ", board_file=" + board_file + ", rating=" + rating + "]";
 	}
 	
 }

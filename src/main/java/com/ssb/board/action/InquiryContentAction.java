@@ -21,16 +21,14 @@ public class InquiryContentAction implements Action {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		String pageNum = request.getParameter("pageNum");
 				
-		// BoardDAO 객체
-		BoardDAO bdao = new BoardDAO();
-
+		// BoardDAO 객체 생성
 		// 문의글 정보를 가져오는 메서드
+		BoardDAO bdao = new BoardDAO();
 		BoardDTO bdto = bdao.getBoard(boardId);
 								
-		// ReplyDAO 객체
-		ReplyDAO rdao = new ReplyDAO();
-		
+		// ReplyDAO 객체 생성
 		// 특정 문의글 답변의 정보를 가져오는 메서드
+		ReplyDAO rdao = new ReplyDAO();		
 		ReplyDTO rdto = rdao.getReply(boardId);
 				
 		// 문의글 정보를 request 영역에 저장

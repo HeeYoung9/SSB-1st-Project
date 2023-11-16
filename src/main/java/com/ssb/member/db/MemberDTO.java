@@ -20,6 +20,7 @@ public class MemberDTO {
 	private String member_situation;
 	private Timestamp member_outdate;
 	private String member_agree;
+	private String new_member_pw;
 	
 	public MemberDTO() {
 		System.out.println(" DTO : 객체 초기화(생성) 완료! ");
@@ -125,6 +126,17 @@ public class MemberDTO {
 				+ member_regdate + ", member_payment=" + member_payment + ", member_point=" + member_point
 				+ ", member_grade=" + member_grade + ", member_situation=" + member_situation + ", member_outdate="
 				+ member_outdate + ", member_agree=" + member_agree + "]";
+	}
+
+
+	// 회원정보 수정시 비밀번호 변경할 때 필요한 것! null 이어도 상관없음! 비번 변경때만 사용
+	public String getNew_member_pw() {
+		return new_member_pw;
+	}
+
+
+	public void setNew_member_pw(String new_member_pw) {
+		this.new_member_pw = new_member_pw;
 	}
 	
 	

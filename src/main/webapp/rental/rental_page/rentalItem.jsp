@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<!-- header js ÄÚµå ¿µ¿ª Á¢¾îµÒ. -->
+<!-- header js ì½”ë“œ ì˜ì—­ ì ‘ì–´ë‘ . -->
 <script type="text/javascript">
 	function toggleCategory() {
 		var categoryContent = document.querySelector('.category-content');
@@ -22,9 +22,10 @@
 		categoryContent.style.display = 'none';
 		brandContent.style.display = 'block';
 	}
+	
 </script>
 
-<!-- »ó´Ü ¸Ş´º¹Ù ¿ÀÇÂ ¹× ¿µ¿ª È®Àå jsÄÚµå Á¢¾îµÒ -->
+<!-- ìƒë‹¨ ë©”ë‰´ë°” ì˜¤í”ˆ ë° ì˜ì—­ í™•ì¥ jsì½”ë“œ ì ‘ì–´ë‘  -->
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 
@@ -34,21 +35,56 @@
 		submenus.forEach(function(submenu, index) {
 			const submenuContent = submenuContents[index];
 
-			// ¸Ş´º Ç×¸ñÀ» È£¹öÇÒ ¶§
+			// ë©”ë‰´ í•­ëª©ì„ í˜¸ë²„í•  ë•Œ
 			submenu.addEventListener("mouseover", function() {
-				// ÇØ´ç ¸Ş´º Ç×¸ñÀÇ ÇÏÀ§ ¸Ş´º°¡ Ç¥½ÃµÇ¸é ¸Ş´ºÀÇ ³ôÀÌ¸¦ Á¶Àı
+				// í•´ë‹¹ ë©”ë‰´ í•­ëª©ì˜ í•˜ìœ„ ë©”ë‰´ê°€ í‘œì‹œë˜ë©´ ë©”ë‰´ì˜ ë†’ì´ë¥¼ ì¡°ì ˆ
 				submenuContent.style.display = "block";
 				submenu.style.height = submenuContent.clientHeight + "px";
 			});
 
-			// ¸Ş´º Ç×¸ñ¿¡¼­ ¸¶¿ì½º°¡ ³ª°¥ ¶§
+			// ë©”ë‰´ í•­ëª©ì—ì„œ ë§ˆìš°ìŠ¤ê°€ ë‚˜ê°ˆ ë•Œ
 			submenu.addEventListener("mouseout", function() {
-				// ÇØ´ç ¸Ş´º Ç×¸ñÀÇ ÇÏÀ§ ¸Ş´º°¡ ¼û°ÜÁö¸é ¸Ş´ºÀÇ ³ôÀÌ¸¦ ¿ø·¡´ë·Î º¹¿ø
+				// í•´ë‹¹ ë©”ë‰´ í•­ëª©ì˜ í•˜ìœ„ ë©”ë‰´ê°€ ìˆ¨ê²¨ì§€ë©´ ë©”ë‰´ì˜ ë†’ì´ë¥¼ ì›ë˜ëŒ€ë¡œ ë³µì›
 				submenuContent.style.display = "none";
 				submenu.style.height = "auto";
 			});
 		});
 	});
+</script>
+<!-- Q&A ì‘ì„±í•˜ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ íŒì—…ì°½ ë„ìš°ê¸° -->
+<script type="text/javascript">
+	function openPop(){
+		var popup = window.open('./InquiryQWrite.iq', 'ë¬¸ì˜íŒì—…', 'width=550px,height=450px,scrollbars=yes');
+	}
+</script>
+
+<!-- Q&A ëª©ë¡ í¼ì¹˜ê³  ë‹«ê¸° -->
+<script type="text/javascript">
+	window.onload = () => {
+	  // panel-faq-container
+	  const panelFaqContainer = document.querySelectorAll(".panel-faq-container"); // NodeList ê°ì²´
+	  
+	  // panel-faq-answer
+	  let panelFaqAnswer = document.querySelectorAll(".panel-faq-answer");
+
+	  // btn-all-close
+	  const btnAllClose = document.querySelector("#btn-all-close");
+	  
+	  // ë°˜ë³µë¬¸ ìˆœíšŒí•˜ë©´ì„œ í•´ë‹¹ FAQì œëª© í´ë¦­ì‹œ ì½œë°± ì²˜ë¦¬
+	  for(let i=0;i < panelFaqContainer.length; i++) {
+	    panelFaqContainer[i].addEventListener('click', function() { // í´ë¦­ ì‹œ ì²˜ë¦¬í•  ì¼
+	      // Q&A ì œëª© í´ë¦­ ì‹œ -> ë³¸ë¬¸ ë³´ì´ê²Œ -> active í´ë˜ìŠ¤ ì¶”ê°€
+	      panelFaqAnswer[i].classList.toggle('active');
+	    });
+	  };
+	  
+	  btnAllClose.addEventListener('click', function() {
+	    // ë²„íŠ¼ í´ë¦­ì‹œ ì²˜ë¦¬í•  ì¼  
+	    for(let i=0; i < panelFaqAnswer.length; i++) {
+	        panelFaqAnswer[i].classList.remove('active');
+	    };
+	  });
+	}
 </script>
 
 
@@ -64,62 +100,192 @@
 	crossorigin="anonymous">
 <link href="./rental/rental_css/rentalItem.css" rel="stylesheet">
 
+<link href="./rental/rental_page/calendar.css" rel="stylesheet" type="text/css">
+<script src="./rental/rental_page/calendar.js" charset="UTF-8"></script>
+
+<!-- íŒŒë¹„ì½˜ -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
+
+
 </head>
 <body>
-<!-- Çì´õ/ »ó´Ü¸Ş´º¹Ù ¿µ¿ª top.jsp °øÅë ÆäÀÌÁö »ç¿ë -->
+<!-- í—¤ë”/ ìƒë‹¨ë©”ë‰´ë°” ì˜ì—­ top.jsp ê³µí†µ í˜ì´ì§€ ì‚¬ìš© -->
 	<div class="header">
 	<jsp:include page="../Rcommon/top.jsp" />
 	</div>
-<!-- Çì´õ/ »ó´Ü¸Ş´º¹Ù ¿µ¿ª top.jsp °øÅë ÆäÀÌÁö »ç¿ë -->
+<!-- í—¤ë”/ ìƒë‹¨ë©”ë‰´ë°” ì˜ì—­ top.jsp ê³µí†µ í˜ì´ì§€ ì‚¬ìš© -->
 	
 	
 	
-	<!-- Àü´ŞÁ¤º¸ ÀúÀå -->
-	
+	<!-- ì „ë‹¬ì •ë³´ ì €ì¥ -->
+
 
 	<section class="subscript">
 		<div class="product-container">
 			<div class="product-image">
-				<img src="./main/rental_item/${rdto.rental_img_main }" alt="Á¦Ç° ÀÌ¹ÌÁö">
+				<img src="./main/rental_item/${rdto.rental_img_main }" alt="ì œí’ˆ ì´ë¯¸ì§€">
 			</div>
 			<div class="product-details">
 				<h1>${rdto.rental_item_name }</h1>
 				<hr>
-				<h2>´ë¿©±â°£ : ${rdto.rental_opt_value }</h2>
-				<p>±İ¾× : <fmt:formatNumber value="${rdto.rental_item_price }" />¿ø</p>
+				<h2>ëŒ€ì—¬ê¸°ê°„ : ${rdto.rental_opt_value }</h2>
 				<p>
+					ê¸ˆì•¡ :
+					<fmt:formatNumber value="${rdto.rental_item_price }" />
+					ì›
+				</p>
+				<p>
+
+					<c:forEach begin="1" end="4" step="1">
+						<img width="20" height="20" src="./rental/icon/star.png" />
+					</c:forEach>
+					<img width="20" height="20" src="./rental/icon/harfStar.png" /> <a
+						href="#review"> 4.5/5 ë¦¬ë·° 426ê°œ </a>
+				</p>
+
+				<!-- ì˜ˆì•½ ë‹¬ë ¥!!!  -->
+
+
+				<button class="btn" id="show-calendar-btn">ëŒ€ì—¬ì¼ ì„ íƒí•˜ê¸°</button>
 				
-				<c:forEach begin="1" end="4" step="1">
-				<img width="20" height="20" src="./rental/icon/star.png" /> 
-				</c:forEach>
-				<img width="20" height="20" src="./rental/icon/harfStar.png" /> 
-				<a href="¸®ºä°Ô½ÃÆÇ">
-				4.5/5  ¸®ºä 426°³ </a></p>
-				
-				<!-- ¿¹¾à ´Ş·Â!!!  -->
-				<jsp:include page="calendar.html" />
-				
-				
-				<button class="reserve-button"><a href="#" style="color:white;">
-				¿¹¾àÇÏ±â</a></button>
+				<form action="./RentalReserve.re?rental_item_name=${rdto.rental_item_id }">
+					<div id="calendar-container">
+						<input type="hidden" name="itemId" value="${rdto.rental_item_id }">
+						<input class="date" type="text" name="selectedDate" id="rental-date-input"
+							readonly>
+						<div id="calendar-popup"></div>
+					</div><br>
+					<button type="submit" class="btn">${rdto.rental_item_name } ì˜ˆì•½í•˜ê¸°</button>
+				</form>
+
+
+				<%-- <br> <a href="./RentalReserve.re?rental_item_id=${rdto.rental_item_id }" style="color: white;">
+					<button class="reserve-button">ì˜ˆì•½í•˜ê¸°</button>
+				</a> --%>
 			</div>
 		</div>
 		<div class="product-description">
-			<h2>»óÇ° »ó¼¼ ÀÌ¹ÌÁö</h2>
-			<img src="./main/rental_item/${rdto.rental_item_sub }" alt="»óÇ° »ó¼¼ ÀÌ¹ÌÁö">
+			<h2>ìƒí’ˆ ìƒì„¸ ì´ë¯¸ì§€</h2>
+			<img src="./main/rental_item/${rdto.rental_img_sub }"
+				alt="ìƒí’ˆ ìƒì„¸ ì´ë¯¸ì§€">
 		</div>
-		<div class="reviews">
-			<h2>¸®ºä °Ô½ÃÆÇ</h2>
-			<!-- ¸®ºä °Ô½ÃÆÇ ³»¿ëÀ» ¿©±â¿¡ Ãß°¡ -->
+
+		<div class="reviews" id="review">
+		<h2>REVIEW</h2>
+		 <div class="container">
+		  <table class="table table-sm">
+		    <colgroup>
+			  <col style="width:10%;" />
+			  <col style="width:60%;" />
+			  <col style="width:10%;" />
+			  <col style="width:10%;" />
+			  <col style="width:10%;" />
+			</colgroup>
+		    <thead>
+		    <tr>
+			  <th>í‰ì </th>
+		      <th>ë‚´ìš©</th>
+			  <th>ì‘ì„±ì</th>
+			  <th>ì¡°íšŒìˆ˜</th>
+			  <th>ì‘ì„±ì¼</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		     <tr>
+		      <td>â˜…â˜…â˜…â˜…â˜…</td>
+		      <td>ì²˜ìŒ ì´ìš©í•´ë´¤ëŠ”ë° ë„ˆë¬´ ì¢‹ë„¤ìš”!</td>
+		      <td>ê¹€ì² ìˆ˜</td>
+		      <td>3</td>
+		      <td>2023-11-15</td>
+		     </tr> 
+		    </tbody>
+		  </table>
+		 </div>		
 		</div>
 		<div class="questions">
-			<h2>¹®ÀÇ °Ô½ÃÆÇ</h2>
-			<!-- ¹®ÀÇ °Ô½ÃÆÇ ³»¿ëÀ» ¿©±â¿¡ Ãß°¡ -->
+		<h2>Q&A</h2>
+		 <div class="container">
+		  <table class="table table-sm">
+		    <colgroup>
+			  <col style="width:10%;" />
+			  <col style="width:15%;" />
+			  <col style="width:50%;" />
+			  <col style="width:15%;" />
+			  <col style="width:10%;" />
+			</colgroup>		  
+		    <thead>
+		    <tr>
+		      <th>ë‹µë³€ìƒíƒœ</th>
+			  <th>êµ¬ë¶„</th>
+			  <th>ì œëª©</th>
+			  <th>ì‘ì„±ì</th>
+			  <th>ë“±ë¡ì¼</th>
+		    </tr>
+		    </thead>
+		    <tbody class="heading">
+		    <c:forEach var="bdto" items="${inquiryList }">
+		     <tr>
+		      <td>
+		        <c:if test="${!empty bdto.answer_state }">
+			     <font style="color: red;">${bdto.answer_state }</font>
+			    </c:if>
+			    <c:if test="${bdto.answer_state == null}">
+			     ë‹µë³€ì˜ˆì •
+			    </c:if>
+		      </td>
+		      <td><c:out value="${bdto.inquiry_type }"/></td>
+		      <td>
+               <div class="panel-faq-container">
+                <p class="panel-faq-title">${bdto.board_subject }</p>
+               </div>
+              </td> 
+		      <td>${bdto.member_name }</td>
+		      <td>${bdto.board_writeTime }</td>
+		     </tr>
+		     <tr>
+		      <td colspan="5" width="100%" style="border-bottom: inherit;">
+		       <div class="panel-faq-answer">
+                <p style="text-align: left; margin: 10px 0px 0px 10px;">${bdto.board_content }</p>
+               </div>
+		      </td>
+		     </tr>
+		    </c:forEach>
+		    </tbody>
+		  </table>
+		 </div>
+
+		 <nav aria-label="Page navigation example">
+  		   <ul class="pagination pagination-sm justify-content-center">
+    	     <c:if test="${startPage > pageBlock }">
+    	      <li class="page-item">
+      		   <a class="page-link" href="./RentalItem.re?pageNum=${startPage-pageBlock }" aria-label="Previous">
+        		<span aria-hidden="true">&laquo;</span>
+      		   </a>
+    	      </li>
+      		 </c:if>  
+    	     <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+    	      <li class="page-item">
+    	        <a class="page-link" href="./RentalItem.re?pageNum=${i }">${i }</a>
+    	      </li>
+			 </c:forEach>
+    	     <c:if test="${endPage < pageCount }">
+    	      <li class="page-item">
+    	       <a class="page-link" href="./RentalItem.re?pageNum=${startPage+pageBlock }" aria-label="Next">
+    	         <span aria-hidden="true">&raquo;</span>
+    	       </a>
+    	      </li>
+    	     </c:if> 
+  		   </ul>
+		 </nav>
+		<div style="text-align: right; margin-right: 180px;">
+	     <a class="btn btn-sm btn-dark rbtn" role="button" onclick="openPop()">ì‘ì„±í•˜ê¸°</a>
+		</div>
+		
 		</div>
 	</section>
 	
 	<nav class="top">
-		<a href="#">¡èTOP</a>
+		<a href="#">â†‘TOP</a>
 	</nav>
 
 

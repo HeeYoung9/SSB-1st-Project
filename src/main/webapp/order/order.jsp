@@ -6,6 +6,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>
 <body>
 	<table border="1px solid black">

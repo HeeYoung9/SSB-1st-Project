@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <nav id="sidebar" class="sidebar js-sidebar">
   <div class="sidebar-content js-simplebar">
 	<a class="sidebar-brand" href="./AdminMain.ad">
@@ -54,5 +53,3 @@
 	</ul>
   </div>
 </nav>
-
-

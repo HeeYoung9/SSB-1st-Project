@@ -22,7 +22,16 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
+
+<script type="text/javascript">
+function openPop(){
+	var popup = window.open('./InquiryQWrite.iq', '문의팝업', 'width=550px,height=550px,scrollbars=yes');
+}
+</script>
 <body>
   <!-- 로그인 세션 제어 -->
   <c:if test="${empty userId }">
@@ -88,7 +97,8 @@
 			</table>
 	    </div>
 	    <div>
-		  <input type="button" value="글쓰기" class="btn btn-sm btn-primary" onclick="location.href='./InquiryQWrite.iq';">
+	    	<button type="button" class="btn btn-sm btn-primary" onclick="openPop()">문의</button>
+			<!-- <input type="button" value="글쓰기" class="btn btn-sm btn-primary" onclick="location.href='./InquiryQWrite.iq';"> -->
 	    </div>
 	  </div>
 	</article>	
@@ -100,11 +110,11 @@
       		  <a href="./InquiryList.iq?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
 		    </c:if> 
 		  </li>
+		  <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 		  <li class="page-item">
-		    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
     		  <a href="./InquiryList.iq?pageNum=${i }" class="page-link" href="#">${i }</a>
-		    </c:forEach>
 		  </li>
+		  </c:forEach>
 		  <li class="page-item">
 		    <c:if test="${endPage < pageCount }">
     		  <a href="./InquiryList.iq?pageNum=${startPage+pageBlock }" class="page-link">Next</a>

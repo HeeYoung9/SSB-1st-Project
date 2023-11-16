@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ssb.location.db.locationDAO;
 import com.ssb.location.db.locationDTO;
@@ -15,7 +16,16 @@ public class locationAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 받은정보저장
-		String member_id = request.getParameter("member_id");
+		
+		//String member_id = (String)request.getSession().getAttribute("member_id");
+		
+		
+		HttpSession session = request.getSession();
+		System.out.println("locationAcation 세션 클래스 형태 확인 : "+session.getAttribute("member_id").getClass());
+		
+		String member_id =  String.valueOf(session.getAttribute("member_id"));
+		System.out.println("locationAcation 세션 클래스 형태 확인 : "+member_id);
+		
 		System.out.println("locationAction.member_id : " + member_id);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();

@@ -13,12 +13,13 @@ public class InquiryQWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: InquiryWriteAction_execute() 호출");
+		System.out.println("\nM: InquiryQWriteAction_execute() 호출");
 		
 		// 한글 처리 (생략 -> 필터 설정)
 		
 		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
+		bdto.setMember_user_id(request.getParameter("userId"));
 		bdto.setInquiry_type(request.getParameter("iqType"));
 		bdto.setBoard_subject(request.getParameter("subject"));
 		bdto.setBoard_content(request.getParameter("content"));

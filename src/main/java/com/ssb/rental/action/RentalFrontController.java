@@ -68,15 +68,14 @@ public class RentalFrontController extends HttpServlet{
 			e.printStackTrace();
 		}
 	}else if(command.equals("/RentalReserve.re")) {
-		System.out.println(" C : /RentalItem.re 매핑 ");
-		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 이동");
+		System.out.println(" C : RentalReserve.re 매핑 ");
+		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력");
 		
-		/* 종헌씨가 페이지 구현 예정. 종헌씨가 구현하면 가상주소 바뀔수 있음. */
-		action = new RentalReserve();
+		
+		action = new RentalReserveAction();
 		try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

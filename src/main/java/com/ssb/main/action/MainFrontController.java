@@ -45,7 +45,7 @@ public class MainFrontController extends HttpServlet{
 	
 	if(command.equals("/Main.in")) {
 		System.out.println(" C : /Main.in 매핑 ");
-		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력"); // 디비랑 다 완성되면 패턴 3으로 변경. 일단은 패턴 1사용!
+		System.out.println(" C : 패턴3 - DB처리 o, 뷰페이지 출력");
 		
 		action = new MainAction();
 		
@@ -54,19 +54,23 @@ public class MainFrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	/*	action = new MainAction();
-		try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} */
-		
+
 		
 		System.out.println(" C : "+forward); //toString()을 오버라이딩했으므로 객체의 문자열 정보가 호출 됨.
+	}else if (command.equals("/itemDetails.in")) {
+		System.out.println("C: /itemDetails.in 호출");
+		System.out.println("C: 패턴3 - DB사용O, 화면 출력");
+		action = new ItemDetailsAction();
+		try {
+		  forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
+	
 	System.out.println(" ----------------2. 가상주소 매핑 종료 ----------------------");
+	
 	
 	System.out.println("\n ----------------3. 가상주소 이동 시작 ----------------------");
 	
@@ -78,8 +82,7 @@ public class MainFrontController extends HttpServlet{
 			System.out.println(" C : "+forward.getPath()+"로, 이동방식 : forward() ");
 			RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 			dis.forward(request, response);
-			
-			
+
 		}
 	}
 	

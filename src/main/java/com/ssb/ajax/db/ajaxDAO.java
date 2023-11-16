@@ -74,43 +74,5 @@ public class ajaxDAO extends DAO {
 		return result;
 	}
 
-	public String insertWishlist(String item_id, String member_id) {
-		String result = null;
-		try {
-			con = getCon();
-			sql = "SELECT * FROM wishlist WHERE item_id = ? AND member_id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, item_id);
-			pstmt.setString(2, member_id);
-			System.out.println(pstmt);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				sql = "DELETE FROM wishlist WHERE wishlist_id = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, rs.getInt("wishlist_id"));
-				System.out.println(pstmt);
-				if(pstmt.executeUpdate() == 1) {
-					result = "deleted";
-				}else{
-					result = "deletedFail";
-				}
-			}else {
-				sql = "INSERT INTO wishlist VALUES(DEFAULT,?,?)";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, item_id);
-				pstmt.setString(2, member_id);
-				System.out.println(pstmt);
-				if(pstmt.executeUpdate() == 1) {
-					result = "inserted";
-				}else{
-					result = "insertedFail";
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
-		return result;
-	}
+	
 }

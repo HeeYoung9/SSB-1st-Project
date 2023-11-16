@@ -15,6 +15,8 @@
 <!-- Bootstrap CSS -->
 <link href="css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
 	<main class="d-flex w-100">
@@ -43,6 +45,7 @@
 					<div class="d-grid gap-2 mt-3">
 					  <input type="submit" value="로그인" class="btn btn-lg btn-primary">
 					</div>
+					<div><a href="./Main.in" style="color:lightgray;">home</a></div>
 				   </form>
 				  </div>
 			    </div>

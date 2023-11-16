@@ -45,6 +45,13 @@
 		});
 	});
 </script>
+
+
+<!-- 이전 url 주소 호출 -->
+
+
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,9 +59,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./login/login.css" rel="stylesheet">
     <link href="./main/main.css" rel="stylesheet">
+    
+    <!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
-    <!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 <div class="header">
 	<jsp:include page="../Mcommon/top.jsp" />
 </div>

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-    
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 <!DOCTYPE html>
 <html>
 <!-- header js 코드 영역 접어둠. -->
@@ -62,18 +63,23 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <link href="./main/main.css" rel="stylesheet">
-
+<script src="./wishlist/wishlist.js"></script>
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>
 
 <body>
-<% request.setCharacterEncoding("UTF-8"); %>
+	<%
+	request.setCharacterEncoding("UTF-8");
+	%>
 
-<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
-<div class="header">
-	<jsp:include page="../Mcommon/top.jsp" />
-</div>
-<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<div class="header">
+		<jsp:include page="../Mcommon/top.jsp" />
+	</div>
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 
 	<!-- section 시작 -->
@@ -84,7 +90,9 @@
 
 		<!-- 우측 영역 내용 추가 -->
 		<div class="right-section" style="margin-top: 170px;">
-			<h2>Welcome to <b style="color:blue;">S</b>SB Style</h2>
+			<h2>
+				Welcome to <b style="color: blue;">S</b>SB Style
+			</h2>
 			<p>Find your style in the Sports style box.</p>
 
 			<!-- 이벤트 슬라이드 시작 -->
@@ -104,9 +112,9 @@
 					<!-- 실제 JSP 코드 종료 부분 -->
 
 					<div class="carousel-item">
-						<a href="#"><img class="d-block" 
+						<a href="#"><img class="d-block"
 							src="./main/img/blackFriday.png" alt="블랙프라이데이"> </a>
-							<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
+						<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">
@@ -130,56 +138,62 @@
 
 			</div>
 
-			
+
 			<!-- 제품 목록 -->
-	
-			<div class="container px-4 px-lg-5 mt-5" >
+
+			<div class="container px-4 px-lg-5 mt-5">
 				<div
 					class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
-			<c:forEach var="idto" items="${itemList }">
-					<div  class="col mb-5">
-						<div id="test" class="card h-100">
-							<!-- brand logo -->
-							<div class="position-absolute" style="top: 0.5rem; right: 0.5rem">
-								<img height="15" width="35" src="./main/item_img/${idto.item_img_logo }"
-									alt="헤드로고" />
-							</div>
-							<!-- Product image-->
-							
-							<!-- 제품 상세페이지 이동 주소 여기 있어요. -->
-							<a href="./ItemSub.in?item_id=${idto.item_id }">
-							<img class="card-img-top" width="450" height="300"
-								src="./main/item_img/${idto.item_img_main }" alt="head 스커트 블랙" />
-							<!-- Product details-->
-							<div class="card-body p-4">
-								<div class="text-center">
-									<!-- Product name-->
-									<h5 class="fw-bolder">${idto.item_name }</h5>
-									<!-- Product price-->
-								<fmt:formatNumber value="${idto.item_price }" />원
-								
+					<c:forEach var="idto" items="${itemList }">
+						<div class="col mb-5">
+							<div id="test" class="card h-100">
+								<!-- brand logo -->
+								<div class="position-absolute"
+									style="top: 0.5rem; right: 0.5rem">
+									<img height="15" width="35"
+										src="./main/item_img/${idto.item_img_logo }" alt="헤드로고" />
 								</div>
-							</div> </a>
-							<!-- Product actions-->
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent garo">
-								<span class="text-center" style="margin-left: 5px;"><a
-									class="btn btn-outline-dark mt-auto" href="#"><img
-										width="20" height="20" src="./main/img/heart.png" alt="하트" />
-										wish</a></span> <span class="text-center"><a
-									class="btn btn-outline-dark mt-auto" href="#"><img
-										width="20" height="20" src="./main/item_img/market.png"
-										alt="장바구니" /> cart</a></span>
+								<!-- Product image-->
+
+								<!-- 제품 상세페이지 이동 주소 여기 있어요. -->
+								<a href="./itemDetails.in?item_id=${idto.item_id }"> <img
+									class="card-img-top" width="450" height="300"
+									src="./main/item_img/${idto.item_img_main }" alt="head 스커트 블랙" />
+									<!-- Product details-->
+									<div class="card-body p-4">
+										<div class="text-center">
+											<!-- Product name-->
+											<h5 class="fw-bolder">${idto.item_name }</h5>
+											<!-- Product price-->
+											<fmt:formatNumber value="${idto.item_price }" />
+											원
+
+										</div>
+									</div>
+								</a>
+								<!-- Product actions-->
+
+								<div class="wishlist" value="${idto.item_id }">
+									<img width="20" height="20" src="./main/img/heart.png" alt="위시리스트">
+								</div>
+								<!-- <div
+									class="card-footer p-4 pt-0 border-top-0 bg-transparent garo">
+									<span class="text-center"></span> <span class="text-center"
+										style="margin-left: 5px;"><a
+										class="btn btn-outline-dark mt-auto" href="#"><img
+											width="20" height="20" src="./main/img/heart.png" alt="하트" />
+											wish</a></span>
+								</div> -->
 							</div>
 						</div>
+					</c:forEach>
+					<!-- 검색시 창 크기 안겹치게 필요한 div임-->
+					<div style="margin-top: -50px; margin-left: 900px; z-index: 3;">
 					</div>
-		</c:forEach>
-						<!-- 검색시 창 크기 안겹치게 필요한 div임-->
-						<div style="margin-top:-50px; margin-left:900px; z-index:3;">
-						</div>
-						<!-- 검색시 창 크기 안겹치게 필요한 div임-->
- 						
- 						
- 						<!--브랜드 제품 구분
+					<!-- 검색시 창 크기 안겹치게 필요한 div임-->
+
+
+					<!--브랜드 제품 구분
 						<div class="loce2">
 							<a href="" class="more"><b> 디아도라 제품 더보기 </b></a>
 						</div>
@@ -189,11 +203,11 @@
 						<div class="loce3">
 							<a href="" class="more"><b> 젝시믹스 제품 더보기 </b></a>
 						</div> -->
- 						<!-- 브랜드 제품 구분 -->
+					<!-- 브랜드 제품 구분 -->
 
 				</div>
 			</div>
-			
+
 			<!-- 제품 목록 -->
 
 

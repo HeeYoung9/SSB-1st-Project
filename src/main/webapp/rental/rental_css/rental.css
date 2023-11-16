@@ -64,8 +64,8 @@ body {
 
 .login-button,
 .signup-button {
-    background-color: #555;
-    color: #fff;
+    background-color: white;
+    color: black;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
@@ -75,7 +75,7 @@ body {
 
 .login-button:hover,
 .signup-button:hover {
-    background-color: #777;
+    background-color: rgb(255, 255, 224);
 }
 /* 로그인 버튼 정렬 */
 .button-container {
@@ -320,7 +320,6 @@ a{
 }
  
 /* 위시 찜하기 버튼 */
-
 
 
 .btn{

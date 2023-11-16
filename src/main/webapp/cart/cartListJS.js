@@ -97,13 +97,9 @@ function updateCart() {//장바구니 업데이트
 }
 function deleteCart() {//장바구니 삭제
 	arrayData();//선택된 체크박스값 추출
-	var member_id = 1;//회원ID
 	var checkArray = $("#checkArray").val();
 	//옵션 null값 체크
-	if (member_id == "") {
-		alert("로그인 정보를 확인해 주십시오");
-		return;
-	} else if (checkArray == "") {
+	if (checkArray == "") {
 		alert("제품을 선택해 주십시오");
 		return;
 	}
@@ -113,8 +109,7 @@ function deleteCart() {//장바구니 삭제
 		url: "./deleteCart.aj",
 		dataType: "text",
 		data: {
-			"cart_id": checkArray,
-			"member_id": member_id
+			"cart_id": checkArray
 		},
 		error: function() {
 			alert('통신실패!!');

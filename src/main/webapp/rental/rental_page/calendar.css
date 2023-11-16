@@ -22,8 +22,17 @@
 #calendar-popup th, #calendar-popup td {
   padding: 5px;
   text-align: center;
+  cursor: pointer;
 }
 
 #calendar-popup .current-month {
   background-color: #e0e0e0;
+}
+
+
+.date{
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	margin-left: 5px;
+	font-size: 16px;
 }

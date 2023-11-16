@@ -4,9 +4,9 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.ssb.adItem.db.ItemDAO"%>
 <%@ page import="com.ssb.adItem.db.ItemDTO"%>
+
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,12 +23,11 @@
 <style>
 </style>
 </head>
-
 <body>
 
 	<c:set var="CategoryList" value="<%=new com.ssb.adItem.db.ItemDAO().getCategoryList()%>" />
 
-	<form class="validation-form" action="./ItemAddAction.it" method="post" novalidate style="width:1500px; margin-bottom: 60px;" align="center">
+	<div class="validation-form" novalidate style="width:1500px; margin-bottom: 60px;" align="center">
 
 		<div class="container">
 				<div class="add-form col-md-12 mx-auto">
@@ -36,26 +35,146 @@
 
 						<h4 class="addTitle">상품 등록</h4>
 							
-							
 						<div class="row" >
 							<div class="Add-A">
 								<!-- <label for="code">상품 구분</label> --> 
-									<select class="custom-select" name="category_code" required>
-										<!-- <option value="" disabled selected>&nbsp;분류</option> -->
-										<option value="1" selected>판매</option>
-										<!-- <option >렌탈</option> -->
+									<select class="custom-select" name="category_code" required onchange="handleCategoryChange()">
+										<option value="" disabled selected>&nbsp;분류</option>
+										<option value="1" >판매</option>
+										<option value="2" >렌탈</option>
 									</select>
 							</div>
-
-						
 						</div>
 
+
+						<!---------------------------------------------------------------------------------------------->
+						<!----------------------------------- 상품 (판매용) 등록 폼 ------------------------------------>
+						<!---------------------------------------------------------------------------------------------->
+						
+						<form id="saleForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
+						<input type="hidden" name="category_code" value="1">
+
+						<div class="row" >
+        						<label for="category" class="c_label">카테고리</label>
+   							<div class="Add-C">
+       								<select class="custom-select" name="category_sport" id="sp_jump"  required>
+            						<c:forEach var="category" items="${CategoryList}" >
+                						<option value="${category.category_sport}">${category.category_sport}</option>
+            						</c:forEach>
+                						<option value="" disabled selected>스포츠</option>
+        							</select>
+
+        							<select class="custom-select" name="category_major" id="m_jump" required>
+            						<c:forEach var="category" items="${CategoryList}">
+                						<option value="${category.category_major}">${category.category_major}</option>
+            						</c:forEach>
+                						<option value="" disabled selected>대분류</option>
+        							</select>
+
+        							<select class="custom-select" name="category_sub" id="s_jump" required>
+            						<c:forEach var="category" items="${CategoryList}">
+                						<option value="${category.category_sub}">${category.category_sub}</option>
+            						</c:forEach>
+                						<option value="" disabled selected>소분류</option>
+        							</select>
+
+        							<select class="custom-select" name="category_brand" id="b_jump" required>
+            						<c:forEach var="category" items="${CategoryList}">
+                						<option value="${category.category_brand}">${category.category_brand}</option>
+            						</c:forEach>
+                						<option value="" disabled selected>브랜드</option>
+        							</select>
+    						</div>
+						</div>
+						
+						<!--------------------------------------------------------------------------------------------->
+						
+						
+						<div class="row">
+							<div class="Add-B">
+								<label for="name">상품명</label> 
+									<input type="text" class="form-control" name="item_name" placeholder="" value="" required>
+										<div class="invalid-feedback">상품명을 입력해주세요.</div>
+							</div>
+							
+							<div class="Add-D">
+								<label for="item">상품 가격</label> 
+									<input type="text" class="form-control" name="item_price" placeholder="" required>
+										<div class="invalid-feedback">값을 입력해주세요.</div>
+							</div>
+						</div>
+
+						
 						<!---------------------------------------------------------------------------------------------->
 						<BR>
 
+
+							<div class="filebox">
+								<label for="img_label" >대표 이미지</label>
+									<input type="file" id="img_main" class="form-control" name="item_img_main" accept="image/*" required>
+							</div>
+
+
+							<div class="filebox">
+								<label for="img_label" >상세 이미지</label>
+									<input type="file" id="img_sub" class="form-control"  name="item_img_sub" accept="image/*" required>
+							</div>
+
+							<div class="filebox">
+								<label for="img_label" >브랜드 로고 </label>
+									<input type="file" id="img_logo" class="form-control"  name="item_img_logo" accept="image/*" >
+							</div>
+							
+
+						<BR>
+						<hr class="mc">
+						<!---------------------------------------------------------------------------------------------->
+						<BR>
+
+
+						<div class="row">
+							<div class="Add-G"> 
+							<label for="name">옵션명</label> 
+								<input type="text"class="form-control" name="options_name" placeholder="size, color, Etc" value="" required>
+									<div class="invalid-feedback">옵션명을 입력해주세요.</div>
+							</div>
+
+							<div class="Add-H">
+								<label for="name">옵션값</label> 
+								<input type="text" class="form-control" name="options_value" placeholder="" value="" required>
+									<div class="invalid-feedback">옵션값을 입력해주세요.</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="Add-E">
+							<label for="item">잔여 재고</label> 
+								<input type="text" class="form-control" name="options_quantity" placeholder="" required>
+									<div class="invalid-feedback">재고 수량을 입력해주세요.</div>
+							</div>
+
+						 	<div class="Add-F">
+							<label for="item">옵션추가금</label> 
+								<input type="text" class="form-control" name="options_price" placeholder="선택사항" disabled="disabled">
+							</div>
+						
+						
+						</div>
+						<hr class="mc">
+						<input type="submit" id="saleSubmitButton" value="등록">
+
+						</form>
+
+						<!---------------------------------------------------------------------------------------------->
+						<!----------------------------------- 상품 (렌탈용) 등록 폼 ------------------------------------>
+						<!---------------------------------------------------------------------------------------------->
+						
+						<form id="rentalForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
+						<input type="hidden" name="category_code" value="2">
+
 						<div class="row" >
-        						<label for="category" class="c_label">카테고리 설정</label>
-   							<div class="Add-C">
+        						<label for="category" class="c_label">카테고리</label>
+   							<div class="Add-Z">
        								<select class="custom-select" name="category_sport"  required>
             						<c:forEach var="category" items="${CategoryList}" >
                 						<option value="${category.category_sport}">${category.category_sport}</option>
@@ -87,20 +206,18 @@
 						</div>
 						
 						
-						<!---------------------------------------------------------------------------------------------->
-
 						
 						<div class="row">
 							<div class="Add-B">
-								<label for="name">상품명</label> 
-									<input type="text" class="form-control" name="item_name" placeholder="" value="" required>
-										<div class="invalid-feedback">상품명을 입력해주세요.</div>
+								<label for="name">렌탈 상품명</label> 
+									<input type="text" class="form-control" name="rental_item_name" placeholder="" value="" required>
+										<div class="invalid-feedback">렌탈 상품명을 입력해주세요.</div>
 							</div>
 							
 							<div class="Add-D">
-								<label for="item">상품 가격</label> 
-									<input type="text" class="form-control" name="item_price" placeholder="" required>
-										<div class="invalid-feedback">값을 입력해주세요.</div>
+								<label for="item">렌탈 비용</label> 
+									<input type="text" class="form-control" name="rental_item_price" placeholder="" required>
+										<div class="invalid-feedback">렌탈비를 입력해주세요.</div>
 							</div>
 						</div>
 
@@ -109,80 +226,71 @@
 						<BR>
 
 
-						<div class="row">
 							<div class="filebox">
-									<input class="upload-main" value="" placeholder="&nbsp;&nbsp;상품의 대표 이미지" required> 
-								<label for="img_main">파일찾기</label> 
-									<input type="file" id="img_main" name="item_img_main" accept="image/*" required>
-										<div class="invalid-feedback">썸네일용 이미지가 필요해요.</div>
+								<label for="img_label" >대표 이미지</label>
+									<input type="file" id="r_img_main" class="form-control" name="rental_img_main" accept="image/*" required>
+							</div>
+
+
+							<div class="filebox">
+								<label for="img_label" >상세 이미지</label>
+									<input type="file" id="r_img_sub" class="form-control"  name="rental_img_sub" accept="image/*" required>
 							</div>
 
 							<div class="filebox">
-									<input class="upload-sub" value="" placeholder="&nbsp;&nbsp;상품 설명 이미지" required>
-										<div class="invalid-feedback">상품 설명 이미지가 필요해요.</div>
-								<label for="img_sub">파일찾기</label> 
-									<input type="file" id="img_sub" name="item_img_sub" accept="image/*" required>
+								<label for="img_label" >브랜드 로고 </label>
+									<input type="file" id="r_img_logo" class="form-control"  name="rental_img_logo" accept="image/*" >
 							</div>
-
-							<div class="filebox">
-									<input class="upload-logo" value="" placeholder="&nbsp;&nbsp;브랜드 로고">
-								<label for="img_logo">선택사항</label> 
-									<input type="file" id="img_logo" name="item_img_logo" accept="image/*">
-							</div>
-						</div>
 
 
 						<BR>
 						<hr class="mc">
-						<!---------------------------------------------------------------------------------------------->
+						<!----------------------------------------------------------------------------------------------->
 						<BR>
 
 
 						<div class="row">
 							<div class="Add-G"> 
-							<label for="name">옵션명</label> 
-								<input type="text"class="form-control" name="options_name" placeholder="size, color, Etc" value="" required>
-									<div class="invalid-feedback">옵션명을 입력해주세요.</div>
+							<label for="name">렌탈 옵션명</label> 
+								<input type="text"class="form-control" name="rental_opt_name" placeholder="대여일수" value="" required>
+									<div class="invalid-feedback">렌탈 옵션명을 입력해주세요.</div>
 							</div>
 
 							<div class="Add-H">
-								<label for="name">옵션값</label> <input type="text" class="form-control" name="options_value" placeholder="" value="" required>
-									<div class="invalid-feedback">옵션값을 입력해주세요.</div>
+								<label for="name">렌탈 옵션값</label> 
+								<input type="text" class="form-control" name="rental_opt_value" placeholder="" value="" required>
+									<div class="invalid-feedback">렌탈 옵션값을 입력해주세요.</div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="Add-E">
-							<label for="item">잔여 재고</label> 
-								<input type="text" class="form-control" name="options_quantity" placeholder="" required>
+							<label for="item">렌탈 재고</label> 
+								<input type="text" class="form-control" name="rental_opt_quantity" placeholder="" required>
 									<div class="invalid-feedback">재고 수량을 입력해주세요.</div>
 							</div>
 
-						<!-- 	<div class="Add-F">
-							<label for="item">옵션추가금</label> 
-								<input type="text" class="form-control" placeholder="" disabled="disabled">
-									<div class="invalid-feedback">브랜드명을 입력해주세요.</div>
-							</div> -->
 						</div>
 
-
-
-
-
-
-						<!---------------------------------------------------------------------------------------------->
+	
 						<hr class="mc">
 						<input type="submit" value="등록">
 
+						</form>
+						
+						</div>
+
+
+						<!---------------------------------------------------------------------------------------------->
+
 						</div>
 		
-			</div>
 
 	<footer class="my-3 text-center text-small">
 		<p class="mb-1">&copy; 2023 SSB</p>
 	</footer>
 
-	</form>
+	</div>
 
 	<script src="${pageContext.request.contextPath}/adItem/js/item.js"></script>
 

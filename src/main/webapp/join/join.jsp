@@ -13,6 +13,10 @@
 	
 	
 </script>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
+
 </head>
 <body>
 

@@ -34,6 +34,8 @@
 <!------- common CSS  ------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/adItem/css/itemMgt.css">
 
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
 
@@ -41,7 +43,9 @@
 	
 
 <!-----------------------------------  현정씨 ▼ ---------------------------------------------->
- 
+ 	<!-- 메인 -->
+ 		
+	<jsp:include page="../board/inc/top.jsp"/>
  
   <div class="wrapper">
    <!-- 사이드바 -->
@@ -50,21 +54,11 @@
 		
   <!-- 메인 -->
   <div class="main">
-	<header class="navbar navbar-expand navbar-light navbar-bg">
+<!-- 	<header class="navbar navbar-expand navbar-light navbar-bg">
 		<a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
-<%-- 		<c:if test="${sessionScope.adminId == null }">
-    		<a href="./AdminLogin.ad">
-			  <img class="log-button" alt="login" src="./img/icons/login.png" width="25" height="25">
- 			</a>    
-		</c:if>
-		<c:if test="${sessionScope.adminId != null }">
-    		<a href="./AdminLogout.ad">
-			  <img class="log-button" alt="logout" src="./img/icons/logout.png" width="25" height="25">
- 			</a>   
-    	</c:if>	 --%>
-	</header>
+	</header> -->
 <!-----------------------------------  현정씨 ▲ ---------------------------------------------->
 
 

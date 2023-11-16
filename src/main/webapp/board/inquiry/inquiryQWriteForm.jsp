@@ -1,84 +1,134 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-<meta name="author" content="AdminKit">
-<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+<meta charset="UTF-8">
+<title>문의 작성</title>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+<style type="text/css">
+/* 창 여분 없애기 */
+body {margin : 0;}
 
-<title>Q&A&nbsp;|&nbsp;SSB</title>
+/* 전체 배경화면 색상 */
+.wrapper_div {background-color: #f5f5f5;
+height: 100%;}
 
-<!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="./css/app.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+/* 팝업창 제목 */
+.subject_div {background-color: #000000;
+color: white;
+font-weight: bold;
+padding: 10px;
+width: 96%;}
+  	
+/* 컨텐츠, 버튼 영역 */
+.input_wrap {padding: 20px;}
+.btn_wrap {padding: 5px 30px 30px 30px;
+text-align: center;}
+  	
+/* 버튼 영역 */
+.cancel_btn {background-color: #000000;
+padding-top: 5px;
+margin-right:5px;
+display: inline-block;
+width: 100px;
+height: 40px;
+color: #fff;
+font-size: 14px;
+line-height: 30px;}
+.enroll_btn {background-color: #000000;
+padding-top: 5px;
+display: inline-block;
+width: 100px;
+height: 40px;
+color: #fff;
+font-size: 14px;
+line-height: 30px;}
+
+/* 문의 작성 영역 */
+.subject {border: 1px solid #dadada;
+width: 97%;
+height: 10px;
+padding: 12px 8px 12px 8px;
+font-size: 15px;
+color: #000000;
+resize: none;
+margin-top: 10px;
+margin-bottom: 10px;}
+
+.content_div1 {padding-top: 10px;}
+.content_div2 {padding-top: 20px;}
+.content_div h4 {margin : 0;}
+  	
+textarea {border: 1px solid #dadada;
+width: 97%;
+height: 100px;
+padding: 12px 8px 12px 8px;
+font-size: 15px;
+color: #000000;
+resize: none;
+margin-top: 10px;
+margin-bottom: 5px;} 
+</style>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
-  <div class="wrapper">
-	
-  <!-- 사이드바 -->
-  <jsp:include page="../inc/sidebar.jsp"/>
-  <!-- 사이드바 -->
-		
-  <!-- 메인 -->
-  <div class="main">		
-  <jsp:include page="../inc/top.jsp"/>
-
-  <!-- 게시판 -->
-  <main class="content">
-	<article>
-	  <h3 style="margin-top: -0.5em; margin-bottom: 1em;">Q&A 작성</h3>
-
-	  <div class="container" role="main">
-		<form action="./InquiryQWriteAction.iq" method="post">
-		<div class="mb-3">
-		  <label for="subject" style="margin-right: 20px">문의유형</label>
-		  <input type="radio" id="type_0" name="iqType" value="사이즈"><label style="margin-right: 20px" for="type_0">사이즈</label>
-		  <input type="radio" id="type_1" name="iqType" value="배송"><label style="margin-right: 20px" for="type_1">배송</label>
-		  <input type="radio" id="type_2" name="iqType" value="재입고"><label style="margin-right: 20px" for="type_2">재입고</label>
-		  <input type="radio" id="type_3" name="iqType" value="제품상세"><label style="margin-right: 20px" for="type_3">제품상세</label>
-		</div>
-			
-		<div class="mb-3">
-		  <label for="subject">제목</label>
-		  <input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해 주세요" required>
-		</div>
-
-		<div class="mb-3">
-		  <label for="content">내용</label>
-		  <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" required></textarea>
-		</div>
-					
-		<div>
-		  <input type="submit" value="작성하기" class="btn btn-sm btn-primary" id="btnSave">
-	 	  <!-- <button type="button" class="btn btn-sm btn-primary" id="btnList">취소</button> -->					
-	 	</div>
-		</form>					
-	  </div>
-	</article>
-  </main>
-  <!-- 게시판 -->
-
-  <!-- 푸터 들어가는 곳 -->
-  <footer class="footer">
-	<div class="container-fluid">
-		
+  <div class="wrapper_div">
+	<div class="subject_div">
+	 문의 작성
 	</div>
-  </footer>
-  <!-- 푸터 들어가는 곳 -->	
-  					
   </div>
-  <!-- 메인 -->
-  		
+	
+  <form id="inquiry">
+  <input type="hidden" name="userId" value="${sessionScope.userId }">
+  <div class="input_wrap">					
+	<div class="content_div1">
+	  <label style="margin-right: 10px;"><strong>문의유형</strong></label>
+	  <input type="radio" id="type_0" name="iqType" value="사이즈"><label>사이즈</label>
+	  <input type="radio" id="type_1" name="iqType" value="배송"><label>배송</label>
+	  <input type="radio" id="type_2" name="iqType" value="재입고"><label>재입고</label>
+	  <input type="radio" id="type_3" name="iqType" value="제품상세"><label>제품상세</label>
+	</div>
+	
+	<div class="content_div2">
+	  <label style="font-weight: bold;">제목</label>
+	  <input type="text" class="subject" name="subject" placeholder="제목을 입력해 주세요" required>
+	  <label style="font-weight: bold;">내용</label>
+	  <textarea name="content" rows="5" placeholder="내용을 입력해 주세요" required></textarea>
+	</div>	
   </div>
-  <script src="./js/app.js"></script>
+  </form> 
+
+  <div class="btn_wrap">
+	  <a class="cancel_btn">취소</a><a class="enroll_btn">작성하기</a>
+  </div>	
+  
+  <script>	
+  /* 취소 버튼 */
+	$(".cancel_btn").on("click", function(e){
+		window.close();
+	});
+  
+	/* 작성하기 버튼 */
+	$(".enroll_btn").on("click", function(data){
+		
+		var inquiry = $('inquiry').serialize();
+		
+		$.ajax({
+			url: './InquiryQWriteAction.iq',
+			type: 'POST',
+			data: $('#inquiry').serialize(),
+			success : function(data){
+				alert("데이터 전송 성공!");
+				window.close();
+			}
+			
+		});		
+		
+	});  
+  </script>
 </body>
 </html>

@@ -49,7 +49,7 @@ public class InquiryListAction implements Action {
 		ArrayList inquiryList = new ArrayList();
 		
 		if(count > 0) {
-			inquiryList = bdao.getInquiryList(startRow, pageSize);
+			inquiryList = bdao.getAdInquiryList(startRow, pageSize);
 		}
 		
 		System.out.println("M: size: " + inquiryList.size());

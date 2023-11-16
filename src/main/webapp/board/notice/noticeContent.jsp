@@ -45,6 +45,9 @@ margin : 10pt;}
 margin : 10pt;
 padding-bottom : 10pt;}
 </style>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
   <!-- 로그인 세션 제어 -->

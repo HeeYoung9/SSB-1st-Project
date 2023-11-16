@@ -18,11 +18,14 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 
 <script type="text/javascript">
 function openPop(){
-	var popup = window.open('./board/review/reviewWriteForm.jsp', '리뷰팝업', 'width=550px,height=750px,scrollbars=yes');
+	var popup = window.open('./ReviewWrite.rv', '리뷰팝업', 'width=550px,height=750px,scrollbars=yes');
 }
 </script>
 <body>

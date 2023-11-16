@@ -3,7 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
- 
+<link href="./rental/rental_css/rental.css" rel="stylesheet">
+
 	<!-- header 시작 -->
 	<header class="header">
 		<div class="logo">
@@ -23,10 +24,10 @@
 			<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태)-->
 		<c:if test="${empty sessionScope.userId }">
 			<div class="button-container">
-				<button class="login-button"><a href="./MemberLogin.me" style="color:white;">login</a></button>
-				<button class="signup-button">
+				<button class="login-button"><a href="./MemberLogin.me">login</a></button>
+				<a href="./cartList.ca"><button class="signup-button">
 					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
-				</button>
+				</button></a>
 			</div>
 		</c:if>
 		<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태) -->
@@ -34,13 +35,15 @@
 		<!-- ID 세션값이 있을때 보일 버튼(로그인 상태) -->
 		<c:if test="${!empty sessionScope.userId && not fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<button class="signup-button"><a href="./update.ud">My Page</a></button>
+				<button class="signup-button"><a href="./update.ud" style="white">My Page</a></button>
 				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" /> 찜</button>
+				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" />
+				<a href="#" > 찜</a></button>
 				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart
+				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />
+				<a href="#" > cart</a>
 				</button>
-				<button class="login-button"><a href="./MemberLogout.me" style="color:white;">logout
+				<button class="login-button"><a href="./MemberLogout.me">logout
 				</a></button>
 			</div>
 		</c:if>

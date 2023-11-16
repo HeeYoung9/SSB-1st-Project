@@ -46,6 +46,9 @@ margin : 10pt;}
 margin : 10pt;
 padding-bottom : 10pt;}
 </style>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
   <!-- 로그인 세션 제어 -->
@@ -72,20 +75,24 @@ padding-bottom : 10pt;}
 			<div class="bg-white rounded shadow-sm">
 			  <div class="board_title">${bdto.board_subject}</div>
 				<div class="board_info_box">
-				  <span class="board_date">작성자:<c:out value="${bdto.member_user_id}"/>&nbsp;/&nbsp;문의유형:</span><span class="board_author">${bdto.inquiry_type}</span>
+				  <span class="board_date">작성자:&nbsp;<c:out value="${bdto.member_user_id}"/>&nbsp;/&nbsp;문의유형:&nbsp;</span><span class="board_author">${bdto.inquiry_type}</span>
 				</div>
 				<div class="board_content"><pre>${bdto.board_content}</pre></div>
 			</div>
 			
+			<c:if test="${!empty rdto.reply_content }">
 			<div class="bg-white rounded shadow-sm">
 			  <div class="board_title" style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">[답변]&nbsp;${bdto.board_subject}</div>
 				<div class="board_content"><pre>${rdto.reply_content}</pre></div>					
 			</div>
 			
 			<div style="margin-top: 10px;">
-			  <button type="button" class="btn btn-sm btn-primary" id="btnUpdate"
-			  		onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">수정하기</button>
-			</div>			
+			<button type="button" class="btn btn-sm btn-primary" id="btnList"
+				   	onclick="location.href='./InquiryList.iq?';">목록</button>
+			<!-- <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" -->
+			<%-- onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">수정하기</button> --%>
+			</div>
+			</c:if>			
 	    </div>
 	  </div>
 	</article>	

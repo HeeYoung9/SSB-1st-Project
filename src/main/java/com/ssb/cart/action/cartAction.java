@@ -15,7 +15,7 @@ public class cartAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//받은정보저장
-		String member_id = request.getParameter("member_id");
+		String member_id = (String)request.getSession().getAttribute("member_id");
 		System.out.println("cartAction.member_id : " + member_id);
 		//데이터 처리
 		cartDAO dao = new cartDAO();

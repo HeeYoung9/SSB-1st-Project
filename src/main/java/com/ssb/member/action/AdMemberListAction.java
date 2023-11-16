@@ -19,10 +19,10 @@ public class AdMemberListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("M : AdMemberListAction_execute() 호출!");
 		
-		HttpSession session = request.getSession();
-		String admin_id = (String) session.getAttribute("adminId");
+//		HttpSession session = request.getSession();
+//		String admin_id = (String) session.getAttribute("adminId");
 		
-		ActionForward forward = new ActionForward(); // 사실상 admin페이지는 이 부분이 필요없다?..
+//		ActionForward forward = new ActionForward(); // 사실상 admin페이지는 이 부분이 필요없다?..
 //		if(admin_id == null || !admin_id.equals("admin")) {
 //			forward.setPath("./AdminLogin.ad");
 //			forward.setRedirect(true);
@@ -54,7 +54,7 @@ public class AdMemberListAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 상품 개수 설정
-		int pageSize = 5;
+		int pageSize = 10;
 
 		// 현 페이지가 몇페이지 인지확인
 		String pageNum = request.getParameter("pageNum");
@@ -74,7 +74,7 @@ public class AdMemberListAction implements Action {
 		/********************* 페이징처리 1 *******************/
 
 		// DAO - 모든 회원 정보를 가져오는 메서드 호출
-		ArrayList<MemberDTO> memberList = null;
+		ArrayList memberList = null;
 		if (count > 0 && search == null) {
 			memberList = dao.getMemberList(startRow, pageSize);
 		}else if(count > 0 && search != null ) {
@@ -119,7 +119,7 @@ public class AdMemberListAction implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);	
 		
-		
+		ActionForward forward = new ActionForward();
 		forward.setPath("./adMemberList/adMemberList.jsp");
 		forward.setRedirect(false);
 		

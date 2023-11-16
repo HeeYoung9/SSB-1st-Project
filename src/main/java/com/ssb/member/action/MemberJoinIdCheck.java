@@ -28,7 +28,7 @@ public class MemberJoinIdCheck implements Action {
 		int result = dao.checkId(member_user_id);
 		
 		
-		// 성공여부 확인
+		// 성공여부 확인용
 		if(result == -1) {
 			System.out.println("이미 존재하거나 'admin'을 포함하는 아이디");
 		} else if (result == 0) {

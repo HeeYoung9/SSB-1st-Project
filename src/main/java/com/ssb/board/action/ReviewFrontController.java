@@ -44,26 +44,26 @@ public class ReviewFrontController extends HttpServlet{
 			forward.setPath("./board/review/reviewList.jsp");
 			forward.setRedirect(false);
 		}
-//		else if(command.equals("/ReviewWrite.rv")) {
-//			System.out.println("C: /ReviewWrite.rv 호출");
-//			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
-//			
-//			forward = new ActionForward();
-//			forward.setPath("./board/review/reviewWriteForm.jsp");
-//			forward.setRedirect(false);
-//		}
-//		else if(command.equals("/ReviewWriteAction.rv")) {
-//			System.out.println("C: /ReviewWriteAction.rv 호출");
-//			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
-//			
-//			// ReviewWriteAction 객체 생성
-//			action = new ReviewWriteAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		} 
+		else if(command.equals("/ReviewWrite.rv")) {
+			System.out.println("C: /ReviewWrite.rv 호출");
+			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./board/review/reviewWriteForm.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/ReviewWriteAction.rv")) {
+			System.out.println("C: /ReviewWriteAction.rv 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// ReviewWriteAction 객체 생성
+			action = new ReviewWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 //		else if(command.equals("/ReviewUpdate.rv")) {
 //			System.out.println("C: /ReviewUpdate.rv 호출");
 //			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
@@ -92,7 +92,7 @@ public class ReviewFrontController extends HttpServlet{
 //			System.out.println("C: /ReviewDeleteAction.rv 호출");
 //			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 //			
-//			// BoardDeleteAction 객체 생성
+//			// ReviewDeleteAction 객체 생성
 //			action = new ReviewDeleteAction();
 //			try {
 //				forward = action.execute(request, response);

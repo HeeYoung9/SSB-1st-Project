@@ -372,21 +372,91 @@ button {
     height: auto;
 }
 
+/* 리뷰 문의 */
 .reviews, .questions {
-    margin: 20px;
+    margin: 100px 40px 100px 40px;
     align-items: center; /* 수평 가운데 정렬 */
     text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+
+/* 문의 작성하기 버튼 */
+.rbtn {
+	border-radius: inherit;
+}
+
+
+/* 페이지네이션 */
+.page-link {
+  color: #000; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #555;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #ccc;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000;
+  background-color: #fafafa; 
+  border-color: #ccc;
 }
 
 h2 {
     font-size: 18px;
 }
 
+
+/* Q&A 목록 */
+.panel-faq-container {
+  margin-bottom: -16px;
+}
+
+.panel-faq-title {
+/*   border-top */
+  cursor: pointer;
+}
+
+.panel-faq-answer {
+ display: none;
+ 
+}
+
+#btn-all-close {
+  margin-bottom: 10px;
+  background-color: #726996;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 25px;
+  float: right;
+}
+
+#btn-all-close:hover {
+  background-color: yellow;
+  color: #000;
+  transition: all 0.35s;
+}
+
+.active {
+  display: block;
+  /* 높이를 정해줘야지만 transition이 적용됨 */
+  height: 50px;
+}
+
+.p-content {text-align: left; margin: 10px;}
+
+
 /* top 퀵 메뉴 고정 */
 .top{
 	position: fixed;
-	border: 1px solid black;
-	background-color: black;
+	border: none;
 	right: 100px;
 	bottom: 25px;
 	border-radius: 50%;
@@ -394,8 +464,14 @@ h2 {
 }
 
 .top>a{
-	color: white;
-	font-size: small;
+	color: black;
+	font-size: medium;
+	font-weight: bold;
+}
+
+.top:hover{
+	background: lightgray;
+	
 }
 
 
@@ -410,22 +486,14 @@ color: black;}
 
 
 
-/* 예약달력 스타일 */
-#calendar {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+/* 리뷰, 문의게시판 css */
 
-    .day {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      margin: 5px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-    }
+.reviews, .questions {
+    margin: 100px 40px 100px 40px;
+    align-items: center; /* 수평 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
 
-    .reserved {
-      background-color: #ff9999;
-    }
+.rbtn {
+	border-radius: inherit;
+}

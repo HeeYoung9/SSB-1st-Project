@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.ssb.option.db.optionsDTO;
+
 /**
  * ItemDAO : DB관련 처리를 수행하는 객체 (Data Access Object)
  */
@@ -240,52 +242,52 @@ public class ItemDAO {
 	
 	
 	// (5) 특정 상품 정보를 가져오는 메서드 - getItem(ino) 시작
-	public ItemDTO getItem(int ino) {
-		ItemDTO dto = null;
+	public ItemDTO getItem(int item_id) {
+	    ItemDTO dto = null;
 
-		try {
-			// 1.2. 디비연결
-			con = getCon();
-			// 3. sql 구문 작성(select) & pstmt 객체
-			sql = "select * from options o join item i on i.item_id = o.item_id "
-					+ "join category c on c.category_id=i.category_id where options_id = ? && item_id = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ino);
-			// 4. sql 실행
-			rs = pstmt.executeQuery();
-			// 5. 데이터 처리 (rs -> dto)
-			if (rs.next()) {
-				dto = new ItemDTO();
-				/* 아이템 + 카테고리 + 옵션 */
-				dto.setItem_id(rs.getInt("item_id"));
-				dto.setItem_name(rs.getString("item_name"));
-				dto.setItem_price(rs.getInt("item_price")); // 기존 가격(옵션테이블) -> (아이템테이블)
-				dto.setItem_img_main(rs.getString("item_img_main"));
-				dto.setItem_img_main(rs.getString("item_img_sub"));
-				dto.setItem_img_main(rs.getString("item_img_logo"));
-				dto.setCategory_id(rs.getInt("category_id"));
-				dto.setCategory_code(rs.getInt("category_code"));
-				dto.setCategory_sport(rs.getString("category_sport"));
-				dto.setCategory_major(rs.getString("category_major"));
-				dto.setCategory_sub(rs.getString("category_sub"));
-				dto.setCategory_brand(rs.getString("category_brand"));
-				dto.setOptions_id(rs.getInt("options_id"));
-				dto.setOptions_name(rs.getString("options_name"));
-				dto.setOptions_value(rs.getString("options_value"));
-				dto.setOptions_quantity(rs.getInt("options_quantity"));
-			} // if
+	    try {
+	        // 1.2. 디비연결
+	        con = getCon();
+	        // 3. sql 구문 작성(select) & pstmt 객체
+	        sql = "SELECT * FROM options o JOIN item i ON i.item_id = o.item_id JOIN category c ON c.category_id = i.category_id WHERE i.item_id = ?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setInt(1, item_id);
+	        // 4. sql 실행
+	        rs = pstmt.executeQuery();
+	        // 5. 데이터 처리 (rs -> dto)
+	        if (rs.next()) {
+	            dto = new ItemDTO();
+	            dto.setItem_id(rs.getInt("item_id"));
+	            dto.setItem_name(rs.getString("item_name"));
+	            dto.setItem_price(rs.getInt("item_price"));
+	            dto.setItem_img_main(rs.getString("item_img_main"));
+	            dto.setItem_img_sub(rs.getString("item_img_sub"));
+	            dto.setItem_img_logo(rs.getString("item_img_logo"));
+	            dto.setOptions_id(rs.getInt("options_id"));
+	            dto.setOptions_name(rs.getString("options_name"));
+	            dto.setOptions_value(rs.getString("options_value"));
+	            dto.setOptions_quantity(rs.getInt("options_quantity"));
+	            dto.setOptions_price(rs.getInt("options_price"));
+	            dto.setCategory_id(rs.getInt("category_id"));
+	            dto.setCategory_code(rs.getInt("category_code"));
+	            dto.setCategory_sport(rs.getString("category_sport"));
+	            dto.setCategory_major(rs.getString("category_major"));
+	            dto.setCategory_sub(rs.getString("category_sub"));
+	            dto.setCategory_brand(rs.getString("category_brand"));
 
-			System.out.println(" DAO : 상품 정보 조회성공!");
+	        } 
+	        
+	        System.out.println(" DAO: 상품 정보 조회 성공!");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        CloseDB();
+	    }
 
-		return dto;
+	    return dto;
 	}
-	// (5) 특정 상품 정보를 가져오는 메서드 - getItem(ino) 시작
+	// (5) 특정 상품 정보를 가져오는 메서드 - getItem(ino) 종료
 
 	
 	
@@ -367,7 +369,7 @@ public class ItemDAO {
 	
 	
 	
-	// (8) 옵션 정보를 등록하는 메서드 - addOptions 시작
+	// (8) (아이템+)옵션 정보를 등록하는 메서드 - addOptions 시작
 	public void addOption(ItemDTO dto, int itemId) {
 	    try {
 	        // 1. 디비 연결
@@ -383,7 +385,7 @@ public class ItemDAO {
 	        pstmt.setInt(5, itemId);
 	        pstmt.executeUpdate();
 
-	        System.out.println("ItemDAO : 옵션 등록 성공!");
+	        System.out.println("OptionsDAO : 옵션 등록 성공!");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -392,8 +394,9 @@ public class ItemDAO {
 	    }
 	}
 	// (8) 옵션 정보를 등록하는 메서드 - addOptions 끝
-
-
+	
+	
+	
 	
 	
 	
@@ -535,8 +538,47 @@ public class ItemDAO {
 	
 	
 	
-	
-	
+    // (12) 특정 상품의 옵션 목록 메서드 - getOptList() 시작
+ 	public ArrayList getOptList(int item_id) {
+
+ 		ArrayList getOptList = new ArrayList();
+
+ 		try {
+ 			con = getCon();
+
+ 			sql = " select * from options where item_id=? ";
+ 			
+ 			pstmt = con.prepareStatement(sql);
+ 			pstmt.setInt(1, item_id);
+ 			rs = pstmt.executeQuery();
+
+ 			while (rs.next()) {
+
+ 				ItemDTO dto = new ItemDTO();
+
+ 				dto.setOptions_id(rs.getInt("options_id"));
+ 				dto.setOptions_name(rs.getString("options_name"));
+ 				dto.setOptions_value(rs.getString("options_value"));
+ 				dto.setOptions_quantity(rs.getInt("options_quantity"));
+ 				dto.setOptions_price(rs.getInt("options_price"));
+ 				dto.setItem_id(rs.getInt("item_id"));
+ 				getOptList.add(dto);
+
+ 			} 
+
+ 			System.out.println(" \n ItemDAO : 특정 상품의 옵션 목록을 가져왔어요 ");
+
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			CloseDB();
+ 		}
+
+ 		return getOptList;
+ 	}
+ 	// (12) 특정 상품의 옵션 목록 메서드 - getOptList() 끝
+
+    
 	
 	
 	

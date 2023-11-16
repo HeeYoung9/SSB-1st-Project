@@ -3,7 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="./Mcommon/top.js" charset="UTF-8"></script>
+<link href="./Mcommon/top.css" rel="stylesheet">
 	<!-- header 시작 -->
 	<header class="header">
 		<div class="logo">
@@ -19,14 +21,15 @@
 				</button>
 			</form>
 		</div>
+			<a href="./Order.od" style="color:white;">결제테스트</a>
 
 		<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태)-->
 		<c:if test="${empty sessionScope.userId }">
 			<div class="button-container">
 				<button style="background-color: transparent; border:none;"><a href="./AdminMain.ad" style="color:white; opacity: 0.3">admin</a></button>
 				<button class="login-button"><a href="./MemberLogin.me" style="color:white;">login</a></button>
-				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
+				<button class="signup-button"><a href="./cartList.ca" style="color:white;">
+				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart</a>
 				</button>
 			</div>
 		</c:if>
@@ -36,10 +39,10 @@
 		<c:if test="${!empty sessionScope.userId && not fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
 				<button class="signup-button"><a href="./update.ud">My Page</a></button>
-				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" /> 찜</button>
-				<button class="signup-button">
-				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart
+				<button class="signup-button"><a href="./wishlist.wl">
+				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" / style="color:white;"> 찜</a></button>
+				<button class="signup-button"><a href="./cartList.ca" style="color:white;">
+				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart</a>
 				</button>
 				<button class="login-button"><a href="./MemberLogout.me" style="color:white;">logout
 				</a></button>

@@ -1,6 +1,7 @@
 package com.ssb.ajax.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,22 +54,14 @@ public class ajaxController extends HttpServlet {
 		} else if (command.equals("/deleteCart.aj")) {
 			// 정보저장
 			String cart_id = request.getParameter("cart_id");
-			String member_id = request.getParameter("member_id");
+			String member_id = (String)request.getSession().getAttribute("member_id");
 			System.out.println("cart_id : " + cart_id);
 			System.out.println("member_id : " + member_id);
 			//정보처리
 			int result = dao.deleteCart(cart_id,member_id);
 			json = gson.toJson(result);
-		} else if (command.equals("/insertWishlist.aj")) {
-			// 정보저장
-			String item_id = request.getParameter("item_id");
-			String member_id = request.getParameter("member_id");
-			System.out.println("item_id : " + item_id);
-			System.out.println("member_id : " + member_id);
-			//정보처리
-			String result = dao.insertWishlist(item_id,member_id);
-			json = gson.toJson(result);
 		}
+		
 		/*********************** 2. 가상주소 매핑 끝 **************************/
 
 		/*********************** 3. 가상주소 이동 시작 **************************/

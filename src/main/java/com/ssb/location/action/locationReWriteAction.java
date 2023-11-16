@@ -33,7 +33,7 @@ public class locationReWriteAction implements Action {
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		if (!location_idCheck) {
-			result = dao.reWriteLocation(dto);
+			result = dao.rewriteLocation(dto);
 		}else {
 			result = dao.insertLocation(dto);
 		}

@@ -6,9 +6,34 @@
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script defer src="rating.js"></script>
-<link href="rating.css" rel="stylesheet"/>
+<script defer src="${pageContext.request.contextPath}/board/review/rating.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	  $("#file").on("change", function(e) {
+	    var file = e.target.files[0];
+	    if(isImageFile(file)) {
+	      var reader = new FileReader(); 
+	      reader.onload = function(e) {
+	        $("#preview").attr("src", e.target.result);
+	      }
+	      reader.readAsDataURL(file);
+	    } else {
+	      alert("이미지 파일만 첨부 가능합니다.");
+	      $("#file").val("");
+	      $("#preview").attr("src", "");
+	    }
+	  });
+	});
 
+	// 업로드 파일 이미지 파일인지 확인
+	function isImageFile(file) {
+	  // 파일명에서 확장자를 가져옴
+	  var ext = file.name.split(".").pop().toLowerCase(); 
+	  return ($.inArray(ext, ["jpg", "jpeg", "gif", "png"]) === -1) ? false : true;
+	}
+</script>
+
+<link href="${pageContext.request.contextPath}/board/review/rating.css" rel="stylesheet"/>
 <style type="text/css">
 /* 창 여분 없애기 */
 body {margin : 0;}
@@ -34,7 +59,7 @@ text-align: center;}
 padding-top: 10px;
 margin-right:5px;
 display: inline-block;
-width: 130px;
+width: 100px;
 height: 27px;
 color: #fff;
 font-size: 14px;
@@ -42,7 +67,7 @@ line-height: 18px;}
 .enroll_btn {background-color: #000000;
 padding-top: 10px;
 display: inline-block;
-width: 130px;
+width: 100px;
 height: 27px;
 color: #fff;
 font-size: 14px;
@@ -65,6 +90,9 @@ resize: none;
 margin-top: 10px;
 margin-bottom: 5px;} 
 </style>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
   <div class="wrapper_div">
@@ -72,7 +100,9 @@ margin-bottom: 5px;}
 	 리뷰 작성
 	</div>
   </div>
-	
+
+  <form method="post" enctype="multipart/form-data" id="reviewForm">
+  <input type="hidden" name="userId" value="${sessionScope.userId }">	
   <div class="input_wrap">					
     <div class="r_div1">
  	  <strong>상품은 어떠셨나요?</strong>
@@ -81,25 +111,67 @@ margin-bottom: 5px;}
  	  상품에 대한 별점을 매겨주세요.
  	</div>
  	  
- 	<div class="rating_box">
+ 	 <div class="rating_box">
       <div class="rating">
       	★★★★★
       	<span class="rating_star">★★★★★</span>
-      	<input type="range" value="1" step="1" min="0" max="10">
+      	<input type="range" name="rating" value="1" step="1" min="0" max="10">
    	  </div>
-  	</div>
+  	 </div>
   		
-	<div class="content_div">
-	  <h4>내용</h4>
+	 <div class="content_div">
+	 <h4>내용</h4>
 	  <textarea name="content" placeholder="최소 10자 이상 작성해 주세요"></textarea>
-	</div>
-	<div class="checkbox">
+	    <label for="file"><img id="preview" src="${pageContext.request.contextPath}/board/review/file.png" style="max-width: 200px;"></label>
+		<input type="file" name="file" id="file" style="display:none" accept=".png, .jpeg">
+	 </div>
+	 <div class="checkbox">
 	  <input type="checkbox">보다 나은 후기 서비스 제공을 위해 정보 수집ㆍ이용에 동의합니다. (선택)
-    </div>
+     </div>
   </div>
 	
   <div class="btn_wrap">
 	<a class="cancel_btn">취소</a><a class="enroll_btn">등록</a>
   </div>	
+  </form>
+  
+  <script>	
+  /* 취소 버튼 */
+	$(".cancel_btn").on("click", function(e){
+		window.close();
+	});
+  
+	/* 등록 버튼 */
+	$(".enroll_btn").on("click", function(e){
+
+		e.preventDefault();		
+		var form = $('#reviewForm')[0];		
+		var data = new FormData(form);		
+		$(".enroll_btn").prop("disabled", true);
+		
+		
+		$.ajax({
+			url : './ReviewWriteAction.rv',
+			type : 'POST',
+			enctype: 'multipart/form-data',
+			data : data,
+			processData: false,
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+			success : function(data) {
+				alert("성공");           
+	        	$(".enroll_btn").prop("disabled", false);
+				window.close();
+			},
+			error: function(e) {
+				console.log("ERROR: ", e);
+				$(".enroll_btn").prop("disabled", false);
+				alert("실패"); 
+			}			
+		});		
+		
+	});  
+  </script>
 </body>
 </html>

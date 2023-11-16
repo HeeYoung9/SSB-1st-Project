@@ -63,7 +63,10 @@
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
 <link href="./rental/rental_css/rental.css" rel="stylesheet">
+<script src="./wishlist/wishlist.js"></script>
 
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 
 <body>
@@ -160,12 +163,10 @@
 							</div> </a>
 							<!-- Product actions-->
 					
-							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<span class="text-center" style="margin-left: 40px;"><a
-									class="btn btn-outline-dark mt-auto" href="#"><img
-										width="18" height="20" src="./main/img/heart.png" alt="하트" />
-										wish</a></span>
-							</div>
+							<%-- <div class="wishlist" value="${rdto.rental_item_id }">
+								<img width="18" height="20" src="./main/img/heart.png" alt="하트" />
+								
+							</div>  렌탈용 만들면 풀것!!!--%>
 							
 						</div>
 				

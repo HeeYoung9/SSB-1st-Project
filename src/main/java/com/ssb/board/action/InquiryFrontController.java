@@ -48,7 +48,7 @@ public class InquiryFrontController extends HttpServlet{
 			System.out.println("C: /InquiryQWriteAction.iq 호출");
 			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 			
-			// InquiryWriteAction 객체 생성
+			// InquiryQWriteAction 객체 생성
 			action = new InquiryQWriteAction();
 			try {
 				forward = action.execute(request, response);

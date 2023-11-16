@@ -1,10 +1,13 @@
 package com.ssb.rental.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -68,7 +71,7 @@ public class RentalDAO {
 				rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
 				rdto.setRental_opt_value(rs.getString("rental_opt_value"));
 				rdto.setRental_img_main(rs.getString("rental_img_main"));
-				rdto.setRental_item_sub(rs.getString("rental_item_sub"));
+				rdto.setRental_img_sub(rs.getString("rental_img_sub"));
 				rdto.setRental_img_logo(rs.getString("rental_img_logo"));
 				rdto.setCategory_id(rs.getInt("category_id"));
 				
@@ -110,7 +113,7 @@ public class RentalDAO {
 					rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
 					rdto.setRental_opt_value(rs.getString("rental_opt_value"));
 					rdto.setRental_img_main(rs.getString("rental_img_main"));
-					rdto.setRental_item_sub(rs.getString("rental_item_sub"));
+					rdto.setRental_img_sub(rs.getString("rental_img_sub"));
 					rdto.setRental_img_logo(rs.getString("rental_img_logo"));
 					rdto.setCategory_id(rs.getInt("category_id"));
 					
@@ -158,7 +161,7 @@ public class RentalDAO {
 				rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
 				rdto.setRental_opt_value(rs.getString("rental_opt_value"));
 				rdto.setRental_img_main(rs.getString("rental_img_main"));
-				rdto.setRental_item_sub(rs.getString("rental_item_sub"));
+				rdto.setRental_img_sub(rs.getString("rental_img_sub"));
 				rdto.setRental_img_logo(rs.getString("rental_img_logo"));
 				rdto.setCategory_id(rs.getInt("category_id"));
 				
@@ -198,7 +201,7 @@ public class RentalDAO {
 				rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
 				rdto.setRental_opt_value(rs.getString("rental_opt_value"));
 				rdto.setRental_img_main(rs.getString("rental_img_main"));
-				rdto.setRental_item_sub(rs.getString("rental_item_sub"));
+				rdto.setRental_img_sub(rs.getString("rental_img_sub"));
 				rdto.setRental_img_logo(rs.getString("rental_img_logo"));
 				rdto.setCategory_id(rs.getInt("category_id"));
 				
@@ -217,6 +220,85 @@ public class RentalDAO {
 	}
 	// 카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category)
 	
-	
+	// 렌탈 상품을 등록하는 메서드 - addRental 시작
+		public void addRental(RentalDTO rdto) {
+		    try {
+		        // 1. 디비 연결
+		        con = getCon();
+
+		        // 2. SQL 실행 
+		        sql = "Insert Into rental_item (rental_item_name, rental_item_price, "
+		                + "rental_opt_quantity, rental_opt_name, rental_opt_value, rental_img_main, rental_img_sub, "
+		                + "rental_img_logo, category_id ) VALUES (?,?,?,?,?,?,?,?,?);";
+
+		        // pstmt 초기화
+		        pstmt = con.prepareStatement(sql);
+
+		        pstmt.setString(1, rdto.getRental_item_name());
+		        pstmt.setInt(2, rdto.getRental_item_price());
+		        pstmt.setInt(3, rdto.getRental_opt_quantity());
+		        pstmt.setString(4, rdto.getRental_opt_name());
+		        pstmt.setString(5, rdto.getRental_opt_value());
+		        pstmt.setString(6, rdto.getRental_img_main());
+		        pstmt.setString(7, rdto.getRental_img_sub());
+		        pstmt.setString(8, rdto.getRental_img_logo());
+		        pstmt.setInt(9, rdto.getCategory_id());
+		        pstmt.executeUpdate();
+
+		        System.out.println("RentalDAO : 렌탈 등록 성공!");
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        CloseDB();
+		    }
+		}
+		// 렌탈 상품을 등록하는 메서드 - addRental 끝
+		
+		// 특정 렌탈 아이템 정보를 조회하는 메서드 - getRentalItem()
+		public RentalDTO getReserveRentalItem(int rItemId, LocalDate strd) {
+			RentalDTO rdto = null;
+			
+			try {
+				con =getCon();
+				sql = "select * from rental_item where rental_item_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rItemId);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					rdto = new RentalDTO();
+					rdto.setRental_item_id(rItemId);
+					rdto.setRental_item_name(rs.getString("rental_item_name"));
+					rdto.setRental_item_price(rs.getInt("rental_item_price"));
+					rdto.setRental_opt_quantity(rs.getInt("rental_opt_quantity"));
+					rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
+					rdto.setRental_opt_value(rs.getString("rental_opt_value"));
+					rdto.setRental_img_main(rs.getString("rental_img_main"));
+					rdto.setRental_img_sub(rs.getString("rental_img_sub"));
+					rdto.setRental_img_logo(rs.getString("rental_img_logo"));
+					rdto.setCategory_id(rs.getInt("category_id"));
+					rdto.setRental_days(rs.getInt("rental_days"));
+					rdto.setRental_str(strd);
+					if(rs.getInt("rental_days")==2) {						
+						rdto.setRental_end(strd.plusDays(2));					
+					}else if(rs.getInt("rental_days")==3) {
+						rdto.setRental_end(strd.plusDays(3));											
+					}
+					
+				}
+				System.out.println("DAO : 제품 정보 조회 완료!!");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+					
+			
+			return rdto;
+		}
+		
+		// 특정 렌탈 아이템 정보를 조회하는 메서드 - getRentalItem()
+		
 	
 }

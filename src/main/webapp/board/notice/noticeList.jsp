@@ -18,6 +18,9 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/app.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
   <!-- 
@@ -87,11 +90,11 @@
       		  <a href="./NoticeList.no?pageNum=${startPage-pageBlock }" class="page-link">Pre</a>
 		    </c:if> 
 		  </li>
+		  <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 		  <li class="page-item">
-		    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
     		  <a href="./NoticeList.no?pageNum=${i }" class="page-link" href="#">${i }</a>
-		    </c:forEach>
 		  </li>
+		  </c:forEach>
 		  <li class="page-item">
 		    <c:if test="${endPage < pageCount }">
     		  <a href="./NoticeList.no?pageNum=${startPage+pageBlock }" class="page-link">Next</a>
@@ -115,6 +118,5 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="./js/app.js"></script>
-  
 </body>
 </html>
