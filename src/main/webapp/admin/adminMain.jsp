@@ -45,7 +45,7 @@
 		</li>
 
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="./AdMemberList.me">
+			<a class="sidebar-link" href="./AdOrderList.od">
               <i class="align-middle" data-feather="user"></i> 
               <span class="align-middle">회원관리</span>
            	</a>

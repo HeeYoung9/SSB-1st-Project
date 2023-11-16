@@ -16,7 +16,7 @@
            	</a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="#">
+			<a class="sidebar-link" href="./AdOrderList.od">
               <i class="align-middle" data-feather="shopping-cart"></i> 
               <span class="align-middle">주문관리</span>
             </a>
