@@ -24,7 +24,7 @@ let pwCheck = false; // onsubmit 시에 필요
 let pwCheck2 = false; // onsubmit 시에 필요
 
 // 공백 제어 jquery
-$('.inputId, .inputPw').on('input', function () {
+$('.inputId, .inputPw, #domain-txt, #floatingEmail, #floatingName, #floatingBirth, #floatingTel').on('input', function () {
     // 현재 입력된 비밀번호 값 가져오기
     let value = $(this).val();
 
@@ -75,7 +75,7 @@ function checkDuplicationId(){
 				idCheck = false;
 				//				$("#floatingId").focus();
 			} else if (result == '1') {
-				$("#checkId").html('<b>영문,숫자 가능(숫자 단일조합X)</b>');
+				$("#checkId").html('<b>영문,숫자만 가능(숫자 단일조합X)</b>');
 				$("#checkId").attr('color', 'red');
 				idCheck = false;
 				//				$("#floatingId").focus();
@@ -271,13 +271,13 @@ function check() {
 	// 생년월일 입력여부 체크
 	var birth = document.fr.member_birth.value;
 	if (birth == "") {
-		alert('생년월일을 입력하세요!');
 		document.fr.member_birth.focus();
 		return false;
 	}
 
 	// 생년월일 유효성 체크 (8자)
 	if (birth.length < 8) {
+		alert('생년월일은 8자리입니다');
 		document.fr.member_birth.focus();
 		return false;
 	}

@@ -439,7 +439,40 @@ public class MemberDAO {
 	    return memberList;
 	}
 									
-	
+	//-----------------------------------임시메서드----------------------------------
+
+	   public MemberDTO getMember(String id) {
+	      MemberDTO memberDTO = null;
+	      
+	      try {
+	         con = getCon();
+	         sql = "select * from member where member_user_id = ?";
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, id);
+	         
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            memberDTO = new MemberDTO();
+	            memberDTO.setMember_id(rs.getInt("member_id"));
+	            memberDTO.setMember_user_id(rs.getString("member_user_id"));
+	            memberDTO.setMember_name(rs.getString("member_name"));
+	            memberDTO.setMember_gender(rs.getString("member_gender"));
+	            memberDTO.setMember_payment(rs.getInt("member_payment"));
+	            memberDTO.setMember_grade(rs.getString("member_grade"));
+	            memberDTO.setMember_point(rs.getInt("member_point"));
+	            memberDTO.setMember_situation(rs.getString("member_situation"));
+	         }
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return memberDTO;
+	   }
+	   
+	   
+	   
+	   //-----------------------------------임시메서드----------------------------------
 	
 	
 }

@@ -36,9 +36,7 @@ public class MemberDeleteAction implements Action {
 		// MemberDAO 객체 생성 - 회원정보 삭제 메서드 호출
 		int result = 0;
 		MemberDAO dao = new MemberDAO();
-//		for(String member_id : deleteMember) {
-//			result = dao.deleteMember(Integer.parseInt(member_id));
-//		}
+		
 		for (String member_id : deleteMember) {
             try {
                 // 숫자로만 구성된 문자열인지 확인
