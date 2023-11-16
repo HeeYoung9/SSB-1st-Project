@@ -82,7 +82,7 @@ public class AdMemberListAction implements Action {
 		}else {
 			// 상품이 없는경우
 		}
-		System.out.println(" M : " + memberList.size());
+//		System.out.println(" M : " + memberList.size());
 
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달

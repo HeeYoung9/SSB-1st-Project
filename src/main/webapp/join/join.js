@@ -23,8 +23,8 @@ let idCheck = false; // onsubmit 시에 필요
 let pwCheck = false; // onsubmit 시에 필요 
 let pwCheck2 = false; // onsubmit 시에 필요
 
-// 공백 제어 juery
-$('.inputId, .inputPw').on('input', function () {
+// 공백 제어 jquery
+$('.inputId, .inputPw, #domain-txt, #floatingEmail, #floatingName, #floatingBirth, #floatingTel').on('input', function () {
     // 현재 입력된 비밀번호 값 가져오기
     let value = $(this).val();
 
@@ -35,6 +35,9 @@ $('.inputId, .inputPw').on('input', function () {
         $(this).val(value);
     }
 });
+
+// 전화번호, 생년월일 제어(숫자만 입력 되게)
+$()
 
 // submit 버튼 업데이트 함수
 function updateSubmitButton() {
@@ -72,7 +75,7 @@ function checkDuplicationId(){
 				idCheck = false;
 				//				$("#floatingId").focus();
 			} else if (result == '1') {
-				$("#checkId").html('<b>영문,숫자 가능(숫자 단일조합X)</b>');
+				$("#checkId").html('<b>영문,숫자만 가능(숫자 단일조합X)</b>');
 				$("#checkId").attr('color', 'red');
 				idCheck = false;
 				//				$("#floatingId").focus();
@@ -198,7 +201,7 @@ function pwDoubleCheck(){
     if (userPw1.trim() === '' && userPw2.trim() === '') {
         $('#pwDoubleCheck').html(""); // 메시지를 지우고
         pwCheck2 = false;
-        updateSubmitButton(); // 제출 버튼을 업데이트합니다.
+        updateSubmitButton(); // 제출 버튼을 업데이트
         return;
     }
 	
@@ -268,14 +271,14 @@ function check() {
 	// 생년월일 입력여부 체크
 	var birth = document.fr.member_birth.value;
 	if (birth == "") {
-		alert('생년월일을 입력하세요!');
 		document.fr.member_birth.focus();
 		return false;
 	}
 
 	// 생년월일 유효성 체크 (8자)
 	if (birth.length < 8) {
-		document.fr.member_pw.focus();
+		alert('생년월일은 8자리입니다');
+		document.fr.member_birth.focus();
 		return false;
 	}
 

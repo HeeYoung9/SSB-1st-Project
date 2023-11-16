@@ -25,6 +25,8 @@
 		
 		
 		response.sendRedirect("./Main.in");
+// 		response.sendRedirect("./MemberCloseAccount.me");
+		
 	
 	%>
 	

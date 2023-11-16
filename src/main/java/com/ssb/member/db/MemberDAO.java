@@ -130,14 +130,13 @@ public class MemberDAO {
 	}
 	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 	
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
-	public int updateMember(MemberDTO dto) {
-		int result = -1;
+	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(userId)
+	public boolean updateMember(MemberDTO dto) {
+		boolean result = false;
 		
 		try {
 			con =getCon();
-			
-			sql ="select pw from member where member_user_id = ?";
+			sql="select member_user_id from member where member_user_id = ?";
 			pstmt=con.prepareStatement(sql);
 			
 			// ???
@@ -145,22 +144,20 @@ public class MemberDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			// 데이터 처리
 			if(rs.next()) {
-				if(dto.getMember_pw().equals(rs.getString("member_pw"))) {
-					sql = "delete from member where id =?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setString(1, dto.getMember_user_id());
-					
-					result = pstmt.executeUpdate(); // 1 삭제완료
-				}else {
-					result = 0; // 비밀번호 오류
-				}
+				sql ="update member set member_situation = '탈퇴', member_outdate = now() where member_user_id = ?";
+				pstmt=con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getMember_user_id());
+				
+				pstmt.executeUpdate();
+				
+				result = true;
 			}else {
-				result = -1; // 회원정보 없음
+				result = false;
 			}
-			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
+			
+			System.out.println("DAO : 회원탈퇴(수정) 완료! ("+result+")");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,7 +167,7 @@ public class MemberDAO {
 		
 		return result;
 	}
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(dto)
 
 	// 회원정보 삭제 메서드 - deleteMember(dto)
 	public int deleteMember(int member_id) {
@@ -284,12 +281,14 @@ public class MemberDAO {
 			con = getCon();
 			
 			// 3. sql 작성(select) & pstmt 객체
-			sql = "select count(*) from member where member_user_id like ? or member_name like ?";
+			sql = "select count(*) from member where member_user_id like ? or member_name like ? or member_phone like ? or member_situation like ?";
 			pstmt  =  con.prepareStatement(sql);
 			
 			// ???
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			pstmt.setString(4, "%"+search+"%");
 			
 			// 4. sql 실행
 			rs = pstmt.executeQuery();
@@ -344,13 +343,7 @@ public class MemberDAO {
 	            dto.setMember_user_id(rs.getString("member_user_id"));
 	            dto.setMember_pw(rs.getString("member_pw"));
 	            dto.setMember_name(rs.getString("member_name"));
-
-	            // member_birth 처리
-//	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
-//	            dto.setMember_birth(sqlDate);
 	            dto.setMember_birth(rs.getDate("member_birth"));
-
-
 	            dto.setMember_gender(rs.getString("member_gender"));
 	            dto.setMember_email(rs.getString("member_email"));
 	            dto.setMember_phone(rs.getString("member_phone"));
@@ -393,14 +386,16 @@ public class MemberDAO {
 	        con = getCon();
 
 	        // 3. SQL 작성(select) & pstmt 객체
-	        sql = "select * from member where member_user_id like ? or member_name like ? order by member_id limit ?,?";
+	        sql = "select * from member where member_user_id like ? or member_name like ? or member_phone like ? or member_situation like ? order by member_id limit ?,?";
 	        pstmt = con.prepareStatement(sql);
 
 	        // ???
 	        pstmt.setString(1, "%" + search + "%"); // %검색어%
 	        pstmt.setString(2, "%" + search + "%"); // %검색어%
-	        pstmt.setInt(3, startRow - 1); // 시작행번호-1
-	        pstmt.setInt(4, pageSize); // 개수
+	        pstmt.setString(3, "%" + search + "%"); // %검색어%
+	        pstmt.setString(4, "%" + search + "%"); // %검색어%
+	        pstmt.setInt(5, startRow - 1); // 시작행번호-1
+	        pstmt.setInt(6, pageSize); // 개수
 
 	        // 4. SQL 실행
 	        rs = pstmt.executeQuery();
@@ -415,13 +410,7 @@ public class MemberDAO {
 	            dto.setMember_user_id(rs.getString("member_user_id"));
 	            dto.setMember_pw(rs.getString("member_pw"));
 	            dto.setMember_name(rs.getString("member_name"));
-
-	            // member_birth 처리
-//	            java.sql.Date sqlDate = (Date) rs.getObject("member_birth");
-//	            dto.setMember_birth(sqlDate);
 	            dto.setMember_birth(rs.getDate("member_birth"));
-
-
 	            dto.setMember_gender(rs.getString("member_gender"));
 	            dto.setMember_email(rs.getString("member_email"));
 	            dto.setMember_phone(rs.getString("member_phone"));
@@ -449,7 +438,7 @@ public class MemberDAO {
 
 	    return memberList;
 	}
-							
+									
 	//-----------------------------------임시메서드----------------------------------
 
 	   public MemberDTO getMember(String id) {
@@ -472,10 +461,10 @@ public class MemberDAO {
 	            memberDTO.setMember_payment(rs.getInt("member_payment"));
 	            memberDTO.setMember_grade(rs.getString("member_grade"));
 	            memberDTO.setMember_point(rs.getInt("member_point"));
+	            memberDTO.setMember_situation(rs.getString("member_situation"));
 	         }
 	         
 	      } catch (Exception e) {
-	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }
 	      return memberDTO;
@@ -484,8 +473,6 @@ public class MemberDAO {
 	   
 	   
 	   //-----------------------------------임시메서드----------------------------------
-	                           
-	
 	
 	
 }
