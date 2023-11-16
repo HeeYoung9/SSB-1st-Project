@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ssb.login.action.LogoutAction;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -129,6 +130,18 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberLogout.me")) {
+			System.out.println("C : /MemberLogout.me 매핑");
+		    System.out.println("C : 패턴 - DB사용o, 페이지 이동 ");
+
+		    action = new LogoutAction();
+
+		    try {
+				forward = action.execute(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
 		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		
