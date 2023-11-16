@@ -13,38 +13,34 @@
 	
 	
 </script>
-
-<!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
-
 </head>
 <body>
 
 
 <!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
 	<!-------------------  로고 넣는 곳 시작 --------------->
-	<div class="logo" style="margin-left: 24%;">
+<!-- 	<div class="logo" style="margin-left: 24%;"> -->
 <!-- 		<img alt="SSB_black" src="../img/SSB_black.png" width="150px"> -->
-	</div>
+<!-- 	</div> -->
 	<!------------------  로고 넣는 곳  끝----------------->
-</div>
+<!-- </div> -->
 <!--  -------------------------------------------탑 컨테이너 끝 ---------------------------------------------- -->
 
 <!---------------------------left-panel 시작---------------------------------->
-<div class="left-panel"></div>
+<!-- <div class="left-panel"></div> -->
 
 <!-- 메인 컨테이너 -->
-<div class="main-container" style="text-align: center; margin-top: 5%;">
-		<img alt="SSB_black" src="./main/img/SSB_black.png" width="150px" style="text-align: left;">
+<div class="main-container" >
+		<img alt="SSB_black" src="./main/img/SSB_black.png" width="150px" >
 	
 
 	<div class="form-container">
 
-		<main class="form-signin m-auto" style="width: 480px; /*border: 1px solid red;*/">
+		<main class="form-signin m-auto">
 			<!-- form 시작 -->
 			<form action="./MemberJoinAction.me" method="post" name="fr" onsubmit="return check();">
-				<h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원가입</h1>
+				<h1 class="h3 mb-3 fw-normal">회원가입</h1>
 				<!-- 아이디 -->
 				<div class="col">
 					<div class="input-group">
@@ -56,6 +52,7 @@
 					</div>
 				</div>
 				
+				<!-- 비밀번호  -->
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
@@ -70,17 +67,13 @@
 						</div>
 					</div>
 				</div>
-				<!-- 비밀번호 확인 -->
-<!-- 				<div class="form-floating d-flex"> -->
-<!-- 					<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder="">  -->
-<!-- 					<label for="floatinCheckPassword">비밀번호 확인</label> -->
-<!-- 				</div> -->
 				
+				<!-- 비밀번호 확인 -->				
 				<div class="col">
 					<div class="input-group">
 						<div class="form-floating">
 							<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder=""> 
-							<label for="floatinCheckPassword">비밀번호 확인</label>
+							<label for="floatinCheckPassword">비밀번호 확인(필수)</label>
 							<font id="pwDoubleCheck" size="2" color="red" class="position-absolute top-50 start-20 translate-middle-y" style="right: 9px; margin-top: 2px"></font>
 						</div>
 					</div>
@@ -145,7 +138,7 @@
 <!-- 				<div class="info"> -->
 <!-- 					<span><button style="border: none; background-color: none; font-size: 8px;" onclick="location.href='#'">고객 센터</button></span> -->
 <!-- 				</div> -->
-				<div class="form-floating" style="text-align: center; margin-top: 5%;">
+				<div class="form-floating" id="buttons">
 					<button class="btn btn-outline-dark w-25 py-2" id="submitButton" type="submit" name="member_situation" value="가입" disabled>회원가입</button>
 					<button class="btn btn-outline-dark w-25 py-2" type="button" style="margin-left: 10%" onclick=history.go(-1);>취소</button>
 				</div>

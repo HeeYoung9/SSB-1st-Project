@@ -24,7 +24,9 @@
 		System.out.println("* 주소줄에 .jsp 호출 X");
 		
 		
-		response.sendRedirect("./Main.in");
+// 		response.sendRedirect("./Main.in");
+		response.sendRedirect("./MemberCloseAccount.me");
+		
 	
 	%>
 	

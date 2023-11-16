@@ -45,8 +45,24 @@
 		</li>
 
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="./AdOrderList.od">
-              <i class="align-middle" data-feather="user"></i> 
+			<a class="sidebar-link" href="./NoticeList.no">
+              <i class="align-middle" data-feather=""></i> 
+			  <span class="align-middle">공지사항</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./InquiryList.iq">
+              <i class="align-middle" data-feather=""></i> 
+               <span class="align-middle">Q&A</span>
+            </a>
+		</li>				
+
+		<li class="sidebar-header">
+		</li>
+
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./AdMemberList.me">
+              <i class="align-middle" data-feather=""></i> 
               <span class="align-middle">회원관리</span>
            	</a>
 		</li>
