@@ -40,7 +40,6 @@ $(function() {
 			},
 			success: function(data) {
 				var input = data.replaceAll('"', "");
-				alert(input);
 				if (input == "inserted") {
 					html = "<img width='20' height='20' src='./main/img/redHeart.png' alt='inserted'>";
 				} else if (input == "deleted") {
