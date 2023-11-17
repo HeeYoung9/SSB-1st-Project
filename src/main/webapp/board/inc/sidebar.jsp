@@ -34,28 +34,27 @@
             </a>
 		</li>
 					
-		<li class="sidebar-header">
-			게시판
-		</li>
-
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./NoticeList.no">
-              <i class="align-middle" data-feather="edit-2"></i> 
-			  <span class="align-middle">Notice</span>
-            </a>
-		</li>
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./InquiryList.iq">
-              <i class="align-middle" data-feather="edit-2"></i> 
-               <span class="align-middle">Q&A</span>
-            </a>
-		</li>				
-		<li class="sidebar-item">
-			<a class="sidebar-link" href="./ReviewList.rv">
-              <i class="align-middle" data-feather="edit-2"></i> 
-               <span class="align-middle">Review</span>
-            </a>
-		</li>				
+	  <li class="sidebar-header">
+	  
+	  </li>
+	  <li class="sidebar-item">
+		<a class="sidebar-link" href="./AdMemberList.me">
+        	<i class="align-middle" data-feather=""></i> 
+        	<span class="align-middle">회원관리</span>
+		</a>
+	  </li>
+	  <li class="sidebar-item">
+		<a class="sidebar-link" href="index.html">
+        	<i class="align-middle" data-feather=""></i> 
+        	<span class="align-middle">주문관리</span>
+		</a>
+	  </li>
+	  <li class="sidebar-item">
+		<a class="sidebar-link" href="./ItemMgt.it">
+        	<i class="align-middle" data-feather=""></i> 
+        	<span class="align-middle">상품관리</span>
+		</a>
+	  </li>
 	</ul>
   </div>
 </nav>

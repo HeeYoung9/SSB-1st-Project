@@ -71,40 +71,40 @@ public class loginDAO {
     }
 
  // 로그인 체크 메서드 - loginMember(dto)
-  	public int loginMember(MemberDTO dto) {
-  		int result = -1; // -1 0 1
-  		
-  		try {
-  			// 1.2. 디비연결
-  			con = getCon();
-  			// 3. sql 작성 & pstmt 객체
-  			sql = "select member_pw, member_situation from member where member_user_id = ?";
-  			pstmt = con.prepareStatement(sql);
-  			pstmt.setString(1, dto.getMember_user_id());
-  			// 4. sql 실행
-  			rs = pstmt.executeQuery();
-  			// 5. 데이터 처리
-  			if(rs.next()) { // 회원정보가 있음
-  				if(rs.getString("member_situation").equals("탈퇴")) {
-  					// 상태가 '탈퇴'한 회원일 경우
-  					result = 2;
-  				}else if(dto.getMember_pw().equals(rs.getString("member_pw"))) {
-  					// 비밀번호 같음
-  					result = 1;
-  				}else {
-  					// 비밀번호 다름
-  					result = 0;
-  				}
-  			}else {// 회원정보 없음
-  				result = -1;
-  			}
-  			
-  			System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
-  		} catch (Exception e) {
-  			e.printStackTrace();
-  		} finally {
-  			closeDB();
-  		}
-  		return result;
-  	}
- }
+ 	public int loginMember(MemberDTO dto) {
+ 		int result = -1; // -1 0 1
+ 		
+ 		try {
+ 			// 1.2. 디비연결
+ 			con = getCon();
+ 			// 3. sql 작성 & pstmt 객체
+ 			sql = "select member_pw, member_situation from member where member_user_id = ?";
+ 			pstmt = con.prepareStatement(sql);
+ 			pstmt.setString(1, dto.getMember_user_id());
+ 			// 4. sql 실행
+ 			rs = pstmt.executeQuery();
+ 			// 5. 데이터 처리
+ 			if(rs.next()) { // 회원정보가 있음
+ 				if(rs.getString("member_situation").equals("탈퇴")) {
+ 					// 상태가 '탈퇴'한 회원일 경우
+ 					result = 2;
+ 				}else if(dto.getMember_pw().equals(rs.getString("member_pw"))) {
+ 					// 비밀번호 같음
+ 					result = 1;
+ 				}else {
+ 					// 비밀번호 다름
+ 					result = 0;
+ 				}
+ 			}else {// 회원정보 없음
+ 				result = -1;
+ 			}
+ 			
+ 			System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			closeDB();
+ 		}
+ 		return result;
+ 	}
+}
