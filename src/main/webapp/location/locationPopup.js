@@ -1,3 +1,6 @@
+$(function() {
+	opener.location.reload();
+});
 function listPopup() {
 	window.open("./locationPopup.lo", "배송지", "width = 600, height = 1200, top = 100, left = 200, location = no");
 }
