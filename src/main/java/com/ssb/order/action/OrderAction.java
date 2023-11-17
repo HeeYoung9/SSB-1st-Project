@@ -36,7 +36,7 @@ public class OrderAction implements Action {
 		
 		//로그인 유저 정보 가져오기
 		// 현재 임시로 넣어둠 이후에 까먹지 말고 memberId로 변경할 것
-		MemberDTO findMember = memberDAO.getMember("ssmMk2");
+		MemberDTO findMember = memberDAO.getMember(memberId);
 		
 		System.out.println("발견한 유저 ID : "+ findMember.getMember_id());
 		
