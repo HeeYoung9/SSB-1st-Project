@@ -6,6 +6,7 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="./location/locationPopup.js"></script>
 
 <script type="text/javascript">
 	function toggleCategory() {
@@ -153,12 +154,14 @@
 				</div>
 				
 				<h4 class="mb-3">배송지</h4>
-				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id">
+				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
  	 				<c:forEach var="item" items="${requestScope.locations}">
   					<option value=${item.location_id}>${item.location_add}${item.locationD_add}</option>
   					</c:forEach>
 				</select>
-				
+				<div onclick="listPopup()">
+					배송지 목록
+				</div>
 				<div>
 					<input type="hidden" name=strCartList value="${strCartList}">
 				</div>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,22 +13,22 @@
 <body>
 	<main>
 		<div class="insertPopup">
-			<h1>¹è¼ÛÁö º¯°æ</h1>
-			<input type="button" value="¹è¼ÛÁö Ãß°¡(ÆË¾÷)" onclick="insertPopup(-1)">
+			<h1>ë°°ì†¡ì§€ ë³€ê²½</h1>
+			<input type="button" value="ë°°ì†¡ì§€ ì¶”ê°€(íŒì—…)" onclick="insertPopup(-1)">
 		</div>
 		<c:forEach var="dto" items="${dtoArray }">
 			<div class="locationItem">
-				<div class="locationItemTitle"><!-- ¹è¼ÛÁö¸í -->
+				<div class="locationItemTitle"><!-- ë°°ì†¡ì§€ëª… -->
 					${dto.location_name} ${dto.location_title}
 				</div>
-				<div class="locationItemContent"><!-- Á¤º¸ -->
+				<div class="locationItemContent"><!-- ì •ë³´ -->
 					${dto.location_phone.substring(0,3)}-${dto.location_phone.substring(3,7)}-${dto.location_phone.substring(7,11)}<br>
 					(${dto.location_postcode}) ${dto.location_add}
 				</div>
-				<div class="locationItemButton"><!-- ¹öÆ° -->
-					<input type="button" value="¹è¼ÛÁö ¼öÁ¤(ÆË¾÷)" onclick="updatePopup('${dto.location_id}')">
-					<input type="button" value="¹è¼ÛÁö »èÁ¦(ÆË¾÷)" onclick="deletePopup('${dto.location_id}')">
-					<input class="select" type="button" value="¼±ÅÃ" onclick="selectPopup('${dto.location_id}')">
+				<div class="locationItemButton"><!-- ë²„íŠ¼ -->
+					<input type="button" value="ë°°ì†¡ì§€ ìˆ˜ì •(íŒì—…)" onclick="updatePopup('${dto.location_id}')">
+					<input type="button" value="ë°°ì†¡ì§€ ì‚­ì œ(íŒì—…)" onclick="deletePopup('${dto.location_id}')">
+					<input class="select" type="button" value="ì„ íƒ" onclick="selectPopup('${dto.location_id}')">
 				</div>
 			</div>
 		</c:forEach>
