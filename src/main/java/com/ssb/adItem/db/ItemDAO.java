@@ -249,7 +249,7 @@ public class ItemDAO {
 	        // 1.2. 디비연결
 	        con = getCon();
 	        // 3. sql 구문 작성(select) & pstmt 객체
-	        sql = "SELECT * FROM options o JOIN item i ON i.item_id = o.item_id JOIN category c ON c.category_id = i.category_id WHERE i.item_id = ?";
+	        sql = "SELECT * FROM item i LEFT JOIN options o ON i.item_id = o.item_id JOIN category c ON c.category_id = i.category_id where i.item_id= ?";
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, item_id);
 	        // 4. sql 실행
@@ -399,87 +399,7 @@ public class ItemDAO {
 	
 	
 	
-	
-	// (9) 카테고리 목록을 불러오는 메서드 - getCategoryList() 시작
-	public ArrayList<ItemDTO> getCategoryList() {
-	    
-		ArrayList<ItemDTO> CategoryList = new ArrayList<>();
-
-	    try {
-	        con = getCon();
-	    
-	        sql = "SELECT * FROM category";
-	        
-	        pstmt = con.prepareStatement(sql);
-	        rs = pstmt.executeQuery();
-
-	        while (rs.next()) {
-	            ItemDTO dto = new ItemDTO();
-	            dto.setCategory_id(rs.getInt("category_id"));
-	            dto.setCategory_code(rs.getInt("category_code"));
-	            dto.setCategory_sport(rs.getString("category_sport"));
-	            dto.setCategory_major(rs.getString("category_major"));
-	            dto.setCategory_sub(rs.getString("category_sub"));
-	            dto.setCategory_brand(rs.getString("category_brand"));
-	            CategoryList.add(dto);
-	        } // while
-	        
-	        System.out.println("\nCategoryDAO: 카테고리 목록을 불러왔다!");
-	        
-	    } catch (Exception e) {
-	        e.printStackTrace(); 
-	    } finally {
-	        CloseDB();
-	    }
-
-	    return CategoryList;
-	}
-
-	// (9) 카테고리 목록을 불러오는 메서드 - getCategoryList() 끝
-	
-	
-	
-
-	
-	// (10) 5개의 값과 일치하는 카테고리ID를 찾아오는 메서드 - findCategoryId() 시작
-	public int findCategoryId(String category_sport, String category_major, String category_sub, String category_brand, int category_code) {
-	    int categoryId = -1; // 기본값 설정 (오류 발생 시 -1을 리턴)
-
-	    try {
-	        con = getCon();
-	        // 새로 등록되는 상품에 (모든 카테고리 조건을 만족하는) 기존의 카테고리ID를 부여함
-	        sql = "SELECT category_id FROM category WHERE category_sport LIKE ? AND category_major LIKE ? AND category_sub LIKE ? AND category_brand LIKE ? AND category_code = ?";
-	        pstmt = con.prepareStatement(sql);
-
-	        pstmt.setString(1, "%" + category_sport + "%");
-	        pstmt.setString(2, category_major);
-	        pstmt.setString(3, category_sub);
-	        pstmt.setString(4, category_brand);
-	        pstmt.setInt(5, category_code);
-
-	        rs = pstmt.executeQuery();
-
-	        if (rs.next()) {
-	            categoryId = rs.getInt("category_id");
-	        }
-
-	        System.out.println(" CategoryDAO : 일치하는 카테고리ID를 찾아왔어요 ");
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        CloseDB();
-	    }
-
-	    return categoryId;
-	}
-	// (10) 5개의 값과 일치하는 카테고리ID를 찾아오는 메서드 - findCategoryId() 끝
-
-	
-	
-	
-	
-	// (11) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 시작
+	// (9) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 시작
     public void deleteItem(int options_id) {
     		// 상품 1개에 옵션 n개 존재함
     	    // 리스트에서 삭제 버튼 누르면 -> 옵션테이블 기준으로 옵션만 하나씩 삭제된다 (한번에 한개만 삭제 가능) 
@@ -533,12 +453,12 @@ public class ItemDAO {
 	    }
         
     }
-    // (11) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 끝
+    // (9) 옵션과 상품 정보를 삭제하는 메서드 - deleteItem 끝
 
 	
 	
 	
-    // (12) 특정 상품의 옵션 목록 메서드 - getOptList() 시작
+    // (10) 특정 상품의 옵션 목록 메서드 - getOptList() 시작
  	public ArrayList getOptList(int item_id) {
 
  		ArrayList getOptList = new ArrayList();
@@ -576,11 +496,56 @@ public class ItemDAO {
 
  		return getOptList;
  	}
- 	// (12) 특정 상품의 옵션 목록 메서드 - getOptList() 끝
+ 	// (10) 특정 상품의 옵션 목록 메서드 - getOptList() 끝
 
-    
-	
-	
-	
+  
+ 	
+ 	
+ 	public void editItem(ItemDTO dto) {
+ 	    try {
+ 	        con = getCon();
+
+ 	        sql = "UPDATE item SET item_name=?, item_price=?, item_img_main=?, item_img_sub=?, item_img_logo=?, category_id=? WHERE item_id=?";
+ 	        pstmt = con.prepareStatement(sql);
+ 	        pstmt.setString(1, dto.getItem_name());
+ 	        pstmt.setInt(2, dto.getItem_price());
+ 	        pstmt.setString(3, dto.getItem_img_main());
+ 	        pstmt.setString(4, dto.getItem_img_sub());
+ 	        pstmt.setString(5, dto.getItem_img_logo());
+ 	        pstmt.setInt(6, dto.getCategory_id());
+ 	        pstmt.setInt(7, dto.getItem_id());
+ 	        pstmt.executeUpdate();
+
+ 	       editOptions(dto); 
+
+ 	    } catch (Exception e) {
+ 	        e.printStackTrace();
+ 	    } finally {
+ 	        CloseDB();
+ 	    }
+ 	}
+
+
+ 	public void editOptions(ItemDTO dto) {
+ 	    try {
+ 	        con = getCon();
+
+ 	        sql = "UPDATE options SET options_name=?, options_value=?, options_price=?, options_quantity=? WHERE item_id=?";
+ 	        pstmt = con.prepareStatement(sql);
+ 	        pstmt.setString(1, dto.getOptions_name());
+ 	        pstmt.setString(2, dto.getOptions_value());
+ 	        pstmt.setInt(3, dto.getOptions_price());
+ 	        pstmt.setInt(4, dto.getOptions_quantity());
+ 	        pstmt.setInt(5, dto.getItem_id());
+ 	        pstmt.executeUpdate();
+
+ 	    } catch (Exception e) {
+ 	        e.printStackTrace();
+ 	    } finally {
+ 	        CloseDB();
+ 	    }
+ 	}
+
+ 	
 	
 } // ItemDAO

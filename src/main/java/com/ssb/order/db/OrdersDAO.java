@@ -25,6 +25,63 @@ public class OrdersDAO {
 	private ResultSet rs = null;
 	private String sql = "";
 	
+
+	
+	
+	//-------------------------- 렌탈 주문 생성 시작 --------------------------------------
+		public void saveRentalOrders(OrdersDTO dto) throws OrderPriceException{
+			System.out.println("saveRentalOrder 호출 확인");
+			
+			try {
+				// 1.2 디비 연결
+				con = getCon();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			try {		
+				if(!(dto.getTotal_price()>0)) {
+					throw new OrderPriceException("주문 토탈 가격에 문제 발생");
+				}
+				
+				// 3. SQL 작성
+				sql = "insert into orders (orders_id, member_id, orders_state, orders_date, orders_sort, orders_total_price, location_id) values (?,?,?,now(),?,?, ?)";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setLong(1, dto.getId());
+				pstmt.setLong(2, dto.getMember_id());
+				pstmt.setString(3, dto.getOrders_state().toString());
+				pstmt.setString(4, dto.getOrders_sort().toString());
+				pstmt.setInt(5, dto.getTotal_price());
+				
+				//----------------11월 16일 추가-----------
+				pstmt.setInt(6, dto.getLocation_id());
+				//----------------11월 16일 추가--------------------
+				
+				pstmt.executeUpdate();
+				
+				System.out.println("order 정상영업");
+				
+				
+				//트랜잭션 커밋
+				//con.commit();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+			
+		}
+		//-------------------------- 주문 생성 끝 --------------------------------------
+	
+	
+	
+	
+	
 	//-------------------------- 주문 생성 시작 --------------------------------------
 	public void saveSaleOrders(OrdersDTO dto) throws OrderPriceException{
 		System.out.println("saveSaleOrder 호출 확인");
@@ -490,6 +547,12 @@ public class OrdersDAO {
 			state = OrdersState.PURCHASE;
 		}else if(type.equals("DETERMINE")) {
 			state = OrdersState.DETERMINE;
+		}else if(type.equals("TURNIN")) {
+			state = OrdersState.TURNIN;
+		}else if(type.equals("DELIVERY")) {
+			state = OrdersState.DELIVERY;
+		}else if(type.equals("BEDELIVERED")) {
+			state = OrdersState.BEDELIVERED;
 		}
 		return state;
 	}

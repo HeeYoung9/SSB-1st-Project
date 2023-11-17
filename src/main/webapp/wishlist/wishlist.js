@@ -18,7 +18,7 @@ $(function() {
 				value = wishlistDiv[i].getAttribute('value');
 				item_idArr.find(function(element) {
 					if (element == value) {
-						$('div[value=' + value + ']').html("<img width='20' height='20' src='./main/img/redHeart.png' alt='inserted'>");//img src 변경
+						$('div[value=' + value + ']').html("<img width='22' height='22' src='./main/img/redHeart.png' alt='inserted'>");//img src 변경
 					}
 				});
 			}
@@ -40,11 +40,10 @@ $(function() {
 			},
 			success: function(data) {
 				var input = data.replaceAll('"', "");
-				alert(input);
 				if (input == "inserted") {
-					html = "<img width='20' height='20' src='./main/img/redHeart.png' alt='inserted'>";
+					html = "<img width='25' height='25' src='./main/img/redHeart.png' alt='inserted'>";
 				} else if (input == "deleted") {
-					html = "<img width='20' height='20' src='./main/img/heart.png' alt='deleted'>";
+					html = "<img width='22' height='22' src='./main/img/heart.png' alt='deleted'>";
 				} else {
 					alert("실패");
 				}

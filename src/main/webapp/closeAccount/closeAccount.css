@@ -1,166 +1,75 @@
-/* /* body 시작*/ */
-/* body { */
-/*     font-family: Arial, sans-serif; */
-/*     margin: 0; */
-/*     display: flex; */
-/*     flex-direction: column; */
-/*     min-height: 100vh; */
-/* } */
-/* /* body 끝 */ */
-
-/* /* header 시작*/ */
-/* .header { */
-/*     background-color: #000; */
-/*     color: #000; */
-/*     padding: 10px; */
-/*     display: flex; */
-/*     justify-content: space-between; */
-/*     align-items: center; */
-/*     position: fixed; */
-/*     top: 0; */
-/*     left: 0; */
-/*     width: 100%; */
-/*     height: 70px; */
-/*     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 그림자 효과 추가 */
-/*     z-index: 1000; 다른 요소들보다 위에 표시되도록 설정 */
-/* } */
-
-/* .logo { */
-/*     font-size: 24px; */
-/* } */
-
-/* .login-button, */
-/* .signup-button { */
-/*     background-color: #555; */
-/*     color: #fff; */
-/*     padding: 5px 10px; */
-/*     border: none; */
-/*     cursor: pointer; */
-/*     margin-left: 10px; */
-/* } */
-
-/* .login-button:hover, */
-/* .signup-button:hover { */
-/*     background-color: #777; */
-/* } */
-/* /* header 끝 */ */
-
-/* /* nav 시작 */ */
-/* .navbar { */
-/*     margin-top: 70px; */
-/*     background-color: #444; */
-/*     padding: 10px; */
-/*     display: flex; */
-/*     justify-content: space-between; */
-/* } */
-
-/* .navbar a { */
-/*     color: #fff; */
-/*     text-decoration: none; */
-/*     margin: 0 10px; */
-/* } */
-/* /* nav 끝 */ */
-
-/* /* section 시작 */ */
-/* .section { */
-/*     display: flex; */
-/* } */
-/* /* section 왼쪽 */ */
-/* .left-section { */
-/*     flex: 15%; */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
 /*     padding: 20px; */
-/*     background-color: #f0f0f0; 좌측 영역 배경색 설정 */
-/* } */
-
-/*  /* 아코디언 버튼이 줄바꿈되지 않도록 설정 */ */
-/* /* .accordion { */
-/*     white-space: nowrap; */
-/* } */ */
-/* /* 버튼을 블록 요소로 설정하여 줄바꿈을 방지합니다 */ */
-/* /* .accordion-btn { */
-/*     display: block;  */
-/*     width: 50px; */
-/* } */ */
-
-/* .accordion-btn { */
-/*     background: none; */
-/*     border: none; */
-/*     cursor: pointer; */
-/*     font-size: 16px; */
-/*     margin: 0; */
-/*     padding: 0; */
-/*     text-align: left; */
-/*     width: 100%; */
-/*     transition: background 0.3s ease; */
-/* } */
-
-/* .accordion-content { */
-/*     max-height: 0; */
-/*     overflow: hidden; */
-/*     transition: max-height 0.3s ease; */
-/* } */
-
-/* .accordion-btn.active { */
-/*     background: #f9f9f9; */
-/* } */
-
-/* .accordion-btn.active + .accordion-content { */
-/*     max-height: 1000px; */
-/* } */
+}
 
 
-/* /* section 오른쪽 */ */
-/* .right-section { */
-/*     flex: 85%; */
-/*     padding: 20px; */
-/* } */
+section{
+/* 	border: 1px solid red; */
+	padding: 0px 16% 0 16%;
+	background-color : var(--bs-gray-100);
+}
 
-/* /* section 끝 */ */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h3 {
+/* 	font-style:italic;  */
+	padding:20px 0px 0px 7px;
+	text-align: left;
+}
+
+span{
+	font-weight: bold;
+}
+
+.bl{
+	margin-top: 210px;
+	border-top: 4px solid black;
+}
+
+.sectionIn{
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	background-color: white;
+/* 	border: 1px solid blue; */
+}
+
+.bl2{
+	border-top: 2px solid black;
+}
+
+#withdrawalForm {
+    max-width: 400px;
+    margin-left: 10px, 0,  ;
+    background-color: #fff;
+    padding: 20px;
+/*     border-radius: 8px; */
+/*     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
 
 
- 
- body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
-        }
-
-        #withdrawalForm {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        
-        
-.section{
- margin-top: 150px;
- }

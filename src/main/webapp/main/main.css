@@ -337,5 +337,12 @@ a{
 }
 
 .wishlist {
-	margin-left: 50px;
+	margin-right: 130px;
+
+	float: left;
+}
+
+.text-center{
+	width: 100%;
+	height: 100px;	
 }

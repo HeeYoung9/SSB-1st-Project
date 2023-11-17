@@ -466,4 +466,34 @@ public class RentalDAO {
 			return result;
 		}
 		// (4) 상품 개수 계산 메서드 - getItemCount(String search) 끝
+		
+		
+		//------------------------------임시메서드----------------------------------------
+
+		//------------------------------수량 변경-----------------------------------------
+
+		public RentalDTO decreaseQuantity( int itemId) {
+
+			try {
+
+				con = getCon();
+				sql = "update rental_item "
+						+ "set rental_opt_quantity = rental_opt_quantity - 1 "
+						+"where rental_item_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, itemId);
+				pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+
+
+			return null;
+		}
+
+		//------------------------------수량 변경-----------------------------------------
+
+		//------------------------------임시메서드----------------------------------------
 }

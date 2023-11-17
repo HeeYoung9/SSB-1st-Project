@@ -42,13 +42,15 @@ public class OrdersDTO {
 	}
 	
 	//랜탈 주문 생성
-	public static OrdersDTO createRentalOrder(long id, long memberId) {
+	public static OrdersDTO createRentalOrder(long id, long memberId , int location_id) {
 		OrdersDTO orderDTO = new OrdersDTO();
 		orderDTO.id = id;
 		orderDTO.member_id = memberId;
 		orderDTO.orders_state = OrdersState.STANDBY;
 		orderDTO.orders_sort = OrdersSort.RENTAL;
 
+		orderDTO.location_id = location_id;
+		
 		return orderDTO;
 	}
 	

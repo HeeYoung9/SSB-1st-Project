@@ -35,7 +35,7 @@
 		<!-- ID 세션값이 있을때 보일 버튼(로그인 상태) -->
 		<c:if test="${!empty sessionScope.userId && not fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<button class="signup-button"><a href="./update.ud" style="white">My Page</a></button>
+				<button class="signup-button"><a href="./myPage.mp" style="white">My Page</a></button>
 				<button class="signup-button">
 				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" />
 				<a href="#" > 찜</a></button>

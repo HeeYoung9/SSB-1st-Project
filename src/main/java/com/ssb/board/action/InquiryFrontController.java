@@ -103,6 +103,18 @@ public class InquiryFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} 
+		else if(command.equals("/InquiryDeleteAction.iq")) {
+			System.out.println("C: /InquiryDeleteAction.iq 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// InquiryDeleteAction 객체 생성
+			action = new InquiryDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
 		}
 		System.out.println("---------- C: 2. 가상주소 매핑 끝   -----------");
 		/****************************** 2. 가상주소 매핑 끝 ******************************/

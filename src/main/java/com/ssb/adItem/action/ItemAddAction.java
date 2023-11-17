@@ -5,51 +5,50 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.adItem.db.ItemDAO;
 import com.ssb.adItem.db.ItemDTO;
+import com.ssb.category.db.CategoryDAO;
 import com.ssb.rental.db.RentalDAO;
 import com.ssb.rental.db.RentalDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
 public class ItemAddAction implements Action {
+	  @Override
+	    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	        System.out.println("\t M : ItemAddAction_execute() 호출 ");
 
-    @Override
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("\t M : ItemAddAction_execute() 호출 ");
+	        // 기존 카테고리 정보
+	        int categoryCode = Integer.parseInt(request.getParameter("category_code"));
+	        String categorySport = request.getParameter("category_sport");
+	        String categoryMajor = request.getParameter("category_major");
+	        String categorySub = request.getParameter("category_sub");
+	        String categoryBrand = request.getParameter("category_brand");
 
-        // 기존 카테고리 정보
-        int categoryCode =  Integer.parseInt(request.getParameter("category_code"));
-        String categorySport = request.getParameter("category_sport");
-        String categoryMajor = request.getParameter("category_major");
-        String categorySub = request.getParameter("category_sub");
-        String categoryBrand = request.getParameter("category_brand");
+	        // 기존의 카테고리 ID 찾기 -> 새로 등록하는 상품에 부여함
+	        int categoryId = new CategoryDAO().findOrCreateCategory(categorySport, categoryMajor, categorySub, categoryBrand, categoryCode);
 
-        // 기존의 카테고리 ID 찾기 -> 새로 등록하는 상품에 부여함
-        int categoryId = new ItemDAO().findCategoryId(categorySport, categoryMajor, categorySub, categoryBrand, categoryCode);
-      
-        ItemDTO dto = new ItemDTO();
-        RentalDTO rdto = new RentalDTO();
+	        ItemDTO dto = new ItemDTO();
+	        RentalDTO rdto = new RentalDTO();
 
-        // 판매 / 렌탈 구분
-        if (categoryCode == 1) { // 판매인 경우
-            setCommonFields(dto, request, categoryId);
-            setItemFields(dto, request);
-            
-            new ItemDAO().addItem(dto); // ItemDAO 객체 생성 - 상품 등록 메서드 호출
-        }
-        else if (categoryCode == 2) { // 렌탈인 경우
-            setCommonFields(rdto, request, categoryId);
-            setRentalFields(rdto, request);
-            
-            new RentalDAO().addRental(rdto); // RentalDAO 객체 생성 - 렌탈 등록 메서드 호출
-        }
+	        // 판매 / 렌탈 구분
+	        if (categoryCode == 1) { // 판매인 경우
+	            setCommonFields(dto, request, categoryId);
+	            setItemFields(dto, request);
 
-        // 페이지 이동 준비
-        ActionForward forward = new ActionForward();
-        forward.setPath("./ItemMgt.it");
-        forward.setRedirect(true);
+	            new ItemDAO().addItem(dto); // ItemDAO 객체 생성 - 상품 등록 메서드 호출
+	        } else if (categoryCode == 2) { // 렌탈인 경우
+	            setCommonFields(rdto, request, categoryId);
+	            setRentalFields(rdto, request);
 
-        return forward;
-    }
+	            new RentalDAO().addRental(rdto); // RentalDAO 객체 생성 - 렌탈 등록 메서드 호출
+	        }
+
+	        // 페이지 이동 준비
+	        ActionForward forward = new ActionForward();
+	        forward.setPath("./ItemMgt.it");
+	        forward.setRedirect(true);
+
+	        return forward;
+	    }
     
     
 
@@ -88,6 +87,7 @@ public class ItemAddAction implements Action {
     private void setRentalFields(RentalDTO rdto, HttpServletRequest request) {
     	rdto.setRental_item_name(request.getParameter("rental_item_name"));
     	rdto.setRental_item_price(Integer.parseInt(request.getParameter("rental_item_price")));
+    	rdto.setRental_days(Integer.parseInt(request.getParameter("rental_days")));
     	rdto.setRental_img_main(request.getParameter("rental_img_main"));
     	rdto.setRental_img_sub(request.getParameter("rental_img_sub"));
     	rdto.setRental_img_logo(request.getParameter("rental_img_logo"));

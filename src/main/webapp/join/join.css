@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-body{
-	background-color : var(--bs-gray-100);
-}
+
 
 .main-container {
     text-align: center;
@@ -10,15 +8,14 @@ body{
 /*     margin-left: 35%; */
 /*     margin-right: 35%; */
     background-color: white;
+ 	padding-bottom: 50px;
 }
 
 .main-container img {
     text-align: center;
 }
 
-.form-container{
-	
-}
+
 
 .form-signin {
     width: 480px;
@@ -91,5 +88,5 @@ select.box {
 #buttons{
 	text-align: center; 
 	margin: 5% 0 10% 0; 
-	padding-bottom: 5% 
+	
 }

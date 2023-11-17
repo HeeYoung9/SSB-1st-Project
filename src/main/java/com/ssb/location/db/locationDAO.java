@@ -148,8 +148,9 @@ public class locationDAO extends DAO{
 		
 		try {
 			con = getCon();
-			sql = "select * from location";
+			sql = "select * from location where location_id = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, location_id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -172,6 +173,8 @@ public class locationDAO extends DAO{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			CloseDB();
 		}
 		
 		return locationDTO;

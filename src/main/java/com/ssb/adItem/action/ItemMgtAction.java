@@ -24,21 +24,35 @@ public class ItemMgtAction implements Action {
 		String search = request.getParameter("search");
 		System.out.println(" M : 검색어 = "+search );
 		
+		String itemStyle = request.getParameter("item_style");
+		System.out.println("선택된 아이템 스타일은? "+itemStyle);
+		
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
 		// ItemDAO 객체 생성 - 상품목록 조회 메서드() 
 		ItemDAO idao = new ItemDAO();
+		RentalDAO rdao = new RentalDAO();
 
 		
 		int count = 0;
-		if(search == null) { // 검색어 X
-			System.out.println(" M : 검색어 없음! ");
-			count = idao.getItemCount();
-		}else { // 검색어 O - 검색결과O/X 
-			System.out.println(" M : 검색어 있음! ("+search+")");
-			count = idao.getItemCount(search);
-		}		
-		System.out.println(" M : 상품 개수 : " + count);
-
+		if(itemStyle==null || itemStyle.equals("sale")) {
+			if(search == null) { // 검색어 X
+				System.out.println(" M : 검색어 없음! ");
+				count = idao.getItemCount();
+			}else { // 검색어 O - 검색결과O/X 
+				System.out.println(" M : 검색어 있음! ("+search+")");
+				count = idao.getItemCount(search);
+			}		
+			System.out.println(" M : 상품 개수 : " + count);
+		}else if(itemStyle.equals("rental")) {
+			if(search == null) { // 검색어 X
+				System.out.println(" M : 검색어 없음! ");
+				count = rdao.getItemCount();
+			}else { // 검색어 O - 검색결과O/X 
+				System.out.println(" M : 검색어 있음! ("+search+")");
+				count = rdao.getItemCount(search);
+			}		
+			System.out.println(" M : 상품 개수 : " + count);
+		}
 		
 		
 
@@ -65,18 +79,32 @@ public class ItemMgtAction implements Action {
 
 		// DAO - 판매제품 모든 상품 정보를 가져오는 메서드 호출
 		ArrayList ItemMgt = null;
-		if (count > 0 && search == null) {
-			ItemMgt = idao.getItemMgt(startRow, pageSize);
-		}else if(count > 0 && search != null ) {
-			ItemMgt = idao.getItemMgt(startRow, pageSize, search);
-		}else {
-			// 상품이 없는경우
+		ArrayList rItemMgt = null;
+		if(itemStyle==null || itemStyle.equals("sale")) {
+			if (count > 0 && search == null) {
+				ItemMgt = idao.getItemMgt(startRow, pageSize);
+			}else if(count > 0 && search != null ) {
+				ItemMgt = idao.getItemMgt(startRow, pageSize, search);
+			}else {
+				// 상품이 없는경우
+			}
+			System.out.println(" M : " + ItemMgt.size());
+		}else if(itemStyle.equals("rental")) {
+			if (count > 0 && search == null) {
+				rItemMgt = rdao.rGetItemMgt(startRow, pageSize);
+			}else if(count > 0 && search != null ) {
+				rItemMgt = rdao.rGetItemMgt(startRow, pageSize, search);
+			}else {
+				// 상품이 없는경우
+			}
+			System.out.println(" M : " + rItemMgt.size());
 		}
-		System.out.println(" M : " + ItemMgt.size());
 		
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("ItemMgt", ItemMgt);
+		request.setAttribute("rItemMgt", rItemMgt);
+		request.setAttribute("itemStyle", itemStyle);
 
 
 		/******************* 페이징처리 2 *********************/

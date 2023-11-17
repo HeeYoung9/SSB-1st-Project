@@ -22,10 +22,13 @@
 
 <style>
 </style>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
 
-	<c:set var="CategoryList" value="<%=new com.ssb.adItem.db.ItemDAO().getCategoryList()%>" />
+	<c:set var="CategoryList" value="<%=new com.ssb.category.db.CategoryDAO().getCategoryList()%>" />
 
 	<div class="validation-form" novalidate style="width:1500px; margin-bottom: 60px;" align="center">
 
@@ -155,7 +158,7 @@
 
 						 	<div class="Add-F">
 							<label for="item">옵션추가금</label> 
-								<input type="text" class="form-control" name="options_price" placeholder="선택사항" disabled="disabled">
+								<input type="text" class="form-control" name="options_price" placeholder="선택사항">
 							</div>
 						
 						
@@ -270,11 +273,15 @@
 									<div class="invalid-feedback">재고 수량을 입력해주세요.</div>
 							</div>
 
+							<div class="Add-F">
+							<label for="item">렌탈대여일</label> 
+								<input type="number" class="form-control" name="rental_days" placeholder="days">
+							</div>
 						</div>
 
 	
 						<hr class="mc">
-						<input type="submit" value="등록">
+						<input type="submit" id="rentalSubmitButton" value="등록">
 
 						</form>
 						

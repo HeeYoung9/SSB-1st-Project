@@ -30,13 +30,13 @@ public class NoticeDeleteAction implements Action {
 		
 		if(result == 1) {
 			// JS사용 페이지 이동
-			JSMoveFunction.alertLocation(response, "삭제 완료!", "./NoticeList.no?pageNum="+pageNum);
+			JSMoveFunction.alertLocation(response, "삭제되었습니다.", "./NoticeList.no?pageNum="+pageNum);
 			return null;
 		}
 		
 		if(result == -1) {
 			// JS사용 페이지 이동
-			JSMoveFunction.alertBack(response, "게시판 글 없음!");
+			JSMoveFunction.alertBack(response, "게시판에 글이 존재하지 않습니다.");
 			return null;
 		}
 		

@@ -147,11 +147,17 @@
 					<c:forEach var="idto" items="${itemList }">
 						<div class="col mb-5" style="box-sizing: content-box;">
 							<div id="test" class="card h-100">
+							
 								<!-- brand logo -->
 								<div class="position-absolute"
 									style="top: 0.5rem; right: 0.5rem">
 									<img height="15" width="35"
 										src="./main/item_img/${idto.item_img_logo }" alt="헤드로고" />
+										
+									<!-- wish 하트 위치 -->	
+									<div class="wishlist" value="${idto.item_id }">
+										<img width="22" height="22" src="./main/img/heart.png" alt="위시리스트">
+									</div>
 								</div>
 								<!-- Product image-->
 
@@ -173,11 +179,11 @@
 								</a>
 								<!-- Product actions-->
 								
-								<!-- 위시리스트 담기 -->
+								<%-- <!-- 위시리스트 담기 -->
 								<div class="wishlist" value="${idto.item_id }">
-									<img width="20" height="20" src="./main/img/heart.png" alt="위시리스트">
+									<img width="25" height="25" src="./main/img/heart.png" alt="위시리스트">
 								</div>
-								<!-- 위시리스트 담기 -->
+								<!-- 위시리스트 담기 --> --%>
 								
 							</div>
 						</div>
