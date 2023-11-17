@@ -26,23 +26,13 @@
 <body>
 
 
-	<!--  -------------------------------------------탑 컨테이너 넣는 곳 ---------------------------------------------- -->
-	<div class="container-fluid">
-		<!-------------------  로고 넣는 곳 시작 --------------->
-		<div class="logo" style="margin-left: 24%;">
-			<!-- 		<img alt="SSB_black" src="../img/SSB_black.png" width="150px"> -->
-		</div>
-		<!------------------  로고 넣는 곳  끝----------------->
-	</div>
-	<!--  -------------------------------------------탑 컨테이너 끝 ---------------------------------------------- -->
-
 	<!---------------------------left-panel 시작---------------------------------->
 	<div class="left-panel"></div>
 
 	<!-- 메인 컨테이너 -->
-	<div class="main-container" style="text-align: center; margin-top: 5%;">
-		<img alt="SSB_black" src="./main/img/SSB_black.png" width="150px"
-			style="text-align: left;">
+	<div class="main-container" style="text-align: center;">
+		<a href="./Main.in"><img alt="SSB_black" src="./main/img/SSB_black.png" width="150px"
+			style="text-align: left;"> </a>
 
 
 		<div class="form-container">

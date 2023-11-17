@@ -43,13 +43,17 @@
 
 .login-button,
 .signup-button {
-    background-color: #555;
-    color: #fff;
+    background-color: transparent;
+    color: white;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
     margin-left: 10px;
     display: inline-block;
+}
+
+.signup-button>a{
+	color: white;
 }
 
 .login-button:hover,
@@ -252,6 +256,8 @@ a{
 	text-decoration: none;
 	color:black;
 }
+
+
 
 main{
 	margin-top: 200px;

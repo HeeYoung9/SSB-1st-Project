@@ -1,3 +1,4 @@
+<%@page import="com.ssb.rental.db.RentalDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -125,7 +126,7 @@
 				<hr>
 				<h4 class="mb-3">구매 희망 상품</h4>
 				
-				<form action="./OrderSalePay.od" method="post">
+				<form action="./OrderRentalPay.od" method="post">
 				
 				<table class="table table-dark table-striped">
 					<thead>
@@ -149,10 +150,18 @@
 							<td>${rdto.rental_item_price }</td>
 							<td>${rdto.rental_opt_quantity }</td>
 						</tr>
-				
+						
+						
+					
 					</tbody>
 				</table>
-
+				<input type="hidden" name="rental_item_id" value="${rdto.rental_item_id}">
+				<input type="hidden" name="rental_item_name" value="${rdto.rental_item_name}">
+				<input type="hidden" name="rental_str" value="${rdto.rental_str}">
+				<input type="hidden" name="rental_end" value="${rdto.rental_end}">
+				<input type="hidden" name="rental_item_price" value="${rdto.rental_item_price}">
+				<input type="hidden" name="rental_item_opt_quantity" value="${rdto.rental_opt_quantity}">
+				
 				
 				<hr class="my-4">
 
@@ -169,16 +178,13 @@
 				</div>
 				
 				<h4 class="mb-3">배송지</h4>
-				<select class="form-select form-select-lg mb-3" aria-label="Large select example">
+				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id">
  	 				<c:forEach var="ldto" items="${locaList}">
-  					<option value=${item.location_id}>${ldto.location_name},${ldto.location_add }</option>
+  					<option value="${item.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
 				</select>
 				<a href="./location.lo">배송지 목록</a>
 				
-				<div>
-					<input type="hidden" name=strCartList value="${strCartList}">
-				</div>
 				
 
 				<hr>

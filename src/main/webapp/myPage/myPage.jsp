@@ -97,7 +97,7 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
 									aria-expanded="false" aria-controls="flush-collapseThree">
-									<a href="location.lo"
+									<a href="./location.lo"
 										style="color: black; text-decoration: none;">배송지</a>
 								</button>
 							</h2>
@@ -146,12 +146,12 @@
 						<tr>
 							<td style="font-size: 20px;">적립금:</td>
 							<td style="font-size: 20px;"><fmt:formatNumber
-									value="${currentMember.getMember_payment() }" />원</td>
+									value="${currentMember.getMember_payment() }" /> 원</td>
 						</tr>
 						<tr>
 							<td style="font-size: 20px;">포인트:</td>
 							<td style="font-size: 20px;"><fmt:formatNumber
-									value="${currentMember.getMember_point() }" />원</td>
+									value="${currentMember.getMember_point() }" /> Point</td>
 						</tr>
 					</table>
 				</div>

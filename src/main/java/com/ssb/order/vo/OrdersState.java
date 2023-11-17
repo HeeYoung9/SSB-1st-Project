@@ -7,5 +7,7 @@ public enum OrdersState {
 	PURCHASE,
 	REFUND,
 	DELIVERY,
-	DETERMINE
+	DETERMINE,
+	TURNIN,
+	BEDELIVERED
 }

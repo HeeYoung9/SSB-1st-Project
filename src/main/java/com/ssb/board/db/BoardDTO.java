@@ -6,10 +6,13 @@ public class BoardDTO {
 
 	private int board_id; 			
 	private String admin_user_id;
-	private String admin_name; // 관리자 테이블에서 가져옴
-	private String member_name; // 회원 테이블에서 가져옴
 	private String member_user_id;
-	private int orders_id;
+	
+	private String admin_name; // 관리자 테이블
+	private String member_name; // 회원 테이블
+	
+	private int item_id; // 제품 테이블
+	private int rental_item_id; // 렌탈제품 테이블
 	
 	private String board_type;
 	private String inquiry_type;
@@ -57,12 +60,19 @@ public class BoardDTO {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-	
-	public int getOrders_id() {
-		return orders_id;
+		
+	public int getItem_id() {
+		return item_id;
 	}
-	public void setOrders_id(int orders_id) {
-		this.orders_id = orders_id;
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+	
+	public int getRental_item_id() {
+		return rental_item_id;
+	}
+	public void setRental_item_id(int rental_item_id) {
+		this.rental_item_id = rental_item_id;
 	}
 	
 	public String getBoard_type() {
@@ -131,11 +141,12 @@ public class BoardDTO {
 	
 	@Override
 	public String toString() {
-		return "BoardDTO [board_id=" + board_id + ", admin_user_id=" + admin_user_id + ", admin_name=" + admin_name
-				+ ", member_user_id=" + member_user_id + ", orders_id=" + orders_id + ", board_type=" + board_type
-				+ ", inquiry_type=" + inquiry_type + ", answer_state=" + answer_state + ", board_subject="
-				+ board_subject + ", board_content=" + board_content + ", board_writeTime=" + board_writeTime
-				+ ", board_readCount=" + board_readCount + ", board_file=" + board_file + ", rating=" + rating + "]";
-	}
+		return "BoardDTO [board_id=" + board_id + ", admin_user_id=" + admin_user_id + ", member_user_id="
+				+ member_user_id + ", admin_name=" + admin_name + ", member_name=" + member_name + ", item_id="
+				+ item_id + ", rental_item_id=" + rental_item_id + ", board_type=" + board_type + ", inquiry_type="
+				+ inquiry_type + ", answer_state=" + answer_state + ", board_subject=" + board_subject
+				+ ", board_content=" + board_content + ", board_writeTime=" + board_writeTime + ", board_readCount="
+				+ board_readCount + ", board_file=" + board_file + ", rating=" + rating + "]";
+	}	
 	
 }

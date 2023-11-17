@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.ssb.board.db.BoardDAO;
 import com.ssb.rental.db.RentalDAO;
 import com.ssb.rental.db.RentalDTO;
+import com.ssb.reply.db.ReplyDAO;
+import com.ssb.reply.db.ReplyDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -64,7 +66,7 @@ public class RentalItemAction implements Action {
 		ArrayList inquiryList = new ArrayList();
 		
 		if(count > 0) {
-			inquiryList = bdao.getInquiryList(startRow, pageSize);
+			inquiryList = bdao.getInquiryList(rItemId, startRow, pageSize);
 		}
 		
 		System.out.println("M: size: " + inquiryList.size());
@@ -101,7 +103,10 @@ public class RentalItemAction implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
-		
+		// 답변 정보를 가져와서 화면에 출력 
+				ReplyDAO rpdao = new ReplyDAO();
+				ReplyDTO rpdto = rpdao.getRItemReply(rItemId);
+				request.setAttribute("rpdto", rpdto);
 				
 		request.setAttribute("rdto", rdto);
 		ActionForward forward = new ActionForward();

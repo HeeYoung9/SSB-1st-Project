@@ -66,6 +66,17 @@ public class MainFrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}else if(command.equals("/ItemReserve.in")) {
+		System.out.println("C: /ItemReserve.in 호출");
+		System.out.println("C: 패턴3 - DB사용O, 화면 출력");
+		
+		action = new ItemReserveAction();
+		
+		try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

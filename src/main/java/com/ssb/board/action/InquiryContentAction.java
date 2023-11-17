@@ -1,5 +1,7 @@
 package com.ssb.board.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,7 +29,7 @@ public class InquiryContentAction implements Action {
 		BoardDTO bdto = bdao.getBoard(boardId);
 								
 		// ReplyDAO 객체 생성
-		// 특정 문의글 답변의 정보를 가져오는 메서드
+		// 문의글 답변의 정보를 가져오는 메서드
 		ReplyDAO rdao = new ReplyDAO();		
 		ReplyDTO rdto = rdao.getReply(boardId);
 				
@@ -38,7 +40,7 @@ public class InquiryContentAction implements Action {
 		request.setAttribute("rdto", rdto);
 				
 		// pageNum값도 request 영역에 저장
-//		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("pageNum", pageNum);
 				
 		// 페이지 이동준비 (./board/inquiryContent.jsp)
 		ActionForward forward = new ActionForward();

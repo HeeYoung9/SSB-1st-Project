@@ -9,12 +9,12 @@ import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 import com.ssb.util.JSMoveFunction;
 
-public class NoticeDeleteAction implements Action {
+public class InquiryDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: NoticeDeleteAction_execute() 호출");
+		System.out.println("\nM: InquiryDeleteAction_execute() 호출");
 		
 		// 한글 처리 => web.xml에 필터 처리 (생략)
 		
@@ -30,7 +30,7 @@ public class NoticeDeleteAction implements Action {
 		
 		if(result == 1) {
 			// JS사용 페이지 이동
-			JSMoveFunction.alertLocation(response, "삭제되었습니다.", "./NoticeList.no?pageNum="+pageNum);
+			JSMoveFunction.alertLocation(response, "삭제되었습니다.", "./InquiryList.iq");
 			return null;
 		}
 		

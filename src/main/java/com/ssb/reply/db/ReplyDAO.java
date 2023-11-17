@@ -97,7 +97,7 @@ public class ReplyDAO {
 	// 문의글 답변 작성하기 메서드 - insertInquiryABoard(ReplyDTO rdto)
 	
 	
-	// 특정 글에 해당하는 답변 정보 가져오기 메서드 - getReply(int boardId)
+	// 특정 문의글에 해당하는 답변 정보 가져오기 메서드 - getReply(int boardId)
 	public ReplyDTO getReply(int boardId) {
 		ReplyDTO rdto = null; 
 			
@@ -136,56 +136,49 @@ public class ReplyDAO {
 		return rdto;		
 	}	
 	// 특정 번호에 해당하는 글정보 가져오기 메서드 - getBoard(int boardId)
-
 	
-	// 댓글 작성하기 메서드 - insertReply(ReplyDTO rdto)
-//	public void insertReply(ReplyDTO rdto) {
-//		int replyId = 0;
-//		
-//		try {
-//			// 1.2. 디비 연결
-//			con = getCon();
-//			
-//			// reply_id 계산
-//			// 3. SQL 구문(select) & pstmt 객체
-//			sql = "select max(reply_id) from reply";
-//			pstmt = con.prepareStatement(sql);
-//						
-//			// 4. SQL 실행
-//			rs = pstmt.executeQuery();
-//						
-//			// 5. 데이터 처리
-//			if(rs.next()) {
-//				// reply_id = rs.getInt("max(reply_id)") + 1;
-//				// => getInt(int columnIndex):
-//				replyId = rs.getInt(1) + 1; 
-//			} else {
-//				replyId = 1;
-//			}
-//						
-//			System.out.println("DAO: 댓글번호: " + replyId);
-//			
-//			// 3. SQL 구문(insert) & pstmt 객체
-//			sql = "insert into reply(reply_id, board_id, reply_content, reply_writeTime) "
-//					+ "values(?, ?, ?, now())";
-//			pstmt = con.prepareStatement(sql);
-//			
-//			// ?		
-//			pstmt.setInt(1, replyId);
-//			pstmt.setInt(2, rdto.getBoard_id());
-//			pstmt.setString(3, rdto.getReply_content());
-//			
-//			// 4. SQL 실행
-//			pstmt.executeUpdate();
-//			
-//			System.out.println("DAO: 문의글 답변 작성하기 완료!");		
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//		
-//	} 
-	// 댓글 작성하기 메서드 - insertReply(ReplyDTO rdto)
+
+	// [렌탈제품] 특정 문의글에 해당하는 답변 정보 가져오기 메서드 - getRItemReply(int boardId)
+	public ReplyDTO getRItemReply(int rItemId) {
+		ReplyDTO rdto = null; 
+			
+		try {	
+			// 1.2. 디비 연결
+			con = getCon();
+				
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select rp.board_id, reply_content, reply_writeTime "
+					+ "from reply rp join board_remaster br "
+					+ "on rp.board_id = br.board_id "
+					+ "where rental_item_id=?";
+			pstmt = con.prepareStatement(sql);
+				
+			// ?
+			pstmt.setInt(1, rItemId);		
+				
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			System.out.println("DAO: SQL 실행 성공!");
+				
+			// 5. 데이터 처리
+			if(rs.next()) { // 데이터가 존재할 때				
+				rdto = new ReplyDTO();
+				
+				rdto.setBoard_id(rs.getInt("board_id"));
+				rdto.setReply_content(rs.getString("reply_content"));
+				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));
+			}
+				
+			System.out.println("DAO: 답변 정보 조회 완료! (렌탈제품)");				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+			
+		return rdto;		
+	}	
+	// [렌탈제품] 특정 문의글에 해당하는 답변 정보 가져오기 메서드 - getRItemReply(int boardId)
+
 	
 }

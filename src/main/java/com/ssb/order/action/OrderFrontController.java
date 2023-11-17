@@ -65,7 +65,7 @@ public class OrderFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/OrderSalePay.od")) { //주문 결제 페이지
+		}else if(command.equals("/OrderSalePay.od")) { //주문 결제 페이지 (판매 상품)
 			System.out.println( " C : /PayPage (디자인 구현중)");
 			System.out.println(" 아무것도 없음");
 			
@@ -75,6 +75,18 @@ public class OrderFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/OrderRentalPay.od")) { // 주문 결제 페이지 (렌탈 페이지)
+			System.out.println(" C : /OrderRentalPay 소환 ");
+			System.out.println(" 크흠 ");
+			
+			action = new OrderCreateRentalAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}	catch(Exception e) {
 				e.printStackTrace();
 			}
 			
@@ -99,7 +111,38 @@ public class OrderFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/OrderStateUpdateDelivery.od")) {
+			
+			action = new OrderStateUpdateWithDeliveryAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/OrderStateUpdateCancel.od")) {
+			
+			action = new OrderStateUpdateWithCancelAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/OrderStateUpdateBeDelivered.od")) {
+			
+			action = new OrderStateUpdateWithBeDeliveredAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 		
 		else if(command.equals("/realTest.od")) {
 		

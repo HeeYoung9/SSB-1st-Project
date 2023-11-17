@@ -41,12 +41,11 @@ public class OrderDetailDTO {
 		return orderDetailDTO;
 	}
 	
-	public static OrderDetailDTO createRentalItem(Long ordersId, int rentalItemId,String itemName, int price,long optionsId , Date rentalStr, Date rentalEnd) {
+	public static OrderDetailDTO createRentalItem(Long ordersId, int rentalItemId,String itemName, int price, Date rentalStr, Date rentalEnd) {
 		OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
 		orderDetailDTO.orders_id = ordersId;
 		orderDetailDTO.rental_itemId=rentalItemId;
 		orderDetailDTO.item_name = itemName;
-		orderDetailDTO.options_id = optionsId;
 		orderDetailDTO.quantity = 1;
 		orderDetailDTO.price = price;
 		orderDetailDTO.type = ItemType.RENTAL;

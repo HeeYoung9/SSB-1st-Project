@@ -43,6 +43,7 @@ public class ReviewWriteAction implements Action {
 		// 나머지 정보 저장
 		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
+		bdto.setMember_user_id(multi.getParameter("userId"));
 		bdto.setBoard_content(multi.getParameter("content"));
 		bdto.setBoard_file(multi.getFilesystemName("file"));
 		bdto.setRating(Double.parseDouble(multi.getParameter("rating")));

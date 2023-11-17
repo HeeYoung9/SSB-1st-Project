@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.naming.java.javaURLContextFactory;
+
 import com.ssb.location.db.locationDAO;
 import com.ssb.location.db.locationDTO;
 import com.ssb.rental.db.RentalDAO;
@@ -40,10 +42,9 @@ public class RentalReserveAction implements Action {
 		
 		System.out.println("LocalDate 타입 변환 날짜는????" + strDate);
 	
-		/*아래처럼 데이트타입 변환도 가능함!*/		
-		Date tmpDate = java.sql.Date.valueOf(strDate);
-		System.out.println("승민씨가 변환시킨것 "+tmpDate.getClass());
-		
+		//Test
+		//Date testDate = java.sql.Date.valueOf(strDate);
+	
 	
 		int rItemId = Integer.parseInt(request.getParameter("itemId"));
 		
@@ -60,10 +61,14 @@ public class RentalReserveAction implements Action {
 		System.out.println("주소정보는? " +locaList);
 		
 		
+		
 		// 렌탈아이템 정보, 선택날짜, 배송지 주소 전달
 		request.setAttribute("rdto", rdto);
 		/* request.setAttribute("selectedDate", selectedDate); */
 		request.setAttribute("locaList", locaList);
+		
+		// 가격 표시
+		//request.setAttribute("price", locaList);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./rental/rental_page/reservePage.jsp");

@@ -1,15 +1,16 @@
 package com.ssb.order.action;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ssb.Mitem.ItemDAO;
-import com.ssb.Mitem.ItemDTO;
-import com.ssb.cart.db.cartDAO;
-import com.ssb.cart.db.cartDTO;
+import com.ssb.member.db.MemberDAO;
+import com.ssb.member.db.MemberDTO;
 import com.ssb.order.db.OrderDetailDAO;
 import com.ssb.order.db.OrderDetailDTO;
 import com.ssb.order.db.OrdersDAO;
@@ -19,7 +20,7 @@ import com.ssb.order.exception.StockLackException;
 import com.ssb.order.service.OrderService;
 import com.ssb.order.vo.CreateOrderResult;
 import com.ssb.order.vo.OrderCheckState;
-
+import com.ssb.rental.db.RentalDAO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 import com.ssb.util.JSMoveFunction;
@@ -31,14 +32,26 @@ public class OrderCreateRentalAction implements Action {
 		
 		CreateOrderResult result = CreateOrderResult.FAILED;
 		//받아올 정보
-		String cartItems = request.getParameter("cartitems");
-		long memberId =  Integer.parseInt(request.getParameter("memberId"));
+		
+		HttpSession session = request.getSession();
+		
+		String userId =  (String)session.getAttribute("userId");
+		
+		MemberDAO memberDAO = new MemberDAO();
+		MemberDTO findMember =  memberDAO.getMember(userId);
 		
 		
+		System.out.println("출력된 주소 ID"+request.getParameter("location"));
+		//int location_id = Integer.parseInt(request.getParameter("location_id"));
 		
-		cartDAO cartDAO = new cartDAO();
 		
-		List<cartDTO> carts = cartDAO.getCartsV2(cartItems);
+		int rentalId = Integer.parseInt(request.getParameter("rental_item_id"));
+		String rentalItem_name =  request.getParameter("rental_item_name");
+		Date rentalStr = java.sql.Date.valueOf(request.getParameter("rental_str"));   
+		Date rentalEnd = java.sql.Date.valueOf(request.getParameter("rental_end"));
+		int rentalItemPrice =Integer.parseInt(request.getParameter("rental_item_price"));
+		int rentalQuantity = Integer.parseInt(request.getParameter("rental_item_opt_quantity"));
+		
 		
 		OrderCheckState orderCheckState;
 		OrdersDTO ordersDTO = new OrdersDTO();
@@ -47,8 +60,8 @@ public class OrderCreateRentalAction implements Action {
 	
 		try {
 			
-			//재고수량 체크 확인 -> 재고 수량이 구매 하고자 하는 양보다 부족시 예외 발생
-			orderCheckState = OrderService.stockCheck(carts);
+			//재고수량 체크 확인 -> 재고 수량이 구매 하고자 하는 양보다 부족시 예외 발생 (렌탈 ID)
+			orderCheckState = OrderService.rentalStockCheck(rentalId);
 			
 			//-----------------------재고 수량 체크에서 문제 없을시 아래 코드 진헹-----------------------------
 			OrdersDAO orderDAO = new OrdersDAO();
@@ -56,46 +69,40 @@ public class OrderCreateRentalAction implements Action {
 			//orderㄴID생성
 			long ordersID = orderDAO.createOrdersId();
 			System.out.println("생성된 첫번째 상품 ID = " +ordersID);
-			ordersDTO = OrdersDTO.createRentalOrder(ordersID, memberId);
+			ordersDTO = OrdersDTO.createRentalOrder(ordersID, findMember.getMember_id(), 1);
 			
 			int orderTotalPrice = 0;
 
 			
 			//----------------------------옵션 수량 깎는 메서드 들어갈 자리------------------------
-			cartDAO.decreaseQuantity(cartItems);
+			// 장바구니 기능을 쓰지 않으므로 rental Item 수량 직접 깍아야함 -> 메서드 구현
+			RentalDAO rentalDAO = new RentalDAO();
+			
+			rentalDAO.decreaseQuantity(rentalId);
 			
 			//-------------------------------------------------------------------
 			//할인율
 			int discount = 0;
 			//------------------------------------------------------------------
 			
-			//주문 무한 생성
-			for(cartDTO cartDTO : carts) {
 				
+			//주문상세 생성
+			OrderDetailDTO orderDetail = OrderDetailDTO.createRentalItem(ordersID, rentalId,rentalItem_name, rentalItemPrice , rentalStr, rentalEnd); //렌탈 시작 기간, 렌탈 종료 기간 );
 				
-				//귀찮아서 그냥 기존에 있던거 끌어씀
-				ItemDAO itemDAO = new ItemDAO();
+			OrderDetailDAO orderDDAO = new OrderDetailDAO();
+			//주문상세 저장
+			orderDDAO.saveRentalDetail(orderDetail);
+			orderDDTOs.add(orderDetail);
 				
-				//아이템 가격 추출
-				ItemDTO itemDTO = itemDAO.getItemV2(cartDTO.getItem_id());
-				
-				//주문상세 생성
-				OrderDetailDTO orderDetail = OrderDetailDTO.createRentalItem(ordersID, cartDTO.getItem_id(),itemDTO.getItem_name(),itemDTO.getItem_price()-(itemDTO.getItem_price()*discount), cartDTO.getOptions_id() , null, null); //렌탈 시작 기간, 렌탈 종료 기간 );
-				
-				OrderDetailDAO orderDDAO = new OrderDetailDAO();
-				//주문상세 저장
-				orderDDAO.saveSaleDetail(orderDetail);
-				orderDDTOs.add(orderDetail);
-				
-				//총 주문 금액 plus
-				orderTotalPrice += orderDetail.getTotalPrice();
-			}
+			//총 주문 금액 plus
+			orderTotalPrice += orderDetail.getTotalPrice();
+			
 			
 			//계싼된 총 주문 금액 DTO에 입력
 			ordersDTO.changeTotalPrice(orderTotalPrice);
 			
 			//ordersDTO DB에 최종 저장
-			orderDAO.saveSaleOrders(ordersDTO);
+			orderDAO.saveRentalOrders(ordersDTO);
 			
 			System.out.println("OrderCreate 호출 확인 3");
 			result = CreateOrderResult.SUCCESS;

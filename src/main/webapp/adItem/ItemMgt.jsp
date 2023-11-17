@@ -40,15 +40,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
-	
-<script type="text/javascript">
-$(function(){
-	if($('#myselect').val()==1{
-		$('#myselect').attr('1')
-	})
-});
 
-</script>
 
 <!------- common CSS  ------->
 <link rel="stylesheet"
@@ -94,12 +86,23 @@ $(function(){
 									placeholder="   상품명을 입력해 주세요">
 								<button type="submit" id="searchButton">검색</button>
 							</form>
+					
 					</span> <span id="btn-line">
 							<button id="addButton"
 								onclick="location.href='./itemAddForm.it';">상품 등록</button>
 							<button id="editButton">상품 수정</button>
 					</span>
-					</span> </span>
+					<form action="./ItemMgt.it?item_style=${itemStyle }" method="get" class="search-bar"
+					style="display: inline-block;">
+					<select id="sel" name="item_style" class="form-select"
+						aria-label="Default select example"
+						style="width: 100px; float: left;" >
+						<option value="sale" ${param.item_style=='sale' ? 'selected="selected"' : ''}>판매</option>
+						<option value="rental" ${param.item_style=='rental' ?'selected="selected"' : '' }>렌탈</option>
+					</select>
+					<input type="submit" value="검색" id="searchButton "></input>
+				</form>
+				
 					<table class="sort">
 						<%-- 체크박스 / 상품ID / 상품명(썸네일+제목) / 판매가 / 카테고리 / 옵션 / 재고 --%>
 						<colgroup>
@@ -131,6 +134,8 @@ $(function(){
 
 						<%-- 상품 리스트 --%>
 						
+						<!-- 판매제품 일때 -->
+						<c:if test="${itemStyle==null || itemStyle=='sale' }">
 						<c:forEach var="dto" items="${ItemMgt }">
 							<tr style="background-color: white;">
 								<td><label class="checkbox-inline"> <input
@@ -151,11 +156,38 @@ $(function(){
 								<td>${dto.options_quantity }</td>
 							</tr>
 						</c:forEach>
+						</c:if>
+					
+					<!-- 렌탈 제품일떄 -->	
+					<c:if test="${itemStyle=='rental' }">
+					<c:forEach var="rdto" items="${rItemMgt }">
+							<tr style="background-color: white;">
+								<td><label class="checkbox-inline"> <input
+										type="checkbox" name="options_id" value="${rdto.rental_item_id }">
+								</label></td>
+
+								<td><c:out value="${rdto.rental_item_id }"></c:out></td>
+								<td><a href="#" class="thumb"> <img alt="제품이미지"
+										src="./main/rental_item/${rdto.rental_img_main }">
+								</a></td>
+								<td>${rdto.rental_item_name }</td>
+								<td><fmt:formatNumber type="number" maxFractionDigits="3"
+										value="${rdto.rental_item_price}" />원</td>
+								<td>${rdto.category_sport }- ${rdto.category_sub }
+									(${rdto.category_major })</td>
+								<td>${rdto.category_brand }</td>
+								<td>${rdto.rental_opt_name }${rdto.rental_opt_value }</td>
+								<td>${rdto.rental_opt_quantity }</td>
+							</tr>
+						</c:forEach>
+					
+					</c:if>	
 					
 					</table>
 			
 
-					<!--- 페이징 --->
+					<!--- 판매 제품 페이징 --->
+					<c:if test="${itemStyle==null || itemStyle=='sale' }">
 					<div class="paging">
 						<button id="deleteButton"
 							onclick="selectOptions('ItemDeleteAction.it')">상품 삭제</button>
@@ -163,14 +195,14 @@ $(function(){
 						<c:if test="${startPage > pageBlock }">
 							<!-- <span class="prev"> -->
 							<a
-								href="./ItemMgt.it?pageNum=${startPage-pageBlock }&search=${param.search}"><
+								href="./ItemMgt.it?pageNum=${startPage-pageBlock }&search=${param.search}&item_style=${param.item_style}&search=${param.search}"><
 								이전</a>
 							<!-- </span> -->
 						</c:if>
 
 						<span class="num"> <c:forEach var="i" begin="${startPage }"
 								end="${endPage }" step="1">
-								<a href="./ItemMgt.it?pageNum=${i }&search=${param.search}"
+								<a href="./ItemMgt.it?pageNum=${i }&search=${param.search}&item_style=${param.item_style}&search=${param.search}"
 									class="on">${i }</a>
 							</c:forEach>
 						</span>
@@ -178,11 +210,52 @@ $(function(){
 						<c:if test="${endPage < pageCount }">
 							<!--  <span class="next"> -->
 							<a
-								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}">다음
+								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&item_style=${param.item_style}&search=${param.search}">다음
+								></a>
+								
+							<a
+								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&item_style=${param.item_style}&search=${param.search}">다음
 								></a>
 							<!-- </span> -->
 						</c:if>
 					</div>
+					</c:if>
+			
+					<!-- 렌탈제품 페이징 -->
+					<c:if test="${itemStyle=='rental' }">
+					<div class="paging">
+						<button id="deleteButton"
+							onclick="selectOptions('ItemDeleteAction.it')">상품 삭제</button>
+
+						<c:if test="${startPage > pageBlock }">
+							<!-- <span class="prev"> -->
+							<a
+								href="./ItemMgt.it?pageNum=${startPage-pageBlock }&search=${param.search}&item_style=${param.item_style }"><
+								이전</a>
+							<!-- </span> -->
+						</c:if>
+
+						<span class="num"> <c:forEach var="i" begin="${startPage }"
+								end="${endPage }" step="1">
+								<a href="./ItemMgt.it?pageNum=${i }&search=${param.search}&item_style=${param.item_style }"
+									class="on">${i }</a>
+							</c:forEach>
+						</span>
+
+						<c:if test="${endPage < pageCount }">
+							<!--  <span class="next"> -->
+							<a
+								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}&item_style=${param.item_style }">다음
+								></a>
+								
+							<a
+								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}&item_style=${param.item_style}">다음
+								></a>
+							<!-- </span> -->
+						</c:if>
+					</div>
+					</c:if>
+					
 				</section>
 			</main>
 

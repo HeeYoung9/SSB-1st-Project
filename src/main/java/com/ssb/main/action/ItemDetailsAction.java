@@ -15,8 +15,7 @@ public class ItemDetailsAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    System.out.println(" M : ItemDetailAction_execute() 호출! ");
 
-	    String itemNoParam = request.getParameter("item_id");
-	    int item_id = (itemNoParam != null && !itemNoParam.isEmpty()) ? Integer.parseInt(itemNoParam) : 0;
+	    int item_id = Integer.parseInt(request.getParameter("item_id"));
 
 	    ItemDAO idao = new ItemDAO();
 	    ItemDTO itemDTO = idao.getItem(item_id);
@@ -27,7 +26,7 @@ public class ItemDetailsAction implements Action {
 	    request.setAttribute("itemDTO", itemDTO);
 
 	    ActionForward forward = new ActionForward();
-	    forward.setPath("./adItem/itemDetails.jsp");
+	    forward.setPath("/saleItem/itemDetails.jsp");
 	    forward.setRedirect(false);
 
 	    return forward;

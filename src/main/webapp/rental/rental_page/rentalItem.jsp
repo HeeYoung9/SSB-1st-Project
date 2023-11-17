@@ -53,8 +53,8 @@
 </script>
 <!-- Q&A 작성하기 버튼 클릭 시 팝업창 띄우기 -->
 <script type="text/javascript">
-	function openPop(){
-		var popup = window.open('./InquiryQWrite.iq', '문의팝업', 'width=550px,height=450px,scrollbars=yes');
+	function openInquiryPop(){
+		var popup = window.open('./InquiryQWrite.iq?rItemId=${rdto.rental_item_id }', '문의팝업', 'width=550px,height=450px,scrollbars=yes');
 	}
 </script>
 
@@ -170,14 +170,19 @@
 				alt="상품 상세 이미지">
 		</div>
 
+		<div class="product-description">
+			<h2>상품 상세 이미지</h2>
+			<img src="./main/rental_item/${rdto.rental_img_sub }"
+				alt="상품 상세 이미지">
+		</div>
+
 		<div class="reviews" id="review">
-		<h2>REVIEW</h2>
+		<h1>REVIEW</h1>
 		 <div class="container">
 		  <table class="table table-sm">
 		    <colgroup>
 			  <col style="width:10%;" />
 			  <col style="width:60%;" />
-			  <col style="width:10%;" />
 			  <col style="width:10%;" />
 			  <col style="width:10%;" />
 			</colgroup>
@@ -186,24 +191,81 @@
 			  <th>평점</th>
 		      <th>내용</th>
 			  <th>작성자</th>
-			  <th>조회수</th>
 			  <th>작성일</th>
 		    </tr>
 		    </thead>
 		    <tbody>
+		    <c:forEach var="rbdto" items="${reviewList }">
 		     <tr>
-		      <td>★★★★★</td>
-		      <td>처음 이용해봤는데 너무 좋네요!</td>
-		      <td>김철수</td>
-		      <td>3</td>
-		      <td>2023-11-15</td>
-		     </tr> 
+		      <td>
+		       <c:if test="${rbdto.rating == 5 }">
+		        ★★★★★
+		       </c:if>
+		       <c:if test="${rbdto.rating == 4 }">
+		        ★★★★
+		       </c:if>
+		       <c:if test="${rbdto.rating == 3 }">
+		        ★★★
+		       </c:if>
+		       <c:if test="${rbdto.rating == 2 }">
+		        ★★
+		       </c:if>
+		       <c:if test="${rbdto.rating == 1 }">
+		        ★
+		       </c:if>
+		      </td>
+		      <td>
+               <div class="panel-faq-container">
+                <p class="panel-faq-title">${rbdto.board_content }</p>
+               </div>
+              </td>		      
+		      <td>${rbdto.member_name }</td>
+		      <td>${rbdto.board_writeTime }</td>
+		     </tr>
+		     <tr>
+		      <td colspan="5" width="100%" style="border-bottom: inherit; padding: 0;">
+		       <div class="panel-faq-answer">
+                <p class="p-content">${rbdto.board_content }</p>
+                <c:if test="${!empty rbdto.board_file}">
+                 <p class="p-content">
+                  <img src="<%=request.getContextPath() %>/upload/${rbdto.board_file }" style="width: 100px; height: 100px;">
+                 </p>
+                </c:if>
+               </div>
+		      </td>
+		     </tr>		     
+		    </c:forEach>  
 		    </tbody>
 		  </table>
-		 </div>		
+		 </div>
+		 
+		 <nav aria-label="Page navigation example">
+  		   <ul class="pagination pagination-sm justify-content-center">
+    	     <c:if test="${reviewStartPage > reviewPageBlock }">
+    	      <li class="page-item">
+      		   <a class="page-link" href="" aria-label="Previous">
+        		<span aria-hidden="true">&laquo;</span>
+      		   </a>
+    	      </li>
+      		 </c:if>  
+    	     <c:forEach var="i" begin="${reviewStartPage }" end="${reviewEndPage }" step="1">
+    	      <li class="page-item">
+    	        <a class="page-link" href="">${i }</a>
+    	      </li>
+			 </c:forEach>
+    	     <c:if test="${reviewEndPage < reviewPageCount }">
+    	      <li class="page-item">
+    	       <a class="page-link" href="" aria-label="Next">
+    	         <span aria-hidden="true">&raquo;</span>
+    	       </a>
+    	      </li>
+    	     </c:if> 
+  		   </ul>
+		 </nav>		 			
 		</div>
+		
 		<div class="questions">
-		<h2>Q&A</h2>
+		<h1>Q&A</h1>
 		 <div class="container">
 		  <table class="table table-sm">
 		    <colgroup>
@@ -226,12 +288,10 @@
 		    <c:forEach var="bdto" items="${inquiryList }">
 		     <tr>
 		      <td>
-		        <c:if test="${!empty bdto.answer_state }">
-			     <font style="color: red;">${bdto.answer_state }</font>
-			    </c:if>
-			    <c:if test="${bdto.answer_state == null}">
-			     답변예정
-			    </c:if>
+			    <c:if test="${bdto.answer_state == '답변예정'}"><strong>답변예정</strong></c:if>
+				<c:if test="${bdto.answer_state == '답변완료'}">
+				 <font style="color: red;"><strong>${bdto.answer_state }</strong></font>
+				</c:if>
 		      </td>
 		      <td><c:out value="${bdto.inquiry_type }"/></td>
 		      <td>
@@ -243,9 +303,13 @@
 		      <td>${bdto.board_writeTime }</td>
 		     </tr>
 		     <tr>
-		      <td colspan="5" width="100%" style="border-bottom: inherit;">
+		      <td colspan="5" width="100%" style="border-bottom: inherit; padding: 0;">
 		       <div class="panel-faq-answer">
-                <p style="text-align: left; margin: 10px 0px 0px 10px;">${bdto.board_content }</p>
+                <p class="p-content">${bdto.board_content }</p>
+                <c:if test="${bdto.board_id == rpdto.board_id }">
+                 <p class="p-content"><strong>[답변]</strong></p>
+                 <p class="p-content">${rpdto.reply_content }</p>
+                </c:if>
                </div>
 		      </td>
 		     </tr>
@@ -258,31 +322,31 @@
   		   <ul class="pagination pagination-sm justify-content-center">
     	     <c:if test="${startPage > pageBlock }">
     	      <li class="page-item">
-      		   <a class="page-link" href="./RentalItem.re?pageNum=${startPage-pageBlock }" aria-label="Previous">
+      		   <a class="page-link" href="" aria-label="Previous">
         		<span aria-hidden="true">&laquo;</span>
       		   </a>
     	      </li>
       		 </c:if>  
     	     <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
     	      <li class="page-item">
-    	        <a class="page-link" href="./RentalItem.re?pageNum=${i }">${i }</a>
+    	        <a class="page-link" href="">${i }</a>
     	      </li>
 			 </c:forEach>
     	     <c:if test="${endPage < pageCount }">
     	      <li class="page-item">
-    	       <a class="page-link" href="./RentalItem.re?pageNum=${startPage+pageBlock }" aria-label="Next">
+    	       <a class="page-link" href="" aria-label="Next">
     	         <span aria-hidden="true">&raquo;</span>
     	       </a>
     	      </li>
     	     </c:if> 
   		   </ul>
 		 </nav>
-		<div style="text-align: right; margin-right: 180px;">
-	     <a class="btn btn-sm btn-dark rbtn" role="button" onclick="openPop()">작성하기</a>
-		</div>
-		
+		 <div style="text-align: right; margin-right: 180px;">
+	      <a class="btn btn-sm btn-dark rbtn" role="button" onclick="openInquiryPop()">작성하기</a>
+		 </div>	
 		</div>
 	</section>
+
 	
 	<nav class="top">
 		<a href="#">↑TOP</a>

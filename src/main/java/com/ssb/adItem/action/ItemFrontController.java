@@ -54,16 +54,6 @@ public class ItemFrontController extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if(command.equals("/RntalItemMgt.it")) {
-				System.out.println(" C : /RntalItemMgt.it 호출 ");
-				System.out.println(" C : 패턴 3 - DB정보사용 O, 화면 출력 ");
-				action = new RitemMgtAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
             //----------------상품 등록----------------( O )
 			}else if (command.equals("/itemAddForm.it")) {
 				System.out.println("C: /itemAddForm.it 호출");
