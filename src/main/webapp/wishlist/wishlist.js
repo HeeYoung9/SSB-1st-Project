@@ -45,7 +45,7 @@ $(function() {
 				} else if (input == "deleted") {
 					html = "<img width='20' height='20' src='./main/img/heart.png' alt='deleted'>";
 				} else {
-					alert("실패");
+					alert("로그인이 필요한 서비스입니다");
 				}
 				$(this).html(html);
 				if (input == "inserted") {
