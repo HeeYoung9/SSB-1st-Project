@@ -1,5 +1,8 @@
+$(function() {
+	opener.location.reload();
+});
 function listPopup() {
-	window.open("./locationPopup.lo?", "배송지", "width = 500, height = 500, top = 100, left = 200, location = no");
+	window.open("./locationPopup.lo", "배송지", "width = 600, height = 1200, top = 100, left = 200, location = no");
 }
 function insertPopup(location_id) {
 	window.open("./locationInsert.lo?&location_id=" + location_id, "신규배송지", "width = 500, height = 600, top = 100, left = 200, location = no");
@@ -30,7 +33,22 @@ function deletePopup(location_id) {
 	}
 }
 function selectPopup(location_id){//배송지 선택시 부모창으로 값 넘기기
-	opener.document.getElementById("getPopup").value = location_id;
-	alert(location_id);
+	var check = 0;
+		
+	$(opener.document).find('#location_id option').each(function(){
+		if(this.value == location_id) {
+			$(opener.document).find('#location_id').val(location_id).prop("selected", true);
+			check = 1;
+		}
+	});
+	if(!check){
+		alert("배송지 선택 오류");
+	}
     window.close();
 }
+/*
+selectPopup 사용양식
+jsp의 select에게 id = location_id 추가
+option의 value = $ {dto.location_id} 추가
+ */
+
