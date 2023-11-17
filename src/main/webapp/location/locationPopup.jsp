@@ -9,6 +9,9 @@
 <script type="text/javascript" src="./location/locationPopup.js"></script>
 <script type="text/javascript" src="./Mcommon/util.js"></script>
 <link rel="stylesheet" href="./location/locationPopup.css">
+
+<!-- ÆÄºñÄÜ -->
+<link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>
 <body>
 	<main>

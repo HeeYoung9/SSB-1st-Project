@@ -40,8 +40,10 @@ public class RentalReserveAction implements Action {
 		
 		System.out.println("LocalDate 타입 변환 날짜는????" + strDate);
 	
-				
-	
+		/*아래처럼 데이트타입 변환도 가능함!*/		
+		Date tmpDate = java.sql.Date.valueOf(strDate);
+		System.out.println("승민씨가 변환시킨것 "+tmpDate.getClass());
+		
 	
 		int rItemId = Integer.parseInt(request.getParameter("itemId"));
 		

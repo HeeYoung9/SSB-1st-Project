@@ -33,17 +33,36 @@ public class loginController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/loginAction.lg")) {
+		if(command.equals("/login.lg")) {
+			System.out.println("C : /login.lg 매핑");
+			System.out.println("C : 패턴1 - DB처리X, 뷰페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./login/login.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/loginAction.lg")) {
 			System.out.println("C : /loginAction.lg 매핑");
 			System.out.println("C : 패턴2 - DB처리X, 뷰페이지 이동");
 			
 			action = new loginAction();
 		
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
+		}else if(command.equals("/MemberJoinIdCheck.me")) {
+		    System.out.println("C : /MemberJoinIdCheck.me 매핑");
+		    System.out.println("C : 패턴 - DB사용o, 가만히 ");
+		    
+		    
+		    try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 		

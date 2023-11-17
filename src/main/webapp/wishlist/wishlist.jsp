@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+	crossorigin="anonymous"></script>
 <script type="text/javascript" src="./wishlist/wishlist.js"></script>
 <script type="text/javascript" src="./wishlist/wishlistPage.js"></script>
 <link rel="stylesheet" href="./location/location.css">
@@ -18,7 +21,7 @@
 		<jsp:include page="../Mcommon/top.jsp" />
 	</header>
 	<main>
-		
+
 		<table class="table">
 			<colgroup>
 				<col width="10%">
@@ -39,7 +42,8 @@
 			<tbody class="tbody">
 				<c:forEach var="dto" items="${dtoArray}">
 					<tr>
-						<td><input type="checkbox" name="wishlist_id" value="${dto.item_id}"></td>
+						<td><input type="checkbox" name="wishlist_id"
+							value="${dto.item_id}"></td>
 						<td>${dto.item_id}</td>
 						<td>${dto.item_name}</td>
 						<td>${dto.item_img_main}</td>
@@ -49,8 +53,8 @@
 			</tbody>
 		</table>
 		<div id="moveButton">
-			<input type="hidden" id="checkArray" name="checkArray">
-			<input type="button" value="삭제" onclick="deleteWishlist()">
+			<input type="hidden" id="checkArray" name="checkArray"> <input
+				type="button" value="삭제" onclick="deleteWishlist()">
 		</div>
 	</main>
 	<footer> </footer>

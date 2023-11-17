@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 <script type="text/javascript">
 	function toggleCategory() {
@@ -168,7 +169,7 @@
 
 	<!-- section 시작 -->
 
-	<section class="section" style="margin:5%;">
+	<section class="section" style="margin: 5%;">
 
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
@@ -184,27 +185,25 @@
 							<th scope="col">결제 번호</th>
 							<td>${payment.merchantUid}</td>
 						</tr>
-							
+
 						<tr>
 							<th scope="col">결제금액</th>
 							<td>${payment.paidAmount}</td>
 						</tr>
-						
+
 						<tr>
 							<th scope="col">결제방식</th>
 							<td>${payment.paidMethod}</td>
 						</tr>
-						
+
 						<tr>
 							<th scope="col">결제 상태</th>
 							<td>${payment.pgProvider}</td>
 						<tr>
-						
 						<tr>
 							<th scope="col">결제 상태</th>
 							<td>${payment.status}</td>
 						<tr>
-							
 					</thead>
 
 				</table>
@@ -213,19 +212,20 @@
 
 				<hr class="my-4">
 
-<a class="btn btn-secondary" role="button" aria-disabled="true">메인페이지로 가기</a>
-<a class="btn btn-secondary" role="button" aria-disabled="true">내 결제 상품 보러가기</a>
+				<a class="btn btn-secondary" role="button" aria-disabled="true">메인페이지로
+					가기</a> <a class="btn btn-secondary" role="button" aria-disabled="true">내
+					결제 상품 보러가기</a>
 
-				
+
 			</div>
 		</div>
 		</main>
-	
-	</div>
+
+		</div>
 
 
 
-<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
+		<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 	</section>
 	<!-- section 끝  -->
 

@@ -27,7 +27,7 @@ public class ItemDetailsAction implements Action {
 	    request.setAttribute("itemDTO", itemDTO);
 
 	    ActionForward forward = new ActionForward();
-	    forward.setPath("/adItem/itemDetails.jsp");
+	    forward.setPath("./adItem/itemDetails.jsp");
 	    forward.setRedirect(false);
 
 	    return forward;

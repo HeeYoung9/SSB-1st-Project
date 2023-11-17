@@ -1,21 +1,25 @@
 <%@page import="com.ssb.member.db.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 정보 수정</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./update/update.css" rel="stylesheet">
-    <link href="./main/main.css" rel="stylesheet">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원 정보 수정</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="./update/update.css" rel="stylesheet">
+<link href="./main/main.css" rel="stylesheet">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.4.min.js">
     </script>
-    
+
 <!-- 회원정보 수정관련 스크립트 -->
 </script>
-    <script type="text/javascript">
+<script type="text/javascript">
     function updateMember() {
         var currentPw = $("input[name='current_pw']").val(); // 추가된 부분
         var selectedField = $("input[name='selectedField']:checked").val();
@@ -234,43 +238,53 @@
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
-<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
-<div class="header">
-	<jsp:include page="../Mcommon/top.jsp" />
-</div>
-<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<div class="header">
+		<jsp:include page="../Mcommon/top.jsp" />
+	</div>
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
-   <div class="content-container">
-    <h1>회원정보 수정페이지</h1>
-    <hr>
-<%
+	<div class="content-container">
+		<h1>회원정보 수정페이지</h1>
+		<hr>
+		<%
 	String id = (String)session.getAttribute("userId");
 	MemberDTO currentMember = (MemberDTO) request.getAttribute("currentMember");
 	if (currentMember != null) { // null 체크 추가
     } else {
 %>
-    <p>현재 로그인된 계정 정보가 없습니다.</p>
-<%
+		<p>현재 로그인된 계정 정보가 없습니다.</p>
+		<%
     }
-%>		
-	<fieldset style="text-align: center; margin: 0 auto; width: 50%;">
-    <legend>회원정보 수정</legend>
-    <form action="./updateProAction.ud" method="post" name="fr" onsubmit="return check();">
-        <div style="text-align: center;">
-            ID: <input type="text" name="user_id" value="<%= (currentMember != null) ? currentMember.getMember_user_id() : "" %>" readonly> <br>
-            이름: <input type="text" name="name" value="<%= (currentMember != null) ? currentMember.getMember_name() : "" %>"> <br>
-            전화번호: <input type="text" name="phone" value="<%= (currentMember != null) ? currentMember.getMember_phone() : "" %>"> <br>
-            이메일: <input type="text" name="email" value="<%= (currentMember != null) ? currentMember.getMember_email() : "" %>"> <br>
-            기존 비밀번호: <input type="password" name="current_pw" placeholder="기존 비밀번호 입력"> <br> <!-- 추가된 부분 -->
-            새로운 비밀번호: <input type="password" name="pw" placeholder="새로운 비밀번호 입력">
-        </div>
-        <br><br>
-        <hr>
-        <input type="submit" value="수정완료" style="text-align: center; display: block; margin: 0 auto;">
-    </form>
-</fieldset>
+%>
+		<fieldset style="text-align: center; margin: 0 auto; width: 50%;">
+			<legend>회원정보 수정</legend>
+			<form action="./updateProAction.ud" method="post" name="fr"
+				onsubmit="return check();">
+				<div style="text-align: center;">
+					ID: <input type="text" name="user_id"
+						value="<%= (currentMember != null) ? currentMember.getMember_user_id() : "" %>"
+						readonly> <br> 이름: <input type="text" name="name"
+						value="<%= (currentMember != null) ? currentMember.getMember_name() : "" %>">
+					<br> 전화번호: <input type="text" name="phone"
+						value="<%= (currentMember != null) ? currentMember.getMember_phone() : "" %>">
+					<br> 이메일: <input type="text" name="email"
+						value="<%= (currentMember != null) ? currentMember.getMember_email() : "" %>">
+					<br> 기존 비밀번호: <input type="password" name="current_pw"
+						placeholder="기존 비밀번호 입력"> <br>
+					<!-- 추가된 부분 -->
+					새로운 비밀번호: <input type="password" name="pw"
+						placeholder="새로운 비밀번호 입력">
+				</div>
+				<br>
+				<br>
+				<hr>
+				<input type="submit" value="수정완료"
+					style="text-align: center; display: block; margin: 0 auto;">
+			</form>
+		</fieldset>
 
-    <script type="text/javascript">
+		<script type="text/javascript">
         $("input[name='selectedField']").change(function() {
             var selectedField = $(this).val();
             $("div[id$='Field']").hide();

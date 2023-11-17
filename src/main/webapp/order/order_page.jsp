@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 <script type="text/javascript">
 	function toggleCategory() {
@@ -65,24 +66,23 @@
 <link href="./main/main_css/main.css" rel="stylesheet">
 
 <style>
-	        .coupon-select {
-            width: 100%;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
+.coupon-select {
+	width: 100%;
+	padding: 20px;
+	margin-bottom: 20px;
+	text-align: left;
+}
 
-        textarea,
-        select {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            margin-top: 8px;
-            margin-bottom: 16px;
-            font-size: 16px;
-        }
+textarea, select {
+	width: 100%;
+	padding: 15px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	box-sizing: border-box;
+	margin-top: 8px;
+	margin-bottom: 16px;
+	font-size: 16px;
+}
 </style>
 
 <!-- 파비콘 -->
@@ -102,7 +102,7 @@
 
 	<!-- section 시작 -->
 
-	<section class="section" style="margin:5%;">
+	<section class="section" style="margin: 5%;">
 
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
@@ -112,75 +112,80 @@
 				<h4 class="mb-3">주문서</h4>
 				<hr>
 				<h4 class="mb-3">구매 희망 상품</h4>
-				
+
 				<form action="./OrderSalePay.od" method="post">
-				
-				<table class="table table-dark table-striped">
-					<thead>
-						<tr>
-							<th scope="col">상품번호</th>
-							<th scope="col">상품명</th>
-							<th scope="col">가격</th>
-							<th scope="col">수량</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="item" items="${requestScope.cartList}">
-						<tr>
-							<td>${item.item_id}</td>
-							<td>${item.item_name }</td>
-							<td>호우</td>
-							<td>${item.cart_quantity}</td>
-						</tr>
-					</c:forEach>
-					</tbody>
-				</table>
 
-				
-				<hr class="my-4">
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th scope="col">상품번호</th>
+								<th scope="col">상품명</th>
+								<th scope="col">가격</th>
+								<th scope="col">수량</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="item" items="${requestScope.cartList}">
+								<tr>
+									<td>${item.item_id}</td>
+									<td>${item.item_name }</td>
+									<td>호우</td>
+									<td>${item.cart_quantity}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 
 
+					<hr class="my-4">
 
-				<h4 class="mb-3">쿠폰</h4>
-				<div class="coupon-select">
-					<label for="coupon">쿠폰 선택:</label> <select id="coupon"
-						name="coupon">
-						<option value="coupon1">쿠폰 1</option>
-						<option value="coupon2">쿠폰 2</option>
-						<!-- 추가 쿠폰 옵션 -->
+
+
+					<h4 class="mb-3">쿠폰</h4>
+					<div class="coupon-select">
+						<label for="coupon">쿠폰 선택:</label> <select id="coupon"
+							name="coupon">
+							<option value="coupon1">쿠폰 1</option>
+							<option value="coupon2">쿠폰 2</option>
+							<!-- 추가 쿠폰 옵션 -->
+						</select>
+					</div>
+
+					<h4 class="mb-3">배송지</h4>
+					<select class="form-select form-select-lg mb-3"
+						aria-label="Large select example" name="location_id">
+						<c:forEach var="item" items="${requestScope.locations}">
+							<option value=${item.location_id}>${item.location_add}${item.locationD_add}</option>
+						</c:forEach>
 					</select>
-				</div>
-				
-				<h4 class="mb-3">배송지</h4>
-				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id">
- 	 				<c:forEach var="item" items="${requestScope.locations}">
-  					<option value=${item.location_id}>${item.location_add}${item.locationD_add}</option>
-  					</c:forEach>
-				</select>
-				
-				<div>
-					<input type="hidden" name=strCartList value="${strCartList}">
-				</div>
-				
 
-				<hr>
-				<h4 class="mb-3">할인적용</h4>
-				<hr>
-				<h4 class="mb-3">총 가격</h4>  <h4 class="mb-3"></h4> 
-		
-				<div style="margin-left:25%">
-					<input type="submit" class="btn btn-secondary btn-lg" style="width:25%" value="결제하기"></button>
-					<button type="button" class="btn btn-secondary btn-lg" style="width:25%">취소하기</button>
-				</div>
+					<div>
+						<input type="hidden" name=strCartList value="${strCartList}">
+					</div>
+
+
+					<hr>
+					<h4 class="mb-3">할인적용</h4>
+					<hr>
+					<h4 class="mb-3">총 가격</h4>
+					<h4 class="mb-3"></h4>
+
+					<div style="margin-left: 25%">
+						<input type="submit" class="btn btn-secondary btn-lg"
+							style="width: 25%" value="결제하기">
+						</button>
+						<button type="button" class="btn btn-secondary btn-lg"
+							style="width: 25%">취소하기</button>
+					</div>
 				</form>
+			</div>
+
 		</div>
-		
-	</div>
-<!-- right-container 끝 -->
+		<!-- right-container 끝 -->
 
 
-<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
+		<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 	</section>
 	<!-- section 끝  -->
 
@@ -195,7 +200,7 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 
-<script>
+	<script>
 
 </script>
 

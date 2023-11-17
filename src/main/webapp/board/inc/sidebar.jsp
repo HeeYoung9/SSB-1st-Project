@@ -24,7 +24,13 @@
 		<li class="sidebar-item">
 			<a class="sidebar-link" href="./ItemMgt.it">
               <i class="align-middle" data-feather="box"></i> 
-              <span class="align-middle">상품관리</span>
+              <span class="align-middle">판매 제품 관리</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="./RntalItemMgt.it">
+              <i class="align-middle" data-feather="box"></i> 
+              <span class="align-middle">렌탈 제품 관리</span>
             </a>
 		</li>
 					

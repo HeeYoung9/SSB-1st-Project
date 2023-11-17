@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<title>SSB 상품 관리</title>
+<title>SSB 렌탈 제품 관리</title>
 
 
 <!-----------------------------------  현정씨 ▼ ---------------------------------------------->
@@ -86,9 +86,10 @@ $(function(){
 
 			<main id="item" style="width: 1500px;" align="center">
 				<section class="list">
-					<span> <a href="./ItemMgt.it"> <img class="Mgt" src="./main/item_img/itemMgt.png"
+					<span> <a href="./RntalItemMgt.it"><img class="Mgt" src="./main/item_img/itemMgt.png"
 						width="60" height="60"> </a>
-						<h1>상품 관리</h1> 
+						<h1>렌탈 제품 관리</h1> 
+												
 							<form id="searchForm">
 								<input type="text" name="search" id="searchInput"
 									placeholder="   상품명을 입력해 주세요">
@@ -99,6 +100,7 @@ $(function(){
 								onclick="location.href='./itemAddForm.it';">상품 등록</button>
 							<button id="editButton">상품 수정</button>
 					</span>
+					
 					</span> </span>
 					<table class="sort">
 						<%-- 체크박스 / 상품ID / 상품명(썸네일+제목) / 판매가 / 카테고리 / 옵션 / 재고 --%>
@@ -121,7 +123,7 @@ $(function(){
 								<th>제품ID</th>
 								<th>이미지</th>
 								<th>상품명</th>
-								<th>판매가</th>
+								<th>렌탈가</th>
 								<th>카테고리</th>
 								<th>브랜드</th>
 								<th>옵션</th>
@@ -131,24 +133,24 @@ $(function(){
 
 						<%-- 상품 리스트 --%>
 						
-						<c:forEach var="dto" items="${ItemMgt }">
+						<c:forEach var="rdto" items="${rItemMgt }">
 							<tr style="background-color: white;">
 								<td><label class="checkbox-inline"> <input
-										type="checkbox" name="options_id" value="${dto.options_id }">
+										type="checkbox" name="options_id" value="${rdto.rental_item_id }">
 								</label></td>
 
-								<td><c:out value="${dto.item_id }"></c:out></td>
+								<td><c:out value="${rdto.rental_item_id }"></c:out></td>
 								<td><a href="#" class="thumb"> <img alt="제품이미지"
-										src="./main/item_img/${dto.item_img_main }">
+										src="./main/rental_item/${rdto.rental_img_main }">
 								</a></td>
-								<td>${dto.item_name }</td>
+								<td>${rdto.rental_item_name }</td>
 								<td><fmt:formatNumber type="number" maxFractionDigits="3"
-										value="${dto.item_price}" />원</td>
-								<td>${dto.category_sport }- ${dto.category_sub }
-									(${dto.category_major })</td>
-								<td>${dto.category_brand }</td>
-								<td>${dto.options_name }${dto.options_value }</td>
-								<td>${dto.options_quantity }</td>
+										value="${rdto.rental_item_price}" />원</td>
+								<td>${rdto.category_sport }- ${rdto.category_sub }
+									(${rdto.category_major })</td>
+								<td>${rdto.category_brand }</td>
+								<td>${rdto.rental_opt_name }${rdto.rental_opt_value }</td>
+								<td>${rdto.rental_opt_quantity }</td>
 							</tr>
 						</c:forEach>
 					
@@ -163,14 +165,14 @@ $(function(){
 						<c:if test="${startPage > pageBlock }">
 							<!-- <span class="prev"> -->
 							<a
-								href="./ItemMgt.it?pageNum=${startPage-pageBlock }&search=${param.search}"><
+								href="./RitemMgt.it?pageNum=${startPage-pageBlock }&search=${param.search}"><
 								이전</a>
 							<!-- </span> -->
 						</c:if>
 
 						<span class="num"> <c:forEach var="i" begin="${startPage }"
 								end="${endPage }" step="1">
-								<a href="./ItemMgt.it?pageNum=${i }&search=${param.search}"
+								<a href="./RntalItemMgt.it?pageNum=${i }&search=${param.search}"
 									class="on">${i }</a>
 							</c:forEach>
 						</span>
@@ -178,8 +180,8 @@ $(function(){
 						<c:if test="${endPage < pageCount }">
 							<!--  <span class="next"> -->
 							<a
-								href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}">다음
-								></a>
+								href="./RntalItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}">다음
+								</a>
 							<!-- </span> -->
 						</c:if>
 					</div>

@@ -26,7 +26,6 @@
 <div class="header">
 	<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8" />
 </div>
-
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>

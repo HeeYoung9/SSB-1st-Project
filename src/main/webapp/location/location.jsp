@@ -10,6 +10,9 @@
 <script src="./location/location.js"></script>
 <script type="text/javascript" src="./location/locationPopup.js"></script>
 <link rel="stylesheet" href="./location/location.css">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>
 <body>
 	<header>

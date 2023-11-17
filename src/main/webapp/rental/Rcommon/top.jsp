@@ -52,7 +52,7 @@
 		<!-- ID 세션값이 admin일때 보일 버튼 (관리자전용) -->
 		<c:if test="${fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<a style="background-color: transparent; margin-top:10px; " href="./AdminMain.ad">
+				<a style="background-color: transparent; margin-top:10px; " href="./NoticeList.no">
 				<img width="30" height="30" src="./main/img/admin.png" /></a>
 			</div>
 		</c:if>
@@ -86,6 +86,10 @@
 
 		<div class="submenu">
 			<a href="./Main.in"><b>For Buy</b></a>
+		</div>
+		
+		<div class="submenu">
+			<a href="./Main.in"><b>Notice</b></a>
 		</div>
 	</div>
 	<!-- 상단 메인 메뉴바 끝 -->

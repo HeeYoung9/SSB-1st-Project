@@ -35,7 +35,7 @@ public class AdminLoginAction implements Action {
 			session.setAttribute("userId", adto.getAdmin_user_id());
 			
 			forward = new ActionForward();
-			forward.setPath("./AdminMain.ad");
+			forward.setPath("./NoticeList.no");
 			forward.setRedirect(true);
 			
 			return forward;

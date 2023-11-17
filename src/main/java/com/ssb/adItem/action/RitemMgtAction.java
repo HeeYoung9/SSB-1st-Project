@@ -11,12 +11,12 @@ import com.ssb.rental.db.RentalDAO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
-public class ItemMgtAction implements Action {
+public class RitemMgtAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("\n M: ItemMgtAction_execute() 호출");
+		System.out.println("\n M: RntalItemMgt.it_execute() 호출");
 
 		
 		
@@ -25,17 +25,16 @@ public class ItemMgtAction implements Action {
 		System.out.println(" M : 검색어 = "+search );
 		
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
-		// ItemDAO 객체 생성 - 상품목록 조회 메서드() 
-		ItemDAO idao = new ItemDAO();
-
+		// RentalDAO 객체 생성 - 상품목록 조회 메서드() 
+		RentalDAO rdao = new RentalDAO();
 		
 		int count = 0;
 		if(search == null) { // 검색어 X
 			System.out.println(" M : 검색어 없음! ");
-			count = idao.getItemCount();
+			count = rdao.getItemCount();
 		}else { // 검색어 O - 검색결과O/X 
 			System.out.println(" M : 검색어 있음! ("+search+")");
-			count = idao.getItemCount(search);
+			count = rdao.getItemCount(search);
 		}		
 		System.out.println(" M : 상품 개수 : " + count);
 
@@ -63,20 +62,21 @@ public class ItemMgtAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 
-		// DAO - 판매제품 모든 상품 정보를 가져오는 메서드 호출
-		ArrayList ItemMgt = null;
+		
+		// DAO - 렌탈제품 모든 상품 정보를 가져오는 메서드 호출
+		ArrayList rItemMgt = null;
 		if (count > 0 && search == null) {
-			ItemMgt = idao.getItemMgt(startRow, pageSize);
+			rItemMgt = rdao.rGetItemMgt(startRow, pageSize);
 		}else if(count > 0 && search != null ) {
-			ItemMgt = idao.getItemMgt(startRow, pageSize, search);
+			rItemMgt = rdao.rGetItemMgt(startRow, pageSize, search);
 		}else {
 			// 상품이 없는경우
 		}
-		System.out.println(" M : " + ItemMgt.size());
-		
+		System.out.println(" M : " + rItemMgt.size());
+
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
-		request.setAttribute("ItemMgt", ItemMgt);
+		request.setAttribute("rItemMgt", rItemMgt);
 
 
 		/******************* 페이징처리 2 *********************/
@@ -114,7 +114,7 @@ public class ItemMgtAction implements Action {
 		
 		// 페이지 이동준비 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./adItem/ItemMgt.jsp");
+		forward.setPath("./adItem/RitemMgt.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

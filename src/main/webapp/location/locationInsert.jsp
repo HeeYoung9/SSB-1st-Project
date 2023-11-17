@@ -8,6 +8,9 @@
 <script src="./location/locationInsert.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="./location/locationInsert.css">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="./main/img/favicon.ico">
 </head>
 <body>
 	<main>

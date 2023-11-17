@@ -335,3 +335,7 @@ a{
 	display: flex;
 	flex-wrap: wrap; */
 }
+
+.wishlist {
+	margin-left: 50px;
+}

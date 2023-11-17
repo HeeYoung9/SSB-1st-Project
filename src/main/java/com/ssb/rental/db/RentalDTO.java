@@ -15,23 +15,24 @@ public class RentalDTO {
 	private String rental_img_main;
 	private String rental_img_sub;
 	private String rental_img_logo;
+	private int rental_days;
+	
+	// category 테이블
 	private int category_id;
 	private int category_code; 
 	private String category_sport; 
 	private String category_major;
 	private String category_sub; 
 	private String category_brand;
-	private int rental_days;
-
-	private LocalDate rental_str; // DTO 출력용으로 만듦. rental_item 데이터 테이블엔 없음. 
-	private LocalDate rental_end; // DTO 출력용으로 만듦. rental_item 데이터 테이블엔 없음. 
-	
-	
 	
 
 	
+	// reservePage 출력용으로 만듦.
+	private LocalDate rental_str; 
+	private LocalDate rental_end; 
 	
 	
+		
 	public int getRental_days() {
 		return rental_days;
 	}
