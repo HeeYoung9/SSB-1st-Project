@@ -145,7 +145,7 @@
 				<div
 					class="row gx-4 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
 					<c:forEach var="idto" items="${itemList }">
-						<div class="col mb-5">
+						<div class="col mb-5" style="box-sizing: content-box;">
 							<div id="test" class="card h-100">
 								<!-- brand logo -->
 								<div class="position-absolute"
@@ -172,18 +172,13 @@
 									</div>
 								</a>
 								<!-- Product actions-->
-
+								
+								<!-- 위시리스트 담기 -->
 								<div class="wishlist" value="${idto.item_id }">
 									<img width="20" height="20" src="./main/img/heart.png" alt="위시리스트">
 								</div>
-								<!-- <div
-									class="card-footer p-4 pt-0 border-top-0 bg-transparent garo">
-									<span class="text-center"></span> <span class="text-center"
-										style="margin-left: 5px;"><a
-										class="btn btn-outline-dark mt-auto" href="#"><img
-											width="20" height="20" src="./main/img/heart.png" alt="하트" />
-											wish</a></span>
-								</div> -->
+								<!-- 위시리스트 담기 -->
+								
 							</div>
 						</div>
 					</c:forEach>
@@ -192,18 +187,6 @@
 					</div>
 					<!-- 검색시 창 크기 안겹치게 필요한 div임-->
 
-
-					<!--브랜드 제품 구분
-						<div class="loce2">
-							<a href="" class="more"><b> 디아도라 제품 더보기 </b></a>
-						</div>
- 						브랜드 제품 구분
- 						
- 						브랜드 제품 구분
-						<div class="loce3">
-							<a href="" class="more"><b> 젝시믹스 제품 더보기 </b></a>
-						</div> -->
-					<!-- 브랜드 제품 구분 -->
 
 				</div>
 			</div>

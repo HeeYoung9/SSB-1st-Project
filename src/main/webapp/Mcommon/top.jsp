@@ -26,7 +26,7 @@
 		<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태)-->
 		<c:if test="${empty sessionScope.userId }">
 			<div class="button-container">
-				<button style="background-color: transparent; border:none;"><a href="./AdminMain.ad" style="color:white; opacity: 0.3">admin</a></button>
+				<button style="background-color: transparent; border:none;"><a href="./NoticeList.no" style="color:white; opacity: 0.3">admin</a></button>
 				<button class="login-button"><a href="./MemberLogin.me" style="color:white;">login</a></button>
 				<button class="signup-button"><a href="./cartList.ca" style="color:white;">
 				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart</a>
@@ -38,7 +38,7 @@
 		<!-- ID 세션값이 있을때 보일 버튼(로그인 상태) -->
 		<c:if test="${!empty sessionScope.userId && not fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<button class="signup-button"><a href="./update.ud">My Page</a></button>
+				<button class="signup-button"><a href="./myPage.mp">My Page</a></button>
 				<button class="signup-button"><a href="./wishlist.wl">
 				<img width="20" height="15" src="./main/img/redHeart.png" alt="하트" / style="color:white;"> 찜</a></button>
 				<button class="signup-button"><a href="./cartList.ca" style="color:white;">
@@ -53,7 +53,7 @@
 		<!-- ID 세션값이 admin일때 보일 버튼 (관리자전용) -->
 		<c:if test="${fn:containsIgnoreCase(sessionScope.userId, 'admin')}">
 			<div class="button-container">
-				<a style="background-color: transparent; margin-top:10px; " href="./AdminMain.ad">
+				<a style="background-color: transparent; margin-top:10px; " href="./NoticeList.no">
 				<img width="30" height="30" src="./main/img/admin.png" />관리자</a>
 			</div>
 		</c:if>
@@ -120,6 +120,10 @@
 				<a href="./RentalMain.re?category=캠핑">캠핑</a>
 				<a href="./RentalMain.re?category=겨울스포츠">겨울스포츠</a>
 			</div>
+		</div>
+		
+		<div class="submenu">
+			<a href="#"><b>Notice</b></a>
 		</div>
 	</div>
 	<!-- 상단 메인 메뉴바 끝 -->

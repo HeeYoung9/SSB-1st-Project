@@ -130,74 +130,71 @@ public class MemberDAO {
 	}
 	// 회원가입 아이디 조회(중복체크) 메서드 - checkId(member_user_id)
 	
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
-	public int updateMember(MemberDTO dto) {
-		int result = -1;
-		
-		try {
-			con =getCon();
+	// 회원정보 수정(회원탈퇴) 메서드 - updateMember(userId)
+		public boolean updateMember(MemberDTO dto) {
+			boolean result = false;
 			
-			sql ="select pw from member where member_user_id = ?";
-			pstmt=con.prepareStatement(sql);
-			
-			// ???
-			pstmt.setString(1, dto.getMember_user_id());
-			
-			rs = pstmt.executeQuery();
-			
-			// 데이터 처리
-			if(rs.next()) {
-				if(dto.getMember_pw().equals(rs.getString("member_pw"))) {
-					sql = "delete from member where id =?";
-					pstmt = con.prepareStatement(sql);
+			try {
+				con =getCon();
+				sql="select member_user_id from member where member_user_id = ?";
+				pstmt=con.prepareStatement(sql);
+				
+				// ???
+				pstmt.setString(1, dto.getMember_user_id());
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					sql ="update member set member_situation = '탈퇴', member_outdate = now() where member_user_id = ?";
+					pstmt=con.prepareStatement(sql);
 					
 					pstmt.setString(1, dto.getMember_user_id());
 					
-					result = pstmt.executeUpdate(); // 1 삭제완료
+					pstmt.executeUpdate();
+					
+					result = true;
 				}else {
-					result = 0; // 비밀번호 오류
+					result = false;
 				}
-			}else {
-				result = -1; // 회원정보 없음
+				
+				System.out.println("DAO : 회원탈퇴(수정) 완료! ("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
 			}
-			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			CloseDB();
+			return result;
 		}
-		
-		return result;
-	}
-	// 회원정보 (수정)회원탈퇴 메서드 - updateMember(dto)
+		// 회원정보 수정(회원탈퇴) 메서드 - updateMember(dto)
 
-	// 회원정보 삭제 메서드 - deleteMember(dto)
-	public int deleteMember(int member_id) {
-		int result = 0;
-		
-		try {
-			con =getCon();
+		// 회원정보 삭제 메서드 - deleteMember(dto)
+		public int deleteMember(int member_id) {
+			int result = 0;
 			
-			sql ="delete from member where member_id = ?";
-			pstmt=con.prepareStatement(sql);
+			try {
+				con =getCon();
+				
+				sql ="delete from member where member_id = ?";
+				pstmt=con.prepareStatement(sql);
+				
+				// ???
+				pstmt.setInt(1, member_id);
+				
+				result = pstmt.executeUpdate();
+				
+				System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
 			
-			// ???
-			pstmt.setInt(1, member_id);
-			
-			result = pstmt.executeUpdate();
-			
-			System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			CloseDB();
+			return result;
 		}
-		
-		return result;
-	}
-	// 회원정보 삭제 메서드 - deleteMember(dto)
+		// 회원정보 삭제 메서드 - deleteMember(dto)
 
 	// 회원정보 조회 메서드 - getMemberList(id)
 	public ArrayList<MemberDTO> getMemberList() {

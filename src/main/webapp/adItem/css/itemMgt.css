@@ -1,3 +1,4 @@
+
 /* ================여기부터 [ itemMgt.jsp ]========================= */
 
 
@@ -320,39 +321,39 @@ input[type="checkbox"] {
 	display: none;
 }
 	
-.filebox {
-    color: #D2D2D2;
-	margin-bottom: 10px;
-    height: 36px;
-    padding: 0 10px;
-    margin-right: 40px;
-}	
+	 form input {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 10px;
+      }
+      form input::file-selector-button {
+        display: none;
+      }
+      
+         .filebox {
+        display: flex;
+        align-items: center;
+        margin-left: 70px;
+   	
+    }
 
 .filebox input {
-    border-radius: 1px;
-    color: gray;
-    height: 30px;
-	border-style: none;
-	border: 1px solid #c4c4c4;
-	padding-left: 16px;
-	width: 38%;
-	margin-bottom: 6px;
+  		color: gray;
+        height: 40px;
+        /* border-style: none; */
+        padding-left: 16px;
+        width: 50%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        text-align: left;
+        margin-left: 20px;
 	}
+	
+ .filebox label {
+        padding-left: 16px;
+    }
 
-
-/* .filebox .upload-main .upload-sub .upload-logo {
-    color: #D2D2D2;
-	margin-top: 40px;
-	margin-bottom: 10px;
-    height: 30px;
-    padding: 0 10px;
-    vertical-align: middle;
-    border: 1px solid gray;
-    
-} */
-
-
-.filebox > label {
+/* .filebox > label {
     display: inline-block;
     padding: 2px 10px;
     color: #fff;
@@ -364,49 +365,9 @@ input[type="checkbox"] {
     margin-left: 8px;
     margin-top: 3px;
     font-size: 13px;
-}
-
-.filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-}
-
-
-
-/* 
-h4{
-  color: #333;
-  border-bottom: 4px solid #a79600;
-  border-top: 4px solid #a79600;
-  padding-bottom: 5px;
-  position: relative;
-}
-
-h4:before{
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 30px;
-  bottom: -30px;
-  border: 15px solid;
-  border-color: #a79600 transparent transparent #a79600;
-}
-
-h4:after{
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 34px;
-  bottom: -20px;
-  border: 15px solid;
-  border-color: #fff transparent transparent #fff;
 } */
+
+
 
 
 /* ================여기까지 [ itemAddForm.jsp ]===================== */

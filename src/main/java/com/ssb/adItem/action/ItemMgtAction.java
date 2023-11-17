@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.adItem.db.ItemDAO;
 import com.ssb.adItem.db.ItemDTO;
+import com.ssb.rental.db.RentalDAO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -26,6 +27,7 @@ public class ItemMgtAction implements Action {
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
 		// ItemDAO 객체 생성 - 상품목록 조회 메서드() 
 		ItemDAO idao = new ItemDAO();
+
 		
 		int count = 0;
 		if(search == null) { // 검색어 X
@@ -61,7 +63,7 @@ public class ItemMgtAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 
-		// DAO - 모든 상품 정보를 가져오는 메서드 호출
+		// DAO - 판매제품 모든 상품 정보를 가져오는 메서드 호출
 		ArrayList ItemMgt = null;
 		if (count > 0 && search == null) {
 			ItemMgt = idao.getItemMgt(startRow, pageSize);
@@ -71,7 +73,7 @@ public class ItemMgtAction implements Action {
 			// 상품이 없는경우
 		}
 		System.out.println(" M : " + ItemMgt.size());
-
+		
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("ItemMgt", ItemMgt);

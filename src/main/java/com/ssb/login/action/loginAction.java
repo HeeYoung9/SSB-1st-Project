@@ -11,6 +11,7 @@ import com.ssb.member.db.MemberDAO;
 import com.ssb.member.db.MemberDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
+import com.ssb.util.JSMoveFunction;
 
 
 public class loginAction implements Action {
@@ -36,7 +37,11 @@ public class loginAction implements Action {
 		System.out.println(" M : result : "+result);
 		
 		ActionForward forward = null;
-		if(result == 1) {
+		
+		
+		 if(result == 2) {
+			 JSMoveFunction.alertBack(response, "배신자 out");
+		 }else if(result == 1) {
 			// 페이지 이동(JSP)
 			// 아이디 정보를 세션에 저장2
 			HttpSession session = request.getSession();
@@ -65,7 +70,7 @@ public class loginAction implements Action {
 			out.close();
 			
 			return null; // ActionForward정보가 null=>컨트롤러 페이지이동X
-		}else { //result == -1
+		}else{ //result == -1
 			// 페이지 이동(JS)
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -75,8 +80,6 @@ public class loginAction implements Action {
 			out.println(" </script> ");
 			out.close();
 		}
-		
-		
 		
 		return forward;
 	}//execute
