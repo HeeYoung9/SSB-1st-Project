@@ -68,9 +68,40 @@
 				</select>
                 <input type="submit" value="검색" id="searchButton" style="float:left"></input>
 
+<<<<<<< Updated upstream
           </form>
             <table class="sort">
                 <%-- 
+=======
+
+		<!-- 메인 시작 -->
+		<div class="main">
+			<jsp:include page="../board/inc/top.jsp" />
+			<!-----------------------------------  현정씨 ▲ ---------------------------------------------->
+
+			<main id="item">
+				<section class="list">
+
+					<h1>주문 관리</h1>
+
+
+
+					<%-- 검색창 --%>
+					<form action="./AdOrderList.od?state=${state}" method="get" class="search-bar">
+						<select name="orders_state" class="form-select"
+							aria-label="Default select example"
+							style="width: 50%; float: left;">
+							<option value="PURCHASE" ${param.orders_state=='PURCHASE'?'selected="selected"' : ''}>결제상품</option>
+							<option value="DETERMINE" ${param.orders_state=='DETERMINE'?'selected="selected"' : ''} >구매확정 상품</option>
+							<option value="REFUND" ${param.orders_state=='REFUND'?'selected="selected"' : ''} >환불된 상품</option>
+							<option value="CANCEL" ${param.orders_state=='CANCEL'?'selected="selected"' : ''} >취소된 상품</option>
+						</select> <input type="submit" value="검색" id="searchButton"
+							style="float: left"></input>
+
+					</form>
+					<table class="sort">
+						<%-- 
+>>>>>>> Stashed changes
                 회원번호 / 아이디 / 비밀번호 / 이름 / 생년월일 / 성별 / 메일주소 / 전화번호 / 가입일시 / 결제금액 / 적립금 / 등급 / 상태 / 탈퇴일시 / 마케팅수신동의
                 --%>
                 <colgroup>

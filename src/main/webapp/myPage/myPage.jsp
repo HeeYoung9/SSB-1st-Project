@@ -46,6 +46,7 @@
     function populateExistingInfo() {
         var currentMember = <%= (myPageDTO)request.getAttribute("currentMember") %>;
 
+<<<<<<< Updated upstream
         if (currentMember) {
             $("#member_user_id").val(currentMember.getMember_user_id());
             $("#member_name").val(currentMember.getMember_name());
@@ -58,6 +59,58 @@
             $("#member_point").val(currentMember.getMember_point());
             $("#member_grade").val(currentMember.getMember_grade());
         }
+=======
+		<!-- 상단 메인 메뉴바 끝 -->
+		<div class="content-container">
+			<h1 style="text-align: left; font-weight: bold;">My Page</h1>
+
+
+			<!-- 내용 수정된 부분 -->
+			<div class="right-section">
+				<button class="menu-toggle" onclick="toggleCategory()">메뉴이미지삽입</button>
+				<div class="category-content m-2" id="categoryContent"
+					style="display: none;">
+
+					<div class="accordion accordion-flush" id="accordionFlushExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+									aria-expanded="false" aria-controls="flush-collapseOne">
+									<a href="update.ud"
+										style="color: black; text-decoration: none;">정보수정</a>
+								</button>
+							</h2>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+									aria-expanded="false" aria-controls="flush-collapseTwo">
+									<a href="ReviewList.rv"
+										style="color: black; text-decoration: none;">후기작성</a>
+								</button>
+							</h2>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+									aria-expanded="false" aria-controls="flush-collapseThree">
+									<a href="./location.lo"
+										style="color: black; text-decoration: none;">배송지</a>
+								</button>
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+    function toggleCategory() {
+        var categoryContent = document.getElementById("categoryContent");
+        categoryContent.style.display = (categoryContent.style.display === 'none' || categoryContent.style.display === '') ? 'block' : 'none';
+>>>>>>> Stashed changes
     }
 
     // 페이지 로딩 시 기존 정보 표시

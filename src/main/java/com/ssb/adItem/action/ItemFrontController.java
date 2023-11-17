@@ -54,8 +54,11 @@ public class ItemFrontController extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+<<<<<<< Updated upstream
 			}
 
+=======
+>>>>>>> Stashed changes
             //----------------상품 등록----------------( O )
 			else if (command.equals("/itemAddForm.it")) {
 				System.out.println("C: /itemAddForm.it 호출");
