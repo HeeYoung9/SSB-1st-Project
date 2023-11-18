@@ -100,7 +100,7 @@
 
 					<div class="carousel-item active">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/diadora_event.png" alt="디아도라이벤트슬라이드">
+							src="./main/item_img/polaris_event.png" alt="폴라리스슬라이드">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
@@ -108,7 +108,7 @@
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block" 
-							src="./main/img/blackFriday.png" alt="블랙프라이데이"> </a>
+							src="./main/item_img/polaris_event2.png" alt="폴라리스슬라이드2"> </a>
 							<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
@@ -163,10 +163,6 @@
 							</div> </a>
 							<!-- Product actions-->
 					
-							<%-- <div class="wishlist" value="${rdto.rental_item_id }">
-								<img width="18" height="20" src="./main/img/heart.png" alt="하트" />
-								
-							</div>  렌탈용 만들면 풀것!!!--%>
 							
 						</div>
 				

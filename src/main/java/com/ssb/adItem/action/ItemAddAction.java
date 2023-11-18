@@ -40,6 +40,8 @@ public class ItemAddAction implements Action {
 	            setRentalFields(rdto, request);
 
 	            new RentalDAO().addRental(rdto); // RentalDAO 객체 생성 - 렌탈 등록 메서드 호출
+	
+	            
 	        }
 
 	        // 페이지 이동 준비
