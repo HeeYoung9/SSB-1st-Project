@@ -1,6 +1,7 @@
 package com.ssb.cart.action;
 
 import java.io.IOException;
+import java.sql.Array;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.ssb.cart.db.cartDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
+import com.ssb.wishlist.db.wishlistDAO;
 @WebServlet("*.ca")
 public class cartController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +32,8 @@ public class cartController extends HttpServlet {
 		System.out.println("C : 2. 가상주소 매핑 시작------------------");
 		Action action = null;
 		ActionForward forward = null;
+		Gson gson = new Gson();
+		String json = null;
 		
 		//수정
 		if (command.equals("/cartList.ca")) {
@@ -52,6 +58,19 @@ public class cartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/insertCart.ca")) {
+			System.out.println("C : /insertCart.ca 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			// 정보저장
+			int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
+			Array cartItemArr = gson.fromJson(request.getParameter("arr"), Array.class);
+			System.out.println("member_id : " + member_id);
+			System.out.println("cartItemArr : " + cartItemArr);
+			//dao = new wishlistDAO();
+			//정보처리
+			//int result = dao.deleteWishlist(item_idArr,member_id);
+			//json = gson.toJson(result);
 		}
 
 		/*********************** 2. 가상주소 매핑 끝 **************************/
@@ -68,6 +87,10 @@ public class cartController extends HttpServlet {
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}
+		}else if(json != null) {
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(json);
 		}
 		/*********************** 3. 가상주소 이동 끝 **************************/
 
