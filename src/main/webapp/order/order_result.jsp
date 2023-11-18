@@ -71,99 +71,11 @@
 
 <body>
 
-	<!-- header 시작 -->
-	<header class="header">
-		<div class="logo">
-			<a href="./Main.in"><img src="./main/item_img/SSB_gold.png"
-				style="width: 200px;"></a>
-		</div>
-		<div>
-			<form role="search" style="display: flex;" class="search-box">
-				<input class="search-input" type="text" placeholder="내 스타일 찾기"
-					style="width: 80%;">
-				<button type="submit" class="search-icon">
-					<img width="38" height="38" src="./main/img/hoodie.png" alt="검색버튼" />
-				</button>
-			</form>
-		</div>
-
-		<!-- ID 세션값이 null 일때 보일 버튼 -->
-		<c:if test="${sessionScope.loginId ==null }">
-			<div>
-				<button class="login-button">login</button>
-				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
-				</button>
-			</div>
-		</c:if>
-
-		<!-- ID 세션값이 있을때 보일 버튼 -->
-		<c:if test="${sessionScope.loginId != null }">
-			<div>
-				<button class="login-button">logout</button>
-				<button class="signup-button">My Page</button>
-				<button class="signup-button">찜</button>
-				<button class="signup-button">
-					<img width="20" height="15" src="./main/img/market.png" alt="장바구니" />cart
-				</button>
-			</div>
-		</c:if>
-	</header>
-	<!-- header 끝 -->
-
-	<!-- 상단 메인 메뉴바 시작 -->
-	<!-- <div class="menu">
-		<div class="submenu">
-			<a href="#"><b>New arriva</b>l</a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">베스트</a> <a href="#">추천제품</a>
-			</div>
-
-		</div>
-		<div class="submenu">
-			<a href="#"><b>Sports</b></a>
-			<div class="submenu-content">
-				<a href="#">골프</a> <a href="#">테니스</a> <a href="#">런닝</a> <a href="#">배드민턴</a> <a href="#">농구</a> <a href="#">축구</a>
-				<a href="#">요가/필라테스</a> <a href="#">보드</a> <a href="#">겨울스키/보드</a> <a href="#">야구</a> <a href="#">헬스</a> <a href="#">수영</a> <a href="#">기타</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Clothing</b></a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">아우터</a> <a href="#">상의</a> <a href="#">하의</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Shoes</b></a>
-			<div class="submenu-content">
-				<a href="#">실내스포츠</a> <a href="#">액티비티</a> <a href="#">릴렉스</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Accessories</b></a>
-			<div class="submenu-content">
-				<a href="#">가방</a> <a href="#">모자</a> <a href="#">라켓</a> <a href="#">양말</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>Outlet</b></a>
-			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">Shoes</a> <a href="#">Clothing</a> <a href="#">Acc</a>
-			</div>
-		</div>
-
-		<div class="submenu">
-			<a href="#"><b>For rental</b></a>
-			<div class="submenu-content">
-				<a href="#">골프</a> <a href="#">캠핑</a> <a href="#">겨울스포츠</a>
-			</div>
-		</div>
-	</div> -->
-	<!-- 상단 메인 메뉴바 끝 -->
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<div class="header">
+		<jsp:include page="../rental/Rcommon/top.jsp" />
+	</div>
+	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 
 
@@ -174,7 +86,7 @@
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
 		<!-- left-container 시작 -->
-		<div class="left-container" style="margin: 20%; width: 60%;">
+		<div class="left-container" style="margin: 10%; margin-left:400px; width: 60%;">
 			<div class="col-md-7 col-lg-8">
 				<h4 class="mb-3">결제 정보</h4>
 				<hr>

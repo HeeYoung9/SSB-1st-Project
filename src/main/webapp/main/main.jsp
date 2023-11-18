@@ -102,6 +102,14 @@
 
 					<!-- 실제 JSP 코드 시작 부분 -->
 					<!--  세일 이벤트  -->
+					
+					<div class="carousel-item active">
+						<a href="#"><img class="d-block"
+							src="./main/item_img/malbon_event.png" alt="말본이벤트슬라이드">
+						</a>
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
+					
 
 					<div class="carousel-item active">
 						<a href="#"><img class="d-block"
@@ -114,7 +122,7 @@
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
 							src="./main/img/blackFriday.png" alt="블랙프라이데이"> </a>
-						<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
+						<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 못함-->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">

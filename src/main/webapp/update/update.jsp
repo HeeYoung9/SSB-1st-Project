@@ -245,8 +245,7 @@
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 	<div class="content-container">
-		<h1>회원정보 수정페이지</h1>
-		<hr>
+	
 		<%
 	String id = (String)session.getAttribute("userId");
 	MemberDTO currentMember = (MemberDTO) request.getAttribute("currentMember");
@@ -278,7 +277,7 @@
 				</div>
 				<br>
 				<br>
-				<hr>
+				
 				<input type="submit" value="수정완료"
 					style="text-align: center; display: block; margin: 0 auto;">
 			</form>

@@ -7,6 +7,7 @@
 <html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="./location/locationPopup.js"></script>
 
 <script type="text/javascript">
 	function toggleCategory() {
@@ -183,7 +184,9 @@
   					<option value="${item.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
 				</select>
-				<a href="./location.lo">배송지 목록</a>
+				<div onclick="listPopup()">
+					배송지 목록
+				</div>
 				
 				
 

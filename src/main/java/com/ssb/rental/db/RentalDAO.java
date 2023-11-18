@@ -229,7 +229,7 @@ public class RentalDAO {
 			// 2. SQL 실행 
 			sql = "Insert Into rental_item (rental_item_name, rental_item_price, "
 					+ "rental_opt_quantity, rental_opt_name, rental_opt_value, rental_img_main, rental_img_sub, "
-					+ "rental_img_logo, category_id ) VALUES (?,?,?,?,?,?,?,?,?);";
+					+ "rental_img_logo, category_id, rental_days ) VALUES (?,?,?,?,?,?,?,?,?,?);";
 
 			// pstmt 초기화
 			pstmt = con.prepareStatement(sql);
@@ -243,6 +243,7 @@ public class RentalDAO {
 			pstmt.setString(7, rdto.getRental_img_sub());
 			pstmt.setString(8, rdto.getRental_img_logo());
 			pstmt.setInt(9, rdto.getCategory_id());
+			pstmt.setInt(10, rdto.getRental_days());
 			pstmt.executeUpdate();
 
 			System.out.println("RentalDAO : 렌탈 등록 성공!");
