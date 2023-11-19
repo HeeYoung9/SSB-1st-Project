@@ -1,13 +1,11 @@
 function addCart() {
-	var arr = new Array;
-	//값받아오기
 	alert(1);
-	alert($('cartDiv .item_id').val());
+	var arr = new Array;
 	$(".cartDiv").each(function() {
 		let cartItem = {
-  		"item_id" : $('cartDiv .item_id').value,
-  		"cart_quantity" : $('cartDiv .cart_quantity').value,
-  		"options_id" : $('cartDiv .options_id').value
+  		"item_id" : $(this).find('.item_id').val(),
+  		"cart_quantity" : $(this).find('.cart_quantity').val(),
+  		"options_id" : $(this).find('.options_id').val()
 		};
 		arr.push(cartItem);
 	});
