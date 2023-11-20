@@ -37,7 +37,14 @@ public class ajaxController extends HttpServlet {
 			System.out.println(item_id);
 			// 정보처리
 			List<optionsDTO> list = dao.getOptions(item_id);
-			json = gson.toJson(list);
+			if (list != null) {
+				json = gson.toJson(list);
+				System.out.println("list");
+			}else {
+				json = gson.toJson("옵션없음");
+				System.out.println("옵션없음");
+			}
+			
 		} else if (command.equals("/updateCart.aj")) {
 			// 정보저장
 			String cart_id = request.getParameter("cart_id");
