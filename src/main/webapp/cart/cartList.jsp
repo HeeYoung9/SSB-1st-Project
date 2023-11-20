@@ -52,7 +52,7 @@
 			</div>
 		</div>
 		<!-- 주문 폼 -->
-		<form action="./Order.ca" method="post">
+		<form action="./Order.od" method="post">
 			<!-- 임시주소 -->
 			<table class="table" border="1px solid black">
 				<colgroup>
