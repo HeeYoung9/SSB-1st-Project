@@ -97,7 +97,7 @@
 
 
 
-					<div class="allegy"> <p>anjttkn</p> </div>
+					<div class="allegy"> <p></p> </div>
 
 
 	

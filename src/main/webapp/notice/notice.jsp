@@ -28,12 +28,12 @@
 </div>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
 	<main style="width: 1500px;">
 		<section>
-			<form class="item_container" id="one" style="margin-bottom: 40px;">
+			<form class="item_container" id="one" style="margin-bottom: 40px; padding-top: 60px;">
 				<table class="table table-striped table-sm">
 					<colgroup>
 						<col style="width: 10%" />
@@ -51,7 +51,8 @@
 					<c:forEach var="bdto" items="${noticeList }" varStatus="status">
 					  <tr style="text-align: center;">
 						<td>${status.count }</td>
-						<td>${bdto.board_subject }</td>
+						<td><a href="./NoticeView.no?boardId=${bdto.board_id }&pageNum=${pageNum }"
+								style="text-decoration: none;">${bdto.board_subject }</a></td>
 						<td>${bdto.board_writeTime }</td>
 					  </tr>
 					</c:forEach>
@@ -83,13 +84,14 @@
   		   	</ul>
 		 	</nav>
 		</section>
+		
+	<!-- footer 시작 -->
+    <footer style="background: black; color:white; text-align: center; padding:10px; width:100vw;">
+      <p>&copy; 2023 SSB Style</p>
+    </footer>
+    <!-- footer 끝 -->
+    
 	</main>
-
-	<footer>
-		<div class="last"></div>
-	</footer>
-
-
 
 	<script src="../adItem/js/itemD.js"></script>
 
