@@ -116,6 +116,18 @@ public class NoticeFrontController extends HttpServlet{
 				e.printStackTrace();
 			}		
 		}
+		else if(command.equals("/Notice.no")) {
+			System.out.println("C: /Notice.no 호출");
+			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
+			
+			// NoticeAction 객체 생성
+			action = new NoticeAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println("---------- C: 2. 가상주소 매핑 끝   -----------");
 		/****************************** 2. 가상주소 매핑 끝 ******************************/
 		

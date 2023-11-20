@@ -95,7 +95,7 @@
 							</table>
 						</div>
 						<div>
-							<input type="button" value="글쓰기" class="btn btn-sm btn-primary"
+							<input type="button" value="작성하기" class="btn btn-sm btn-primary"
 								onclick="location.href='./NoticeWrite.no';">
 						</div>
 					</div>
@@ -122,12 +122,6 @@
 				</nav>
 			</main>
 			<!-- 게시판 -->
-
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
 
 		</div>
 		<!-- 메인 -->

@@ -38,6 +38,8 @@
 
 <link href="${pageContext.request.contextPath}/board/review/rating.css"
 	rel="stylesheet" />
+	
+<!-- 리뷰 작성 팝업 CSS -->
 <style type="text/css">
 /* 창 여분 없애기 */
 body {
@@ -72,11 +74,11 @@ body {
 /* 버튼 영역 */
 .cancel_btn {
 	background-color: #000000;
-	padding-top: 10px;
+	padding-top: 5px;
 	margin-right: 5px;
 	display: inline-block;
 	width: 100px;
-	height: 27px;
+	height: 38px;
 	color: #fff;
 	font-size: 14px;
 	line-height: 18px;
@@ -84,10 +86,10 @@ body {
 
 .enroll_btn {
 	background-color: #000000;
-	padding-top: 10px;
+	padding-top: 5px;
 	display: inline-block;
 	width: 100px;
-	height: 27px;
+	height: 38px;
 	color: #fff;
 	font-size: 14px;
 	line-height: 18px;
@@ -166,7 +168,7 @@ textarea {
 		</div>
 
 		<div class="btn_wrap">
-			<a class="cancel_btn">취소</a><a class="enroll_btn">등록</a>
+			<button class="cancel_btn">취소</button><button class="enroll_btn">등록</button>
 		</div>
 	</form>
 
@@ -182,7 +184,6 @@ textarea {
 			e.preventDefault();
 			var form = $('#reviewForm')[0];
 			var data = new FormData(form);
-			$(".enroll_btn").prop("disabled", true);
 
 			$.ajax({
 				url : './ReviewWriteAction.rv',
@@ -195,12 +196,10 @@ textarea {
 				timeout : 600000,
 				success : function(data) {
 					alert("성공");
-					$(".enroll_btn").prop("disabled", false);
 					window.close();
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
-					$(".enroll_btn").prop("disabled", false);
 					alert("실패");
 				}
 			});

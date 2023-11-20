@@ -34,6 +34,7 @@
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
 	rel="stylesheet">
 
+<!-- 공지사항 본문 페이지 -->
 <style>
 .board_title {
 	border-bottom: 1px solid #ddd;
@@ -133,12 +134,6 @@
 				</article>
 			</main>
 			<!-- 게시판 -->
-
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
 
 		</div>
 		<!-- 메인 -->

@@ -354,6 +354,64 @@ public class BoardDAO {
 		return result;
 	}
 	// 특정 글정보 삭제하는 메서드 - deleteNotice(BoardDTO bdto)	
+
+
+	// 제품 문의글 작성하기 메서드 - insertInquiryItem(BoardDTO bdto)
+	public void insertInquiryItem(BoardDTO bdto) {
+		int boardId = 0;
+				
+		try {
+			// 1.2. 디비 연결
+			con = getCon();
+		
+			// board_id 계산
+			// 3. SQL 구문(select) & pstmt 객체
+			sql = "select max(board_id) from board_remaster";
+			pstmt = con.prepareStatement(sql);
+			
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리
+			if(rs.next()) {
+				// board_id = rs.getInt("max(bno)") + 1;
+				// => getInt(int columnIndex):
+				boardId = rs.getInt(1) + 1; 
+			} else {
+				boardId = 1;
+			}
+			
+			System.out.println("DAO: 글번호: " + boardId);
+			
+			// 3. SQL 구문(insert) & pstmt 객체
+			sql = "insert into board_remaster(board_id, member_user_id, item_id, "
+					+ "board_type, inquiry_type, answer_state, "
+					+ "board_subject, board_content, board_writeTime) "
+					+ "values(?, ?, ?, ?, ?, ?, ?, ?, now())";
+			pstmt = con.prepareStatement(sql);
+					
+			// ?		
+			pstmt.setInt(1, boardId);
+			pstmt.setString(2, bdto.getMember_user_id());
+			pstmt.setInt(3, bdto.getItem_id());
+			pstmt.setString(4, "Q");
+			pstmt.setString(5, bdto.getInquiry_type());
+			pstmt.setString(6, "답변예정");
+			pstmt.setString(7, bdto.getBoard_subject());
+			pstmt.setString(8, bdto.getBoard_content());
+					
+			// 4. SQL 실행
+			pstmt.executeUpdate();
+					
+			System.out.println("DAO: 문의 작성 완료!");		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+				
+	} 
+	// 제품 문의글 작성하기 메서드 - insertInquiryItem(BoardDTO bdto)	
 	
 
 	// 렌탈제품 문의글 작성하기 메서드 - insertInquiryQBoard(BoardDTO bdto)

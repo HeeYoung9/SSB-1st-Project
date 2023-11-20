@@ -79,7 +79,7 @@
 							</div>
 
 							<div>
-								<input type="submit" value="수정하기" class="btn btn-sm btn-primary"
+								<input type="submit" value="수정" class="btn btn-sm btn-primary"
 									id="btnSave">
 								<button type="button" class="btn btn-sm btn-primary"
 									id="btnList" onclick="location.href='./NoticeList.no';">목록</button>
@@ -89,12 +89,6 @@
 				</article>
 			</main>
 			<!-- 게시판 -->
-
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
 
 		</div>
 		<!-- 메인 -->

@@ -54,7 +54,7 @@ public class ReviewWriteAction implements Action {
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
-		forward.setPath("./ReviewList.rv");
+		forward.setPath("./Main.in");
 		forward.setRedirect(true);
 				
 		return forward;

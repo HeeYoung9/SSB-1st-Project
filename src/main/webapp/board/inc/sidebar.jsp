@@ -45,10 +45,6 @@
                <span class="align-middle">Q&A</span>
             </a>
       </li>
-					
-	  <li class="sidebar-header">
-	  
-	  </li>
 	  
 	</ul>
   </div>
