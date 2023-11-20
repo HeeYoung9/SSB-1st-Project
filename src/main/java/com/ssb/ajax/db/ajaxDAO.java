@@ -13,19 +13,28 @@ public class ajaxDAO extends DAO {
 		optionsDTO dto = null;
 		try {
 			con = getCon();
-			sql = "SELECT options_id,options_name,options_value,options_price,options_quantity FROM options WHERE item_id = ? ORDER BY options_id";
+			sql = "SELECT options_id FROM options WHERE item_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, item_id);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				dto = new optionsDTO();
-				dto.setOptions_id(rs.getInt("options_id"));
-				dto.setOptions_name(rs.getString("options_name"));
-				dto.setOptions_value(rs.getString("options_value"));
-				dto.setOptions_price(rs.getInt("options_price"));
-				dto.setOptions_quantity(rs.getInt("options_quantity"));
-				dtoArray.add(dto);
-				System.out.println("dto 추가");
+			if (rs.next()) {
+				sql = "SELECT options_id,options_name,options_value,options_price,options_quantity FROM options WHERE item_id = ? ORDER BY options_id";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, item_id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					dto = new optionsDTO();
+					dto.setOptions_id(rs.getInt("options_id"));
+					dto.setOptions_name(rs.getString("options_name"));
+					dto.setOptions_value(rs.getString("options_value"));
+					dto.setOptions_price(rs.getInt("options_price"));
+					dto.setOptions_quantity(rs.getInt("options_quantity"));
+					dtoArray.add(dto);
+					System.out.println("dto 추가");
+				}
+			}else {
+				System.out.println("옵션없음");
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

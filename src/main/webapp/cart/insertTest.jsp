@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="selecters">
-	<input type="hidden" value="7" id="item_idSelecter">
+	<input type="hidden" value="42" id="item_idSelecter">
 	<input type="number" value="1" min="1" max="5" id="cart_quantitySelecter">
 	<select id="options_idSelecter">
 		<option value="12" label="12">

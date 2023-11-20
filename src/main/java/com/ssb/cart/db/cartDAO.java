@@ -12,7 +12,7 @@ public class cartDAO extends DAO{
 		cartDTO dto = null;
 		try {
 			con = getCon();
-			sql = "SELECT cart_id,C.item_id,cart_quantity,item_name,item_img_main,item_price,C.options_id,options_name,options_value,options_price,options_quantity FROM cart C JOIN item I ON C.item_id = I.item_id JOIN options O ON I.item_id = O.item_id AND C.options_id = O.options_id WHERE member_id = ? ORDER BY cart_id";
+			sql = "SELECT cart_id,C.item_id,cart_quantity,item_name,item_img_main,item_price,C.options_id,options_name,options_value,options_price,options_quantity FROM cart C LEFT JOIN item I ON C.item_id = I.item_id LEFT JOIN options O ON I.item_id = O.item_id AND C.options_id = O.options_id WHERE member_id = ? ORDER BY cart_id";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
 			System.out.println("전송된 쿼리 : " + pstmt);
