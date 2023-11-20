@@ -18,7 +18,7 @@ import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 import com.ssb.util.JSMoveFunction;
 
-public class OrderRefundAction implements Action {
+public class OrderRefundActionForAdmin implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -92,6 +92,7 @@ public class OrderRefundAction implements Action {
 		}
 		
 		//환불 처리 상태로 주문 업그레이드
+		System.out.println("이거 정상 호출 맞겠지?");
 		ordersDAO.updateOrdersState(Long.parseLong(orderId), OrdersState.REFUND);
 		
 		
@@ -105,14 +106,12 @@ public class OrderRefundAction implements Action {
 		PortOneRefundResult result = paymentService.refundPayment(myToken, Long.parseLong(orderId));
 		
 		if(result.equals(PortOneRefundResult.PASS)) {
-			JSMoveFunction.alertLocation(response, "주문취소가 정상적으로 진행되었습니다.", "./myPage.mp");
-
+			JSMoveFunction.alertLocation(response, "주문취소가 정상적으로 진행되었습니다.", "./AdOrderDetail.od?orders_id="+orderId);
+			return null;
 		}
 		
 		
-		ActionForward forward = new ActionForward();
-		
-		return forward;
+		return null;
 	}
 
 }

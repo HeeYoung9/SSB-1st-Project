@@ -29,6 +29,7 @@ public class loginAction implements Action {
 		MemberDTO dto = new MemberDTO();
 		dto.setMember_user_id(request.getParameter("member_user_id"));
 		dto.setMember_pw(request.getParameter("member_pw"));
+		System.out.println("비밀번호는? "+dto.getMember_pw());
 		
 		// DAO객체 생성 -> 로그인 체크 메서드
 		loginDAO dao = new loginDAO();

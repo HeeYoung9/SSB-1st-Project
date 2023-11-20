@@ -30,11 +30,16 @@
 		<!-- 옵션 변경창(숨겨져있음) -->
 		<div id="optionSelecter" hidden="">
 			<div>
+			<h1>옵션변경</h1>
 				<div class="input">
-					<!-- 옵션 선택 셀렉터 -->
-					<select id="chooseOptions"></select>
-					<!-- 갯수 선택 인풋 -->
-					<input type="number" id="selectedQuantitiy">
+					<div>
+						<!-- 옵션 선택 셀렉터 -->
+						<select id="chooseOptions"></select>
+					</div>
+					<div>
+						<!-- 갯수 선택 인풋 -->
+						<input type="number" id="selectedQuantitiy">
+					</div>
 				</div>
 				<div class="button">
 					<!-- 변경 버튼 -->

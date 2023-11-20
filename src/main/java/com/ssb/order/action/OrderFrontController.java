@@ -141,6 +141,15 @@ public class OrderFrontController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/OrderStateUpdateRefund.od")) {
+			
+			action = new OrderRefundActionForAdmin();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -181,6 +190,16 @@ public class OrderFrontController extends HttpServlet{
 			
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MyPageUserDetermine.od")) {
+			
+			action = new MyPageUserDetermineAction();
+			
+			try {
+				forward= action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

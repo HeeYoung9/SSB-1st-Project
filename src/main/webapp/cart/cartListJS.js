@@ -30,21 +30,25 @@ function getOptions(cart_id, item_id, cart_quantity) {//옵션 가져오기
 			alert('통신실패!!');
 		},
 		success: function(data) {
-			$("#optionSelecter").removeAttr("hidden");//옵션 변경창 히든 제거
 			var optionList = JSON.parse(data);//json 객체로 전환
-			//객체를 사용해 웹에 뿌리기
-			//장바구니 수량
-			$("#selectedQuantitiy").attr("value", cart_quantity);
-			//제품 아이디
-			$("#optionSelecter").append("<input type='hidden' name='hidden_item_id' value='" + item_id + "'>");
-			//장바구니 아이디
-			$("#optionSelecter").append("<input type='hidden' name='hidden_cart_id' value='" + cart_id + "'>");
-			//셀렉트 옵션 이름 초기값 설정
-			//옵션 이름 히든처리
-			$("#chooseOptions").html("<option label='" + optionList[0].options_name + "' hidden selected='selected'>");
-			//옵션값 forEach 처리
-			for (var optionDTO of optionList) {
-				$("#chooseOptions").append("<option value='" + optionDTO.options_id + "' label='" + optionDTO.options_value + "'>");
+			if(optionList=="옵션없음"){
+				alert("변경가능한 옵션이 없습니다");
+			}else{
+				$("#optionSelecter").removeAttr("hidden");//옵션 변경창 히든 제거
+				//객체를 사용해 웹에 뿌리기
+				//장바구니 수량
+				$("#selectedQuantitiy").attr("value", cart_quantity);
+				//제품 아이디
+				$("#optionSelecter").append("<input type='hidden' name='hidden_item_id' value='" + item_id + "'>");
+				//장바구니 아이디
+				$("#optionSelecter").append("<input type='hidden' name='hidden_cart_id' value='" + cart_id + "'>");
+				//셀렉트 옵션 이름 초기값 설정
+				//옵션 이름 히든처리
+				$("#chooseOptions").html("<option label='" + optionList[0].options_name + "' hidden selected='selected'>");
+				//옵션값 forEach 처리
+				for (var optionDTO of optionList) {
+					$("#chooseOptions").append("<option value='" + optionDTO.options_id + "' label='" + optionDTO.options_value + "'>");
+				}
 			}
 		}
 	});

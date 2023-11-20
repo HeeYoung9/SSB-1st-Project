@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import com.ssb.cart.db.cartDTO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 @WebServlet("*.ca")
@@ -28,6 +35,8 @@ public class cartController extends HttpServlet {
 		System.out.println("C : 2. 가상주소 매핑 시작------------------");
 		Action action = null;
 		ActionForward forward = null;
+		Gson gson = new Gson();
+		String json = null;
 		
 		//수정
 		if (command.equals("/cartList.ca")) {
@@ -52,6 +61,16 @@ public class cartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (command.equals("/cart/insertCart.ca")) {
+			System.out.println("C : /insertCart.ca 호출");
+			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
+			
+			action = new insertCartAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		/*********************** 2. 가상주소 매핑 끝 **************************/
@@ -68,6 +87,10 @@ public class cartController extends HttpServlet {
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}
+		}else if(json != null) {
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json; charset=utf-8");
+			response.getWriter().print(json);
 		}
 		/*********************** 3. 가상주소 이동 끝 **************************/
 

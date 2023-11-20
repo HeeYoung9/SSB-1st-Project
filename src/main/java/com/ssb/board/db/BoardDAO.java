@@ -647,8 +647,8 @@ public class BoardDAO {
 			System.out.println("DAO: 글번호: " + boardId);
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, member_user_id, board_type, "
-					+ "board_content, board_writeTime, board_readCount, board_file, rating) "
-					+ "values(?, ?, ?, ?, now(), ?, ?, ?)";
+					+ "board_content, board_writeTime, board_readCount, board_file, rating, rental_item_id) "
+					+ "values(?, ?, ?, ?, now(), ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			
 			// ?		
@@ -738,7 +738,7 @@ public class BoardDAO {
 	
 	
 	// 리뷰글 목록을 가져오는 메서드 - getReviewList(int reviewStartRow, int reviewPageSize)
-	public ArrayList getReviewList(int reviewStartRow, int reviewPageSize) {
+	public ArrayList getReviewList(int reviewStartRow, int reviewPageSize, int rental_item_id) {
 		// 글정보를 저장하는 배열
 		ArrayList reviewList = new ArrayList();
 					
@@ -751,13 +751,14 @@ public class BoardDAO {
 					+ "board_readCount, board_file, rating "
 					+ "from member m join board_remaster br "
 					+ "on m.member_user_id  = br.member_user_id "
-					+ "where board_type='R' "
+					+ "where board_type='R' and rental_item_id=? "
 					+ "order by board_id desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 						
 			// ?
-			pstmt.setInt(1, reviewStartRow-1); // 시작행 번호-1
-			pstmt.setInt(2, reviewPageSize); // 페이지 개수
+			pstmt.setInt(1, rental_item_id);
+			pstmt.setInt(2, reviewStartRow-1); // 시작행 번호-1
+			pstmt.setInt(3, reviewPageSize); // 페이지 개수
 						
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();

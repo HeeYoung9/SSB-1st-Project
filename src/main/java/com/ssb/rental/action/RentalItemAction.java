@@ -63,7 +63,7 @@ public class RentalItemAction implements Action {
 		ArrayList reviewList = new ArrayList();
 
 		if(reviewCount > 0) {
-			reviewList = bdao.getReviewList(reviewStartRow, reviewPageSize);
+			reviewList = bdao.getReviewList(reviewStartRow, reviewPageSize, rItemId);
 		}
 
 		System.out.println("M: size: " + reviewList.size());

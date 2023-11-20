@@ -17,7 +17,7 @@
 				<input class="search-input" type="text" placeholder="내 스타일 찾기" name="search"
 					style="width: 80%;">
 				<button type="submit" class="search-icon">
-					<img width="38" height="38" src="./main/img/hoodie.png" alt="검색버튼" />
+					<img width="38" height="38" src="./main/img/tennis.png" alt="검색버튼" />
 				</button>
 			</form>
 		</div>
