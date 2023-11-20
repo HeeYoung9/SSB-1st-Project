@@ -114,7 +114,12 @@
 					</div>
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/nordisk.png" alt="노르디스크"> </a>
+							src="./main/item_img/yonex_event.png" alt="요넥스이벤트"> </a>
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
+					<div class="carousel-item">
+						<a href="#"><img class="d-block"
+							src="./main/item_img/ak_event.png" alt="ak이벤트"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<button class="carousel-control-prev" type="button"
