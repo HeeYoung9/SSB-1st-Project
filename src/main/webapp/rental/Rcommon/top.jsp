@@ -66,12 +66,12 @@
 		<div class="submenu">
 			<a href="./RentalMain.re?category=캠핑"><b>Camping</b></a>
 			<div class="submenu-content">
-				<a href="#">세트</a><a href="#">텐트</a> <a href="#">테이블&의자</a> <a href="#">그늘막</a>
+				<a href="#">텐트</a> <a href="#">테이블&의자</a> <a href="#">그늘막</a> <a href="#">기타</a>
 			</div>
 
 		</div>
 		<div class="submenu">
-			<a href="./RentalMain.re?category=겨울스포츠"><b>Ski/SnowBoard</b></a>
+			<a href="./RentalMain.re?category=스키/보드"><b>Ski/SnowBoard</b></a>
 			<div class="submenu-content">
 				<a href="#">스키장비</a> <a href="#">보드장비</a> <a href="#">고글</a> <a href="#">장갑</a>
 			</div>

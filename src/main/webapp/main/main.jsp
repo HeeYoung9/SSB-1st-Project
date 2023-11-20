@@ -111,25 +111,25 @@
 					</div>
 					
 
-					<div class="carousel-item active">
+					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/diadora_event.png" alt="디아도라이벤트슬라이드">
+							src="./main/item_img/newbal_event.png" alt="뉴발란스슬라이드">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
-					<!-- 실제 JSP 코드 종료 부분 -->
+					
+					<div class="carousel-item">
+						<a href="#"><img class="d-block"
+							src="./main/item_img/nb_event.png" alt="뉴발멤버이벤트"> </a>
+						<div class="carousel-caption d-none d-md-block"></div>
+					</div>
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/img/blackFriday.png" alt="블랙프라이데이"> </a>
-						<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 못함-->
+							src="./main/item_img/head_event.png" alt="블랙프라이데이"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
-					<div class="carousel-item">
-						<a href="#"><img class="d-block"
-							src="./main/item_img/nordisk.png" alt="노르디스크"> </a>
-						<div class="carousel-caption d-none d-md-block"></div>
-					</div>
+					
 					<button class="carousel-control-prev" type="button"
 						data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -142,9 +142,8 @@
 					</button>
 				</div>
 
-				<!-- 이벤트 슬라이드 끝 -->
-
 			</div>
+				<!-- 이벤트 슬라이드 끝 -->
 
 
 			<!-- 제품 목록 -->

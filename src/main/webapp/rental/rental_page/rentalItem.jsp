@@ -170,11 +170,6 @@
 				alt="상품 상세 이미지">
 		</div>
 
-		<div class="product-description">
-			<h2>상품 상세 이미지</h2>
-			<img src="./main/rental_item/${rdto.rental_img_sub }"
-				alt="상품 상세 이미지">
-		</div>
 
 		<div class="reviews" id="review">
 		<h1>REVIEW</h1>
