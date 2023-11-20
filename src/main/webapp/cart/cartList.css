@@ -33,7 +33,11 @@
 }
 .input div input{
 	width: 100px;
+	margin-top: 30px;
+}
+.button{
 	margin: 0 auto;
 	margin-top: 30px;
+	
 }
 
