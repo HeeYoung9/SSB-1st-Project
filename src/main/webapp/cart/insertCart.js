@@ -1,13 +1,13 @@
 function addCart() {
-	alert(1);
 	var arr = new Array;
-	$(".cartDiv").each(function() {
+	$("#cartPool .cartDiv").each(function() {
 		let cartItem = {
   		"item_id" : $(this).find('.item_id').val(),
   		"cart_quantity" : $(this).find('.cart_quantity').val(),
   		"options_id" : $(this).find('.options_id').val()
 		};
 		arr.push(cartItem);
+		alert(1);
 	});
 	$.ajax({
 		type: "POST",
@@ -24,3 +24,12 @@ function addCart() {
 		}
 	});
 };
+function setCart(){
+	alert(1);
+	var html = "<div class='cartDiv'>";
+	html += "<input type='input' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
+	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
+	html += "<input type='input' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+	html += "</div>";
+	$("#cartPool").append(html);
+}

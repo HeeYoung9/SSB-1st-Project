@@ -141,6 +141,28 @@ public class cartDAO extends DAO{
 			}
 			return dtoArray;
 		}
+
+		public int insertCart(int member_id, ArrayList<cartDTO> dtoArray) {
+			int result = -1;
+			try {
+				con = getCon();
+				sql = "INSERT INTO cart VALUES(DEFAULT,?,?,?,?,null)";
+				for (cartDTO dto : dtoArray) {
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, member_id);
+					pstmt.setInt(2, dto.getItem_id());
+					pstmt.setInt(3, dto.getCart_quantity());
+					pstmt.setInt(4, dto.getOptions_id());
+					System.out.println(pstmt);
+					result = pstmt.executeUpdate();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+			return result;
+		}
 	
 	
 }

@@ -65,31 +65,12 @@ public class cartController extends HttpServlet {
 			System.out.println("C : /insertCart.ca 호출");
 			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
-			// 정보저장
-			int member_id = 1006;
-			JSONParser parser = new JSONParser();
+			action = new insertCartAction();
 			try {
-				JSONArray arr = (JSONArray) parser.parse(request.getParameter("arr"));
-				for (int i = 0; i < arr.size(); i++) {
-					JSONObject obj = (JSONObject) arr.get(i);
-					cartDTO dto = new cartDTO();
-					dto.setItem_id(Integer.parseInt((String)obj.get("item_id"))); 
-					dto.setCart_quantity(Integer.parseInt((String)obj.get("cart_quantity"))) ;
-					dto.setOptions_id(Integer.parseInt((String)obj.get("options_id"))); 
-					System.out.println(dto.getItem_id());
-					System.out.println(dto.getCart_quantity());
-					System.out.println(dto.getOptions_id());
-				}
-			} catch (ParseException e) {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//액션으로 만들기
-			System.out.println("member_id : " + member_id);
-			//System.out.println("cartItemArr : " + cartItemArr);
-			//dao = new wishlistDAO();
-			//정보처리
-			//int result = dao.deleteWishlist(item_idArr,member_id);
-			//json = gson.toJson(result);
 		}
 
 		/*********************** 2. 가상주소 매핑 끝 **************************/

@@ -11,10 +11,19 @@
 <script type="text/javascript" src="insertCart.js"></script>
 </head>
 <body>
-<div class="cartDiv" value="cartDiv" onclick="addCart()">
-	<input class="item_id" type="text" value="1">
-	<input class="cart_quantity" type="text" value="2">
-	<input class="options_id" type="text" value="3">
+<div id="selecters">
+	<input type="hidden" value="7" id="item_idSelecter">
+	<input type="number" value="1" min="1" max="5" id="cart_quantitySelecter">
+	<select id="options_idSelecter">
+		<option value="12" label="12">
+		<option value="13" label="13">
+		<option value="14" label="14">
+	</select>
 </div>
+<input type="button" value="setCart" onclick="setCart()">
+<div id="cartPool">
+
+</div>
+<input type="button" value="addCart" onclick="addCart()">
 </body>
 </html>
