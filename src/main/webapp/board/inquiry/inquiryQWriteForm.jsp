@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,6 +120,7 @@ textarea {
 
 	<form id="inquiry">
 		<input type="hidden" name="userId" value="${sessionScope.userId }">
+		<input type="hidden" name="rItemId" value="${param.rItemId }">
 		<div class="input_wrap">
 			<div class="content_div1">
 				<label style="margin-right: 10px;"><strong>문의유형</strong></label> <input

@@ -1,6 +1,8 @@
-
-
-/* header js 코드 영역 접어둠. */
+/**
+ * 렌탈아이템 상세 페이지 js 모음
+ */
+ 
+ /* header js 코드 영역 접어둠. */
 function toggleCategory() {
 	var categoryContent = document.querySelector('.category-content');
 	var brandContent = document.querySelector('.brand-content');
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
+/* 달력 */
 document.addEventListener('DOMContentLoaded', function() {
     const content = document.querySelector('.detailinfo > .content');
     const btnOpen = document.querySelector('.btn_open');
@@ -65,3 +67,34 @@ document.addEventListener('DOMContentLoaded', function() {
         btnClose.classList.add('hide');
     });
 });
+
+
+
+/*Q&A 목록 펼치고 닫기*/	
+window.onload = () => {
+	  // panel-faq-container
+	  const panelFaqContainer = document.querySelectorAll(".panel-faq-container"); // NodeList 객체
+	  
+	  // panel-faq-answer
+	  let panelFaqAnswer = document.querySelectorAll(".panel-faq-answer");
+
+	  // btn-all-close
+	  const btnAllClose = document.querySelector("#btn-all-close");
+	  
+	  // 반복문 순회하면서 해당 FAQ제목 클릭시 콜백 처리
+	  for(let i=0;i < panelFaqContainer.length; i++) {
+	    panelFaqContainer[i].addEventListener('click', function() { // 클릭 시 처리할 일
+	      // Q&A 제목 클릭 시 -> 본문 보이게 -> active 클래스 추가
+	      panelFaqAnswer[i].classList.toggle('active');
+	    });
+	  };
+	  
+	  btnAllClose.addEventListener('click', function() {
+	    // 버튼 클릭시 처리할 일  
+	    for(let i=0; i < panelFaqAnswer.length; i++) {
+	        panelFaqAnswer[i].classList.remove('active');
+	    };
+	  });
+	}
+	
+	

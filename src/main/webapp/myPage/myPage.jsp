@@ -177,31 +177,26 @@
 			<table class="order-table" style="width: 80%; margin: 0 auto;">
 				<thead>
 					<tr>
-						<th>주문 번호</th>
-						<th>회원번호</th>
-						<th>회원이름</th>
-						<th>주문상태</th>
-						<th>주문종류</th>
+						<th>주문번호</th>
 						<th>주문날짜</th>
+						<th>상태</th>
 						<th>가격</th>
 						<th>상세보기</th>
-						<th>주문 취소</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${orderList}">
 						<tr>
-							<td>${dto.id}</td>
-							<td>${dto.member_id}</td>
-							<td>${dto.member_user_name}</td>
+							<td>${dto.orderD_id}</td>
 							<td>${dto.orders_state}</td>
-							<td>${dto.orders_sort}</td>
+							<td>${dto.orders_sort})</td>
 							<td>${dto.orders_date}</td>
 							<td>${dto.total_price}</td>
 							<td>
 								<button class="edit-button"
 									onclick="location.href='./AdOrderDetail.od?orders_id=${dto.id}'">상세보기</button>
-							</td>
+							<button id="editButton">취소하기</button></td>
+							
 							<td>
 								<button class="cancel-button" onclick="cancelOrder(${dto.id})">주문
 									취소</button>

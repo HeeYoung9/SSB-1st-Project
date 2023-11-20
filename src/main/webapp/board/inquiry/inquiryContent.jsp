@@ -127,8 +127,6 @@
 								<div style="margin-top: 10px;">
 									<button type="button" class="btn btn-sm btn-primary"
 										id="btnList" onclick="location.href='./InquiryList.iq?';">목록</button>
-									<!-- <button type="button" class="btn btn-sm btn-primary" id="btnUpdate" -->
-									<%-- onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">수정하기</button> --%>
 								</div>
 							</c:if>
 						</div>
@@ -136,13 +134,7 @@
 				</article>
 			</main>
 			<!-- 게시판 -->
-
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
-
+			
 		</div>
 		<!-- 메인 -->
 

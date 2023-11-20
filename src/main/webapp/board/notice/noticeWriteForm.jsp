@@ -82,12 +82,6 @@
 			</main>
 			<!-- 게시판 -->
 
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
-
 		</div>
 		<!-- 메인 -->
 

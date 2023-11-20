@@ -45,13 +45,6 @@
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
-
-<script type="text/javascript">
-	function openPop() {
-		var popup = window.open('./InquiryQWrite.iq', '문의팝업',
-				'width=550px,height=550px,scrollbars=yes');
-	}
-</script>
 <body>
 	<!-- 로그인 세션 제어 -->
 	<c:if test="${empty userId }">
@@ -95,9 +88,14 @@
 								<tbody>
 									<c:forEach var="bdto" items="${inquiryList }">
 										<tr style="text-align: center;">
-											<td><c:if test="${!empty bdto.answer_state }">
-													<font style="color: red;">${bdto.answer_state }</font>
-												</c:if> <c:if test="${bdto.answer_state == null}">답변예정</c:if></td>
+		      								<td>
+			    							  <c:if test="${bdto.answer_state == '답변예정'}">
+			    								<strong>답변예정</strong>
+			    							  </c:if>
+											  <c:if test="${bdto.answer_state == '답변완료'}">
+				 								<font style="color: red;"><strong>${bdto.answer_state }</strong></font>
+											  </c:if>
+		     								 </td>
 											<td><c:out value="${bdto.inquiry_type }" /></td>
 											<td><a
 												href="./InquiryContent.iq?boardId=${bdto.board_id }&pageNum=${pageNum }"
@@ -112,11 +110,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						</div>
-						<div>
-							<button type="button" class="btn btn-sm btn-primary"
-								onclick="openPop()">문의</button>
-							<!-- <input type="button" value="글쓰기" class="btn btn-sm btn-primary" onclick="location.href='./InquiryQWrite.iq';"> -->
 						</div>
 					</div>
 				</article>
@@ -142,12 +135,6 @@
 				</nav>
 			</main>
 			<!-- 게시판 -->
-
-			<!-- 푸터 들어가는 곳 -->
-			<footer class="footer">
-				<div class="container-fluid"></div>
-			</footer>
-			<!-- 푸터 들어가는 곳 -->
 
 		</div>
 		<!-- 메인 -->
