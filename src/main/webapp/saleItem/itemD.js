@@ -1,3 +1,58 @@
+$('#options_idSelecter').change(function() {
+    var html = "<div class='cartDiv'>";
+	html += "<input type='hidden' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
+	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
+	html += "<input type='hidden' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+	html += "<input type='button' class='closeButton' value='close'>";
+	html += "</div>";
+	$("#cartPool").append(html);
+});
+
+
+$(document).on("click",".closeButton",function(){
+	$(this).parent().detach();
+});
+function addCart() {
+	var arr = new Array;
+	$("#cartPool .cartDiv").each(function() {
+		let cartItem = {
+  		"item_id" : $(this).find('.item_id').val(),
+  		"cart_quantity" : $(this).find('.cart_quantity').val(),
+  		"options_id" : $(this).find('.options_id').val()
+		};
+		arr.push(cartItem);
+	});
+	$.ajax({
+		type: "POST",
+		url: "./insertCart.ca",
+		dataType: "text",
+		data: {
+			"arr": JSON.stringify(arr)
+		},
+		error: function() {
+			alert('통신실패!!');
+		},
+		success: function(data) {
+			
+		}
+	});
+};
+function setCart(){
+	var html = "<div class='cartDiv'>";
+	html += "<input type='input' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
+	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
+	html += "<input type='input' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+	html += "<input type='button' class='closeButton' value='close'>";
+	html += "</div>";
+	$("#cartPool").append(html);
+}
+
+
+
+
+
+
+
 
 
 /* header js 코드 영역 접어둠. */
@@ -65,3 +120,37 @@ document.addEventListener('DOMContentLoaded', function() {
         btnClose.classList.add('hide');
     });
 });
+
+
+
+
+
+/*Q&A 목록 펼치고 닫기 게시판!*/	
+window.onload = () => {
+	  // panel-faq-container
+	  const panelFaqContainer = document.querySelectorAll(".panel-faq-container"); // NodeList 객체
+	  
+	  // panel-faq-answer
+	  let panelFaqAnswer = document.querySelectorAll(".panel-faq-answer");
+
+	  // btn-all-close
+	  const btnAllClose = document.querySelector("#btn-all-close");
+	  
+	  // 반복문 순회하면서 해당 FAQ제목 클릭시 콜백 처리
+	  for(let i=0;i < panelFaqContainer.length; i++) {
+	    panelFaqContainer[i].addEventListener('click', function() { // 클릭 시 처리할 일
+	      // Q&A 제목 클릭 시 -> 본문 보이게 -> active 클래스 추가
+	      panelFaqAnswer[i].classList.toggle('active');
+	    });
+	  };
+	  
+	  btnAllClose.addEventListener('click', function() {
+	    // 버튼 클릭시 처리할 일  
+	    for(let i=0; i < panelFaqAnswer.length; i++) {
+	        panelFaqAnswer[i].classList.remove('active');
+	    };
+	  });
+	}
+	
+	
+	

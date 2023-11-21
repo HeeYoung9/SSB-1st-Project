@@ -87,12 +87,16 @@
 }
 	
 </style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="./Mcommon/top.js" charset="UTF-8"></script>
+<link href="./Mcommon/top.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 	<div class="header">
 		<jsp:include page="../Mcommon/top.jsp" />
-
+    </div>
 		<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 		<!-- 상단 메인 메뉴바 끝 -->
@@ -102,7 +106,7 @@
 
 			<!-- 내용 수정된 부분 -->
 			<div class="right-section">
-				<button class="menu-toggle" onclick="toggleCategory()">메뉴이미지삽입</button>
+				<button class="menu-toggle" onclick="toggleCategory()"><img src="./main/img/menu_bar.png" alt="메뉴바" width="40" height="25" /></button>
 				<div class="category-content m-2" id="categoryContent"
 					style="display: none;">
 
@@ -143,7 +147,7 @@
 					</div>
 				</div>
 			</div>
-	</div>
+	 <!-- div 자리 이동해봄  -->
 			<script>
     function toggleCategory() {
         var categoryContent = document.getElementById("categoryContent");
@@ -269,7 +273,7 @@
                 </c:if>
                 
                 <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1"> 
-                <span class="num">
+                <span class="num" style="margin: 0 auto;">
 					<a href="./myPage.mp?pageNum=${i }&state=${param.state}" class="on" >${i }</a> 
                 </span>
 				</c:forEach>
@@ -283,13 +287,10 @@
 			<p>현재 로그인된 계정 정보가 없습니다.</p>
 			<% } %>
 
-
-
-		
 			<button class="withdrawal-button">
 					<a href="./MemberCloseAccount.me" style="color: black;">회원 탈퇴</a>
 			</button>
-			
-		</div>
+			</div>
+		
 </body>
 </html>

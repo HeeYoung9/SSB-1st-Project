@@ -120,6 +120,7 @@ textarea {
 
 	<form id="inquiry">
 		<input type="hidden" name="userId" value="${sessionScope.userId }">
+		<input type="hidden" name="itemId" value="${param.itemId }">
 		<input type="hidden" name="rItemId" value="${param.rItemId }">
 		<div class="input_wrap">
 			<div class="content_div1">

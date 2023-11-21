@@ -1,3 +1,6 @@
+$(document).on("click",".closeButton",function(){
+	$(this).parent().detach();
+});
 function addCart() {
 	var arr = new Array;
 	$("#cartPool .cartDiv").each(function() {
@@ -7,7 +10,6 @@ function addCart() {
   		"options_id" : $(this).find('.options_id').val()
 		};
 		arr.push(cartItem);
-		alert(1);
 	});
 	$.ajax({
 		type: "POST",
@@ -25,11 +27,11 @@ function addCart() {
 	});
 };
 function setCart(){
-	alert(1);
 	var html = "<div class='cartDiv'>";
 	html += "<input type='input' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
 	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
 	html += "<input type='input' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+	html += "<input type='button' class='closeButton' value='close'>";
 	html += "</div>";
 	$("#cartPool").append(html);
 }

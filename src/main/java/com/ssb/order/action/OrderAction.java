@@ -23,7 +23,7 @@ public class OrderAction implements Action {
 		// 정보 받아옴
 		//String strCartList = request.getParameter("cartDTOs");
 		
-		String strCartList= "23";
+		String strCartList= request.getParameter("checkArray");
 		
 		//DAO 뭉치들
 		MemberDAO memberDAO = new MemberDAO();

@@ -56,6 +56,26 @@ public class InquiryFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/InquiryItemQWrite.iq")) {
+			System.out.println("C: /InquiryItemQWrite.iq 호출");
+			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
+			
+			forward = new ActionForward();
+			forward.setPath("./board/inquiry/inquiryItemQWriteForm.jsp");
+			forward.setRedirect(false);
+		}
+		else if(command.equals("/InquiryItemQWriteAction.iq")) {
+			System.out.println("C: /InquiryItemQWriteAction.iq 호출");
+			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
+			
+			// InquiryQWriteAction 객체 생성
+			action = new InquiryItemQWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/InquiryList.iq")) {
 			System.out.println("C: /InquiryList.iq 호출");
 			System.out.println("C: 패턴3 - DB사용O, 페이지 출력");
