@@ -159,7 +159,7 @@ textarea {
 				type : 'POST',
 				data : $('#inquiry').serialize(),
 				success : function(data) {
-					alert("데이터 전송 성공!");
+					alert("문의글이 저장되었습니다.");
 					window.close();
 				}
 

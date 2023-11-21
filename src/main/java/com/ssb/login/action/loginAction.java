@@ -41,7 +41,7 @@ public class loginAction implements Action {
 		
 		
 		 if(result == 2) {
-			 JSMoveFunction.alertBack(response, "배신자 out");
+			 JSMoveFunction.alertBack(response, "회원정보가 없습니다.");
 		 }else if(result == 1) {
 			// 페이지 이동(JSP)
 			// 아이디 정보를 세션에 저장2
