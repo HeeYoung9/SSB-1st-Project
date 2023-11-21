@@ -48,21 +48,23 @@ public class insertCartAction implements Action {
 		//정보처리
 		Gson gson = new Gson();
 		String json = null;
-		int check = -1;
+		int check = -3;
 		ArrayList<cartDTO> result = dao.duplicateCheck(member_id,dtoArray);
 		boolean duplicate = result.size() == dtoArray.size();
 		System.out.println("dtoArray" + dtoArray.size());
 		System.out.println("result" + result.size());
 		int num = dao.insertCart(member_id,result);
 		if (duplicate && type.equals("buy")) {
+			System.out.println(1);
 			String asdasd = dao.getCart_id(member_id,dtoArray);
 			System.out.println(asdasd);
 			json = gson.toJson(asdasd);
 		}else {
+			System.out.println(2);
 			if (!duplicate) {
-				check = 1;
+				check = -1;
 			}else {
-				check = 0;
+				check = -2;
 			}
 			json = gson.toJson(check);
 		}
