@@ -120,15 +120,16 @@
                         <td>${dto.orders_date }</td>
                         <td>${dto.total_price }</td>
                         <td>
-                        <button id="editButton" onclick="location.href='./AdOrderDetail.od?orders_id=${dto.id}'">상세보기</button>
-                        <button id="editButton">상세보기</button>
+                        <button id="editButton" onclick="location.href='./AdOrderDetail.od?orders_id=${dto.id}'" style="margin-right: 45px; border: none; background: transparent;">
+                        상세보기</button>
                         </td>
 					</tr>
                 </c:forEach>
             </table>
             
-            
-			<!--- 페이징 --->
+        </section>
+        
+        <!--- 페이징 --->
             <div class="paging">
                 <c:if test="${startPage > pageBlock }">
                     <a href="./AdOrderList.od?pageNum=${startPage-pageBlock }&state=${param.state}">이전</a>
@@ -144,7 +145,6 @@
                     <a href="./AdOrderList.od?pageNum=${startPage + pageBlock}&state=${param.state}">다음</a>
                 </c:if>
             </div>
-        </section>
     </main>
     
     

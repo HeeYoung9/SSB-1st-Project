@@ -63,7 +63,7 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link href="./main/main_css/main.css" rel="stylesheet">
+<link href="./rental/rental_css/rental.css" rel="stylesheet">
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./main/img/favicon.ico">
@@ -125,8 +125,8 @@
 				<hr class="my-4">
 
 				<a class="btn btn-secondary" role="button" aria-disabled="true">메인페이지로
-					가기</a> <a class="btn btn-secondary" role="button" aria-disabled="true">내
-					결제 상품 보러가기</a>
+					가기</a> <a class="btn btn-secondary" role="button" aria-disabled="true" href="./myPage.mp">
+					주문내역</a>
 
 
 			</div>

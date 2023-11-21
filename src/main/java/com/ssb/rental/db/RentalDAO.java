@@ -190,6 +190,7 @@ public class RentalDAO {
 			sql="select * from rental_item ri join category c on ri.category_id = c.category_id where category_sport=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, category);
+	
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -219,6 +220,94 @@ public class RentalDAO {
 		return categoryList;
 	}
 	// 카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category)
+	
+	// 스포츠 중분류 카테고리별 제품 목록을 보여주는 메서드 - getMiddleCategoryItem(category, category_major)	
+		public ArrayList getMiddleCategoryItem(String category, String category_major) {
+			ArrayList categoryList = new ArrayList();
+
+
+			try {
+				con = getCon();
+				sql="select * from rental_item i join category c on i.category_id = c.category_id where category_sport=? and category_major=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, category);
+				pstmt.setString(2, category_major);
+				rs = pstmt.executeQuery();
+
+				while(rs.next()) {
+					RentalDTO rdto = new RentalDTO();
+					rdto.setRental_item_id(rs.getInt("rental_item_id"));
+					rdto.setRental_item_name(rs.getString("rental_item_name"));
+					rdto.setRental_item_price(rs.getInt("rental_item_price"));
+					rdto.setRental_opt_quantity(rs.getInt("rental_opt_quantity"));
+					rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
+					rdto.setRental_opt_value(rs.getString("rental_opt_value"));
+					rdto.setRental_img_main(rs.getString("rental_img_main"));
+					rdto.setRental_img_sub(rs.getString("rental_img_sub"));
+					rdto.setRental_img_logo(rs.getString("rental_img_logo"));
+					rdto.setCategory_id(rs.getInt("category_id"));
+
+					categoryList.add(rdto);
+
+				}
+				System.out.println("DAo : 카테고리별 목록 조회 완료! ");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+
+
+			return categoryList;
+		}
+		// 스포츠 중분류 카테고리별 제품 목록을 보여주는 메서드 - getMiddleCategoryItem(category, category_major)	
+		
+		// 스포츠 소분류 카테고리별 제품 목록을 보여주는 메서드 - getSubCategoryItem(category, category_sub)
+		public ArrayList getSubCategoryItem(String category, String category_sub) {
+			ArrayList categoryList = new ArrayList();
+
+
+			try {
+				con = getCon();
+				sql="select * from rental_item i join category c on i.category_id = c.category_id where category_sport=? and category_sub=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, category);
+				pstmt.setString(2, category_sub);
+				rs = pstmt.executeQuery();
+
+				while(rs.next()) {
+					RentalDTO rdto = new RentalDTO();
+					rdto.setRental_item_id(rs.getInt("rental_item_id"));
+					rdto.setRental_item_name(rs.getString("rental_item_name"));
+					rdto.setRental_item_price(rs.getInt("rental_item_price"));
+					rdto.setRental_opt_quantity(rs.getInt("rental_opt_quantity"));
+					rdto.setRental_opt_name(rs.getString("rental_opt_name"));;
+					rdto.setRental_opt_value(rs.getString("rental_opt_value"));
+					rdto.setRental_img_main(rs.getString("rental_img_main"));
+					rdto.setRental_img_sub(rs.getString("rental_img_sub"));
+					rdto.setRental_img_logo(rs.getString("rental_img_logo"));
+					rdto.setCategory_id(rs.getInt("category_id"));
+
+					categoryList.add(rdto);
+
+				}
+				System.out.println("DAo : 카테고리별 목록 조회 완료! ");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+
+
+			return categoryList;
+		}
+		
+		// 스포츠 소분류 카테고리별 제품 목록을 보여주는 메서드 - getSubCategoryItem(category, category_sub)		
+		
+		
+		
+		
+		
 
 	// 렌탈 상품을 등록하는 메서드 - addRental 시작
 	public void addRental(RentalDTO rdto) {

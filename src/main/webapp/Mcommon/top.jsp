@@ -17,11 +17,11 @@
 				<input class="search-input" type="text" placeholder="내 스타일 찾기" name="search"
 					style="width: 80%;">
 				<button type="submit" class="search-icon">
-					<img width="38" height="38" src="./main/img/hoodie.png" alt="검색버튼" />
+					<img width="38" height="38" src="./main/img/tennis.png" alt="검색버튼" />
 				</button>
 			</form>
 		</div>
-			<a href="./Order.od" style="color:white;">결제테스트</a>
+			
 
 		<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태)-->
 		<c:if test="${empty sessionScope.userId }">
@@ -75,7 +75,7 @@
 			<a href="./Main.in"><b>Sports</b></a>
 			<div class="submenu-content">
 				<a href="./Main.in?category=골프">골프</a> <a href="./Main.in?category=테니스">테니스</a> <a href="./Main.in?category=런닝">런닝</a> 
-				<a href="./Main.in?category=캠핑">캠핑</a> <a href="./Main.in?category=축구">축구</a>
+				<a href="./Main.in?category=농구">농구</a> <a href="./Main.in?category=축구">축구</a>
 				<a href="./Main.in?category=요가필라테스">요가/필라테스</a><a href="./Main.in?category=스키/보드">겨울스키/보드</a> 
 				<a href="./Main.in?category=헬스">헬스</a> <a href="./Main.in?category=수영">수영</a> 
 				<a href="./Main.in?category=기타">기타</a>
@@ -102,14 +102,14 @@
 		<div class="submenu">
 			<a href="./Main.in?category_major=악세사리"><b>Accessories</b></a>
 			<div class="submenu-content">
-				<a href="#">모자</a> <a href="#">양말</a>
+				<a href="./Main.in?category_sub=모자">모자</a> <a href="./Main.in?category_sub=양말">양말</a>
 			</div>
 		</div>
 
 		<div class="submenu">
 			<a href="./Main.in?category_major=용품"><b>Sport Item</b></a>
 			<div class="submenu-content">
-				<a href="#">전체보기</a> <a href="#">가방</a> <a href="#">라켓</a> <a href="#">기타</a>
+				<a href="#">전체보기</a> <a href="./Main.in?category_sub=가방">가방</a> <a href="./Main.in?category_sub=라켓">라켓</a> <a href="./Main.in?category_sub=기타">기타</a>
 			</div>
 		</div>
 

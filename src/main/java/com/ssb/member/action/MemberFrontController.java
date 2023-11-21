@@ -127,6 +127,18 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberCloseAccountPwCheck.me")) {
+			System.out.println("C : /MemberCloseAccountPwCheck.me 매핑");
+			System.out.println("C : Ajax 패턴 - DB사용O, 페이지 이동 x");
+			
+			action = new MemberCloseAccountPwCheck();
+			
+			try {
+				action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}else if(command.equals("/AdMemberList.me")) {
 			System.out.println("C : /AdMemberList.me 매핑");
 			System.out.println("C : 패턴3 - DB사용O, view페이지 출력");

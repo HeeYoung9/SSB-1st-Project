@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +44,9 @@
 				</div>
 				<div class="button">
 					<!-- 변경 버튼 -->
-					<input type="button" value="변경" onclick="updateCart()"
-						id="changeButton">
+					<input type="button" value="변경" onclick="updateCart()" id="changeButton">
 					<!-- 취소 버튼 -->
-					<input type="button" value="취소" onclick="optionSelecterClose()"
-						id="closeButton">
+					<input type="button" value="취소" onclick="optionSelecterClose()" id="closeButton">
 				</div>
 			</div>
 		</div>
@@ -57,11 +56,11 @@
 			<table class="table" border="1px solid black">
 				<colgroup>
 					<col width="5%">
-					<col width="25%">
-					<col width="5%">
+					<col width="15%">
+					<col width="10%">
 					<col width="20%">
+					<col width="10%">
 					<col width="20%">
-					<col width="5%">
 					<col width="10%">
 					<col width="10%">
 				</colgroup>
@@ -80,28 +79,28 @@
 				<tbody class="tbody">
 					<c:forEach var="dto" items="${dtoArray }">
 						<tr name="cart" value="${dto.cart_id }">
-							<td><input type="checkbox" name="cart_id"
-								value="${dto.cart_id }" checked="checked"></td>
-							<td><img alt="제품이미지" src="${dto.item_img_main }"></td>
+							<td><input type="checkbox" name="cart_id" value="${dto.cart_id }" checked="checked"></td>
+							<td><img width="35" height="35" alt="제품이미지" src="./main/item_img/${dto.item_img_main }"></td>
 							<td name="item_id">${dto.item_id }</td>
 							<td name="item_name">${dto.item_name }</td>
 							<td name="options_value">${dto.options_value }</td>
 							<td name="cart_quantity">${dto.cart_quantity }</td>
 							<td name="options_price">${(dto.item_price + dto.options_price) * dto.cart_quantity }</td>
-							<td><input type="button" value="변경"
-								onclick="getOptions('${dto.cart_id}','${dto.item_id}','${dto.cart_quantity}');"></td>
+							<td><input type="button" value="변경" onclick="getOptions('${dto.cart_id}','${dto.item_id}','${dto.cart_quantity}');"></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<div id="moveButton">
-				<input type="hidden" id="checkArray" name="checkArray"> <input
-					type="button" value="삭제" onclick="deleteCart()"> <input
-					type="submit" value="주문" onclick="arrayData()"> <label
-					id="totalPrice">options_price</label>
+				<input type="hidden" id="checkArray" name="checkArray">
+				<input type="button" value="삭제" onclick="deleteCart()">
+				<input type="submit" value="주문" onclick="arrayData()">
+				<label id="totalPrice">options_price</label>
 			</div>
 		</form>
 	</main>
-	<footer> </footer>
+	<footer>
+		
+	</footer>
 </body>
 </html>

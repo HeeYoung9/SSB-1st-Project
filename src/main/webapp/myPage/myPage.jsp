@@ -15,8 +15,8 @@
 	rel="stylesheet">
 <link href="./myPage/myPage.css" rel="stylesheet">
 <link href="./main/main.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="path/to/order-list-styles.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="path/to/order-list-styles.css"> -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
@@ -52,12 +52,51 @@
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
+<style>
+	
+#item > .list > .paging a.on {
+    font-weight: bold;
+}
+
+
+#item > .list > .paging {
+    border-top: 2px solid black;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+#item > .list > .paging a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+#item > .list > .paging > .num > a {
+    display: inline-block;
+    min-width: 14px;
+    margin: 0 3px;
+    padding: 5px 5px;
+    border: 1px solid #c4c4c4;
+    color: #000;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+	
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="./Mcommon/top.js" charset="UTF-8"></script>
+<link href="./Mcommon/top.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 	<div class="header">
 		<jsp:include page="../Mcommon/top.jsp" />
-
+    </div>
 		<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 		<!-- 상단 메인 메뉴바 끝 -->
@@ -67,7 +106,7 @@
 
 			<!-- 내용 수정된 부분 -->
 			<div class="right-section">
-				<button class="menu-toggle" onclick="toggleCategory()">메뉴이미지삽입</button>
+				<button class="menu-toggle" onclick="toggleCategory()"><img src="./main/img/menu_bar.png" alt="메뉴바" width="40" height="25" /></button>
 				<div class="category-content m-2" id="categoryContent"
 					style="display: none;">
 
@@ -77,8 +116,9 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
 									aria-expanded="false" aria-controls="flush-collapseOne">
-									<a href="update.ud"
-										style="color: black; text-decoration: none;">정보수정</a>
+									<!-- <a href="update.ud"style="color: black; text-decoration: none;"> -->
+									정보수정
+									<!-- </a> -->
 								</button>
 							</h2>
 						</div>
@@ -87,8 +127,9 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
 									aria-expanded="false" aria-controls="flush-collapseTwo">
-									<a href="ReviewList.rv"
-										style="color: black; text-decoration: none;">후기작성</a>
+									<!-- <a href="ReviewList.rv" style="color: black; text-decoration: none;"> -->
+									후기작성
+									<!-- </a> -->
 								</button>
 							</h2>
 						</div>
@@ -97,15 +138,16 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
 									aria-expanded="false" aria-controls="flush-collapseThree">
-									<a href="./location.lo"
-										style="color: black; text-decoration: none;">배송지</a>
+									<!-- <a href="./location.lo" style="color: black; text-decoration: none;"> -->
+									배송지
+									<!-- </a> -->
 								</button>
 							</h2>
 						</div>
 					</div>
 				</div>
 			</div>
-
+	 <!-- div 자리 이동해봄  -->
 			<script>
     function toggleCategory() {
         var categoryContent = document.getElementById("categoryContent");
@@ -159,16 +201,18 @@
 
 			<div class="search-bar-container"
 				style="width: 80%; margin: 20px auto; text-align: center;">
-				<form action="./AdOrderList.od" method="get" class="search-bar"
+				<form action="./myPage.mp" method="get" class="search-bar"
 					style="display: inline-block;">
 					<h2 style="display: inline-block; margin-right: 20px;">주문 내역</h2>
 					<select name="orders_state" class="form-select"
 						aria-label="Default select example"
 						style="width: 80%; float: left;">
-						<option value="PURCHASE">결제상품</option>
-						<option value="DETERMINE">구매확정 상품</option>
-						<option value="REFUND">환불된 상품</option>
-						<option value="CANCEL">취소된 상품</option>
+						<option value="PURCHASE" ${param.orders_state=='PURCHASE'?'selected="selected"' : ''}>결제상품</option>
+						<option value="DETERMINE" ${param.orders_state=='DETERMINE'?'selected="selected"' : ''}>구매확정 상품</option>
+						<option value="DELIVERY" ${param.orders_state=='DELIVERY'?'selected="selected"' : ''}>배송중인 상품</option>
+						<option value="BEDELIVERED" ${param.orders_state=='BEDELIVERED'?'selected="selected"' : ''}>배송완료 상품</option>
+						<option value="REFUND" ${param.orders_state=='REFUND'?'selected="selected"' : ''}>환불된 상품</option>
+						<option value="CANCEL" ${param.orders_state=='CANCEL'?'selected="selected"' : ''}>취소된 상품</option>
 					</select> <input type="submit" value="검색" id="searchButton "
 						style="float: left;"></input>
 				</form>
@@ -177,47 +221,76 @@
 			<table class="order-table" style="width: 80%; margin: 0 auto;">
 				<thead>
 					<tr>
-						<th>주문번호</th>
+						<th>주문 번호</th>
+						<th>회원번호</th>
+						<th>회원이름</th>
+						<th>주문상태</th>
+						<th>주문종류</th>
 						<th>주문날짜</th>
-						<th>상태</th>
 						<th>가격</th>
 						<th>상세보기</th>
+						<th>주문 취소</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="dto" items="${orderList}">
 						<tr>
-							<td>${dto.orderD_id}</td>
+							<td>${dto.id}</td>
+							<td>${dto.member_id}</td>
+							<td>${dto.member_user_name}</td>
 							<td>${dto.orders_state}</td>
-							<td>${dto.orders_sort})</td>
+							<td>${dto.orders_sort}</td>
 							<td>${dto.orders_date}</td>
 							<td>${dto.total_price}</td>
 							<td>
-								<button class="edit-button"
-									onclick="location.href='./AdOrderDetail.od?orders_id=${dto.id}'">상세보기</button>
-							<button id="editButton">취소하기</button></td>
-							
+								<button class="edit-button" type="button"
+									onclick="window.open('./myPageOrderDetail.mp?orders_id=${dto.id}','detail','width=720;, height=720px;')">상세보기</button>
+							</td>
 							<td>
-								<button class="cancel-button" onclick="cancelOrder(${dto.id})">주문
-									취소</button>
+							<c:if test="${dto.orders_state=='PURCHASE'}">
+							<form action="./myPageRefundAction.mp">
+								<input type="hidden" value="${dto.id}" name="orders_id">
+								<button class="cancel-button" type="submit">주문취소</button>
+							</form>
+							</c:if>
+							
+							<c:if test="${dto.orders_state=='BEDELIVERED'}">
+							<form action="./MyPageUserDetermine.od">
+								<input type="hidden" value="${dto.id}" name="orders_id">
+								<button class="cancel-button" type="submit">구매결정</button>
+							</form>
+							</c:if>
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-
+			<br>
+			<!--- 페이징 --->
+            <div class="paging">
+                <c:if test="${startPage > pageBlock }">
+                    <a href="./myPage.mp?pageNum=${startPage-pageBlock }&state=${param.state}">이전</a>
+                </c:if>
+                
+                <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1"> 
+                <span class="num" style="margin: 0 auto;">
+					<a href="./myPage.mp?pageNum=${i }&state=${param.state}" class="on" >${i }</a> 
+                </span>
+				</c:forEach>
+                
+                <c:if test="${endPage < pageCount }">
+                    <a href="./myPage.mp?pageNum=${startPage + pageBlock}&state=${param.state}">다음</a>
+                </c:if>
+            </div>
 
 			<% } else { %>
 			<p>현재 로그인된 계정 정보가 없습니다.</p>
 			<% } %>
 
-
-
-			<span>
-				<button class="withdrawal-button">
+			<button class="withdrawal-button">
 					<a href="./MemberCloseAccount.me" style="color: black;">회원 탈퇴</a>
-				</button>
-			</span>
-		</div>
+			</button>
+			</div>
+		
 </body>
 </html>

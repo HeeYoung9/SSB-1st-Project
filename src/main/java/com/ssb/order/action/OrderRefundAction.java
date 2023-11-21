@@ -1,5 +1,6 @@
 package com.ssb.order.action;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import com.ssb.order.db.OrdersDAO;
 import com.ssb.order.db.OrdersDTO;
 import com.ssb.order.vo.OrdersState;
 import com.ssb.payment.service.PaymentService;
+import com.ssb.payment.vo.PortOneRefundResult;
 import com.ssb.payment.vo.StoreInfo;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
@@ -24,7 +26,10 @@ public class OrderRefundAction implements Action {
 		//환불에 필요한 정보가 무엇이 있을까? 
 		// 주문 ID, 주문자 ID는 기본적으로 있어야함 , 환불받을 계좌번호 ,
 		//long ordersId = Long.parseLong(request.getParameter("orders_id"));
-		long ordersId = 20231114000018L;
+		//long ordersId = 20231114000018L;
+
+		String orderId = request.getParameter("orders_id");
+		
 		/*
 		 * 요구하는 정보 (타입)
 		 * imp_uid (String) -> 포트원 거래 고유번호
@@ -57,7 +62,8 @@ public class OrderRefundAction implements Action {
 		OrdersDAO ordersDAO = new OrdersDAO();
 		OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
 		//주문번호에 해당하는 OrdersDTO 소환
-		OrdersDTO orderDTO = ordersDAO.findById(ordersId);
+		System.out.println("OrderRefundAction의 숫자형식 값 : " + orderId);
+		OrdersDTO orderDTO = ordersDAO.findById(Long.parseLong(orderId));
 		
 		System.out.println("-----------------OrderRefundAction ------------------------------");
 		System.out.println(orderDTO.getId());
@@ -67,16 +73,18 @@ public class OrderRefundAction implements Action {
 		if(orderDTO.getOrders_state().equals(OrdersState.DELIVERY)) {
 			String message = "물품이 배송중이므로 현재 환불을 진행 할 수 없습니다. ";
 			JSMoveFunction.alertBack(response, message);
+			return null;
 		}
 		//---------------------------11월 16일 추가-----@@@@@@@@@@@@@@@@@@@@@@@@@@
 		else if(orderDTO.getOrders_state().equals(OrdersState.DETERMINE)) {
 			String message = "구매 확정 처리된 상품 입니다. 환불을 진행 할 수 없습니다. ";
 			JSMoveFunction.alertBack(response, message);
+			return null;
 		}
 		//-------------------------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		
 		//주문번호에 해당하는 모든 ordersDTO 불러오기
-		List<OrderDetailDTO> orderDetailDTOList = orderDetailDAO.findByOrdersId(ordersId);
+		List<OrderDetailDTO> orderDetailDTOList = orderDetailDAO.findByOrdersId(Long.parseLong(orderId));
 		
 		//주문한 물품 전부 수량 변경
 		for(OrderDetailDTO orderDetailDTO : orderDetailDTOList) {
@@ -84,7 +92,7 @@ public class OrderRefundAction implements Action {
 		}
 		
 		//환불 처리 상태로 주문 업그레이드
-		ordersDAO.updateOrdersState(ordersId, OrdersState.REFUND);
+		ordersDAO.updateOrdersState(Long.parseLong(orderId), OrdersState.REFUND);
 		
 		
 		//실제 결제 내역 환불 조치
@@ -94,13 +102,17 @@ public class OrderRefundAction implements Action {
 		
 		String myToken = paymentService.getTokenV3(info);
 		
-		paymentService.refundPayment(myToken, ordersId);
+		PortOneRefundResult result = paymentService.refundPayment(myToken, Long.parseLong(orderId));
+		
+		if(result.equals(PortOneRefundResult.PASS)) {
+			JSMoveFunction.alertLocation(response, "주문취소가 정상적으로 진행되었습니다.", "./myPage.mp");
+
+		}
 		
 		
+		ActionForward forward = new ActionForward();
 		
-		
-		
-		return null;
+		return forward;
 	}
 
 }

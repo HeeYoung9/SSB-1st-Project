@@ -217,22 +217,25 @@ public class OrdersDAO {
 	
 	
 	//----------------------------유저 번호, 주문상태에 따른 내역 가져오기(결제 완료상태)--------------
-	public List<OrdersDTO> findByUserAndState(long userNum , OrdersState state ) {
+	public List<OrdersDTO> findByUserAndState(long userNum , String state ,int s, int p) {
 		
 		List<OrdersDTO> orders = new ArrayList<OrdersDTO>();
 		//sql 다시 더 상세하게 해야함
 		
 		try {
 			con = getCon();
-			sql = "SELECT os.orders_id, os.member_id, mb.member_user_id, os.orders_state, os.orders_date, os.orders_sort ,os.location_id "
+			sql = "SELECT os.orders_id, os.member_id, mb.member_user_id, os.orders_state, os.orders_date, os.orders_sort ,os.location_id ,os.orders_total_price "
 					+ "FROM orders os "
 					+ "JOIN member mb "
 					+ "ON os.member_id = mb.member_id"
-					+ " WHERE mb.member_id = ? and os.orders_state = ?";
+					+ " WHERE mb.member_id = ? and os.orders_state = ? "
+					+ "order by orders_id desc limit ?,? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, userNum);
 			pstmt.setString(2, state.toString());
+			pstmt.setInt(3, s-1); // 시작행 번호-1
+			pstmt.setInt(4, p); // 페이지 개수
 			
 			System.out.println("호출도 안되는건가?");
 			
@@ -254,9 +257,9 @@ public class OrdersDAO {
 					
 					//---------------------11월 16일 추가-----------------------------------
 					dto.setLocation_id(rs.getInt("location_id"));
-					
 					//----------------------------------------------------------------------
 					
+					dto.setTotal_price(rs.getInt("orders_total_price"));
 					
 //					
 //					
@@ -436,7 +439,7 @@ public class OrdersDAO {
 			
 			pstmt.executeUpdate();
 			System.out.println("OrdersDAO : 주문서 상태 변경 완료");
-			
+			System.out.println("OrdersDAO : 주문서 상태 변경 후 적용 상태 "+ state);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -597,6 +600,49 @@ public class OrdersDAO {
 			}
 	}
 	//--------------------자원 할당 해제-----------------
+	
+	
+	/*
+	 * "FROM orders os "
+					+ "JOIN member mb "
+					+ "ON os.member_id = mb.member_id "
+					+ "WHERE mb.member_id = ?
+	 */
+	
+	
+	
+	// 주문 개수 계산 메서드(마이 페이지용) - 
+		public int getOrderCountForMyPage(int id , String ordersState) {
+			int result = 0;	
+					
+			try {
+				con = getCon();		
+						
+				sql = "select count(*) FROM orders "
+						//+ "JOIN member mb"
+						//+ "ON os.member_id = mb.member_id "
+						+ "where member_id = ? and orders_state = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1,id);
+				pstmt.setString(2,ordersState.toString());
+				
+				rs = pstmt.executeQuery();
+						
+				if(rs.next()) {
+					result = rs.getInt(1);
+				}
+						
+				System.out.println("타입별 주문 개수 " + result);
+						
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+					
+			return result;		
+		}
+		// 주문 개수 계산 메서드(마이페이지용) - getNoticeCount()
 	
 	
 	

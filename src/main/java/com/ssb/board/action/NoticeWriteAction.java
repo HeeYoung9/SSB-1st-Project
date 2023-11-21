@@ -25,7 +25,7 @@ public class NoticeWriteAction implements Action {
 		
 		// BoardDAO 객체 생성 - 공지글 작성하기 메서드
 		BoardDAO bdao = new BoardDAO();
-		bdao.insertNoticeBoard(bdto);
+		bdao.insertNotice(bdto);
 		
 		// 페이지 이동 준비
 		ActionForward forward = new ActionForward();

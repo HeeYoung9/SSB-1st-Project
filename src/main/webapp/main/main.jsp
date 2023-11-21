@@ -156,11 +156,19 @@
 							<div id="test" class="card h-100">
 							
 								<!-- brand logo -->
+								
+								
 								<div class="position-absolute"
 									style="top: 0.5rem; right: 0.5rem">
+									<c:if test="${!empty idto.item_img_logo }">
 									<img height="15" width="35"
 										src="./main/item_img/${idto.item_img_logo }" alt="헤드로고" />
-										
+									</c:if>	
+									
+									<c:if test="${empty idto.item_img_logo }">
+									<img height="15" width="35" style="opacity: 0;"
+										src="./main/img/star.png" alt="투명 공간용" />
+									</c:if>
 									<!-- wish 하트 위치 -->	
 									<div class="wishlist" value="${idto.item_id }">
 										<img width="22" height="22" src="./main/img/heart.png" alt="위시리스트">

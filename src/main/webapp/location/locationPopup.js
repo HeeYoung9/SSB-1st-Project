@@ -36,11 +36,13 @@ function selectPopup(location_id){//배송지 선택시 부모창으로 값 넘�
 	var check = 0;
 		
 	$(opener.document).find('#location_id option').each(function(){
+		
 		if(this.value == location_id) {
 			$(opener.document).find('#location_id').val(location_id).prop("selected", true);
 			check = 1;
 		}
 	});
+	
 	if(!check){
 		alert("배송지 선택 오류");
 	}

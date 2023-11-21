@@ -20,6 +20,7 @@ public class InquiryQWriteAction implements Action {
 		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
 		bdto.setMember_user_id(request.getParameter("userId"));
+		bdto.setItem_id(Integer.parseInt(request.getParameter("itemId")));
 		bdto.setRental_item_id(Integer.parseInt(request.getParameter("rItemId")));
 		bdto.setInquiry_type(request.getParameter("iqType"));
 		bdto.setBoard_subject(request.getParameter("subject"));
@@ -27,7 +28,7 @@ public class InquiryQWriteAction implements Action {
 		
 		// BoardDAO 객체 생성 - 문의글 작성하기 메서드
 		BoardDAO bdao = new BoardDAO();
-		bdao.insertInquiryQBoard(bdto);
+		bdao.insertInquiryRItem(bdto);
 		
 		// 페이지 이동 준비
 		ActionForward forward = new ActionForward();

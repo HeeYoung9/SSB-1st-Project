@@ -39,18 +39,27 @@ public class ReviewWriteAction implements Action {
 		// 업데이트 후 기존의 파일 삭제
 //		File file = new File(realPath + "/" + multi.getFilesystemName("file"));
 //		file.delete();
-				
+		
+		String orders_sort = multi.getParameter("orders_sort");
+	
 		// 나머지 정보 저장
-		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
+		BoardDAO bdao = new BoardDAO();
+			
 		bdto.setMember_user_id(multi.getParameter("userId"));
 		bdto.setBoard_content(multi.getParameter("content"));
 		bdto.setBoard_file(multi.getFilesystemName("file"));
 		bdto.setRating(Double.parseDouble(multi.getParameter("rating")));
-				
+
+		
 		// BoardDAO 객체 -> 첨부파일 저장
-		BoardDAO bdao = new BoardDAO();
-		bdao.insertReviewBoard(bdto);
+		if(orders_sort.equals("SALE")) {
+			bdto.setItem_id(Integer.parseInt(multi.getParameter("itemId")));
+			bdao.insertReviewItem(bdto);
+		} else if(orders_sort.equals("RENTAL")) {
+			bdto.setRental_item_id(Integer.parseInt(multi.getParameter("itemId")));
+			bdao.insertReviewRItem(bdto);
+		}
 		
 		// 페이지 이동
 		ActionForward forward = new ActionForward();

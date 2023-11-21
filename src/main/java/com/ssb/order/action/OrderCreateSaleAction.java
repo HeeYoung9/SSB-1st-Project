@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ssb.Mitem.ItemDAO;
 import com.ssb.Mitem.ItemDTO;
@@ -33,10 +34,12 @@ public class OrderCreateSaleAction implements Action{
 		CreateOrderResult result = CreateOrderResult.FAILED;
 		
 		//받아올 정보
+		
 		String cartItems = request.getParameter("strCartList");
-		//long memberId =  Integer.parseInt(request.getParameter("memberId"));
+		int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
+		// long memberId =  Integer.parseInt(request.getParameter("memberId"));
 		//String cartItems = "19,20,21,22";
-		long memberId = 1000;
+		// long memberId = 1000;
 		
 		
 		//----------------------11월 16일 추가 ----------------------------------------
@@ -69,7 +72,7 @@ public class OrderCreateSaleAction implements Action{
 			System.out.println("생성된 첫번째 상품 ID = " +ordersID);
 			
 			//----------------------11월 16일 변경내용-----------------@@@@@@@@@@@@@@@@@@@@@@
-			ordersDTO = OrdersDTO.createSaleOrder(ordersID, memberId, location_id);
+			ordersDTO = OrdersDTO.createSaleOrder(ordersID, member_id, location_id);
 			//------------------------------------------------------@@@@@@@@@@@@@@@@@@@@@@
 			
 			int orderTotalPrice = 0;

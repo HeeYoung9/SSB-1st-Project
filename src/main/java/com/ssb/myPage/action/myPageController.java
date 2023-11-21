@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ssb.myPage.db.myPageDAO;
 import com.ssb.myPage.db.myPageDTO;
+import com.ssb.order.action.OrderRefundAction;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -71,6 +72,25 @@ public class myPageController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else if (command.equals("/myPageRefundAction.mp")) {
+        	System.out.println("C : myPageRefund");
+        	
+        	action = new OrderRefundAction();
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else if(command.equals("/myPageOrderDetail.mp")) {
+        	action = new MyPageDetailAction();
+        	
+        	try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
 

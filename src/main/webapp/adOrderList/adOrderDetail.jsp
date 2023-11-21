@@ -224,6 +224,11 @@
             </table>
             </div>
             
+            <form action="./OrderStateUpdateRefund.od">
+				<input type="hidden" value="${orders.id}" name="orders_id">
+				<button id="editButton" style="margin:1%;">환불 처리</button>
+			</form>
+            
             <form action="./OrderStateUpdateCancel.od">
 				<input type="hidden" value="${orders.id}" name="orders_id">
 				<button id="editButton" style="margin:1%;">주문 취소시키기</button>
