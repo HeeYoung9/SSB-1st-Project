@@ -63,7 +63,7 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link href="./main/main_css/main.css" rel="stylesheet">
+<link href="./rental/rental_css/rental.css" rel="stylesheet">
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
@@ -114,27 +114,28 @@
 
 				<hr>
 				<h4 class="mb-3">결제 수단</h4>
-
-				<input type="radio" class="btn-check" name="paymentOption"
-					id="option1" autocomplete="off" value="naverPay"> <label
-					class="btn btn-secondary" for="option1">다날 휴대폰 결제</label> <input
-					type="radio" class="btn-check" name="paymentOption" id="option2"
-					autocomplete="off" value="kakaoPay"> <label
-					class="btn btn-secondary" for="option2">카카오톡</label> <input
-					type="radio" class="btn-check" name="paymentOption" id="option3"
-					autocomplete="off" value=""> <label
-					class="btn btn-secondary" for="option3">토스페이</label> <input
-					type="radio" class="btn-check" name="paymentOption" id="option4"
-					autocomplete="off" value=""> <label
-					class="btn btn-secondary" for="option4">몰라</label>
+					<!-- 휴대폰 결제 (실제 결제됨) -->
+					<input type="radio" class="btn-check" name="paymentOption"
+					id="option1" autocomplete="off" value="naverPay"> 
+					<label class="btn btn-secondary" for="option1">다날 휴대폰 결제</label> 
+					
+					<!-- 카카오톡 결제 (테스트 결제됨) -->
+					<input type="radio" class="btn-check" name="paymentOption" id="option2"
+					autocomplete="off" value="kakaoPay"> 
+					<label class="btn btn-secondary" for="option2">카카오톡</label> 
+					
+					<!-- 토스페이 결제 (실제 결제됨) -->
+					<input type="radio" class="btn-check" name="paymentOption" id="option3"
+					autocomplete="off" value=""> 
+					<label class="btn btn-secondary" for="option3">토스페이</label> 
 
 
 				<hr class="my-4">
 
 
 
-				<button class="w-100 btn btn-primary btn-lg" onclick="requestPay()">Continue
-					to checkout</button>
+				<button class="w-100 btn btn-primary btn-lg" onclick="requestPay()">
+				결제하기</button>
 			</div>
 		</div>
 		</main>

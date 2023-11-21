@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -59,7 +60,7 @@
 						<tr>
 							<td>${itemDTO.item_id }</td>
 							<td>${itemDTO.item_name }</td>
-							<td>${itemDTO.item_price }</td>
+							<td><fmt:formatNumber value="${itemDTO.item_price }"/> </td>
 							<td>${itemDTO.options_name }</td>
 							<td>${itemDTO.options_value }</td>
 							<td>${itemDTO.options_price }</td>
@@ -84,9 +85,9 @@
 				</div>
 				
 				<h4 class="mb-3">배송지</h4>
-				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id">
+				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
  	 				<c:forEach var="ldto" items="${locaList}">
-  					<option value="${item.location_id}">${ldto.location_name},${ldto.location_add }</option>
+  					<option value="${ldto.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
 				</select>
 				<div onclick="listPopup()">

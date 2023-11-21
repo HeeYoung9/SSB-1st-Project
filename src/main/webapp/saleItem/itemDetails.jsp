@@ -73,35 +73,82 @@
 					</ul>
 					</div>
 
-					<div class="pick"> 
-						<label> > ${itemDTO.options_name } </label>
-						<select class="form-control" name="options_value" required="required">
-        						<option value="" disabled selected>-[필수] 옵션을 선택해 주세요</option>
-            				<c:forEach var="optList" items="${getOptList}" >
-  								<option value="${optList.options_value}"> ${optList.options_value}</option>
-							 </c:forEach>
-   							 </select>
-					</div> 
+
+
+
+			<!---------------------- 여기부터!! ---------------------------------->
+			<div id=mini_cart>
+
+			<div id="selecters">
+							<input type="hidden" value="${itemDTO.item_id}" id="item_idSelecter"> 
+							
+					
+					<!---------------------- 수량!! ---------------------------------->
 					<div class="pick"> 
 						<label> > 수량 </label>
-						<input class="form-control" id="number" type="number" max="10" min="1" placeholder="-[필수] 수량을 선택해 주세요" required > 
+						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" placeholder="-[필수] 수량을 선택해 주세요" required > 
 					</div>
 					
+					<!---------------------- 옵션!! ---------------------------------->
+					<div class="pick"> 
+						<label> > ${itemDTO.options_name } </label>
+						<select id="options_idSelecter" class="form-control" name="options_value" required="required">
+        						<option value="" disabled selected>-[필수] 옵션을 선택해 주세요</option>
+            					<c:forEach var="optList" items="${getOptList}" >
+  								<option value="${optList.options_id}" label="${optList.options_value}"> ${optList.options_value}</option>
+							 	</c:forEach>
+   						</select>
+					</div> 
 					
-					<button class="custom-btn btn-1" type="submit">BUY NOW</button>
+					
+			</div>
+					
+					
+						<div id="cartPool">   
+						
+						
+						</div>
 					
 
+			</div>
+					<!---------------------- 장바구니 버튼!! ---------------------------------->
+					<span class="btnSale">		
+					<button class="btn-2" type="button" onclick="addCart()"> 
+					<img src="${pageContext.request.contextPath}/main/img/market.png" alt=""></button>
+					
+					
+					<!---------------------- 주문 버튼!! ------------------------------->
+					<button class="custom-btn btn-1 addCart" type="submit" onclick="">BUY NOW</button>
+					</span>
 
 
 
 
 
 
-					<div class="allegy"> <p></p> </div>
+
+
+
+
+
+
+
+
+
 
 
 	
-					</div> <!-- 2번째 -->
+					
+								</div> <!-- 2번째 -->
+
+
+
+
+
+
+
+
+
 
 
 
@@ -131,128 +178,182 @@
 
 
 					
-		<div id="board">
-					
-						<div class="reviews" id="review">
-		<h2>REVIEW</h2>
-		 <div class="container">
-		  <table class="table table-sm">
-		    <colgroup>
-			  <col style="width:10%;" />
-			  <col style="width:60%;" />
-			  <col style="width:10%;" />
-			  <col style="width:10%;" />
-			  <col style="width:10%;" />
-			</colgroup>
-		    <thead>
-		    <tr>
-			  <th>평점</th>
-		      <th>내용</th>
-			  <th>작성자</th>
-			  <th>조회수</th>
-			  <th>작성일</th>
-		    </tr>
-		    </thead>
-		    <tbody>
-		     <tr>
-		      <td>★★★★★</td>
-		      <td>처음 이용해봤는데 너무 좋네요!</td>
-		      <td>김철수</td>
-		      <td>3</td>
-		      <td>2023-11-15</td>
-		     </tr> 
-		    </tbody>
-		  </table>
-		 </div>		
-		</div>
-		
-		
-		
-		<div class="questions">
-		<h2>Q&A</h2>
-		 <div class="container">
-		  <table class="table table-sm">
-		    <colgroup>
-			  <col style="width:10%;" />
-			  <col style="width:15%;" />
-			  <col style="width:50%;" />
-			  <col style="width:15%;" />
-			  <col style="width:10%;" />
-			</colgroup>		  
-		    <thead>
-		    <tr>
-		      <th>답변상태</th>
-			  <th>구분</th>
-			  <th>제목</th>
-			  <th>작성자</th>
-			  <th>등록일</th>
-		    </tr>
-		    </thead>
-		    <tbody class="heading">
-		    <c:forEach var="bdto" items="${inquiryList }">
-		     <tr>
-		      <td>
-		        <c:if test="${!empty bdto.answer_state }">
-			     <font style="color: red;">${bdto.answer_state }</font>
-			    </c:if>
-			    <c:if test="${bdto.answer_state == null}">
-			     답변예정
-			    </c:if>
-		      </td>
-		      <td><c:out value="${bdto.inquiry_type }"/></td>
-		      <td>
-               <div class="panel-faq-container">
-                <p class="panel-faq-title">${bdto.board_subject }</p>
-               </div>
-              </td> 
-		      <td>${bdto.member_name }</td>
-		      <td>${bdto.board_writeTime }</td>
-		     </tr>
-		     <tr>
-		      <td colspan="5" width="100%" style="border-bottom: inherit;">
-		       <div class="panel-faq-answer">
-                <p style="text-align: left; margin: 10px 0px 0px 10px;">${bdto.board_content }</p>
-               </div>
-		      </td>
-		     </tr>
-		    </c:forEach>
-		    </tbody>
-		  </table>
-		 </div>
 
-		 <nav aria-label="Page navigation example">
-  		   <ul class="pagination pagination-sm justify-content-center">
-    	     <c:if test="${startPage > pageBlock }">
-    	      <li class="page-item">
-      		   <a class="page-link" href="./RentalItem.re?pageNum=${startPage-pageBlock }" aria-label="Previous">
-        		<span aria-hidden="true">&laquo;</span>
-      		   </a>
-    	      </li>
-      		 </c:if>  
-    	     <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
-    	      <li class="page-item">
-    	        <a class="page-link" href="./RentalItem.re?pageNum=${i }">${i }</a>
-    	      </li>
-			 </c:forEach>
-    	     <c:if test="${endPage < pageCount }">
-    	      <li class="page-item">
-    	       <a class="page-link" href="./RentalItem.re?pageNum=${startPage+pageBlock }" aria-label="Next">
-    	         <span aria-hidden="true">&raquo;</span>
-    	       </a>
-    	      </li>
-    	     </c:if> 
-  		   </ul>
-		 </nav>
-		<div style="text-align: right; margin-right: 180px;">
-	     <a class="btn btn-sm btn-dark rbtn" role="button" onclick="openPop()">작성하기</a>
-		</div>
-		</div>
+			<!-- REVIEW -->
+			<div class="reviews" id="review">
+				<h1>REVIEW</h1>
+				<div class="container">
+					<table class="table table-sm">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 60%;" />
+							<col style="width: 10%;" />
+							<col style="width: 10%;" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>평점</th>
+								<th>내용</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="rbdto" items="${reviewList }">
+								<tr>
+									<td>
+									<c:if test="${rbdto.rating == 5 }">
+		        						★★★★★
+		       						</c:if> 
+		       						<c:if test="${rbdto.rating == 4 }">
+		        						★★★★
+		       						</c:if> 
+		       						<c:if test="${rbdto.rating == 3 }">
+		        						★★★
+		       						</c:if> 
+		       						<c:if test="${rbdto.rating == 2 }">
+		        						★★
+		       						</c:if> 
+		       						<c:if test="${rbdto.rating == 1 }">
+		        						★
+		       						</c:if>
+									</td>
+									<td>
+										<div class="panel-faq-container">
+											<p class="panel-faq-title">${rbdto.board_content }</p>
+										</div>
+									</td>
+									<td>${rbdto.member_name }</td>
+									<td>${rbdto.board_writeTime }</td>
+								</tr>
+								<tr>
+									<td colspan="5" width="100%"
+										style="border-bottom: inherit; padding: 0;">
+										<div class="panel-faq-answer">
+											<p class="p-content">${rbdto.board_content }</p>
+											<c:if test="${!empty rbdto.board_file}">
+												<p class="p-content">
+													<img
+														src="<%=request.getContextPath() %>/upload/${rbdto.board_file }"
+														style="width: 100px; height: 100px;">
+												</p>
+											</c:if>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-sm justify-content-center">
+						<c:if test="${reviewStartPage > reviewPageBlock }">
+							<li class="page-item"><a class="page-link" href=""
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${reviewStartPage }"
+							end="${reviewEndPage }" step="1">
+							<li class="page-item"><a class="page-link" style="color: black;" href="">${i }</a>
+							</li>
+						</c:forEach>
+						<c:if test="${reviewEndPage < reviewPageCount }">
+							<li class="page-item"><a class="page-link" href=""
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</c:if>
+					</ul>
+				</nav>
+			</div>
 
-		</div>
+			<!-- Q&A -->
+			<div class="questions">
+				<h1>Q&A</h1>
+				<div class="container">
+					<table class="table table-sm">
+						<colgroup>
+							<col style="width: 10%;" />
+							<col style="width: 15%;" />
+							<col style="width: 50%;" />
+							<col style="width: 15%;" />
+							<col style="width: 10%;" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>답변상태</th>
+								<th>구분</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>등록일</th>
+							</tr>
+						</thead>
+						<tbody class="heading">
+							<c:forEach var="bdto" items="${inquiryList }">
+								<tr>
+									<td><c:if test="${bdto.answer_state == '답변예정'}">
+											<strong>답변예정</strong>
+										</c:if> <c:if test="${bdto.answer_state == '답변완료'}">
+											<font style="color: red;"><strong>${bdto.answer_state }</strong></font>
+										</c:if></td>
+									<td><c:out value="${bdto.inquiry_type }" /></td>
+									<td>
+										<div class="panel-faq-container">
+											<p class="panel-faq-title">${bdto.board_subject }</p>
+										</div>
+									</td>
+									<td>${bdto.member_name }</td>
+									<td>${bdto.board_writeTime }</td>
+								</tr>
+								<tr>
+									<td colspan="5" width="100%"
+										style="border-bottom: inherit; padding: 0;">
+										<div class="panel-faq-answer">
+											<p class="p-content">${bdto.board_content }</p>
+											<c:if test="${bdto.board_id == rpdto.board_id }">
+												<p class="p-content">
+													<strong>[답변]</strong>
+												</p>
+												<p class="p-content">${rpdto.reply_content }</p>
+											</c:if>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pagination-sm justify-content-center">
+						<c:if test="${startPage > pageBlock }">
+							<li class="page-item"><a class="page-link" href=""
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }"
+							step="1">
+							<li class="page-item"><a class="page-link" style="color: black;" href="">${i }</a>
+							</li>
+						</c:forEach>
+						<c:if test="${endPage < pageCount }">
+							<li class="page-item"><a class="page-link" href=""
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</c:if>
+					</ul>
+				</nav>
+				<!-- 로그인한 회원만 문의 가능 -->
+				<div style="text-align: right; margin-right: 100px;">
+					<c:if test="${!empty userId }">
+						<a class="btn btn-sm btn-dark rbtn" role="button"
+							onclick="openInquiryPop()">작성하기</a>
+					</c:if>
+				</div>
+			</div>
 		</section>
-    </main>
+	</main>
+
 
 
 

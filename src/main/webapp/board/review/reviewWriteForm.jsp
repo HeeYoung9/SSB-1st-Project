@@ -140,7 +140,10 @@ textarea {
 
 	<form method="post" enctype="multipart/form-data" id="reviewForm">
 		<input type="hidden" name="userId" value="${sessionScope.userId }">
+		<input type="hidden" name="itemId" value="${param.itemId }">
+		<input type="hidden" name="orders_sort" value="${param.orders_sort }">
 		<div class="input_wrap">
+
 			<div class="r_div1">
 				<strong>상품은 어떠셨나요?</strong>
 			</div>

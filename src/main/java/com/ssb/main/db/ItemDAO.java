@@ -139,9 +139,10 @@ public class ItemDAO {
 
 		try {
 			con = getCon();
-			sql="select * from item i join category c on i.category_id = c.category_id where category_sport=?";
+			sql="select * from item i join category c on i.category_id = c.category_id where category_sport=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, category);
+		
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -168,7 +169,50 @@ public class ItemDAO {
 		return categoryList;
 	}
 // 스포츠 카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category)	
-		
+
+// 스포츠 중분류 카테고리별 제품 목록을 보여주는 메서드 - getMiddleCategoryItem(category)	
+	public ArrayList getMiddleCategoryItem(String category, String midCategory) {
+		ArrayList categoryList = new ArrayList();
+
+
+		try {
+			con = getCon();
+			sql="select * from item i join category c on i.category_id = c.category_id where category_sport=? and category_major=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, midCategory);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				ItemDTO idto = new ItemDTO();
+				idto.setItem_id(rs.getInt("item_id"));
+				idto.setItem_name(rs.getString("item_name"));
+				idto.setItem_price(rs.getInt("item_price"));
+				idto.setItem_img_main(rs.getString("item_img_main"));
+				idto.setItem_img_sub(rs.getString("item_img_sub"));
+				idto.setItem_img_logo(rs.getString("item_img_logo"));
+				idto.setCategory_id(rs.getInt("category_id"));
+
+				categoryList.add(idto);
+
+			}
+			System.out.println("DAo : 카테고리별 목록 조회 완료! ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			CloseDB();
+		}
+
+
+		return categoryList;
+	}
+	
+	
+
+	
+	
+// 스포츠 중분류 카테고리별 제품 목록을 보여주는 메서드 - getMiddleCategoryItem(category)	
+	
 // 소분류(옷 분류)카테고리별 제품 목록을 보여주는 메서드 - getCategoryItem(category_sub)
 		public ArrayList getCategorySubItem(String category_sub) {
 			ArrayList categorySubList = new ArrayList();

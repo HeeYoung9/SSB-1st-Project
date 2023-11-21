@@ -24,7 +24,7 @@ public class orderAction implements Action {
 		request.setAttribute("dtoArray", dtoArray);
 		// 페이지 이동준비 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./order/order.jsp");
+		forward.setPath("./Order.od");
 		forward.setRedirect(false);
 
 		return forward;

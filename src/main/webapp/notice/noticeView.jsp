@@ -74,7 +74,7 @@
 <body>
 	<main style="width: 1500px;">
 		<section>
-		<form class="board_container" style="padding-top: 60px;">
+		<form class="board_container">
 			<div>
 				<div class="board_title">
 					<c:out value="${bdto.board_subject}" />

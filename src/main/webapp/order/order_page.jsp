@@ -103,13 +103,11 @@
 
 	<!-- section 시작 -->
 
-	<section class="section" style="margin:5%;">
-
-		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
-
+	<section class="section" style="margin:5%; margin-left: 100px;">
+		
 		<!-- left-container 시작 -->
 		<div class="left-container" style="margin: 15%; width: 70%;">
-			<div class="col-md-7 col-lg-8">
+			<div class="col-md-7 col-lg-8" style="width: 100%;">
 				<h4 class="mb-3">주문서</h4>
 				<hr>
 				<h4 class="mb-3">구매 희망 상품</h4>
@@ -119,22 +117,26 @@
 				<table class="table table-dark table-striped">
 					<thead>
 						<tr>
-							<th scope="col">상품번호</th>
+							<th scope="col">품번</th>
 							<th scope="col">상품명</th>
 							<th scope="col">가격</th>
-							<th scope="col">수량</th>
+							<th scope="col">옵션명</th>
+							<th scope="col">옵션값</th>
+							<th scope="col">옵션추가금</th>
 							
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="item" items="${requestScope.cartList}">
+		
 						<tr>
-							<td>${item.item_id}</td>
-							<td>${item.item_name }</td>
-							<td>호우</td>
-							<td>${item.cart_quantity}</td>
+							<td>${dtoArray.item_id }</td>
+							<td>${dtoArray.item_name }</td>
+							<td><fmt:formatNumber value="${dtoArray.item_price }"/> </td>
+							<td>${dtoArray.options_name }</td>
+							<td>${dtoArray.options_value }</td>
+							<td>${dtoArray.options_price }</td>
 						</tr>
-					</c:forEach>
+				
 					</tbody>
 				</table>
 
@@ -145,8 +147,8 @@
 
 				<h4 class="mb-3">쿠폰</h4>
 				<div class="coupon-select">
-					<label for="coupon">쿠폰 선택:</label> <select id="coupon"
-						name="coupon">
+					<label for="coupon">쿠폰 선택:</label> 
+					<select id="coupon" name="coupon">
 						<option value="coupon1">쿠폰 1</option>
 						<option value="coupon2">쿠폰 2</option>
 						<!-- 추가 쿠폰 옵션 -->
@@ -155,13 +157,14 @@
 				
 				<h4 class="mb-3">배송지</h4>
 				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
- 	 				<c:forEach var="item" items="${requestScope.locations}">
-  					<option value=${item.location_id}>${item.location_add}${item.locationD_add}</option>
+ 	 				<c:forEach var="ldto" items="${locaList}">
+  					<option value="${ldto.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
 				</select>
 				<div onclick="listPopup()">
 					배송지 목록
 				</div>
+				
 				<div>
 					<input type="hidden" name=strCartList value="${strCartList}">
 				</div>
@@ -173,8 +176,8 @@
 				<h4 class="mb-3">총 가격</h4>  <h4 class="mb-3"></h4> 
 		
 				<div style="margin-left:25%">
-					<input type="submit" class="btn btn-secondary btn-lg" style="width:25%" value="결제하기"></button>
-					<button type="button" class="btn btn-secondary btn-lg" style="width:25%">취소하기</button>
+					<input type="submit" class="btn btn-secondary btn-lg" style="width:25%" value="결제"></button>
+					<button type="button" class="btn btn-secondary btn-lg" style="width:25%">취소</button>
 				</div>
 				</form>
 		</div>
@@ -182,10 +185,7 @@
 	</div>
 <!-- right-container 끝 -->
 
-
-<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 	</section>
-	<!-- section 끝  -->
 
 	<!-- footer 시작 -->
 	<footer class="footer">

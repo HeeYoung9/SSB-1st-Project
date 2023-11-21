@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +39,13 @@
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./main/img/favicon.ico">
+
+<!-- 후기작성 클릭 시 팝업창 띄우기 -->
+<script type="text/javascript">
+function openReviewPop(){
+	var popup = window.open('./ReviewWrite.rv?itemId=${orderDetailDTO[0].item_id}&orders_sort=${orders.orders_sort }', '리뷰팝업', 'width=550px,height=550px,scrollbars=yes');
+}
+</script>
 </head>
 <body>
 
@@ -166,7 +173,7 @@
                         <td>${dto.price*dto.quantity}</td>
                         <td>${dto.rental_str}</td>
                         <td>${dto.rental_end}</td>
-                        <td><button type="button" onclick="location.href='가상경로';">작성하기</button></td>
+                        <td><button type="button" onclick="openReviewPop()">작성하기</button></td>
 					</tr>
 				</c:forEach>
 			</c:if>
