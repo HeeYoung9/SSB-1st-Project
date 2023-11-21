@@ -143,8 +143,8 @@ public class cartDAO extends DAO{
 		}
 
 		public int insertCart(int member_id, ArrayList<cartDTO> dtoArray) {
-			int result = -1;
 			int check = 0;
+			ArrayList<cartDTO> checkArray = new ArrayList<cartDTO>();
 			try {
 				con = getCon();
 				sql = "SELECT cart_id FROM cart WHERE member_id = ? AND item_id = ? AND options_id = ?";
@@ -156,26 +156,32 @@ public class cartDAO extends DAO{
 					System.out.println(pstmt);
 					rs = pstmt.executeQuery();
 					if (rs.next()) {
+						checkArray.add(dto);
 						check = 1;
-						dtoArray.remove(dtoArray.indexOf(dto));
 					}
 				}
+				for (cartDTO cartDTO : checkArray) {
+					dtoArray.remove(dtoArray.indexOf(cartDTO));
+				}
+				System.out.println("dtoArray.size() : " + dtoArray.size());
 				sql = "INSERT INTO cart VALUES(DEFAULT,?,?,?,?,null)";
-				for (cartDTO dto : dtoArray) {
-					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, member_id);
-					pstmt.setInt(2, dto.getItem_id());
-					pstmt.setInt(3, dto.getCart_quantity());
-					pstmt.setInt(4, dto.getOptions_id());
-					System.out.println(pstmt);
-					result = pstmt.executeUpdate();
+				if (dtoArray.size() != 0) {
+					for (cartDTO dto : dtoArray) {
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, member_id);
+						pstmt.setInt(2, dto.getItem_id());
+						pstmt.setInt(3, dto.getCart_quantity());
+						pstmt.setInt(4, dto.getOptions_id());
+						System.out.println(pstmt);
+						pstmt.executeUpdate();
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				CloseDB();
 			}
-			return result;
+			return check;
 		}
 	
 	

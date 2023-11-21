@@ -33,7 +33,13 @@ function addCart() {
 			alert('통신실패!!');
 		},
 		success: function(data) {
-			
+			if(data == 1){
+				alert("이미 장바구니에 담긴 상품이 있습니다.\n장바구니로 이동하시겠습니까?");
+			}else if(data == 0){
+				alert("장바구니로 이동하시겠습니까?");
+			}else{
+				alert("장바구니 담기 오류");
+			}
 		}
 	});
 };

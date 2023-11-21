@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
 import com.ssb.cart.db.cartDAO;
 import com.ssb.cart.db.cartDTO;
 import com.ssb.util.Action;
@@ -47,7 +48,11 @@ public class insertCartAction implements Action {
 		cartDAO dao = new cartDAO();
 		//정보처리
 		int result = dao.insertCart(member_id,dtoArray);
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(result);
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(json);
 
 		return null;
 	}
