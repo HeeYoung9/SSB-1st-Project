@@ -142,8 +142,7 @@ public class cartDAO extends DAO{
 			return dtoArray;
 		}
 
-		public int insertCart(int member_id, ArrayList<cartDTO> dtoArray) {
-			int check = 0;
+		public ArrayList<cartDTO> duplicateCheck(int member_id, ArrayList<cartDTO> dtoArray) {
 			ArrayList<cartDTO> checkArray = new ArrayList<cartDTO>();
 			try {
 				con = getCon();
@@ -157,23 +156,35 @@ public class cartDAO extends DAO{
 					rs = pstmt.executeQuery();
 					if (rs.next()) {
 						checkArray.add(dto);
-						check = 1;
 					}
 				}
 				for (cartDTO cartDTO : checkArray) {
 					dtoArray.remove(dtoArray.indexOf(cartDTO));
 				}
 				System.out.println("dtoArray.size() : " + dtoArray.size());
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+			return dtoArray;
+		}
+		public int insertCart(int member_id, ArrayList<cartDTO> dtoArray) {
+			int result = -1;
+			ArrayList<cartDTO> mdtoArray = new ArrayList<cartDTO>(dtoArray);
+			ArrayList<cartDTO> checkArray = new ArrayList<cartDTO>();
+			try {
+				con = getCon();
 				sql = "INSERT INTO cart VALUES(DEFAULT,?,?,?,?,null)";
-				if (dtoArray.size() != 0) {
-					for (cartDTO dto : dtoArray) {
+				if (mdtoArray.size() != 0) {
+					for (cartDTO dto : mdtoArray) {
 						pstmt = con.prepareStatement(sql);
 						pstmt.setInt(1, member_id);
 						pstmt.setInt(2, dto.getItem_id());
 						pstmt.setInt(3, dto.getCart_quantity());
 						pstmt.setInt(4, dto.getOptions_id());
 						System.out.println(pstmt);
-						pstmt.executeUpdate();
+						result = pstmt.executeUpdate();
 					}
 				}
 			} catch (Exception e) {
@@ -181,7 +192,34 @@ public class cartDAO extends DAO{
 			} finally {
 				CloseDB();
 			}
-			return check;
+			return result;
+		}
+
+		public String getCart_id(int member_id, ArrayList<cartDTO> dtoArray) {
+			String Cart_id = null;
+			ArrayList<String> cart_idArr = new ArrayList<String>();
+			try {
+				con = getCon();
+				sql = "SELECT cart_id FROM cart WHERE member_id = ? AND item_id = ? AND options_id = ?";
+				for (cartDTO dto : dtoArray) {
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, member_id);
+					pstmt.setInt(2, dto.getItem_id());
+					pstmt.setInt(3, dto.getOptions_id());
+					System.out.println(pstmt);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						cart_idArr.add(String.valueOf(rs.getInt("cart_id")));
+					}
+				}
+				Cart_id = String.join(",",cart_idArr);
+				System.out.println(Cart_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+			return Cart_id;
 		}
 	
 	

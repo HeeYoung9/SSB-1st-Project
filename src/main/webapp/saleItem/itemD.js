@@ -12,7 +12,7 @@ $('#options_idSelecter').change(function() {
 $(document).on("click",".closeButton",function(){
 	$(this).parent().detach();
 });
-function addCart(type) {
+function getCartDiv(){
 	var arr = new Array;
 	$("#cartPool .cartDiv").each(function() {
 		let cartItem = {
@@ -22,6 +22,11 @@ function addCart(type) {
 		};
 		arr.push(cartItem);
 	});
+	return arr;
+}
+
+function addCart(type) {
+	var arr = getCartDiv();
 	$.ajax({
 		type: "POST",
 		url: "./insertCart.ca",
