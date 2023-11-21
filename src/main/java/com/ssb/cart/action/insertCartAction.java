@@ -22,8 +22,8 @@ public class insertCartAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("action");
 		// 정보저장
-		//int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
-		int member_id = 1006;
+		int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
+		String type = (String)request.getSession().getAttribute("type");
 		JSONParser parser = new JSONParser();
 		ArrayList<cartDTO> dtoArray = new ArrayList<cartDTO>();
 		cartDTO dto = null;
