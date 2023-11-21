@@ -111,36 +111,38 @@ public class cartDAO extends DAO{
 	}
 	
 	// 장바구니 목록 조회 메서드
-		public ArrayList<cartDTO> getCartsV2(String cart_id) {
-			ArrayList<cartDTO> dtoArray = new ArrayList<cartDTO>();
-			cartDTO dto = null;
-			try {
-				con = getCon();
-				sql = "SELECT cart_id, C.options_id, C.item_id, item_name,options_name,options_value,cart_quantity,options_price FROM cart C JOIN item I ON C.item_id = I.item_id JOIN options O ON C.options_id = O.options_id WHERE cart_id IN(" + cart_id + ")";
-				pstmt = con.prepareStatement(sql);
-				System.out.println(pstmt);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					dto = new cartDTO();
-					dto.setCart_id(rs.getInt("cart_id"));
-					dto.setItem_id(rs.getInt("item_id"));
-					dto.setOptions_id(rs.getInt("options_id"));
-					dto.setItem_name(rs.getString("item_name"));
-					
-					dto.setOptions_name(rs.getString("options_name"));
-					dto.setOptions_value(rs.getString("options_value"));
-					dto.setCart_quantity(rs.getInt("cart_quantity"));
-					dto.setOptions_price(rs.getInt("options_price"));
-					dtoArray.add(dto);
-					System.out.println("dto 추가");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				CloseDB();
+	public ArrayList<cartDTO> getCartsV2(String cart_id) {
+		ArrayList<cartDTO> dtoArray = new ArrayList<cartDTO>();
+		cartDTO dto = null;
+		try {
+			con = getCon();
+			sql = "SELECT cart_id, C.options_id, C.item_id, item_name,options_name,options_value,cart_quantity,options_price, I.item_price FROM cart C JOIN item I ON C.item_id = I.item_id JOIN options O ON C.options_id = O.options_id WHERE cart_id IN(" + cart_id + ")";
+			pstmt = con.prepareStatement(sql);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto = new cartDTO();
+				dto.setCart_id(rs.getInt("cart_id"));
+				dto.setItem_id(rs.getInt("item_id"));
+				dto.setOptions_id(rs.getInt("options_id"));
+				dto.setItem_name(rs.getString("item_name"));
+				
+				dto.setOptions_name(rs.getString("options_name"));
+				dto.setOptions_value(rs.getString("options_value"));
+				dto.setCart_quantity(rs.getInt("cart_quantity"));
+				dto.setOptions_price(rs.getInt("options_price"));
+				dto.setItem_price(rs.getInt("item_price"));
+				
+				dtoArray.add(dto);
+				System.out.println("dto 추가");
 			}
-			return dtoArray;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
 		}
+		return dtoArray;
+	}
 
 		public int insertCart(int member_id, ArrayList<cartDTO> dtoArray) {
 			int check = 0;
