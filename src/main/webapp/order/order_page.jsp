@@ -150,8 +150,7 @@
 				<div class="coupon-select">
 					<label for="coupon">쿠폰 선택:</label> 
 					<select id="coupon" name="coupon">
-						<option value="coupon1">쿠폰 1</option>
-						<option value="coupon2">쿠폰 2</option>
+						<option value="coupon1">사용할수 있는 쿠폰이 없습니다.</option>
 						<!-- 추가 쿠폰 옵션 -->
 					</select>
 				</div>

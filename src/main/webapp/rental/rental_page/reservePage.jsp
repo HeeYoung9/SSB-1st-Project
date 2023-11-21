@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -149,7 +150,7 @@
 							<td>${rdto.rental_str }</td>
 							<td>${rdto.rental_end }</td>
 							<td>${rdto.rental_item_price }</td>
-							<td>${rdto.rental_opt_quantity }</td>
+							<td>${rdto.rental_opt_quantity }</td> <!-- 렌탈제품 1개씩만 떠야함. -->
 						</tr>
 						
 						
@@ -160,7 +161,7 @@
 				<input type="hidden" name="rental_item_name" value="${rdto.rental_item_name}">
 				<input type="hidden" name="rental_str" value="${rdto.rental_str}">
 				<input type="hidden" name="rental_end" value="${rdto.rental_end}">
-				<input type="hidden" name="rental_item_price" value="${rdto.rental_item_price}">
+				<input type="hidden" name="rental_item_price" value="${rdto.rental_item_price}"> 
 				<input type="hidden" name="rental_item_opt_quantity" value="${rdto.rental_opt_quantity}">
 				
 				
@@ -172,14 +173,13 @@
 				<div class="coupon-select">
 					<label for="coupon">쿠폰 선택:</label> <select id="coupon"
 						name="coupon">
-						<option value="coupon1">쿠폰 1</option>
-						<option value="coupon2">쿠폰 2</option>
+						<option value="coupon1">사용 가능한 쿠폰이 없습니다.</option>
 						<!-- 추가 쿠폰 옵션 -->
 					</select>
 				</div>
 				
 				<h4 class="mb-3">배송지</h4>
-				<select class="form-select form-select-lg mb-3" aria-label="Large select example" id="location_id">
+				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
  	 				<c:forEach var="ldto" items="${locaList}">
   					<option value="${ldto.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
@@ -191,9 +191,9 @@
 				
 
 				<hr>
-				<h4 class="mb-3">할인적용</h4>
+				<h4 class="mb-3">할인적용 : 0 원</h4>
 				<hr>
-				<h4 class="mb-3">총 가격</h4>  <h4 class="mb-3"></h4> 
+				<h4 class="mb-3">총 가격 : <fmt:formatNumber value="${rdto.rental_item_price}"/> 원</h4>
 		
 				<div style="margin-left:25%">
 					<input type="submit" class="btn btn-secondary btn-lg" style="width:25%" value="결제"></button>

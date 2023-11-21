@@ -26,7 +26,7 @@
 		<!-- ID 세션값이 null 일때 보일 버튼 (로그아웃/ 비회원상태)-->
 		<c:if test="${empty sessionScope.userId }">
 			<div class="button-container">
-				<button style="background-color: transparent; border:none;"><a href="./NoticeList.no" style="color:white; opacity: 0.3">admin</a></button>
+				<button style="background-color: transparent; border:none;"><a href="./NoticeList.no" style="color:white; opacity: 0">admin</a></button>
 				<button class="login-button"><a href="./MemberLogin.me" style="color:white;">login</a></button>
 				<button class="signup-button"><a href="./cartList.ca" style="color:white;">
 				<img width="20" height="15" src="./main/img/market.png" alt="장바구니" /> cart</a>

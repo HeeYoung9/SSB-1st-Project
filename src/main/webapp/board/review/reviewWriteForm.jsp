@@ -198,12 +198,12 @@ textarea {
 				cache : false,
 				timeout : 600000,
 				success : function(data) {
-					alert("성공");
+					alert("소중한 리뷰 감사합니다.");
 					window.close();
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
-					alert("실패");
+					alert("리뷰 등록에 실패했습니다. 다시 작성 해주세요.");
 				}
 			});
 

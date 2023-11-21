@@ -1,11 +1,17 @@
 $('#options_idSelecter').change(function() {
-    var html = "<div class='cartDiv'>";
-	html += "<input type='hidden' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
-	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
-	html += "<input type='hidden' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
-	html += "<input type='button' class='closeButton' value='close'>";
-	html += "</div>";
-	$("#cartPool").append(html);
+     var html = "<div class='cartDiv'>";
+    var selectedOption = $("#options_idSelecter option:selected");
+    var optionsName = selectedOption.data("options-name");
+    var optionsValue = selectedOption.data("options-value");
+    
+    html += "<input type='hidden' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
+    html += "<span class='options_name'>" + optionsName + "</span>";
+    html += "<span class='options_value'>" + optionsValue + "</span>";
+    html += "<input type='number' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "' min='1' max='10'>";
+    html += "<input type='hidden' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+    html += "<input type='button' class='closeButton' value='close'>";
+    html += "</div>";
+    $("#cartPool").append(html);
 });
 
 

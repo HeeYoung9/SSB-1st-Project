@@ -44,7 +44,7 @@ public class BoardDAO {
 	}
 	
 	
-	// 공지 작성하기 메서드 - insertNotice(BoardDTO bdto)
+	// [관리자] 공지 작성하기 메서드 - insertNotice(BoardDTO bdto)
 	public void insertNotice(BoardDTO bdto) {
 		int boardId = 0;
 		
@@ -97,7 +97,7 @@ public class BoardDAO {
 		}
 			
 	} 
-	// 공지 작성하기 메서드 - insertNotice(BoardDTO bdto)
+	// [관리자] 공지 작성하기 메서드 - insertNotice(BoardDTO bdto)
 	
 		
 	// 공지글 개수 계산 메서드 - getNoticeCount()
@@ -163,7 +163,7 @@ public class BoardDAO {
 	// 공지글 조회수 1 증가 메서드 - updateReadCount(int boardId)	
 	
 	
-	// 공지사항 글목록을 가져오는 메서드 - getNoticeList(int startRow, int pageSize)
+	// 공지사항 목록 가져오는 메서드 - getNoticeList(int startRow, int pageSize)
 	public ArrayList getNoticeList(int startRow, int pageSize) {
 		// 글정보를 저장하는 배열
 		ArrayList noticeList = new ArrayList();
@@ -215,7 +215,7 @@ public class BoardDAO {
 				
 		return noticeList;
 	}	
-	// 공지사항 글목록을 가져오는 메서드 - getNoticeList(int startRow, int pageSize)
+	// 공지사항 목록 가져오는 메서드 - getNoticeList(int startRow, int pageSize)
 
 	
 	// 특정 번호에 해당하는 글정보 가져오기 메서드 - getBoard(int boardId)
@@ -262,7 +262,7 @@ public class BoardDAO {
 	// 특정 번호에 해당하는 글정보 가져오기 메서드 - getBoard(int boardId)
 		
 	
-	// 특정 번호에 해당하는 공지 글정보 수정하는 메서드 - updateNotice(BoardDTO bdto)
+	// [관리자] 특정 번호에 해당하는 공지 수정하는 메서드 - updateNotice(BoardDTO bdto)
 	public int updateNotice(BoardDTO bdto) {
 		int result = -1; // -1(글정보 없음), 1(정상처리)
 			
@@ -309,10 +309,10 @@ public class BoardDAO {
 			
 		return result;
 	} 
-	// 특정 번호에 해당하는 공지 글정보 수정하는 메서드 - updateNotice(BoardDTO bdto)
+	// [관리자] 특정 번호에 해당하는 공지 수정하는 메서드 - updateNotice(BoardDTO bdto)
 	
 	
-	// 특정 번호에 해당하는 공지 삭제하는 메서드 - deleteNotice(BoardDTO bdto)
+	// [관리자] 특정 번호에 해당하는 공지 삭제하는 메서드 - deleteNotice(BoardDTO bdto)
 	public int deleteNotice(BoardDTO bdto) {
 		int result = -1; // -1(글정보 없음), 1(정상처리)
 			
@@ -356,7 +356,7 @@ public class BoardDAO {
 			
 		return result;
 	}
-	// 특정 번호에 해당하는 공지 삭제하는 메서드 - deleteNotice(BoardDTO bdto)
+	// [관리자] 특정 번호에 해당하는 공지 삭제하는 메서드 - deleteNotice(BoardDTO bdto)
 
 
 	// 제품 문의글 작성하기 메서드 - insertInquiryItem(BoardDTO bdto)
@@ -406,7 +406,7 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 문의 작성 완료!");		
+			System.out.println("DAO: 제품 문의 작성 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -464,7 +464,7 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 문의 작성 완료!");		
+			System.out.println("DAO: 렌탈제품 문의 작성 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -475,7 +475,7 @@ public class BoardDAO {
 	// 렌탈제품 문의글 작성하기 메서드 - insertInquiryQBoard(BoardDTO bdto)
 	
 	
-	// 문의글 개수 계산 메서드 - getInquiryCount()
+	// [관리자] 문의글 개수 계산 메서드 - getInquiryCount()
 	public int getInquiryCount() {
 		int result = 0;	
 		
@@ -506,7 +506,81 @@ public class BoardDAO {
 		
 		return result;		
 	}
-	// 문의글 개수 계산 메서드 - getInquiryCount()	
+	// [관리자] 문의글 개수 계산 메서드 - getInquiryCount()	
+
+
+	// 특정 제품 문의글 개수 계산 메서드 - getItemInquiryCount(int item_id)
+	public int getItemInquiryCount(int item_id) {
+		int result = 0;	
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();		
+			
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select count(*) from board_remaster where board_type='Q' and item_id=?";
+			pstmt = con.prepareStatement(sql);			
+			
+			// ?
+			pstmt.setInt(1, item_id);
+			
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리 - 개수를 저장
+			if(rs.next()) {
+				result = rs.getInt(1);
+				// result = rs.getInt("count(*)"); 
+			}
+			
+			System.out.println("DAO: 문의 개수: " + result + "개");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return result;		
+	}
+	// 특정 제품 문의글 개수 계산 메서드 - getItemInquiryCount(int item_id)	
+	
+	
+	// 특정 렌탈제품 문의글 개수 계산 메서드 - getRItemInquiryCount(int rItemId)
+	public int getRItemInquiryCount(int rItemId) {
+		int result = 0;	
+		
+		try {
+			// 1.2. 디비 연결
+			con = getCon();		
+			
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select count(*) from board_remaster where board_type='Q' and rental_item_id=?";
+			pstmt = con.prepareStatement(sql);			
+			
+			// ?
+			pstmt.setInt(1, rItemId);
+			
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			
+			// 5. 데이터 처리 - 개수를 저장
+			if(rs.next()) {
+				result = rs.getInt(1);
+				// result = rs.getInt("count(*)"); 
+			}
+			
+			System.out.println("DAO: 문의 개수: " + result + "개");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return result;		
+	}
+	// 특정 렌탈제품 문의글 개수 계산 메서드 - getRItemInquiryCount(int rItemId)
 	
 	
 	// [관리자] 문의글 목록을 가져오는 메서드 - getAdInquiryList(int startRow, int pageSize)
@@ -609,7 +683,7 @@ public class BoardDAO {
 				inquiryList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 문의 글 목록 조회 성공!");
+			System.out.println("DAO: 제품 문의 목록 조회 성공!");
 			System.out.println("DAO: " + inquiryList.size());
 									
 		} catch (Exception e) {
@@ -669,7 +743,7 @@ public class BoardDAO {
 				inquiryList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 공지사항 글 목록 조회 성공!");
+			System.out.println("DAO: 렌탈제품 문의 목록 조회 성공!");
 			System.out.println("DAO: " + inquiryList.size());
 									
 		} catch (Exception e) {
@@ -793,8 +867,8 @@ public class BoardDAO {
 	// 렌탈제품 리뷰 작성하기 메서드 - insertReviewRItem(BoardDTO bdto)
 	
 	
-	// 리뷰글 개수 계산 메서드 - getReviewCount()
-	public int getReviewCount() {
+	// 특정 제품 리뷰글 개수 계산 메서드 - getItemReviewCount(int item_id)
+	public int getItemReviewCount(int item_id) {
 		int result = 0;	
 				
 		try {
@@ -802,8 +876,11 @@ public class BoardDAO {
 			con = getCon();		
 					
 			// 3. SQL 구문 작성(select) & pstmt 객체
-			sql = "select count(*) from board_remaster where board_type='R'";
-			pstmt = con.prepareStatement(sql);			
+			sql = "select count(*) from board_remaster where board_type='R' and item_id=?";
+			pstmt = con.prepareStatement(sql);		
+			
+			// ?
+			pstmt.setInt(1, item_id);
 			
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
@@ -824,7 +901,44 @@ public class BoardDAO {
 				
 		return result;		
 	}
-	// 리뷰글 개수 계산 메서드 - getReviewCount()
+	// 특정 제품 리뷰글 개수 계산 메서드 - getItemReviewCount(int item_id)
+	
+	
+	// 특정 렌탈제품 리뷰글 개수 계산 메서드 - getRItemReviewCount(int rItemId)
+	public int getRItemReviewCount(int rItemId) {
+		int result = 0;	
+				
+		try {
+			// 1.2. 디비 연결
+			con = getCon();		
+					
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select count(*) from board_remaster where board_type='R' and rental_item_id=?";
+			pstmt = con.prepareStatement(sql);		
+			
+			// ?
+			pstmt.setInt(1, rItemId);
+			
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+					
+			// 5. 데이터 처리 - 개수를 저장
+			if(rs.next()) {
+				result = rs.getInt(1);
+				// result = rs.getInt("count(*)"); 
+			}
+					
+			System.out.println("DAO: 글 개수: " + result + "개");
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+				
+		return result;		
+	}
+	// 특정 렌탈제품 리뷰글 개수 계산 메서드 - getRItemReviewCount(int rItemId)
 
 	
 	// 리뷰글 조회수 1 증가 메서드 - updateReviewReadCount(int boardId) 
@@ -854,69 +968,9 @@ public class BoardDAO {
 				
 	}	
 	// 리뷰글 조회수 1 증가 메서드 - updateReviewReadCount(int boardId) 	
-	
-	
-	// 리뷰글 목록을 가져오는 메서드 - getReviewList(int reviewStartRow, int reviewPageSize)
-	public ArrayList getReviewList(int reviewStartRow, int reviewPageSize) {
-		// 글정보를 저장하는 배열
-		ArrayList reviewList = new ArrayList();
-					
-		try {
-			// 1.2. 디비 연결
-			con = getCon();
-						
-			// 3. SQL 구문(select) 작성 & pstmt 객체
-			sql = "select board_id, member_name, board_type, board_content, board_writeTime, "
-					+ "board_readCount, board_file, rating "
-					+ "from member m join board_remaster br "
-					+ "on m.member_user_id  = br.member_user_id "
-					+ "where board_type='R' "
-					+ "order by board_id desc limit ?,?";
-			pstmt = con.prepareStatement(sql);
-						
-			// ?
-			pstmt.setInt(1, reviewStartRow-1); // 시작행 번호-1
-			pstmt.setInt(2, reviewPageSize); // 페이지 개수
-						
-			// 4. SQL 실행
-			rs = pstmt.executeQuery();
-						
-			// 5. 데이터 처리
-			// 글정보 전부 가져오기
-			// 여러 개의 정보 => ArrayList 저장
-			while(rs.next()) {
-				// 글 하나의 정보 => BoardDTO 저장
-				BoardDTO bdto = new BoardDTO();
-							
-				bdto.setBoard_id(rs.getInt("board_id"));
-				bdto.setMember_name(rs.getString("member_name"));
-				bdto.setBoard_type(rs.getString("board_type"));
-				bdto.setBoard_content(rs.getString("board_content"));
-				bdto.setBoard_writeTime(rs.getDate("board_writeTime"));
-				bdto.setBoard_readCount(rs.getInt("board_readCount"));
-				bdto.setBoard_file(rs.getString("board_file"));
-				bdto.setRating(rs.getDouble("rating"));
-			
-							
-				// 글 하나의 정보를 배열의 한 칸에 저장
-				reviewList.add(bdto);				
-			} // while
-						
-			System.out.println("DAO: 리뷰 글 목록 조회 성공!");
-			System.out.println("DAO: " + reviewList.size());
-									
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			CloseDB();
-		}
-					
-		return reviewList;
-	}	
-	// 리뷰글 목록을 가져오는 메서드 - getReviewList(int startRow, int pageSize)
 				
 
-	// 제품 리뷰글 목록을 가져오는 메서드 - getItemReviewList(int item_id, int startRow, int pageSize)
+	// 특정 제품 리뷰글 목록을 가져오는 메서드 - getItemReviewList(int item_id, int startRow, int pageSize)
 	public ArrayList getItemReviewList(int item_id, int startRow, int pageSize) {
 		// 글정보를 저장하는 배열
 		ArrayList reviewList = new ArrayList();
@@ -973,10 +1027,10 @@ public class BoardDAO {
 					
 		return reviewList;
 	}	
-	// 제품 리뷰글 목록을 가져오는 메서드 - getItemReviewList(int item_id, int startRow, int pageSize)
+	// 특정 제품 리뷰글 목록을 가져오는 메서드 - getItemReviewList(int item_id, int startRow, int pageSize)
 	
 	
-	// 렌탈제품 문의글 목록을 가져오는 메서드 - getRItemInquiryList(int rItemId, int startRow, int pageSize)
+	// 특정 렌탈제품 리뷰글 목록을 가져오는 메서드 - getRItemReviewList(int rItemId, int startRow, int pageSize)
 	public ArrayList getRItemReviewList(int rItemId, int reviewStartRow, int reviewPageSize) {
 		// 글정보를 저장하는 배열
 		ArrayList reviewList = new ArrayList();
@@ -1033,10 +1087,10 @@ public class BoardDAO {
 					
 		return reviewList;
 	}	
-	// 렌탈제품 문의글 목록을 가져오는 메서드 - getRItemInquiryList(int rItemId, int startRow, int pageSize)
+	// 특정 렌탈제품 리뷰글 목록을 가져오는 메서드 - getRItemReviewList(int rItemId, int startRow, int pageSize)
 	
 		
-	// 답변상태 변경하기 메서드 - updateAnswerState(BoardDTO bdto)
+	// [관리자] 답변상태 변경하기 메서드 - updateAnswerState(BoardDTO bdto)
 	public BoardDTO updateAnswerState(BoardDTO bdto) {
 		
 		try {
@@ -1076,6 +1130,6 @@ public class BoardDAO {
 		
 		return bdto;
 	}
-	// 답변상태 변경하기 메서드 - updateAnswerState(BoardDTO bdto)
+	// [관리자] 답변상태 변경하기 메서드 - updateAnswerState(BoardDTO bdto)
 	
 }

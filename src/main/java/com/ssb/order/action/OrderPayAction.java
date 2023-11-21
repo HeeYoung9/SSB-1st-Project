@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ssb.order.db.OrderDetailDAO;
 import com.ssb.order.db.OrderDetailDTO;
@@ -19,9 +20,12 @@ public class OrderPayAction implements Action {
 		
 		//필요한거 유저 정보
 		//Member member = request.getSession();
-		//long orderId = Long.parseLong(request.getParameter("orderId"));
-		long userId = 1;
-		long orderId = 20231111000003L;
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		long orderId = Long.parseLong(request.getParameter("orderId"));
+		System.out.println("user Id는? "+userId);
+		// long userId = 1;
+		//long orderId = 20231111000003L;
 		
 		
 		System.out.println("호출이다 호출");

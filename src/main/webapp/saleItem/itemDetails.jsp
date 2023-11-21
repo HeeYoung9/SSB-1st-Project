@@ -46,9 +46,14 @@ function openInquiryPop(){
 			<input type = "hidden" name="optID" value="${itemDTO.options_id}">
 			
 			
+			
+			
+			
 				<div class="leftBigBox">
 					<div class="brandLogo"> 
+					<c:if test="${!empty itemDTO.item_img_logo }">
 					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_logo}" alt="브랜드로고">
+					</c:if>
 					</div>
 					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_main}" alt="상품이미지">
 					<p></p>
@@ -76,7 +81,7 @@ function openInquiryPop(){
 									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/star.png"/>
 								</c:forEach>
 									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/harfStar.png"/> 
-									<a href="#review">&nbsp;4.5/5 <b>리뷰 426개</b> </a> 
+									<a href="#review">&nbsp;4.5/5 <b>리뷰</b> </a> 
 							</span></li>
 						<li><span>배송비</span> <span class="r">무료</span></li>
 					</ul>

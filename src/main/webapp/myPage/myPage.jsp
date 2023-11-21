@@ -241,7 +241,7 @@
 							<td>${dto.orders_state}</td>
 							<td>${dto.orders_sort}</td>
 							<td>${dto.orders_date}</td>
-							<td>${dto.total_price}</td>
+							<td><fmt:formatNumber value="${dto.total_price}"/>원</td>
 							<td>
 								<button class="edit-button" type="button"
 									onclick="window.open('./myPageOrderDetail.mp?orders_id=${dto.id}','detail','width=720;, height=720px;')">상세보기</button>
