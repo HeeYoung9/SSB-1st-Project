@@ -12,6 +12,7 @@
 <script type="text/javascript" src="./wishlist/wishlist.js"></script>
 <script type="text/javascript" src="./wishlist/wishlistPage.js"></script>
 <link rel="stylesheet" href="./location/location.css">
+<script type="text/javascript" src="./cart/insertCart.js"></script>
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./main/img/favicon.ico">
@@ -55,6 +56,9 @@
 		<div id="moveButton">
 			<input type="hidden" id="checkArray" name="checkArray"> <input
 				type="button" value="삭제" onclick="deleteWishlist()">
+				
+			<button class="btn-2" type="button" onclick="addCart()"> 
+					<img width="30" height="30" src="${pageContext.request.contextPath}/main/img/market.png" alt=""></button>
 		</div>
 	</main>
 	<footer> </footer>

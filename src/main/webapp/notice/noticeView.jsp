@@ -28,7 +28,7 @@
 </div>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="./favicon/favicon.ico">
 
 <!-- 공지사항 본문 CSS -->
 <style>

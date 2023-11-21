@@ -35,11 +35,7 @@ public class ReviewWriteAction implements Action {
 				
 		System.out.println("M: 파일 업로드 성공!");
 				
-		// 파일 수정 시 아래 코드 추가
-		// 업데이트 후 기존의 파일 삭제
-//		File file = new File(realPath + "/" + multi.getFilesystemName("file"));
-//		file.delete();
-		
+		// 주문한 제품종류 정보 저장
 		String orders_sort = multi.getParameter("orders_sort");
 	
 		// 나머지 정보 저장

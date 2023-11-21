@@ -173,7 +173,11 @@ function openReviewPop(){
                         <td>${dto.price*dto.quantity}</td>
                         <td>${dto.rental_str}</td>
                         <td>${dto.rental_end}</td>
-                        <td><button type="button" onclick="openReviewPop()">작성하기</button></td>
+                        <td>
+                        <c:if test="${orders_state=='DETERMINE' }">
+                        <button type="button" onclick="openReviewPop()">작성하기</button>
+                        </c:if>
+                        </td>
 					</tr>
 				</c:forEach>
 			</c:if>

@@ -59,7 +59,7 @@ public class ItemDetailsAction implements Action {
 		ArrayList reviewList = new ArrayList();
 		
 		if(reviewCount > 0) {
-			reviewList = bdao.getReviewList(reviewStartRow, reviewPageSize);
+			reviewList = bdao.getItemReviewList(item_id, reviewStartRow, reviewPageSize);
 		}
 		
 		System.out.println("M: size: " + reviewList.size());

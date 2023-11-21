@@ -71,7 +71,7 @@
       		 </c:if>  
     	     <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
     	      <li class="page-item">
-    	        <a class="page-link" href="">${i }</a>
+    	        <a class="page-link" href="" style="color: black;">${i }</a>
     	      </li>
 			 </c:forEach>
     	     <c:if test="${endPage < pageCount }">

@@ -16,6 +16,14 @@ public class cartDTO {
 	private int options_price;//옵션가격
 	private int options_quantity;//재고수량
 	
+	private int total_price; // 데이터테이블에 없는데 임의로 생성함.
+	
+	public int getTotal_price() {
+		return total_price;
+	}
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}
