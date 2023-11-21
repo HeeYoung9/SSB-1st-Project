@@ -12,7 +12,7 @@ $('#options_idSelecter').change(function() {
 $(document).on("click",".closeButton",function(){
 	$(this).parent().detach();
 });
-function addCart() {
+function addCart(type) {
 	var arr = new Array;
 	$("#cartPool .cartDiv").each(function() {
 		let cartItem = {
@@ -27,13 +27,28 @@ function addCart() {
 		url: "./insertCart.ca",
 		dataType: "text",
 		data: {
-			"arr": JSON.stringify(arr)
+			"arr": JSON.stringify(arr),
+			"type": type
 		},
 		error: function() {
 			alert('통신실패!!');
 		},
 		success: function(data) {
-			
+			if(data == 1){
+				if (confirm("이미 장바구니에 담긴 상품이 있습니다.\n장바구니로 이동하시겠습니까?") == true) {
+					location.href = "./cartList.ca";
+				} else {
+					return false;
+				}
+			}else if(data == 0){
+				if (confirm("장바구니로 이동하시겠습니까?") == true) {
+					location.href = "./cartList.ca";
+				} else {
+					return false;
+				}
+			}else{
+				alert("장바구니 담기 오류");
+			}
 		}
 	});
 };
@@ -151,6 +166,8 @@ window.onload = () => {
 	    };
 	  });
 	}
+	
+	
 	
 	
 	

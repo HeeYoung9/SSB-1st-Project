@@ -266,31 +266,37 @@
 				</tbody>
 			</table>
 			<br>
-			<!--- 페이징 --->
-            <div class="paging">
-                <c:if test="${startPage > pageBlock }">
-                    <a href="./myPage.mp?pageNum=${startPage-pageBlock }&state=${param.state}">이전</a>
-                </c:if>
-                
-                <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1"> 
-                <span class="num" style="margin: 0 auto;">
-					<a href="./myPage.mp?pageNum=${i }&state=${param.state}" class="on" >${i }</a> 
-                </span>
-				</c:forEach>
-                
-                <c:if test="${endPage < pageCount }">
-                    <a href="./myPage.mp?pageNum=${startPage + pageBlock}&state=${param.state}">다음</a>
-                </c:if>
-            </div>
 
 			<% } else { %>
 			<p>현재 로그인된 계정 정보가 없습니다.</p>
 			<% } %>
-
-			<button class="withdrawal-button">
-					<a href="./MemberCloseAccount.me" style="color: black;">회원 탈퇴</a>
-			</button>
+			
+			<div style="text-align: center;">
+				<!--- 페이징 --->
+				<div class="test">
+		            <div class="paging">
+		                <c:if test="${startPage > pageBlock }">
+		                    <a href="./myPage.mp?pageNum=${startPage-pageBlock }&state=${param.state}">이전</a>
+		                </c:if>
+		                
+		                <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1"> 
+		                <span class="num" style="margin: 0 auto;">
+							<a href="./myPage.mp?pageNum=${i }&state=${param.state}" class="on" >${i }</a> 
+		                </span>
+						</c:forEach>
+		                
+		                <c:if test="${endPage < pageCount }">
+		                    <a href="./myPage.mp?pageNum=${startPage + pageBlock}&state=${param.state}">다음</a>
+		                </c:if>
+		            </div>
+				</div>
+				<div style="text-align: right;">
+					<button class="withdrawal-button">
+							<a href="./MemberCloseAccount.me" style="color: black;">회원 탈퇴</a>
+					</button>
+				</div>
 			</div>
+		</div>
 		
 </body>
 </html>

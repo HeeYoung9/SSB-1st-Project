@@ -19,11 +19,9 @@ public class NoticeContentAction implements Action {
 		int boardId = Integer.parseInt(request.getParameter("boardId"));
 		String pageNum = request.getParameter("pageNum");
 				
-		// BoardDAO 객체 - 특정 공지글 조회수 1증가 메서드
-		BoardDAO bdao = new BoardDAO();
-		bdao.updateReadCount(boardId);
-				
+		// BoardDAO 객체 생성
 		//      "        - 특정 공지글의 정보를 가져오는 메서드
+		BoardDAO bdao = new BoardDAO();				
 		BoardDTO bdto = bdao.getBoard(boardId);
 						
 		// 글정보를 request 영역에 저장

@@ -61,7 +61,7 @@ public class cartController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (command.equals("/cart/insertCart.ca")) {
+		}else if (command.equals("/insertCart.ca")) {
 			System.out.println("C : /insertCart.ca 호출");
 			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			

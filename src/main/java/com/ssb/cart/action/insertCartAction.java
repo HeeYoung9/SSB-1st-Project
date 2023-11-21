@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
 import com.ssb.cart.db.cartDAO;
 import com.ssb.cart.db.cartDTO;
 import com.ssb.util.Action;
@@ -21,8 +22,8 @@ public class insertCartAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("action");
 		// 정보저장
-		//int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
-		int member_id = 1006;
+		int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
+		String type = (String)request.getSession().getAttribute("type");
 		JSONParser parser = new JSONParser();
 		ArrayList<cartDTO> dtoArray = new ArrayList<cartDTO>();
 		cartDTO dto = null;
@@ -47,7 +48,11 @@ public class insertCartAction implements Action {
 		cartDAO dao = new cartDAO();
 		//정보처리
 		int result = dao.insertCart(member_id,dtoArray);
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(result);
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(json);
 
 		return null;
 	}

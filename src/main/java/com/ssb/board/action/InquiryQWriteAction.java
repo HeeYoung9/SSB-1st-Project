@@ -20,7 +20,6 @@ public class InquiryQWriteAction implements Action {
 		// BoardDTO 객체 생성
 		BoardDTO bdto = new BoardDTO();
 		bdto.setMember_user_id(request.getParameter("userId"));
-		bdto.setItem_id(Integer.parseInt(request.getParameter("itemId")));
 		bdto.setRental_item_id(Integer.parseInt(request.getParameter("rItemId")));
 		bdto.setInquiry_type(request.getParameter("iqType"));
 		bdto.setBoard_subject(request.getParameter("subject"));
