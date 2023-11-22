@@ -15,7 +15,6 @@ public class wishlistDAO extends DAO {
 			sql = "SELECT wishlist_id, W.item_id, item_name, item_img_main, item_price FROM wishlist W JOIN item I ON W.item_id = I.item_id WHERE member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(member_id));
-			System.out.println("전송된 쿼리 : " + pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new wishlistDTO();
@@ -25,7 +24,6 @@ public class wishlistDAO extends DAO {
 				dto.setItem_img_main(rs.getString("item_img_main"));
 				dto.setItem_price(rs.getInt("item_price"));
 				dtoArray.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,13 +41,11 @@ public class wishlistDAO extends DAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, item_id);
 			pstmt.setString(2, member_id);
-			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				sql = "DELETE FROM wishlist WHERE wishlist_id = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, rs.getInt("wishlist_id"));
-				System.out.println(pstmt);
 				if (pstmt.executeUpdate() == 1) {
 					result = "deleted";
 				} else {
@@ -60,7 +56,6 @@ public class wishlistDAO extends DAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, item_id);
 				pstmt.setString(2, member_id);
-				System.out.println(pstmt);
 				if (pstmt.executeUpdate() == 1) {
 					result = "inserted";
 				} else {
@@ -85,7 +80,6 @@ public class wishlistDAO extends DAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				item_idArray.add(rs.getInt("item_id"));
-				System.out.println("위시리스트 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,7 +96,6 @@ public class wishlistDAO extends DAO {
 			sql = "DELETE FROM wishlist WHERE item_id IN(" + item_idArr + ") AND member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, member_id);
-			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

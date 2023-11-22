@@ -16,7 +16,6 @@ public class orderAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//받은정보저장
 		String checkArray = request.getParameter("checkArray");
-		System.out.println("orderAction.checkArray : " + checkArray);
 		//데이터 처리
 		cartDAO dao = new cartDAO();
 		ArrayList<orderDTO> dtoArray = dao.getOrder(checkArray);

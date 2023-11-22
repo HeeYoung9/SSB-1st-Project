@@ -21,12 +21,9 @@ public class locationAction implements Action {
 		
 		
 		HttpSession session = request.getSession();
-		System.out.println("locationAcation 세션 클래스 형태 확인 : "+session.getAttribute("member_id").getClass());
 		
 		String member_id =  String.valueOf(session.getAttribute("member_id"));
-		System.out.println("locationAcation 세션 클래스 형태 확인 : "+member_id);
 		
-		System.out.println("locationAction.member_id : " + member_id);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		ArrayList<locationDTO> dtoArray = dao.getlocation(member_id);

@@ -18,7 +18,6 @@ public class locationInsertAction implements Action {
 		locationDTO dto = new locationDTO();
 		boolean location_idCheck = request.getParameter("location_id").equals("");
 		int result;
-		System.out.println(location_idCheck);
 		
 		if (!location_idCheck) {
 			dto.setLocation_id(Integer.parseInt(request.getParameter("location_id")));
@@ -31,7 +30,6 @@ public class locationInsertAction implements Action {
 		dto.setLocation_title(request.getParameter("location_title"));
 		dto.setLocation_requested(request.getParameter("location_requested"));
 		dto.setMember_id(Integer.parseInt((String)request.getSession().getAttribute("member_id")));// 세션에서 받아오기
-		System.out.println(dto);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		if (!location_idCheck) {
@@ -39,7 +37,6 @@ public class locationInsertAction implements Action {
 		}else {
 			result = dao.insertLocation(dto);
 		}
-		System.out.println(result);
 		
 		return null;
 	}

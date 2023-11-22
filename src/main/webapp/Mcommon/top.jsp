@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -9,8 +8,7 @@
 	<!-- header 시작 -->
 	<header class="header">
 		<div class="logo">
-			<a href="./Main.in"><img src="./main/item_img/SSB_gold.png"
-				style="width: 200px;"></a>
+			<a href="./Main.in"><img src="./main/item_img/SSB_gold.png" style="width: 200px;"></a>
 		</div>
 		<div class="fm">
 			<form role="search" class="search-box" action="./Main.in"> <!--style="display: flex;"  -->
