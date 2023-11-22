@@ -39,7 +39,7 @@
 					</div>
 					<div>
 						<!-- 갯수 선택 인풋 -->
-						<input type="number" id="selectedQuantitiy">
+						<input type="number" max="10" min="1" id="selectedQuantitiy">
 					</div>
 				</div>
 				<div class="button">
@@ -67,9 +67,9 @@
 				<thead class="thead">
 					<tr>
 						<th><input type="checkbox" checked="checked" id="checkAll"></th>
-						<th>이미지주소</th>
-						<th>제품ID</th>
-						<th>제품 이름</th>
+						<th>이미지</th>
+						<th>제품번호</th>
+						<th>제품명</th>
 						<th>옵션</th>
 						<th>장바구니 수량</th>
 						<th>가격</th>
@@ -82,7 +82,7 @@
 							<td><input type="checkbox" name="cart_id" value="${dto.cart_id }" checked="checked"></td>
 							<td><img width="35" height="35" alt="제품이미지" src="./main/item_img/${dto.item_img_main }"></td>
 							<td name="item_id">${dto.item_id }</td>
-							<td name="item_name">${dto.item_name }</td>
+							<td name="item_name"><a href="./itemDetails.in?item_id=${dto.item_id}">${dto.item_name }</a></td>
 							<td name="options_value">${dto.options_value }</td>
 							<td name="cart_quantity">${dto.cart_quantity }</td>
 							<td name="options_price">${(dto.item_price + dto.options_price) * dto.cart_quantity }</td>
