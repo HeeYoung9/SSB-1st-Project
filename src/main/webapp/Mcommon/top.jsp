@@ -5,6 +5,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="./Mcommon/top.js" charset="UTF-8"></script>
 <link href="./Mcommon/top.css" rel="stylesheet">
+<!-- 폰트 CSS -->	
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
+* {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+</style>
 	<!-- header 시작 -->
 	<header class="header">
 		<div class="logo">

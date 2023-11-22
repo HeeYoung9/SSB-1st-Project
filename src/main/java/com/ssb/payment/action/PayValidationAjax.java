@@ -7,7 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ssb.member.db.MemberDAO;
+import com.ssb.member.db.MemberDTO;
 import com.ssb.order.db.OrdersDAO;
 import com.ssb.order.db.OrdersDTO;
 import com.ssb.order.vo.OrdersState;
@@ -63,6 +66,21 @@ public class PayValidationAjax extends HttpServlet {
 			
 			PaymentDAO paymentDAO = new PaymentDAO();
 			paymentDAO.savePaymentInfo(payment);
+			
+			//------------------11월 22일 추가------------------------------------
+	         MemberDAO memberDAO = new MemberDAO();
+	         
+	         int memberPaymentPrice = payment.getPaidAmount();
+	         int memberPoint =  (int)(payment.getPaidAmount()*0.01);
+	         
+	         HttpSession session = request.getSession();
+	         String memberId = (String)session.getAttribute("userId");
+	         
+	         
+	         MemberDTO findMember = memberDAO.getMember(memberId);
+	         
+	         memberDAO.updatePaymentAndPoint(findMember.getMember_id(), memberPaymentPrice, memberPoint);
+			
 			
 		} catch (PayFailedValidationException e) {
 			e.printStackTrace();

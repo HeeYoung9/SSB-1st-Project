@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SSB 회원탈퇴</title>
 <link href="../main/main.css" rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -93,8 +93,8 @@
 								</li>
 							</ul>
 						</div>
-						<!-- 유의 사항 -->						
 						
+						<!-- 유의 사항 -->						
 						<div id="fs">
 							<input type="checkbox" id="checkBox" /> 
 							<label for="checkBox"> <span></span> 유의사항을 모두 확인하였으며, 이에 동의합니다.</label>

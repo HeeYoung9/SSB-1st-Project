@@ -13,7 +13,6 @@ public class NoticeViewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: NoticeViewAction_execute() 호출");
 		
 		// 전달정보 저장 (boardId, pageNum)
 		int boardId = Integer.parseInt(request.getParameter("boardId"));

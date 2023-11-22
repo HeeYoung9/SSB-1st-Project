@@ -22,6 +22,7 @@ domainListEl.addEventListener('change', (event) => {
 let idCheck = false; // onsubmit 시에 필요
 let pwCheck = false; // onsubmit 시에 필요 
 let pwCheck2 = false; // onsubmit 시에 필요
+let isCheckBoxChecked = false; // onsubmit 시에 필요
 
 // 공백 제어 jquery
 $('.inputId, .inputPw, #domain-txt, #floatingEmail, #floatingName, #floatingBirth, #floatingTel').on('input', function () {
@@ -48,7 +49,7 @@ $('#floatingBirth, #floatingTel').on('input', function () {
 // submit 버튼 업데이트 함수
 function updateSubmitButton() {
     // 필수 사항이 성공했을 때만 submit 버튼 활성화
-    if (idCheck && pwCheck && pwCheck2) {
+    if (idCheck && pwCheck && pwCheck2 && isCheckBoxChecked) {
         $('#submitButton').prop('disabled', false);
     } else {
         $('#submitButton').prop('disabled', true);
@@ -282,7 +283,7 @@ function check() {
 	}
 
 	// 생년월일 유효성 체크 (8자)
-	if (birth.length < 8) {
+	if (birth.length != 8) {
 		alert('생년월일은 8자리입니다');
 		document.fr.member_birth.focus();
 		return false;
@@ -302,4 +303,30 @@ function check() {
 //       return false;
 //     }
 	return true;
-}   
+}
+
+// 유의사항 checkbox 선택
+$('#floatingAgree2').change(function() {
+    isCheckBoxChecked = $(this).prop('checked');
+    updateSubmitButton();
+});
+
+
+////////////////////////////////////////////////////////////////////////////
+//order_pay.jsp 페이지
+isPayCheck = false;
+
+$('#Agree2').change(function(){
+	isPayCheck = $(this).prop('checked');
+	updateOrderPayButton();
+});
+
+function updateOrderPayButton() {
+    // 필수 사항이 성공했을 때만 submit 버튼 활성화
+    if (isPayCheck) {
+        $('#payButton').prop('disabled', false);
+    } else {
+        $('#payButton').prop('disabled', true);
+    }
+}
+/////////////////////////////////////////////////

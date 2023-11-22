@@ -17,36 +17,25 @@ public class AdminFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("C: AdminFrontController_doProcess() 호출");
 		
 		/****************************** 1. 가상주소 계산 시작 ****************************/
-		System.out.println("\n---------- C: 1. 가상주소 계산 시작 -----------");
 		String requestURI = request.getRequestURI();
-		System.out.println("requestURI: " + requestURI);
 		String CTXPath = request.getContextPath();
-		System.out.println("CTXPath: " + CTXPath);
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("command: " + command);
-		System.out.println("---------- C: 1. 가상주소 계산 끝   -----------");
 		/****************************** 1. 가상주소 계산 끝 ******************************/
 		
 		
 		/****************************** 2. 가상주소 매핑 시작 ****************************/
-		System.out.println("\n---------- C: 2. 가상주소 매핑 시작 -----------");
 		Action action = null;
 		ActionForward forward = null;
 		
 		if(command.equals("/AdminLogin.ad")) {
-			System.out.println("C: /AdminLogin.ad 호출");
-			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
 			
 			forward = new ActionForward();
 			forward.setPath("./admin/adminLogin.jsp");
 			forward.setRedirect(false);
 		}
 		else if(command.equals("/AdminLoginAction.ad")) {
-			System.out.println("C: /AdminLoginAction.ad 호출");
-			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 			
 			// AdminLoginAction() 객체 생성
 			action = new AdminLoginAction();
@@ -57,8 +46,6 @@ public class AdminFrontController extends HttpServlet {
 			}
 		}
 		else if(command.equals("/AdminLogout.ad")) {
-			System.out.println("C: /AdminLogout.ad 호출");
-			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");
 			
 			// AdminLogoutAction() 객체 생성
 			action = new AdminLogoutAction();
@@ -68,27 +55,20 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}		
-		System.out.println("---------- C: 2. 가상주소 매핑 끝   -----------");
 		/****************************** 2. 가상주소 매핑 끝 ******************************/
 		
 		
 		/****************************** 3. 가상주소 이동 시작 ****************************/
-		System.out.println("\n---------- C: 3. 가상주소 이동 시작 -----------");
 		if(forward != null) {
 			if(forward.isRedirect()) { // true
-				System.out.println("C: 이동주소: " + forward.getPath());
-				System.out.println("C: 이동방법: sendRedirect() 방식");
 				response.sendRedirect(forward.getPath());
 			} else { // false
-				System.out.println("C: 이동주소: " + forward.getPath());
-				System.out.println("C: 이동방법: forward() 방식");
 				
 				RequestDispatcher dis = 
 						request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}
 		}
-		System.out.println("---------- C: 3. 가상주소 이동 끝   -----------");
 		/****************************** 3. 가상주소 이동 끝 ******************************/
 	}
 	

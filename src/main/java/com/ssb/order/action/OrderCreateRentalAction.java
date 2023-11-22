@@ -99,7 +99,7 @@ public class OrderCreateRentalAction implements Action {
 			orderDDTOs.add(orderDetail);
 				
 			//총 주문 금액 plus
-			orderTotalPrice += orderDetail.getTotalPrice();
+			orderTotalPrice += orderDetail.getTotalPrice() + (orderDetail.getTotalPrice()*0.1);
 			
 			
 			//계싼된 총 주문 금액 DTO에 입력

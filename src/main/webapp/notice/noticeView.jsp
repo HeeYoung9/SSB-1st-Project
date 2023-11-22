@@ -23,15 +23,26 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <!------------- 공통 헤더 ------------->
-<div class="header">
-	<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8" />
-</div>
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 
 <!-- 공지사항 본문 CSS -->
 <style>
+html {height: 100%;}
+
+body {
+   height: 100%;
+    display: flex;
+    flex-direction: column;} 
+
+main {
+   width: 1500px; 
+   margin: 0 auto; 
+   margin-top: 200px;
+   flex: 1;
+}
+
 .board_container {
 	width: 80%;
     margin: 40px auto 80px auto;
@@ -64,6 +75,10 @@
 	margin: 10pt;
 }
 
+.board_content>pre {
+   font-family: 'Noto Sans KR', sans-serif;
+} 
+
 .board_tag {
 	font-size: 11pt;
 	margin: 10pt;
@@ -72,6 +87,10 @@
 </style>
 </head>
 <body>
+	<div class="header">
+		<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8" />
+	</div>
+	
 	<main style="width: 1500px;">
 		<section>
 		<form class="board_container">
@@ -98,14 +117,14 @@
 		</form>
 		</section>
 		
+		
+	</main>
+
 	<!-- footer 시작 -->
     <footer style="background: black; color:white; text-align: center; padding:10px; width:100vw;">
       <p>&copy; 2023 SSB Style</p>
     </footer>
     <!-- footer 끝 -->		
-		
-	</main>
-
 	<script src="../adItem/js/itemD.js"></script>
 
 </body>

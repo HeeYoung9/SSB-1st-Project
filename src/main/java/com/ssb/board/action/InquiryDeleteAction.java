@@ -14,7 +14,6 @@ public class InquiryDeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: InquiryDeleteAction_execute() 호출");
 		
 		// 한글 처리 => web.xml에 필터 처리 (생략)
 		

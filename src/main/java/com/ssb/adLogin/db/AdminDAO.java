@@ -24,8 +24,6 @@ public class AdminDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 			
-		System.out.println("DAO: 디비 연결 성공!");
-		System.out.println("DAO: " + con);
 		return con;			
 	}
 		
@@ -71,7 +69,6 @@ public class AdminDAO {
 				result = -1;
 			}
 				
-			System.out.println("DAO: 로그인 처리 완료! (" + result + ")");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

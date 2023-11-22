@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-<title>Member Management</title>
+<title>SSB 회원관리</title>
 
 
 <!-----------------------------------  현정씨 ▼ ---------------------------------------------->
@@ -161,8 +161,8 @@
 			                        <td>${dto.member_email }</td>
 			                        <td>${dto.member_phone }</td>
 			                        <td>${dto.member_regdate }</td>
-			                        <td>${dto.member_payment }</td>
-			                        <td>${dto.member_point }</td>
+			                        <td><fmt:formatNumber value="${dto.member_payment }"/> </td>
+			                        <td><fmt:formatNumber value=" ${dto.member_point }"/></td>
 			                        <td>${dto.member_grade }</td>
 			                        <td>${dto.member_situation }</td>
 			                        <td>${dto.member_outdate }</td>

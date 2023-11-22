@@ -14,14 +14,12 @@ public class NoticeAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: NoticeAction_execute() 호출");
 		
 		// 기존에 저장된 글정보를 가져와서 화면에 출력
 		BoardDAO bdao = new BoardDAO();
 		
 		int count = 0;
 		count = bdao.getNoticeCount();
-		System.out.println("M: 글 개수: " + count);
 		
 		/******************************페이징처리 1******************************/
 		// 한 페이지에 출력할 글의 개수 설정
@@ -52,7 +50,6 @@ public class NoticeAction implements Action {
 			noticeList = bdao.getNoticeList(startRow, pageSize);
 		}
 		
-		System.out.println("M: size: " + noticeList.size());
 				
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("noticeList", noticeList);

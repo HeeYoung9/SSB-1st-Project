@@ -511,7 +511,52 @@ public class MemberDAO {
 	      return memberDTO;
 	   } 
 	   
-	   
+	   //-----------------------------결제 금액 포인트 추가--------------------------
+	      
+	      public void  updatePaymentAndPoint(int member_id, int member_payment, int member_point) {
+	         
+	         try {
+	            
+	            int originalPayment =0;
+	            int originalPoint = 0;
+	            
+	         con =getCon();
+	         sql = "select member_payment , member_point from member where member_id = ?";
+	         pstmt= con.prepareStatement(sql);
+	         pstmt.setInt(1, member_id);
+	         
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            originalPayment =rs.getInt("member_payment");
+	            originalPoint =rs.getInt("member_point");
+	            
+	            
+	            sql = "update member set member_payment = (? + ? ), member_point = ( ? + ?) where member_id = ?";
+	            pstmt= con.prepareStatement(sql);
+	            pstmt.setInt(1, originalPayment);
+	            pstmt.setInt(2, member_payment);
+	            pstmt.setInt(3, originalPoint);
+	            pstmt.setInt(4, member_point);
+	            pstmt.setInt(5, member_id);
+	            
+	            
+	            pstmt.executeUpdate();
+	            
+	         }
+	         
+	         
+	      } catch (Exception e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         CloseDB();
+	      }
+	      
+	 
+	      }
+	      //-----------------------------결제 금액 포인트 추가--------------------------
+
 	   
 	   //-----------------------------------임시메서드----------------------------------
 	                           

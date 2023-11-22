@@ -216,10 +216,6 @@
 								<a
 									href="./ItemMgt.it?pageNum=${startPage+pageBlock }&item_style=${param.item_style}&search=${param.search}">다음
 									></a>
-
-								<a
-									href="./ItemMgt.it?pageNum=${startPage+pageBlock }&item_style=${param.item_style}&search=${param.search}">다음
-									></a>
 								<!-- </span> -->
 							</c:if>
 						</div>
@@ -251,10 +247,6 @@
 								<!--  <span class="next"> -->
 								<a
 									href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}&item_style=${param.item_style }">다음
-									></a>
-
-								<a
-									href="./ItemMgt.it?pageNum=${startPage+pageBlock }&search=${param.search}&item_style=${param.item_style}">다음
 									></a>
 								<!-- </span> -->
 							</c:if>

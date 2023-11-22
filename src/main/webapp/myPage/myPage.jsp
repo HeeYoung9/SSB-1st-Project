@@ -116,20 +116,9 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
 									aria-expanded="false" aria-controls="flush-collapseOne">
-									<!-- <a href="update.ud"style="color: black; text-decoration: none;"> -->
+									<a href="update.ud"style="color: black; text-decoration: none;">
 									정보수정
-									<!-- </a> -->
-								</button>
-							</h2>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-									aria-expanded="false" aria-controls="flush-collapseTwo">
-									<!-- <a href="ReviewList.rv" style="color: black; text-decoration: none;"> -->
-									후기작성
-									<!-- </a> -->
+									</a>
 								</button>
 							</h2>
 						</div>
@@ -138,9 +127,9 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
 									aria-expanded="false" aria-controls="flush-collapseThree">
-									<!-- <a href="./location.lo" style="color: black; text-decoration: none;"> -->
+									<a href="./location.lo" style="color: black; text-decoration: none;">
 									배송지
-									<!-- </a> -->
+									</a>
 								</button>
 							</h2>
 						</div>

@@ -5,6 +5,15 @@
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
  <link href="./rental/rental_css/rental.css" rel="stylesheet">
+ <!-- 폰트 CSS -->	
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
+* {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+</style>
 
 
 	<!-- header 시작 -->

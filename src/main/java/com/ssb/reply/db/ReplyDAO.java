@@ -24,8 +24,6 @@ public class ReplyDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 			
-		System.out.println("DAO: 디비 연결 성공!");
-		System.out.println("DAO: " + con);
 		return con;			
 	}
 		
@@ -68,7 +66,6 @@ public class ReplyDAO {
 				replyId = 1;
 			}
 						
-			System.out.println("DAO: 댓글번호: " + replyId);
 			
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into reply(reply_id, board_id, admin_user_id, reply_content, reply_writeTime) "
@@ -84,7 +81,6 @@ public class ReplyDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 			
-			System.out.println("DAO: 문의글 답변 작성하기 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -112,7 +108,6 @@ public class ReplyDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -124,7 +119,6 @@ public class ReplyDAO {
 				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));
 			}
 				
-			System.out.println("DAO: 답변 정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -156,7 +150,6 @@ public class ReplyDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -168,7 +161,6 @@ public class ReplyDAO {
 				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));
 			}
 				
-			System.out.println("DAO: 답변 정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -200,7 +192,6 @@ public class ReplyDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -211,7 +202,6 @@ public class ReplyDAO {
 				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));
 			}
 				
-			System.out.println("DAO: 답변 정보 조회 완료! (렌탈제품)");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

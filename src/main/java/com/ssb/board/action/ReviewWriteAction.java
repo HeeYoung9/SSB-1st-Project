@@ -14,12 +14,10 @@ public class ReviewWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: ReviewWriteAction_execute() 호출");
 		
 		// upload 가상의 폴더 생성 (workspace에 만듦)
 		// 실제로는 톰캣 서버에 업로드됨
 		String realPath = request.getRealPath("/upload");
-		System.out.println("M: realPath: " + realPath);
 				
 		// 첨부파일의 크기 설정 (5MB)
 		int maxSize = 5*1024*1024;
@@ -33,7 +31,6 @@ public class ReviewWriteAction implements Action {
 													new ReviewFileNamePolicy()
 													);
 				
-		System.out.println("M: 파일 업로드 성공!");
 				
 		// 주문한 제품종류 정보 저장
 		String orders_sort = multi.getParameter("orders_sort");

@@ -23,15 +23,32 @@
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <!------------- 공통 헤더 ------------->
-<div class="header">
-	<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8" />
-</div>
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
+<style type="text/css">
+	html {height: 100%;}
+
+body {
+   height: 100%;
+    display: flex;
+    flex-direction: column;} 
+
+main {
+   width: 1500px; 
+   margin: 0 auto; 
+   margin-top: 200px;
+   flex: 1;
+}
+
+</style>
 </head>
 <body>
-	<main style="width: 1500px;">
+	<div class="header">
+		<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8" />
+	</div>
+	
+	<main style="width: 1500px; margin: 0 auto; margin-top: 200px;">
 		<section>
 			<form class="item_container" id="one" style="margin-bottom: 40px; padding-top: 60px;">
 				<table class="table table-striped table-sm">
@@ -85,14 +102,14 @@
 		 	</nav>
 		</section>
 		
+    
+	</main>
+
 	<!-- footer 시작 -->
     <footer style="background: black; color:white; text-align: center; padding:10px; width:100vw;">
       <p>&copy; 2023 SSB Style</p>
     </footer>
     <!-- footer 끝 -->
-    
-	</main>
-
 	<script src="../adItem/js/itemD.js"></script>
 
 </body>

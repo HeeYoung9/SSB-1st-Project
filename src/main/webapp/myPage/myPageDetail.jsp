@@ -42,8 +42,8 @@
 
 <!-- 후기작성 클릭 시 팝업창 띄우기 -->
 <script type="text/javascript">
-function openReviewPop(){
-	var popup = window.open('./ReviewWrite.rv?itemId=${orderDetailDTO[0].item_id}&orders_sort=${orders.orders_sort }', '리뷰팝업', 'width=550px,height=550px,scrollbars=yes');
+function openReviewPop(itemId,orders_sort){
+	var popup = window.open('./ReviewWrite.rv?itemId=' + itemId + '&orders_sort=' + orders_sort, '리뷰팝업', 'width=550px,height=550px,scrollbars=yes');
 }
 </script>
 </head>
@@ -112,9 +112,11 @@ function openReviewPop(){
                         <td><fmt:formatNumber value="${dto.price}" /> 원</td>
                         <td>${dto.quantity}</td>
                         <td><fmt:formatNumber value="${dto.price*dto.quantity}" /> 원 </td>
-                        <td><c:if test="${orders_state=='DETERMINE' }">
-                        <button type="button" onclick="openReviewPop()">작성하기</button>
-                        </c:if></td>
+                        <td>
+                          <c:if test="${orders_state=='DETERMINE' }">
+                     		<button type="button" onclick="openReviewPop('${dto.item_id }','${orders.orders_sort }')">작성하기</button>
+                          </c:if>
+                        </td>
 					</tr>			
 					</c:forEach>
 			</c:if>
@@ -178,9 +180,9 @@ function openReviewPop(){
                         <td>${dto.rental_str}</td>
                         <td>${dto.rental_end}</td>
                         <td>
-                        <c:if test="${orders_state=='DETERMINE' }">
-                        <button type="button" onclick="openReviewPop()">작성하기</button>
-                        </c:if>
+                          <c:if test="${orders_state=='DETERMINE' }">
+                     		<button type="button" onclick="openReviewPop('${dto.item_id }','${orders.orders_sort }')">작성하기</button>
+                          </c:if>
                         </td>
 					</tr>
 				</c:forEach>
