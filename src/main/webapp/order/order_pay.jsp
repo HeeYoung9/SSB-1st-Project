@@ -64,16 +64,26 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link href="./rental/rental_css/rental.css" rel="stylesheet">
+<!-- <link href="./rental/rental_css/rental.css" rel="stylesheet"> -->
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 </head>
 <body>
+	<!-- 렌탈일때 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<c:if test="${ordersDTO.orders_sort=='SALE' }">
+	<div class="header">
+		<jsp:include page="../Mcommon/top.jsp" />
+	</div>
+	</c:if>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	
+	<!-- 구매일때 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<c:if test="${ordersDTO.orders_sort=='RENTAL' }">
 	<div class="header">
 		<jsp:include page="../rental/Rcommon/top.jsp" />
 	</div>
+	</c:if>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
 
@@ -84,7 +94,7 @@
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
 		<!-- left-container 시작 -->
-		<div class="left-container" style="margin: 5%; width: 60%;">
+		<div class="left-container" style="margin-left:30%; margin-top:5%; width: 60%;">
 			<div class="col-md-7 col-lg-8">
 				<h4 class="mb-3">결제 정보</h4>
 				<hr>
@@ -137,6 +147,17 @@
 
 				<button class="w-100 btn btn-primary btn-lg" onclick="requestPay()">
 				결제하기</button>
+				
+				
+			<div class="right-container" style="margin: 5%; width: 30%;">
+			<h4 class="mb-3">쿠폰</h4>
+			<hr>
+			<h4 class="mb-3">할인적용: 0원</h4>
+			<hr>
+			<h4 class="mb-3">총 가격</h4>
+			<h4 class="mb-3"><fmt:formatNumber value="${ordersDTO.total_price}"/> 원 </h4>
+
+		</div>
 			</div>
 		</div>
 		</main>
@@ -144,17 +165,7 @@
 		</div>
 		<!-- left-container 끝 -->
 
-		<!-- right-container 시작 -->
-		<div class="right-container" style="margin: 5%; width: 30%;">
-			<h4 class="mb-3">쿠폰</h4>
-			<hr>
-			<h4 class="mb-3">할인적용</h4>
-			<hr>
-			<h4 class="mb-3">총 가격</h4>
-			<h4 class="mb-3"><fmt:formatNumber value="${ordersDTO.total_price}"/> 원 </h4>
 
-		</div>
-		<!-- right-container 끝 -->
 
 
 		<!-- 본인 페이지에 맞게 수정하려면 여기까지 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
@@ -233,11 +244,7 @@
 												},
 												success : function(data) {
 													if (data == 'SUCCESS') {
-														console
-																.log('결제 성공인가 봅니다');
-														alert(`결제 성공했음`);
-														alert('data의 값은 :'
-																+ data);
+														alert('결제가 완료되었습니다. 감사합니다.');
 														location.href = './OrderResult.od?mid='
 																+ muid;
 													} else if (data == "PAYDIFF") {

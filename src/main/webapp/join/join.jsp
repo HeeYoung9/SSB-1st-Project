@@ -84,7 +84,7 @@
 								<input type="password" name="member_pw2"
 									class="form-control input-cc inputPw2"
 									id="floatingCheckPassword" maxlength="40" placeholder="">
-								<label for="floatinCheckPassword">비밀번호 확인</label> <font
+								<label for="floatinCheckPassword">비밀번호 확인(필수)</label> <font
 									id="pwDoubleCheck" size="2" color="red"
 									class="position-absolute top-50 start-20 translate-middle-y"
 									style="right: 9px; margin-top: 2px"></font>

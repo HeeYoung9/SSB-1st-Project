@@ -95,7 +95,7 @@ function openReviewPop(){
                 </thead>
                 
                 <%-- 회원 리스트 --%> 
-                <!--  판매 ㅎ -->
+                <!-- 구매 -->
                 
                 	<c:forEach var="dto" items="${orderDetailDTO}">
                 	

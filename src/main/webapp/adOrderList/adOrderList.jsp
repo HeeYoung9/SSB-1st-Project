@@ -69,7 +69,6 @@
 					<option value="DELIVERY" ${param.orders_state=='DELIVERY'?'selected="selected"' : ''}>배송중인 상품</option>
 					<option value="BEDELIVERED" ${param.orders_state=='BEDELIVERED'?'selected="selected"' : ''}>배송완료 상품</option>
 					<option value="REFUND" ${param.orders_state=='REFUND'?'selected="selected"' : ''}>환불된 상품</option>
-					<option value="CANCEL" ${param.orders_state=='CANCEL'?'selected="selected"' : ''}>취소된 상품</option>
 				</select>
                 <input type="submit" value="검색" id="searchButton" style="float:left"></input>
 
@@ -118,7 +117,7 @@
                         <td>${dto.orders_state}</td>
                         <td>${dto.orders_sort }</td>
                         <td>${dto.orders_date }</td>
-                        <td>${dto.total_price }</td>
+                        <td><fmt:formatNumber value="${dto.total_price }"/> </td>
                         <td>
                         <button id="editButton" onclick="location.href='./AdOrderDetail.od?orders_id=${dto.id}'" style="margin-right: 45px; border: none; background: transparent;">
                         상세보기</button>

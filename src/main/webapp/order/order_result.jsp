@@ -72,7 +72,15 @@
 
 <body>
 
+	<!-- 판매 일 때 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+	<div class="header">
+		<jsp:include page="../rental/Rcommon/top.jsp" />
+	</div>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
+
+	
+
+	<!-- 렌탈 일 때 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 	<div class="header">
 		<jsp:include page="../rental/Rcommon/top.jsp" />
 	</div>

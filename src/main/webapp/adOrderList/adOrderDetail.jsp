@@ -62,16 +62,7 @@
 				
 				
 				                  <%-- 검색창 --%>
-          <form action="./orderList.od" method="get" class="search-bar">
-				<select name="orders_state"  class="form-select" aria-label="Default select example" style="width :50%; float:left; ">
-					<option value="PURCHASE" >결제상품</option>
-					<option value="DETERMINE" >구매확정 상품</option>
-					<option value="REFUND" >환불된 상품</option>
-					<option value="CANCEL" >취소된 상품</option>
-				</select>
-                <input type="submit" value="검색" id="searchButton" style="float:left"></input>
-
-          </form>
+          
             <table class="sort">
             <c:if test="${orders.orders_sort=='SALE'}">
                 <%-- 
@@ -243,6 +234,8 @@
 				<input type="hidden" value="${orders.id}" name="orders_id">
 				<button id="editButton" style="margin:1%;">주문상태 변경 (배송중)</button>
 			</form>
+			
+			<button id="editButton" style="margin:1%;" type="button" onclick="location.href='./AdOrderList.od'">목록으로</button>
 
 
 		

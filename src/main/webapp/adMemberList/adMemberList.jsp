@@ -59,47 +59,9 @@
 
 	<div class="wrapper">
 
-		<!-- 사이드바 시작 -->
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="./AdminMain.ad"> <span
-					class="align-middle">SSB</span>
-				</a>
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-header"></li>
-
-					<li class="sidebar-item"><a class="sidebar-link"
-						href="./AdMemberList.me"> <i class="align-middle"
-							data-feather="user"></i> <span class="align-middle">회원관리</span>
-					</a></li>
-					<li class="sidebar-item"><a class="sidebar-link" href="#">
-							<i class="align-middle" data-feather="shopping-cart"></i> <span
-							class="align-middle">주문관리</span>
-					</a></li>
-					<li class="sidebar-item"><a class="sidebar-link"
-						href="./ItemMgt.it"> <i class="align-middle"
-							data-feather="box"></i> <span class="align-middle">상품관리</span>
-					</a></li>
-
-					<li class="sidebar-header">게시판</li>
-
-					<li class="sidebar-item"><a class="sidebar-link"
-						href="./NoticeList.no"> <i class="align-middle"
-							data-feather="edit-2"></i> <span class="align-middle">Notice</span>
-					</a></li>
-					<li class="sidebar-item"><a class="sidebar-link"
-						href="./InquiryList.iq"> <i class="align-middle"
-							data-feather="edit-2"></i> <span class="align-middle">Q&A</span>
-					</a></li>
-					<li class="sidebar-item"><a class="sidebar-link"
-						href="./ReviewList.rv"> <i class="align-middle"
-							data-feather="edit-2"></i> <span class="align-middle">Review</span>
-					</a></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- 사이드바 끝 -->
+		<!-- 사이드바 -->
+		<jsp:include page="../board/inc/sidebar.jsp" />
+		<!-- 사이드바 -->
 
 		<!-- 메인 시작 -->
 		<div class="main">

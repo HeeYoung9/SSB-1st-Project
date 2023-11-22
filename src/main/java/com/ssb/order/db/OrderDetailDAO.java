@@ -130,6 +130,7 @@ public class OrderDetailDAO {
 				
 				
 				
+				
 //				
 //				OrderDetailDTO dto = OrderDetailDTO.receiveInfo(
 //						rs.getLong("orderD_id"), 
