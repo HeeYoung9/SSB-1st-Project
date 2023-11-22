@@ -41,7 +41,7 @@ vertical-align: middle;}
 			<thead class="thead">
 				<tr>
 					<th><input type="checkbox" id="checkAll"></th>
-					<th>제품ID</th>
+					<th>제품번호</th>
 					<th>제품이름</th>
 					<th>제품이미지</th>
 					<th>가격</th>
