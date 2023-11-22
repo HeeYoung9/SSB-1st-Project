@@ -66,6 +66,8 @@ vertical-align: middle;}
 				
 		</div>
 	</main>
-	<footer> </footer>
+	<footer>
+		<jsp:include page="../Mcommon/footer.jsp" />
+	</footer>
 </body>
 </html>
