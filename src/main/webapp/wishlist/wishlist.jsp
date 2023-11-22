@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>SSB WishList</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
@@ -66,6 +66,8 @@ vertical-align: middle;}
 				
 		</div>
 	</main>
-	<footer> </footer>
+	<footer>
+		<jsp:include page="../Mcommon/footer.jsp" />
+	</footer>
 </body>
 </html>
