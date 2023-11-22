@@ -225,6 +225,30 @@ public class cartDAO extends DAO{
 			}
 			return Cart_id;
 		}
+
+		public void deleteCart(int cart_id,int member_id) {
+			try {
+				con = getCon();
+				sql = "SELECT cart_id FROM cart WHERE cart_id = ? AND member_id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, cart_id);
+				pstmt.setInt(2, member_id);
+				System.out.println(pstmt);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					sql = "DELETE FROM cart WHERE cart_id = ? AND member_id = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, cart_id);
+					pstmt.setInt(2, member_id);
+					System.out.println(pstmt);
+					pstmt.executeUpdate();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CloseDB();
+			}
+		}
 	
 	
 }

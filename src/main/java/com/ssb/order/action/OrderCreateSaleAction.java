@@ -112,12 +112,15 @@ public class OrderCreateSaleAction implements Action{
 				System.out.println("OrderCreate 호출 확인 1");
 				//총 주문 금액 plus
 				orderTotalPrice += orderDetail.getTotalPrice();
+				//결제완료시 장바구니 삭제 메서드
+				cartDAO.deleteCart(cartDTO.getCart_id(), member_id);
 			}
 			
 			
 			System.out.println("OrderCreate 호출 확인 2");
 			//계싼된 총 주문 금액 DTO에 입력
 			ordersDTO.changeTotalPrice(orderTotalPrice);
+			
 			
 			//ordersDTO DB에 최종 저장
 			orderDAO.saveSaleOrders(ordersDTO);
