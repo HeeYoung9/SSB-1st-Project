@@ -14,7 +14,6 @@ public class NoticeDeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: NoticeDeleteAction_execute() 호출");
 		
 		// 한글 처리 => web.xml에 필터 처리 (생략)
 		

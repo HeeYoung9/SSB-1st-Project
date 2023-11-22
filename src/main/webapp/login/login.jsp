@@ -102,7 +102,7 @@
 					</span> <span>&nbsp;</span> <span>
 						<button
 							style="border: none; background-color: transparent; font-size: 12px; border: none;"
-							onclick="window.open('../findPassword/findPassword.jsp', '_blank')">비밀번호
+							onclick="window.open('./findPassword/findPassword.jsp', '_blank')">비밀번호
 							찾기</button>
 					</span> <span>&nbsp;</span> <span>
 						<button

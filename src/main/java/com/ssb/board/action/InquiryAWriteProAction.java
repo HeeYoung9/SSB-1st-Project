@@ -16,7 +16,6 @@ public class InquiryAWriteProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		System.out.println("\nM: InquiryAWriteProAction_execute() 호출");
 		
 		// 한글 처리 (생략 -> 필터 설정)
 		

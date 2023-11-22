@@ -35,6 +35,13 @@
 	rel="stylesheet">
 
 <style>
+.info {
+	width: 18em; 
+	height: 15em; 
+	float: left; 
+	margin-right: 1em;
+}
+
 .board_title {
 	font-weight: 700;
 	font-size: 14pt;
@@ -102,7 +109,7 @@
 				<article>
 					<div class="container" role="main">
 						<div class="table-responsive">
-						   <div class="bg-white rounded shadow-sm" style="width: 18em; height: 15em; float: left; margin-right: 1em;">
+						   <div class="bg-white rounded shadow-sm info">
 						     <c:if test="${!empty idto.item_name }">
 						     <div class="board_title" style="font-size: 15px;">
 						       ${idto.item_name}

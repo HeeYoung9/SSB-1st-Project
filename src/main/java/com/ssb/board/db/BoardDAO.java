@@ -28,8 +28,6 @@ public class BoardDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 			
-		System.out.println("DAO: 디비 연결 성공!");
-		System.out.println("DAO: " + con);
 		return con;			
 	}
 		
@@ -72,7 +70,6 @@ public class BoardDAO {
 				boardId = 1;
 			}
 							
-			System.out.println("DAO: 글번호: " + boardId);
 				
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, admin_user_id, "
@@ -92,7 +89,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 				
-			System.out.println("DAO: 공지 작성 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -124,7 +120,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 					
-			System.out.println("DAO: 글 개수: " + result + "개");
 					
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,7 +150,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 글 조회수 1 증가 완료!");			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -207,8 +201,6 @@ public class BoardDAO {
 				noticeList.add(bdto);								
 			} // while
 					
-			System.out.println("DAO: 공지사항 목록 조회 성공!");
-			System.out.println("DAO: " + noticeList.size());
 								
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -238,7 +230,6 @@ public class BoardDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리 (rs -> BoardDTO)
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -253,7 +244,6 @@ public class BoardDAO {
 				bdto.setBoard_readCount(rs.getInt("board_readCount"));
 			}
 				
-			System.out.println("DAO: 글정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -303,7 +293,6 @@ public class BoardDAO {
 				result = -1;
 			}
 				
-			System.out.println("DAO: 공지 수정 완료! (" + result + ")");
 		} catch (Exception e) {
 				e.printStackTrace();
 		} finally {
@@ -350,7 +339,6 @@ public class BoardDAO {
 					result = -1;
 			}
 			
-			System.out.println("DAO: 공지 삭제 완료! (" + result + ")");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -387,7 +375,6 @@ public class BoardDAO {
 				boardId = 1;
 			}
 			
-			System.out.println("DAO: 글번호: " + boardId);
 			
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, member_user_id, item_id, "
@@ -409,7 +396,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 제품 문의 작성 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -445,7 +431,6 @@ public class BoardDAO {
 				boardId = 1;
 			}
 			
-			System.out.println("DAO: 글번호: " + boardId);
 			
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, member_user_id, rental_item_id, "
@@ -467,7 +452,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 렌탈제품 문의 작성 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -499,7 +483,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 			
-			System.out.println("DAO: 문의글 개수: " + result + "개");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -536,7 +519,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 			
-			System.out.println("DAO: 문의 개수: " + result + "개");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -573,7 +555,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 			
-			System.out.println("DAO: 문의 개수: " + result + "개");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -626,9 +607,6 @@ public class BoardDAO {
 				inquiryList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 공지사항 글 목록 조회 성공!");
-			System.out.println("DAO: " + inquiryList.size());
-									
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -686,9 +664,6 @@ public class BoardDAO {
 				inquiryList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 제품 문의 목록 조회 성공!");
-			System.out.println("DAO: " + inquiryList.size());
-									
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -746,9 +721,6 @@ public class BoardDAO {
 				inquiryList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 렌탈제품 문의 목록 조회 성공!");
-			System.out.println("DAO: " + inquiryList.size());
-									
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -784,7 +756,6 @@ public class BoardDAO {
 				boardId = 1;
 			}
 				
-			System.out.println("DAO: 글번호: " + boardId);
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, member_user_id, item_id, board_type, "
 					+ "board_content, board_writeTime, board_readCount, board_file, rating) "
@@ -804,7 +775,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 			
-			System.out.println("DAO: " + boardId + "번 글쓰기 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -839,7 +809,6 @@ public class BoardDAO {
 				boardId = 1;
 			}
 				
-			System.out.println("DAO: 글번호: " + boardId);
 			// 3. SQL 구문(insert) & pstmt 객체
 			sql = "insert into board_remaster(board_id, member_user_id, rental_item_id, board_type, "
 					+ "board_content, board_writeTime, board_readCount, board_file, rating) "
@@ -859,7 +828,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 			
-			System.out.println("DAO: " + boardId + "번 글쓰기 완료!");		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -894,7 +862,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 					
-			System.out.println("DAO: 글 개수: " + result + "개");
 					
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -931,7 +898,6 @@ public class BoardDAO {
 				// result = rs.getInt("count(*)"); 
 			}
 					
-			System.out.println("DAO: 글 개수: " + result + "개");
 					
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -962,7 +928,6 @@ public class BoardDAO {
 			// 4. SQL 실행
 			pstmt.executeUpdate();
 					
-			System.out.println("DAO: 글 조회수 1 증가 완료!");			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -1019,8 +984,6 @@ public class BoardDAO {
 				reviewList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 제품 리뷰 목록 조회 성공!");
-			System.out.println("DAO: " + reviewList.size());
 									
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1079,8 +1042,6 @@ public class BoardDAO {
 				reviewList.add(bdto);				
 			} // while
 						
-			System.out.println("DAO: 렌탈 제품 리뷰 목록 조회 성공!");
-			System.out.println("DAO: " + reviewList.size());
 									
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1124,7 +1085,6 @@ public class BoardDAO {
 				pstmt.executeUpdate();
 			}
 			
-			System.out.println("DAO: 답변상태 변경하기 성공!");
 		} catch (Exception e) { 
 			e.printStackTrace();
 		} finally {
@@ -1156,7 +1116,6 @@ public class BoardDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리 (rs -> ItemDTO)
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -1166,7 +1125,6 @@ public class BoardDAO {
 				idto.setItem_img_main(rs.getString("item_img_main"));
 			}
 				
-			System.out.println("DAO: 제품 정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -1198,7 +1156,6 @@ public class BoardDAO {
 				
 			// 4. SQL 실행
 			rs = pstmt.executeQuery();
-			System.out.println("DAO: SQL 실행 성공!");
 				
 			// 5. 데이터 처리 (rs -> RentalDTO)
 			if(rs.next()) { // 데이터가 존재할 때				
@@ -1208,7 +1165,6 @@ public class BoardDAO {
 				rdto.setRental_img_main(rs.getString("rental_img_main"));
 			}
 				
-			System.out.println("DAO: 렌탈제품 정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

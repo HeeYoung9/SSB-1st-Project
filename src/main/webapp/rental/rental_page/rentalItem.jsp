@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rentalitem.jsp</title>
+<title>SSB rentalItem</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -70,7 +70,7 @@ function openInquiryPop(){
 						<img width="20" height="20" src="./rental/icon/star.png" />
 					</c:forEach>
 					<img width="20" height="20" src="./rental/icon/harfStar.png" /> <a
-						href="#review"> 4.5/5 리뷰 426개 </a>
+						href="#review"> 4/5 리뷰</a>
 				</p>
 
 				<!-- 예약 달력!!!  -->

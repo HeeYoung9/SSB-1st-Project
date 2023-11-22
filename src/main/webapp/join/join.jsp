@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>SSB 회원가입</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -72,11 +72,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- 비밀번호 확인 -->
-					<!-- 				<div class="form-floating d-flex"> -->
-					<!-- 					<input type="password" name="member_pw2" class="form-control input-cc inputPw2" id="floatingCheckPassword" maxlength="40" placeholder="">  -->
-					<!-- 					<label for="floatinCheckPassword">비밀번호 확인</label> -->
-					<!-- 				</div> -->
+					
 
 					<div class="col">
 						<div class="input-group">
@@ -112,7 +108,21 @@
 							<option value="kakao.com">kakao.com</option>
 						</select>
 					</div>
-
+					
+					<!-- 내/외국인 -->
+					<div class="form-floating d-flex">
+						<div class="form-check form-check-inline">
+							<input type="radio" name="member_native" class="form-check-input"
+								id="floatingNative" checked> <label
+								class="form-check-label" for="floatingNative">내국인</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input type="radio" name="member_native" class="form-check-input"
+								id="floatingF" value="W"> <label
+								class="form-check-label" for="floatingF">외국인</label>
+						</div>
+					</div>
+					
 					<!-- 이름 -->
 					<div class="form-floating d-flex mt-2">
 						<input type="text" name="member_name"
@@ -147,7 +157,17 @@
 							class="form-control input-cc" id="floatingTel" placeholder="">
 						<label for="floatingTel"><span>전화번호 '-' 제외 입력</span></label>
 					</div>
-
+					
+					<!-- 마케팅 수신 동의 -->
+					<div class="form-floating d-flex">
+						<div class="form-check form-check-inline">
+							<input type="checkbox" name="member_agree2"
+								class="form-check-input" id="floatingAgree2" value="Y"> <label
+								class="form-check-label" for="floatingAgree2">개인정보 수집 및 이용
+								동의(필수)</label>
+						</div>
+					</div>
+					
 					<!-- 마케팅 수신 동의 -->
 					<div class="form-floating d-flex">
 						<div class="form-check form-check-inline">
@@ -185,7 +205,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<script src="./join/join.js"></script>
+	<script src="./closeAccount/closeAccount.js"></script>
 </body>
 
 </html>

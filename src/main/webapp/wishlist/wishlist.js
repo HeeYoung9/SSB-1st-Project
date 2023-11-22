@@ -49,11 +49,11 @@ $(function() {
 				}
 				$(this).html(html);
 				if (input == "inserted") {
-					if (confirm("위시리스트 페이지로 이동하시겠습니까?") == true) {
-						location.href = "./wishlist.wl";
-					} else {
-						return false;
-					}
+//					if (confirm("위시리스트 페이지로 이동하시겠습니까?") == true) {
+//						location.href = "./wishlist.wl";
+//					} else {
+//						return false;
+//					}
 				}
 			}
 		});
