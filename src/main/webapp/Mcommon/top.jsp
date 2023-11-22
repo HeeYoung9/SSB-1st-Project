@@ -72,7 +72,7 @@
 		<!-- 상단 메인 메뉴바 시작 -->
 	<div class="menu">
 		<div class="submenu">
-			<a href="./Main.in"><b>New arrival</b>l</a>
+			<a href="./Main.in"><b>New arrival</b></a>
 			<div class="submenu-content">
 				<a href="./Main.in">전체보기</a> <a href="./Main.in">베스트</a> <a href="./Main.in">추천제품</a>
 			</div>
