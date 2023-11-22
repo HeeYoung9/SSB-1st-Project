@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,13 @@
 <script type="text/javascript" src="./wishlist/wishlist.js"></script>
 <script type="text/javascript" src="./wishlist/wishlistPage.js"></script>
 <link rel="stylesheet" href="./location/location.css">
+
+<style type="text/css">
+td{
+vertical-align: middle;}
+
+</style>
+
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./main/img/favicon.ico">
@@ -45,9 +53,9 @@
 						<td><input type="checkbox" name="wishlist_id"
 							value="${dto.item_id}"></td>
 						<td>${dto.item_id}</td>
-						<td>${dto.item_name}</td>
-						<td>${dto.item_img_main}</td>
-						<td>${dto.item_price}원</td>
+						<td><a href="./itemDetails.in?item_id=${dto.item_id}"> ${dto.item_name} </a></td>
+						<td><img width="50" height="50" src="./main/item_img/${dto.item_img_main}" /> </td>
+						<td><fmt:formatNumber value="${dto.item_price}"/> 원</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -55,6 +63,7 @@
 		<div id="moveButton">
 			<input type="hidden" id="checkArray" name="checkArray"> <input
 				type="button" value="삭제" onclick="deleteWishlist()">
+				
 		</div>
 	</main>
 	<footer> </footer>

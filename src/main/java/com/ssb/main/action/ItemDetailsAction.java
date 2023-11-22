@@ -32,7 +32,7 @@ public class ItemDetailsAction implements Action {
 		BoardDAO bdao = new BoardDAO();
 		
 		int reviewCount = 0;
-		reviewCount = bdao.getReviewCount();
+		reviewCount = bdao.getItemReviewCount(item_id);
 		/******************************페이징처리 1******************************/
 		// 한 페이지에 출력할 글의 개수 설정
 		int reviewPageSize = 5;
@@ -59,7 +59,7 @@ public class ItemDetailsAction implements Action {
 		ArrayList reviewList = new ArrayList();
 		
 		if(reviewCount > 0) {
-			reviewList = bdao.getReviewList(reviewStartRow, reviewPageSize);
+			reviewList = bdao.getItemReviewList(item_id, reviewStartRow, reviewPageSize);
 		}
 		
 		System.out.println("M: size: " + reviewList.size());
@@ -104,7 +104,7 @@ public class ItemDetailsAction implements Action {
 		// Q&A
 		// 기존에 저장된 글정보를 가져와서 화면에 출력				
 		int count = 0;
-		count = bdao.getInquiryCount();
+		count = bdao.getItemInquiryCount(item_id);
 		System.out.println("M: 글 개수: " + count);
 				
 		/******************************페이징처리 1******************************/

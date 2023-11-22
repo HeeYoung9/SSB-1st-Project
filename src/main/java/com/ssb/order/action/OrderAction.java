@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ssb.cart.db.cartDAO;
 import com.ssb.cart.db.cartDTO;
+import com.ssb.cart.db.totalDTO;
 import com.ssb.location.db.locationDAO;
 import com.ssb.location.db.locationDTO;
 import com.ssb.member.db.MemberDAO;
@@ -21,7 +22,6 @@ public class OrderAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// 정보 받아옴
-		//String strCartList = request.getParameter("cartDTOs");
 		
 		String strCartList= request.getParameter("checkArray");
 		System.out.println(strCartList);
@@ -49,12 +49,21 @@ public class OrderAction implements Action {
 		List<cartDTO> cartList = cartDAO.getCartsV2(strCartList);
 		System.out.println(" 반환된 카트리스트 사이즈 "+ cartList.size());
 		
+	
+		totalDTO total = new totalDTO(); 
+		for(cartDTO cart : cartList) {
+			total.priceUpdate(cart.getItem_price()*cart.getCart_quantity());
+		}
+		
+		
+		
+		
 		
 		//view로 넘길 내용들
 		request.setAttribute("strCartList", strCartList); //주문생성시 재사용 할 예정
 		request.setAttribute("locations", locations);	
 		request.setAttribute("cartList", cartList); //보여지는 카트 목록
-		
+		request.setAttribute("totalPrice", total.getTotalPrice());
 		
 		
 		ActionForward forward = new ActionForward();

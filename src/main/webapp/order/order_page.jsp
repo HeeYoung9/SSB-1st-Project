@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -120,23 +121,23 @@
 							<th scope="col">품번</th>
 							<th scope="col">상품명</th>
 							<th scope="col">가격</th>
-							<th scope="col">옵션명</th>
+							<th scope="col">수량</th>
 							<th scope="col">옵션값</th>
 							<th scope="col">옵션추가금</th>
 							
 						</tr>
 					</thead>
 					<tbody>
-		
+					<c:forEach var="item" items="${requestScope.cartList}">
 						<tr>
-							<td>${dtoArray.item_id }</td>
-							<td>${dtoArray.item_name }</td>
-							<td><fmt:formatNumber value="${dtoArray.item_price }"/> </td>
-							<td>${dtoArray.options_name }</td>
-							<td>${dtoArray.options_value }</td>
-							<td>${dtoArray.options_price }</td>
+							<td>${item.item_id}</td>
+							<td>${item.item_name }</td>
+							<td><fmt:formatNumber value="${item.item_price }"/> </td>
+							<td>${item.cart_quantity}</td>
+							<td>${item.options_value}</td>
+							<td style="text-align: center;">${item.options_price}</td>
 						</tr>
-				
+					</c:forEach>
 					</tbody>
 				</table>
 
@@ -149,15 +150,14 @@
 				<div class="coupon-select">
 					<label for="coupon">쿠폰 선택:</label> 
 					<select id="coupon" name="coupon">
-						<option value="coupon1">쿠폰 1</option>
-						<option value="coupon2">쿠폰 2</option>
+						<option value="coupon1">사용할수 있는 쿠폰이 없습니다.</option>
 						<!-- 추가 쿠폰 옵션 -->
 					</select>
 				</div>
 				
 				<h4 class="mb-3">배송지</h4>
 				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
- 	 				<c:forEach var="ldto" items="${locaList}">
+ 	 				<c:forEach var="ldto" items="${locations}">
   					<option value="${ldto.location_id}">${ldto.location_name},${ldto.location_add }</option>
   					</c:forEach>
 				</select>
@@ -173,7 +173,9 @@
 				<hr>
 				<h4 class="mb-3">할인적용</h4>
 				<hr>
-				<h4 class="mb-3">총 가격</h4>  <h4 class="mb-3"></h4> 
+			
+				
+				<h4 class="mb-3">총 가격</h4>  <h4 class="mb-3"><fmt:formatNumber value="${totalPrice }"/>  원</h4> 
 		
 				<div style="margin-left:25%">
 					<input type="submit" class="btn btn-secondary btn-lg" style="width:25%" value="결제"></button>

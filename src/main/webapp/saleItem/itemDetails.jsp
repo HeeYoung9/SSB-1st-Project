@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <!------------ common CSS ------------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/saleItem/itemD.css">
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/Mcommon/top.css"> --%>
+
 <!-------------- jQuery --------------->
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
 <!------------- 공통 헤더 ------------->
@@ -24,6 +24,15 @@
   @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 </style>
+
+<script type="text/javascript">
+/*Q&A 작성하기 버튼 클릭 시 팝업창 띄우기*/
+
+function openInquiryPop(){
+		var popup = window.open('./InquiryItemQWrite.iq?itemId=${param.item_id }', '문의팝업', 'width=550px,height=450px,scrollbars=yes');
+	}
+
+</script>
 
 	
 	
@@ -37,9 +46,14 @@
 			<input type = "hidden" name="optID" value="${itemDTO.options_id}">
 			
 			
+			
+			
+			
 				<div class="leftBigBox">
 					<div class="brandLogo"> 
+					<c:if test="${!empty itemDTO.item_img_logo }">
 					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_logo}" alt="브랜드로고">
+					</c:if>
 					</div>
 					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_main}" alt="상품이미지">
 					<p></p>
@@ -54,7 +68,7 @@
 					<span class="Info_S"> No. ${itemDTO.item_id} </span>
 					
 					<p class="itemName">  ${itemDTO.item_name} </p>
-					<p class="Info_S"> | ${itemDTO.category_brand} </p>
+					<p class="Info_S"> ${itemDTO.category_brand} </p>
 					
 
 					<div class="detail">
@@ -66,8 +80,8 @@
 								<c:forEach begin="1" end="4" step="1">
 									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/star.png"/>
 								</c:forEach>
-									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/harfStar.png""/> 
-									<a href="#review">&nbsp;4.5/5 <b>리뷰 426개</b> </a> 
+									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/harfStar.png"/> 
+									<a href="#review">&nbsp;4.5/5 <b>리뷰</b> </a> 
 							</span></li>
 						<li><span>배송비</span> <span class="r">무료</span></li>
 					</ul>
@@ -85,22 +99,23 @@
 					
 					<!---------------------- 수량!! ---------------------------------->
 					<div class="pick"> 
-						<label> > 수량 </label>
-						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" placeholder="-[필수] 수량을 선택해 주세요" required > 
+						<!-- <label> > 수량 </label> -->
+						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" placeholder="-&nbsp;[필수] 수량을 선택해 주세요" required > 
 					</div>
 					
 					<!---------------------- 옵션!! ---------------------------------->
 					<div class="pick"> 
-						<label> > ${itemDTO.options_name } </label>
+						<%-- <label> > ${itemDTO.options_name } </label> --%>
 						<select id="options_idSelecter" class="form-control" name="options_value" required="required">
-        						<option value="" disabled selected>-[필수] 옵션을 선택해 주세요</option>
+        						<option value="" disabled selected>-&nbsp;[필수] 옵션을 선택해 주세요</option>
             					<c:forEach var="optList" items="${getOptList}" >
-  								<option value="${optList.options_id}" label="${optList.options_value}"> ${optList.options_value}</option>
+  								<option value="${optList.options_id}" label="${optList.options_name}&nbsp;&nbsp;${optList.options_value}"
+  										data-options-name="${optList.options_name}" data-options-value="${optList.options_value}"> ${optList.options_value}</option>
 							 	</c:forEach>
    						</select>
 					</div> 
 					
-					
+					<hr class="line">
 			</div>
 					
 					
@@ -121,35 +136,8 @@
 					<button class="custom-btn btn-1 addCart" type="button" onclick="addCart('buy')">BUY NOW</button>
 					</span>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
-					
 								</div> <!-- 2번째 -->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -173,11 +161,7 @@
 </div>
 
 
-
-
-
-
-					
+	
 
 			<!-- REVIEW -->
 			<div class="reviews" id="review">
@@ -361,10 +345,11 @@
 		<a href="#">↑TOP</a>
 	</nav>
     
-    <footer>
-    <div class="last">
-	</div>    
-    </footer>
+   <!-- footer 시작 -->
+   <footer style="background: black; color:white; text-align: center; padding:10px; width:100vw;">
+      <p>&copy; 2023 SSB Style</p>
+   </footer>
+   <!-- footer 끝 -->
 
 	
 	

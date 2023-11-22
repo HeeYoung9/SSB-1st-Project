@@ -90,6 +90,7 @@ function openReviewPop(){
                         <th>상품가격</th>
                         <th>상품수량</th>
                         <th>물품 총 가격</th>
+                        <th>후기작성</th>
                     </tr>
                 </thead>
                 
@@ -111,6 +112,9 @@ function openReviewPop(){
                         <td><fmt:formatNumber value="${dto.price}" /> 원</td>
                         <td>${dto.quantity}</td>
                         <td><fmt:formatNumber value="${dto.price*dto.quantity}" /> 원 </td>
+                        <td><c:if test="${orders_state=='DETERMINE' }">
+                        <button type="button" onclick="openReviewPop()">작성하기</button>
+                        </c:if></td>
 					</tr>			
 					</c:forEach>
 			</c:if>
@@ -154,7 +158,7 @@ function openReviewPop(){
                 </thead>
                 
                 <%-- 회원 리스트 --%> 
-                <!--  판매 ㅎ -->
+                <!--  렌탈 -->
                 
                 	<c:forEach var="dto" items="${orderDetailDTO}">
                 	
@@ -173,7 +177,11 @@ function openReviewPop(){
                         <td>${dto.price*dto.quantity}</td>
                         <td>${dto.rental_str}</td>
                         <td>${dto.rental_end}</td>
-                        <td><button type="button" onclick="openReviewPop()">작성하기</button></td>
+                        <td>
+                        <c:if test="${orders_state=='DETERMINE' }">
+                        <button type="button" onclick="openReviewPop()">작성하기</button>
+                        </c:if>
+                        </td>
 					</tr>
 				</c:forEach>
 			</c:if>

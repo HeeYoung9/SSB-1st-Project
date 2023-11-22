@@ -56,14 +56,6 @@ public class AdminFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/AdminMain.ad")) {
-			System.out.println("C: /AdminMain.ad 호출");
-			System.out.println("C: 패턴1 - DB사용X, 페이지 이동");
-			
-			forward = new ActionForward();
-			forward.setPath("./admin/adminMain.jsp");
-			forward.setRedirect(false);
-		}
 		else if(command.equals("/AdminLogout.ad")) {
 			System.out.println("C: /AdminLogout.ad 호출");
 			System.out.println("C: 패턴2 - DB사용O, 페이지 이동");

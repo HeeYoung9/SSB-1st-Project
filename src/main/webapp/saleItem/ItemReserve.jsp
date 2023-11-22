@@ -13,6 +13,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SSB 상품주문서</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<style>
+	        .coupon-select {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        
+</style>
+
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 <!------------ common CSS ------------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/saleItem/itemD.css">
@@ -78,8 +102,7 @@
 				<div class="coupon-select">
 					<label for="coupon">쿠폰 선택:</label> 
 					<select id="coupon" name="coupon">
-						<option value="coupon1">쿠폰 1</option>
-						<option value="coupon2">쿠폰 2</option>
+						<option value="coupon1">사용가능한 쿠폰이 없습니다.</option>
 						<!-- 추가 쿠폰 옵션 -->
 					</select>
 				</div>
