@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>SSB Cart</title>
 <!-- css -->
 <link rel="stylesheet" href="./cart/cartList.css">
 <link rel="stylesheet" href="./location/location.css">
