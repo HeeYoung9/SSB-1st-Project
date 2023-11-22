@@ -23,7 +23,7 @@ public class insertCartAction implements Action {
 		System.out.println("action");
 		// 정보저장
 		int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
-		String type = (String)request.getSession().getAttribute("type");
+		String type = (String)request.getParameter("type");
 		JSONParser parser = new JSONParser();
 		ArrayList<cartDTO> dtoArray = new ArrayList<cartDTO>();
 		cartDTO dto = null;
@@ -43,13 +43,31 @@ public class insertCartAction implements Action {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		//액션으로 만들기
 		System.out.println("member_id : " + member_id);
 		cartDAO dao = new cartDAO();
 		//정보처리
-		int result = dao.insertCart(member_id,dtoArray);
 		Gson gson = new Gson();
-		String json = gson.toJson(result);
+		String json = null;
+		int check = -3;
+		ArrayList<cartDTO> result = dao.duplicateCheck(member_id,dtoArray);
+		boolean duplicate = result.size() == dtoArray.size();
+		System.out.println("dtoArray" + dtoArray.size());
+		System.out.println("result" + result.size());
+		int num = dao.insertCart(member_id,result);
+		if (duplicate && type.equals("buy")) {
+			System.out.println(1);
+			String asdasd = dao.getCart_id(member_id,dtoArray);
+			System.out.println(asdasd);
+			json = gson.toJson(asdasd);
+		}else {
+			System.out.println(2);
+			if (!duplicate) {
+				check = -1;
+			}else {
+				check = -2;
+			}
+			json = gson.toJson(check);
+		}
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
 		response.getWriter().print(json);

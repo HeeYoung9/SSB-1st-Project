@@ -128,12 +128,12 @@ function openInquiryPop(){
 			</div>
 					<!---------------------- 장바구니 버튼!! ---------------------------------->
 					<span class="btnSale">		
-					<button class="btn-2" type="button" onclick="addCart()"> 
+					<button class="btn-2" type="button" onclick="addCart('cart')"> 
 					<img src="${pageContext.request.contextPath}/main/img/market.png" alt=""></button>
 					
 					
 					<!---------------------- 주문 버튼!! ------------------------------->
-					<button class="custom-btn btn-1 addCart" type="submit" onclick="">BUY NOW</button>
+					<button class="custom-btn btn-1 addCart" type="button" onclick="addCart('buy')">BUY NOW</button>
 					</span>
 
 	

@@ -24,6 +24,7 @@ public class OrderAction implements Action {
 		// 정보 받아옴
 		
 		String strCartList= request.getParameter("checkArray");
+		System.out.println(strCartList);
 		
 		//DAO 뭉치들
 		MemberDAO memberDAO = new MemberDAO();

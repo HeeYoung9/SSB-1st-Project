@@ -11,12 +11,13 @@ $(function() {
 	});
 	//합계금액
 	var totalPrice = 0;
+	var price;
 	$("td[name=options_price]").each(function(index,item) {
-		totalPrice += Number($(item).text());
+		price = Number($(item).text());
+		totalPrice += price;
+		$(item).text(price.toLocaleString());
 	});
-	$("#totalPrice").text("합계 : ");
-	$("#totalPrice").append(totalPrice);
-	$("#totalPrice").append("원");
+	$("#totalPrice").text("합계 : " + totalPrice.toLocaleString() + "원");
 });
 function getOptions(cart_id, item_id, cart_quantity) {//옵션 가져오기
 	$.ajax({
