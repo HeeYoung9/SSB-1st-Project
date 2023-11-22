@@ -74,15 +74,15 @@
 					</tr>
 				</thead>
 				<tbody class="tbody">
-					<c:forEach var="dto" items="${dtoArray }">
-						<tr name="cart" value="${dto.cart_id }">
-							<td><input type="checkbox" name="cart_id" value="${dto.cart_id }" checked="checked"></td>
-							<td><img width="35" height="35" alt="제품이미지" src="./main/item_img/${dto.item_img_main }"></td>
-							<td name="item_id">${dto.item_id }</td>
-							<td name="item_name"><a href="./itemDetails.in?item_id=${dto.item_id}">${dto.item_name }</a></td>
-							<td name="options_value">${dto.options_value }</td>
-							<td name="cart_quantity">${dto.cart_quantity }</td>
-							<td name="options_price">${(dto.item_price + dto.options_price) * dto.cart_quantity }</td>
+					<c:forEach var="dto" items="${dtoArray}">
+						<tr name="cart" value="${dto.cart_id}">
+							<td><input type="checkbox" name="cart_id" value="${dto.cart_id}" checked="checked"></td>
+							<td><img width="35" height="35" alt="제품이미지" src="./main/item_img/${dto.item_img_main}"></td>
+							<td name="item_id">${dto.item_id}</td>
+							<td name="item_name"><a href="./itemDetails.in?item_id=${dto.item_id}">${dto.item_name}</a></td>
+							<td name="options_value">${dto.options_value}</td>
+							<td name="cart_quantity">${dto.cart_quantity}</td>
+							<td name="options_price">${(dto.item_price + dto.options_price) * dto.cart_quantity}</td>
 							<td><input type="button" value="변경" onclick="getOptions('${dto.cart_id}','${dto.item_id}','${dto.cart_quantity}');"></td>
 						</tr>
 					</c:forEach>

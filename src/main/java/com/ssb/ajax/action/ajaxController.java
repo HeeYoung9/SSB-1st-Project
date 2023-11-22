@@ -19,11 +19,8 @@ public class ajaxController extends HttpServlet {
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*********************** 1. 가상주소 계산 시작 **************************/
 		String requestURI = request.getRequestURI();
-		System.out.println("\t requestURI : " + requestURI);
 		String CTXPath = request.getContextPath();
-		System.out.println("\t CTXPath : " + CTXPath);
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("\t command : " + command);
 		/*********************** 1. 가상주소 계산 끝 **************************/
 		
 		/*********************** 2. 가상주소 매핑 시작 **************************/
@@ -34,15 +31,12 @@ public class ajaxController extends HttpServlet {
 		if (command.equals("/getOptions.aj")) {
 			// 정보저장
 			String item_id = request.getParameter("item_id");
-			System.out.println(item_id);
 			// 정보처리
 			List<optionsDTO> list = dao.getOptions(item_id);
 			if (list != null) {
 				json = gson.toJson(list);
-				System.out.println("list");
 			}else {
 				json = gson.toJson("옵션없음");
-				System.out.println("옵션없음");
 			}
 			
 		} else if (command.equals("/updateCart.aj")) {
@@ -51,10 +45,6 @@ public class ajaxController extends HttpServlet {
 			String item_id = request.getParameter("item_id");
 			String option_id = request.getParameter("option_id");
 			String cart_quantity = request.getParameter("cart_quantity");
-			System.out.println("cart_id : " + cart_id);
-			System.out.println("item_id : " + item_id);
-			System.out.println("option_id : " + option_id);
-			System.out.println("option_quantity : " + cart_quantity);
 			//정보처리
 			int result = dao.updateCart(cart_id,item_id,option_id,cart_quantity);
 			json = gson.toJson(result);
@@ -62,8 +52,6 @@ public class ajaxController extends HttpServlet {
 			// 정보저장
 			String cart_id = request.getParameter("cart_id");
 			String member_id = (String)request.getSession().getAttribute("member_id");
-			System.out.println("cart_id : " + cart_id);
-			System.out.println("member_id : " + member_id);
 			//정보처리
 			int result = dao.deleteCart(cart_id,member_id);
 			json = gson.toJson(result);

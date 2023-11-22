@@ -15,18 +15,13 @@ public class locationInsert implements Action {
 		// 받은정보저장
 		int location_id = Integer.parseInt(request.getParameter("location_id"));
 		String member_id = (String)request.getSession().getAttribute("member_id");
-		System.out.println(member_id);
-		System.out.println(location_id);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		if (location_id != -1) {
 			location_id = Integer.parseInt(request.getParameter("location_id"));
 			locationDTO dto = dao.getReWrite(location_id,member_id);
-			System.out.println(dto);
 			request.setAttribute("dto", dto);
 		}
-		System.out.println(location_id);
-		System.out.println(member_id);
 		
 		
 		// 페이지 이동준비
