@@ -104,7 +104,7 @@ public class ReplyDAO {
 			con = getCon();
 				
 			// 3. SQL 구문 작성(select) & pstmt 객체
-			sql = "select * from board_remaster where board_id=?";
+			sql = "select * from reply where board_id=?";
 			pstmt = con.prepareStatement(sql);
 				
 			// ?

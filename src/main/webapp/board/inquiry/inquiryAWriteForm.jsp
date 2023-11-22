@@ -102,8 +102,25 @@
 				<article>
 					<div class="container" role="main">
 						<div class="table-responsive">
-							<h3></h3>
-							<div class="bg-white rounded shadow-sm">
+						   <div class="bg-white rounded shadow-sm" style="width: 18em; height: 15em; float: left; margin-right: 1em;">
+						     <c:if test="${!empty idto.item_name }">
+						     <div class="board_title" style="font-size: 15px;">
+						       ${idto.item_name}
+						     </div>
+						     <div class="board_content">
+						       <img src="./main/item_img/${idto.item_img_main }" width="180" height="150">
+						     </div>
+						     </c:if>
+						     <c:if test="${!empty rdto.rental_item_name }">
+						     	<div class="board_title" style="font-size: 15px;">
+						       		${rdto.rental_item_name }
+						    	</div>
+						     	<div class="board_content">
+						       		<img src="./main/rental_item/${rdto.rental_img_main }" width="180" height="150">
+						     	</div>						     
+						   	 </c:if>
+						   </div>
+							<div class="bg-white rounded shadow-sm" style="overflow: hidden; height: 15em;">
 								<div class="board_title">${bdto.board_subject}</div>
 								<div class="board_info_box">
 									<span class="board_date">작성자:<c:out
@@ -113,7 +130,7 @@
 								<div class="board_content">
 									<pre>${bdto.board_content}</pre>
 								</div>
-								<div style="text-align: right;">
+								<div style="text-align: right; margin-top: 9%;">
 									<button type="button" class="btn btn-sm btn-primary"
 										id="btnList"
 										onclick="location.href='./InquiryList.iq?pageNum=${pageNum }';">목록</button>
@@ -122,6 +139,7 @@
 										onclick="location.href='./NoticeDeleteAction.no?boardId=${bdto.board_id }&pageNum=${pageNum }';">삭제</button>
 								</div>
 							</div>
+						</div>
 
 							<form
 								action="./InquiryAWriteProAction.iq?boardId=${bdto.board_id }&pageNum=${pageNum}"
@@ -141,7 +159,6 @@
 									</div>
 								</div>
 							</form>
-						</div>
 					</div>
 				</article>
 			</main>

@@ -10,6 +10,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.ssb.main.db.ItemDTO;
+import com.ssb.rental.db.RentalDTO;
+
 public class BoardDAO {
 
 	// 공통 변수 선언
@@ -1132,4 +1135,87 @@ public class BoardDAO {
 	}
 	// [관리자] 답변상태 변경하기 메서드 - updateAnswerState(BoardDTO bdto)
 	
+	
+	// [관리자_문의] 제품 정보 불러오기 - getItemInquiry(int boardId)
+	public ItemDTO getItemInquiry(int boardId) {
+		ItemDTO idto = null; 
+		
+		try {	
+			// 1.2. 디비 연결
+			con = getCon();
+				
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select item_name, item_img_main "
+					+ "from item i join board_remaster br "
+					+ "on i.item_id = br.item_id "
+					+ "where board_type='Q' and board_id=?";
+			pstmt = con.prepareStatement(sql);
+				
+			// ?
+			pstmt.setInt(1, boardId);		
+				
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			System.out.println("DAO: SQL 실행 성공!");
+				
+			// 5. 데이터 처리 (rs -> ItemDTO)
+			if(rs.next()) { // 데이터가 존재할 때				
+				idto = new ItemDTO();
+					
+				idto.setItem_name(rs.getString("item_name"));
+				idto.setItem_img_main(rs.getString("item_img_main"));
+			}
+				
+			System.out.println("DAO: 제품 정보 조회 완료!");				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+			
+		return idto;
+	}
+	// [관리자_문의] 제품 정보 불러오기 - getItemInquiry(int boardId)
+	
+	
+	// [관리자_문의] 렌탈제품 정보 불러오기 - getRItemInquiry(int boardId)
+	public RentalDTO getRItemInquiry(int boardId) {
+		RentalDTO rdto = null; 
+		
+		try {	
+			// 1.2. 디비 연결
+			con = getCon();
+				
+			// 3. SQL 구문 작성(select) & pstmt 객체
+			sql = "select rental_item_name, rental_img_main "
+					+ "from rental_item ri join board_remaster br "
+					+ "on ri.rental_item_id = br.rental_item_id "
+					+ "where board_type='Q' and board_id=?";
+			pstmt = con.prepareStatement(sql);
+				
+			// ?
+			pstmt.setInt(1, boardId);		
+				
+			// 4. SQL 실행
+			rs = pstmt.executeQuery();
+			System.out.println("DAO: SQL 실행 성공!");
+				
+			// 5. 데이터 처리 (rs -> RentalDTO)
+			if(rs.next()) { // 데이터가 존재할 때				
+				rdto = new RentalDTO();
+					
+				rdto.setRental_item_name(rs.getString("rental_item_name"));
+				rdto.setRental_img_main(rs.getString("rental_img_main"));
+			}
+				
+			System.out.println("DAO: 렌탈제품 정보 조회 완료!");				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+			
+		return rdto;
+	}
+	// [관리자_문의] 렌탈제품 정보 불러오기 - getRItemInquiry(int boardId)	
 }
