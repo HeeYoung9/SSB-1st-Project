@@ -2,22 +2,30 @@ $(function() {
 	$("#checkAll").click(function() {//체크박스 전체선택/해제
 		if ($("#checkAll").is(":checked")) $("input[name=cart_id]").prop("checked", true);
 		else $("input[name=cart_id]").prop("checked", false);
+		getTotalPrice();
 	});
 	$("input[name=cart_id]").click(function() {//체크박스 전체선택 감지
 		var total = $("input[name=cart_id]").length;
 		var checked = $("input[name=cart_id]:checked").length;
 		if (total != checked) $("#checkAll").prop("checked", false);
 		else $("#checkAll").prop("checked", true);
+		getTotalPrice();
 	});
+	getTotalPrice();
 	//합계금액
-	var totalPrice = 0;
-	var price;
-	$("td[name=options_price]").each(function(index,item) {
-		price = Number($(item).text());
-		totalPrice += price;
-		$(item).text(price.toLocaleString());
-	});
-	$("#totalPrice").text("합계 : " + totalPrice.toLocaleString() + "원");
+	function getTotalPrice(){
+		var totalPrice = 0;
+		var price;
+		$("input[name=cart_id]:checked").parent().siblings("td[name=options_price]").each(function(index,item) {
+			price = Number($(item).text());
+			if($(item).text().indexOf(",") != -1){
+				price = Number($(item).text().replace(",",""));
+			}
+			totalPrice += price;
+			$(item).text(price.toLocaleString());
+		});
+		$("#totalPrice").text("합계 : " + totalPrice.toLocaleString() + "원");
+	}
 });
 function getOptions(cart_id, item_id, cart_quantity) {//옵션 가져오기
 	$.ajax({
