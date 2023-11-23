@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.ssb.board.db.BoardDTO;
+import com.ssb.location.db.locationDTO;
 import com.ssb.option.db.optionsDTO;
 
 /**
@@ -498,54 +500,72 @@ public class ItemDAO {
  	}
  	// (10) 특정 상품의 옵션 목록 메서드 - getOptList() 끝
 
-  
  	
  	
- 	public void editItem(ItemDTO dto) {
- 	    try {
- 	        con = getCon();
+ 	// (11)옵션 정보 가져오기
+	public ItemDTO getOptions(int optionsId) {
+		ItemDTO dto = null; 
+			
+		try {	
+			con = getCon();
+			sql = "select * from options where options_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, optionsId);		
+			rs = pstmt.executeQuery();
+				
+			if(rs.next()) { 				
+				dto = new ItemDTO();
+				dto.setOptions_id(rs.getInt("options_id"));
+				dto.setOptions_name(rs.getString("options_name"));
+				dto.setOptions_value(rs.getString("options_value"));
+				dto.setOptions_price(rs.getInt("options_price"));							
+				dto.setOptions_quantity(rs.getInt("options_quantity"));
+				dto.setItem_id(rs.getInt("item_id"));
+			}
+			System.out.println("DAO: 옵션 정보 조회 완료!");				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return dto;		
+	}	
 
- 	        sql = "UPDATE item SET item_name=?, item_price=?, item_img_main=?, item_img_sub=?, item_img_logo=?, category_id=? WHERE item_id=?";
- 	        pstmt = con.prepareStatement(sql);
- 	        pstmt.setString(1, dto.getItem_name());
- 	        pstmt.setInt(2, dto.getItem_price());
- 	        pstmt.setString(3, dto.getItem_img_main());
- 	        pstmt.setString(4, dto.getItem_img_sub());
- 	        pstmt.setString(5, dto.getItem_img_logo());
- 	        pstmt.setInt(6, dto.getCategory_id());
- 	        pstmt.setInt(7, dto.getItem_id());
- 	        pstmt.executeUpdate();
-
- 	       editOptions(dto); 
-
- 	    } catch (Exception e) {
- 	        e.printStackTrace();
- 	    } finally {
- 	        CloseDB();
- 	    }
- 	}
-
-
+	
+	
+	
+	
+	// 옵션 수정하기
  	public void editOptions(ItemDTO dto) {
  	    try {
  	        con = getCon();
 
- 	        sql = "UPDATE options SET options_name=?, options_value=?, options_price=?, options_quantity=? WHERE item_id=?";
+ 	        sql = "UPDATE options SET options_name=?, options_value=?, options_price=?, options_quantity=? WHERE options_id=?";
  	        pstmt = con.prepareStatement(sql);
  	        pstmt.setString(1, dto.getOptions_name());
  	        pstmt.setString(2, dto.getOptions_value());
  	        pstmt.setInt(3, dto.getOptions_price());
  	        pstmt.setInt(4, dto.getOptions_quantity());
- 	        pstmt.setInt(5, dto.getItem_id());
+ 	        pstmt.setInt(5, dto.getOptions_id());
  	        pstmt.executeUpdate();
 
- 	    } catch (Exception e) {
- 	        e.printStackTrace();
- 	    } finally {
- 	        CloseDB();
- 	    }
- 	}
+ 	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		CloseDB();
+	}
+}	
 
+
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	
 	
 } // ItemDAO

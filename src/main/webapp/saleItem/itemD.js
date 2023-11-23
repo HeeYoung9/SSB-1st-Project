@@ -41,10 +41,6 @@ function getCartDiv(){
 }
 
 function addCart(type) {
-	if($("#cartPool .cartDiv").length == 0){
-		alert("상품정보가 없습니다.");
-		return false;
-	}
 	var arr = getCartDiv();
 	$.ajax({
 		type: "POST",

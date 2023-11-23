@@ -137,7 +137,16 @@
 					<hr>
 					<h4 class="mb-3">할인적용: 0원</h4>
 					<hr>
+					
+					<!-- 마일리지 적용 수정내용-->
 					<h4 class="mb-3">총 가격</h4>
+					<c:if test="${ordersDTO.orders_sort=='RENTAL'}">
+						(보증금 10%추가)
+					</c:if> 
+					<h4 class="mb-3"><fmt:formatNumber value="${ordersDTO.original_total_price}"/> 원 </h4>
+					<!-- 마일리지 적용 수정내용-->
+					
+					<h4 class="mb-3">결제 가격</h4>
 					<c:if test="${ordersDTO.orders_sort=='RENTAL'}">
 						(보증금10%추가)
 					</c:if>

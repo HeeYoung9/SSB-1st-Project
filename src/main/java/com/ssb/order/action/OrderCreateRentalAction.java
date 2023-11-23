@@ -102,6 +102,27 @@ public class OrderCreateRentalAction implements Action {
 			orderTotalPrice += orderDetail.getTotalPrice() + (orderDetail.getTotalPrice()*0.1);
 			
 			
+			//-----------------------------11월 23일 포인트 추가
+			
+			Integer usePoint = Integer.parseInt(request.getParameter("usePoint"));
+			
+			int originalTotalPrice = 0;
+			
+			
+			
+			if(usePoint == null || usePoint == 0) {
+				originalTotalPrice = orderTotalPrice;
+						
+			}else {
+				originalTotalPrice = orderTotalPrice;			
+				orderTotalPrice = orderTotalPrice - usePoint;
+				memberDAO.updateUsePoint(findMember.getMember_id(), usePoint);
+			}
+			
+			
+			//---------------------11월 23일 포인트 추가
+			
+			
 			//계싼된 총 주문 금액 DTO에 입력
 			ordersDTO.changeTotalPrice(orderTotalPrice);
 			
