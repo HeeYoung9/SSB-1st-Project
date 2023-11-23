@@ -14,7 +14,6 @@ public class MemberDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberDeletAciton_execute() 호출");
 		
 		// 로그인 세션제어 (필요없음)
 //		HttpSession session = request.getSession();

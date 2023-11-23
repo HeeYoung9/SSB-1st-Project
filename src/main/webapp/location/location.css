@@ -1,6 +1,8 @@
 main{
 	width: 1200px;
 	margin: 0 auto;
+	margin-top: 0px;
+	min-height: 100vh;  
 }
 .table {
 	border-collapse: collapse;

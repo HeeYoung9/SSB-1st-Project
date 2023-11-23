@@ -24,7 +24,6 @@ public class OrderAction implements Action {
 		// 정보 받아옴
 		
 		String strCartList= request.getParameter("checkArray");
-		System.out.println(strCartList);
 		
 		//DAO 뭉치들
 		MemberDAO memberDAO = new MemberDAO();
@@ -39,15 +38,12 @@ public class OrderAction implements Action {
 		// 현재 임시로 넣어둠 이후에 까먹지 말고 memberId로 변경할 것
 		MemberDTO findMember = memberDAO.getMember(memberId);
 		
-		System.out.println("발견한 유저 ID : "+ findMember.getMember_id());
 		
 		//배송지 가져오기 -> view에서는 select로 표시?
 		List<locationDTO> locations = locationDAO.getlocation(String.valueOf(findMember.getMember_id()));
 		
-		System.out.println("locations의 사이즈 "+ locations.size());
 		
 		List<cartDTO> cartList = cartDAO.getCartsV2(strCartList);
-		System.out.println(" 반환된 카트리스트 사이즈 "+ cartList.size());
 		
 	
 		totalDTO total = new totalDTO(); 

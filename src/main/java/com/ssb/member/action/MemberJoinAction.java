@@ -20,16 +20,12 @@ public class MemberJoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : MemberJoinAction_execute() 실행");
 		
 		// 전달정보 저장 전 가공
 		// member_email
 		String member_email = request.getParameter("member_email");
 		String member_email2 = request.getParameter("member_email2");
 		String domain = request.getParameter("domain");
-		System.out.println(member_email); 
-		System.out.println(member_email2); 
-		System.out.println(domain); 
 		String completeEmail = member_email +"@"+(domain.equals("type")? member_email2:domain);
 		// member_birth
 		String member_birth = request.getParameter("member_birth");
@@ -55,7 +51,6 @@ public class MemberJoinAction implements Action {
 		dto.setMember_situation(request.getParameter("member_situation"));
 		dto.setMember_regdate(new Timestamp(System.currentTimeMillis()));
 		
-		System.out.println("M : " +dto);
 		
 		// MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
@@ -68,7 +63,6 @@ public class MemberJoinAction implements Action {
 //		forward.setPath("./MemberLogin.me");
 //		forward.setRedirect(true);
 //		
-//		System.out.println("M : "+forward);
 		
 		// 페이지 이동(js) -> 메인페이지로 이동
 		response.setContentType("text/html; charset=UTF-8");

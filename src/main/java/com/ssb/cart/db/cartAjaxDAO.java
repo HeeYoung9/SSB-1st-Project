@@ -26,8 +26,6 @@ public class cartAjaxDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 
-		System.out.println(" DAO : 디비연결 성공!! ");
-		System.out.println(" DAO : " + con);
 		return con;
 	}
 
@@ -63,7 +61,6 @@ public class cartAjaxDAO {
 				dto.setOptions_price(rs.getInt("options_price"));
 				dto.setOptions_quantity(rs.getInt("options_quantity"));
 				dtoArr.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +81,6 @@ public class cartAjaxDAO {
 			pstmt.setString(2, option_id);
 			pstmt.setString(3, cart_quantity);
 			pstmt.setString(4, cart_id);
-			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,7 +97,6 @@ public class cartAjaxDAO {
 			sql = "DELETE FROM cart WHERE cart_id IN("+ cart_id +") AND member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
-			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

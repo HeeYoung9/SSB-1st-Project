@@ -26,8 +26,6 @@ public class ItemDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 
-		System.out.println(" \n ItemDAO : 디비연결 성공!! ");
-//		System.out.println(" DAO : " + con);
 		return con;
 	}
 
@@ -99,7 +97,6 @@ public class ItemDAO {
 		
 			} // while
 
-			System.out.println(" \n ItemDAO : 상품 관리 페이지가 열렸다! ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,7 +149,6 @@ public class ItemDAO {
 				
             } // while
             
-			System.out.println(" \n ItemDAO : 상품 검색 성공! ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,7 +183,6 @@ public class ItemDAO {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			System.out.println(" \n ItemDAO : 전체 상품 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -221,7 +216,6 @@ public class ItemDAO {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			System.out.println(" ItemDAO : 검색 조건과 일치하는 상품 개수 " + result + "개");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -252,7 +246,6 @@ public class ItemDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ino);
 			
-			System.out.println("itemDAO getItem 입력받은 아이템 번호 "+ ino);
 			
 			// 4. sql 실행
 			rs = pstmt.executeQuery();
@@ -283,12 +276,9 @@ public class ItemDAO {
 				/////////////////////////////////////
 				
 				
-				System.out.println("itemDAO getItem rs 입력받은 아이템 번호 "+rs.getInt("item_id"));
-				System.out.println("itemDAO getItem rs 입력받은 아이템 가격 "+ rs.getInt("item_price"));
 				
 			}// if
 			
-			System.out.println(" DAO : 상품 정보 조회성공!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -318,7 +308,6 @@ public class ItemDAO {
 
 	        result = pstmt.executeUpdate();
 
-	        System.out.println("DAO: 수정완료! (" + result + ")");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } finally {
@@ -357,7 +346,6 @@ public class ItemDAO {
 				ino = rs.getInt(1) + 1;
 			}
 
-			System.out.println(" ItemDAO : 상품번호 : " + ino + " 번 입니다");
 
 			// 3. sql 구문(insert) & pstmt 객체
 			sql = "insert into itwill_board(bno,name,pass,subject,content,readcount,"
@@ -368,7 +356,6 @@ public class ItemDAO {
 			// 4. sql 실행
 			pstmt.executeUpdate();
 
-			System.out.println(" DAO :" + ino + "번 상품 등록 완료! ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

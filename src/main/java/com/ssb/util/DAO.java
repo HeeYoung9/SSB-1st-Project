@@ -25,8 +25,6 @@ public class DAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 
-		System.out.println(" DAO : 디비연결 성공!! ");
-		System.out.println(" DAO : " + con);
 		return con;
 	}
 

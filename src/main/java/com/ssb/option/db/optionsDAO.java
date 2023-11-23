@@ -40,7 +40,6 @@ public class optionsDAO {
 				optionsDTO.setItem_id(rs.getInt("item_id"));
 				optionsDTO.setOptions_quantity(rs.getInt("options_quantity"));
 				
-				System.out.println("optionsDAO : 옵션 수량 : "+ rs.getInt("options_quantity"));
 			}
 			
 			

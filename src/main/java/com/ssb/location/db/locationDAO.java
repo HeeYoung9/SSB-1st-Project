@@ -15,7 +15,6 @@ public class locationDAO extends DAO{
 			sql = "SELECT * FROM location WHERE member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
-			System.out.println("전송된 쿼리 : " + pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new locationDTO();
@@ -29,7 +28,6 @@ public class locationDAO extends DAO{
 				dto.setLocation_requested(rs.getString("location_requested"));
 				dto.setMember_id(rs.getInt("member_id"));
 				dtoArray.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +52,6 @@ public class locationDAO extends DAO{
 			pstmt.setString(6, dto.getLocation_title());
 			pstmt.setString(7, dto.getLocation_requested());
 			pstmt.setInt(8, dto.getMember_id());
-			System.out.println("전송된 쿼리 : " + pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +77,6 @@ public class locationDAO extends DAO{
 			pstmt.setString(7, dto.getLocation_requested());
 			pstmt.setInt(8, dto.getLocation_id());
 			pstmt.setInt(9, dto.getMember_id());
-			System.out.println("전송된 쿼리 : " + pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +95,6 @@ public class locationDAO extends DAO{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, location_id);
 			pstmt.setInt(2, Integer.parseInt(member_id));
-			System.out.println("전송된 쿼리 : " + pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new locationDTO();
@@ -130,7 +125,6 @@ public class locationDAO extends DAO{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, location_id);
 			pstmt.setInt(2, member_id);
-			System.out.println("전송된 쿼리 : " + pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -190,7 +184,6 @@ public class locationDAO extends DAO{
 					sql = "SELECT * FROM location l join member m on l.member_id = m.member_id WHERE member_user_id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, member_id);
-					System.out.println("전송된 쿼리 : " + pstmt);
 					rs = pstmt.executeQuery();
 					while (rs.next()) {
 						ldto = new locationDTO();
@@ -204,7 +197,6 @@ public class locationDAO extends DAO{
 						ldto.setLocation_requested(rs.getString("location_requested"));
 						ldto.setMember_id(rs.getInt("member_id"));
 						locaList.add(ldto);
-						System.out.println("dto 추가");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

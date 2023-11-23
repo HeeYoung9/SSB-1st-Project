@@ -12,7 +12,6 @@ public class MemberJoinPwCheck implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : MemberJoinPwCheck_execute() 호출");
 		
 		// 정보 저장
 		String member_pw = request.getParameter("userPw");
@@ -52,7 +51,6 @@ public class MemberJoinPwCheck implements Action {
 		// 4개 해당
 		if (containsAlphabetCase && containsNumber && containsSpecialChar && isLength) result=15;
 		
-		System.out.println("result :"+result);
 		
 		
 		out.write(result+"");

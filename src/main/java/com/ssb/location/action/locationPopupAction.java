@@ -16,7 +16,6 @@ public class locationPopupAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 받은정보저장
 		String member_id = (String)request.getSession().getAttribute("member_id");
-		System.out.println("locationPopupAction.member_id : " + member_id);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		ArrayList<locationDTO> dtoArray = dao.getlocation(member_id);

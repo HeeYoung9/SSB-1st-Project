@@ -18,22 +18,16 @@ public class locationController extends HttpServlet {
 
 		/*********************** 1. 가상주소 계산 시작 **************************/
 		String requestURI = request.getRequestURI();
-		System.out.println("requestURI : " + requestURI);
 		String CTXPath = request.getContextPath();
-		System.out.println("CTXPath : " + CTXPath);
 		String command = requestURI.substring(CTXPath.length());
-		System.out.println("command : " + command);
 		/*********************** 1. 가상주소 계산 끝 **************************/
 
 		/*********************** 2. 가상주소 매핑 시작 **************************/
-		System.out.println("C : 2. 가상주소 매핑 시작------------------");
 		Action action = null;
 		ActionForward forward = null;
 		
 		//수정
 		 if (command.equals("/location.lo")) {
-			System.out.println("C : /location.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new locationAction();
 			
@@ -43,8 +37,6 @@ public class locationController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (command.equals("/locationInsert.lo")) {
-			System.out.println("C : /locationInsert.lo 호출");
-			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
 			
 			action = new locationInsert();
 			
@@ -54,8 +46,6 @@ public class locationController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (command.equals("/locationInsertAction.lo")) {
-			System.out.println("C : /locationInsertAction.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new locationInsertAction();
 			
@@ -65,8 +55,6 @@ public class locationController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (command.equals("/deleteLocation.lo")) {
-			System.out.println("C : /deleteLocation.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new locationDelete();
 			
@@ -76,15 +64,11 @@ public class locationController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (command.equals("/locationTest.lo")) {
-			System.out.println("C : /locationTest.lo 호출");
-			System.out.println("C : 패턴 1 - DB사용X, 페이지 출력");
 			
 			forward = new ActionForward();
 			forward.setPath("./location/locationTest.jsp");
 			forward.setRedirect(false);
 		}else if (command.equals("/locationPopup.lo")) {
-			System.out.println("C : /locationPopup.lo 호출");
-			System.out.println("C : 패턴 3 - DB사용O, 페이지 출력");
 			
 			action = new locationPopupAction();
 			
@@ -100,12 +84,8 @@ public class locationController extends HttpServlet {
 		/*********************** 3. 가상주소 이동 시작 **************************/
 		if (forward != null) {
 			if (forward.isRedirect()) { // true
-				System.out.println("C : 이동주소 : " + forward.getPath());
-				System.out.println("C : 이동방법 : sendRedirect() 방식");
 				response.sendRedirect(forward.getPath());
 			} else { // false
-				System.out.println("C : 이동주소 : " + forward.getPath());
-				System.out.println("C : 이동방법 : forward() 방식");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}

@@ -38,7 +38,6 @@ public class PaymentDAO {
 			
 			pstmt.executeUpdate();
 			
-			System.out.println("Payment insert 정상영업 중");
 			
 			
 		} catch (Exception e) {

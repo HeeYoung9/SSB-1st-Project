@@ -14,7 +14,6 @@ public class ItemEditAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("\nM: ItemEditAction_execute() 호출");
 		
 		int optionsId = Integer.parseInt(request.getParameter("optionsId"));
 				

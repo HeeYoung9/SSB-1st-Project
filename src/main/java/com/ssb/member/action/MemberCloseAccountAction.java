@@ -14,7 +14,6 @@ public class MemberCloseAccountAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : MemberCloseAccountAction_execute() 호출");
 		
 		// 마이페이지에서 회원탈퇴 버튼을 누를때 MemberCloseAccount.me 페이지 이동
 		// (사유 선택 => 탈퇴 확인 버튼 누를 시) MemberCloseAccountAction에서 세션 영역의 member_user_id를 저장 후 dto에 저장

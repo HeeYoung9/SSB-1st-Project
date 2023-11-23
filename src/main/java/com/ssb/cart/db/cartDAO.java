@@ -15,7 +15,6 @@ public class cartDAO extends DAO{
 			sql = "SELECT cart_id,C.item_id,cart_quantity,item_name,item_img_main,item_price,C.options_id,options_name,options_value,options_price,options_quantity FROM cart C LEFT JOIN item I ON C.item_id = I.item_id LEFT JOIN options O ON I.item_id = O.item_id AND C.options_id = O.options_id WHERE member_id = ? ORDER BY cart_id";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
-			System.out.println("전송된 쿼리 : " + pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new cartDTO();
@@ -31,7 +30,6 @@ public class cartDAO extends DAO{
 				dto.setOptions_price(rs.getInt("options_price"));
 				dto.setOptions_quantity(rs.getInt("options_quantity"));
 				dtoArray.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +47,6 @@ public class cartDAO extends DAO{
 			con = getCon();
 			sql = "SELECT item_name,options_name,options_value,cart_quantity,item_price,options_price FROM cart C JOIN item I ON C.item_id = I.item_id JOIN options O ON C.options_id = O.options_id WHERE cart_id IN(" + cart_id + ")";
 			pstmt = con.prepareStatement(sql);
-			System.out.println("전송된 쿼리 : " + pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new orderDTO();
@@ -60,7 +57,6 @@ public class cartDAO extends DAO{
 				dto.setItem_price(rs.getInt("item_price"));
 				dto.setOptions_price(rs.getInt("options_price"));
 				dtoArray.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +76,6 @@ public class cartDAO extends DAO{
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, Integer.parseInt(cart_id));
 				pstmt.setInt(2, Integer.parseInt(cart_id));
-				System.out.println("전송된 쿼리 : " + pstmt);
 				result.add(pstmt.executeUpdate());
 			}
 		} catch (Exception e) {
@@ -100,7 +95,6 @@ public class cartDAO extends DAO{
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, Integer.parseInt(cart_id));
 				pstmt.setInt(2, Integer.parseInt(cart_id));
-				System.out.println("전송된 쿼리 : " + pstmt);
 				result.add(pstmt.executeUpdate());
 			}
 		} catch (Exception e) {
@@ -118,7 +112,6 @@ public class cartDAO extends DAO{
 			con = getCon();
 			sql = "SELECT cart_id, C.options_id, C.item_id, item_name,options_name,options_value,cart_quantity,options_price, I.item_price FROM cart C JOIN item I ON C.item_id = I.item_id JOIN options O ON C.options_id = O.options_id WHERE cart_id IN(" + cart_id + ")";
 			pstmt = con.prepareStatement(sql);
-			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto = new cartDTO();
@@ -134,7 +127,6 @@ public class cartDAO extends DAO{
 				dto.setItem_price(rs.getInt("item_price"));
 				
 				dtoArray.add(dto);
-				System.out.println("dto 추가");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,7 +147,6 @@ public class cartDAO extends DAO{
 					pstmt.setInt(1, member_id);
 					pstmt.setInt(2, dto.getItem_id());
 					pstmt.setInt(3, dto.getOptions_id());
-					System.out.println(pstmt);
 					rs = pstmt.executeQuery();
 					if (rs.next()) {
 						checkArray.add(dto);
@@ -164,7 +155,6 @@ public class cartDAO extends DAO{
 				for (cartDTO cartDTO : checkArray) {
 					mdtoArray.remove(mdtoArray.indexOf(cartDTO));
 				}
-				System.out.println("dtoArray.size() : " + mdtoArray.size());
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -185,11 +175,9 @@ public class cartDAO extends DAO{
 						pstmt.setInt(2, dto.getItem_id());
 						pstmt.setInt(3, dto.getCart_quantity());
 						pstmt.setInt(4, dto.getOptions_id());
-						System.out.println(pstmt);
 						result = pstmt.executeUpdate();
 					}
 				}else {
-					System.out.println("array.size():null");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -210,14 +198,12 @@ public class cartDAO extends DAO{
 					pstmt.setInt(1, member_id);
 					pstmt.setInt(2, dto.getItem_id());
 					pstmt.setInt(3, dto.getOptions_id());
-					System.out.println(pstmt);
 					rs = pstmt.executeQuery();
 					if (rs.next()) {
 						cart_idArr.add(String.valueOf(rs.getInt("cart_id")));
 					}
 				}
 				Cart_id = String.join(",",cart_idArr);
-				System.out.println(Cart_id);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -233,14 +219,12 @@ public class cartDAO extends DAO{
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, cart_id);
 				pstmt.setInt(2, member_id);
-				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				if (rs.next()) {
 					sql = "DELETE FROM cart WHERE cart_id = ? AND member_id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, cart_id);
 					pstmt.setInt(2, member_id);
-					System.out.println(pstmt);
 					pstmt.executeUpdate();
 				}
 			} catch (Exception e) {

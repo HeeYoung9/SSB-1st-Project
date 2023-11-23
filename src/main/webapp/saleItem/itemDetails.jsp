@@ -100,7 +100,7 @@ function openInquiryPop(){
 					<!---------------------- 수량!! ---------------------------------->
 					<div class="pick"> 
 						<!-- <label> > 수량 </label> -->
-						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" placeholder="-&nbsp;[필수] 수량을 선택해 주세요" required > 
+						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" value="1" placeholder="-&nbsp;[필수] 수량을 선택해 주세요" required > 
 					</div>
 					
 					<!---------------------- 옵션!! ---------------------------------->

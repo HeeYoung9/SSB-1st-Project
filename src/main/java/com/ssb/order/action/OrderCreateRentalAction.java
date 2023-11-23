@@ -41,10 +41,6 @@ public class OrderCreateRentalAction implements Action {
 		MemberDTO findMember =  memberDAO.getMember(userId);
 		
 		
-		System.out.println("출력된 주소 ID"+request.getParameter("location_id"));
-		
-		System.out.println("OrderCreateRental - Location_ID의 타입 : "+ request.getParameter("location_id").getClass());
-		System.out.println("OrderCreateRental - Location_ID의 값 : "+ request.getParameter("location_id"));
 		
 		int location_id = Integer.parseInt(request.getParameter("location_id"));
 		
@@ -72,7 +68,6 @@ public class OrderCreateRentalAction implements Action {
 			
 			//orderㄴID생성
 			long ordersID = orderDAO.createOrdersId();
-			System.out.println("생성된 첫번째 상품 ID = " +ordersID);
 			ordersDTO = OrdersDTO.createRentalOrder(ordersID, findMember.getMember_id(), location_id);
 			
 			int orderTotalPrice = 0;
@@ -131,7 +126,6 @@ public class OrderCreateRentalAction implements Action {
 			//ordersDTO DB에 최종 저장
 			orderDAO.saveRentalOrders(ordersDTO);
 			
-			System.out.println("OrderCreate 호출 확인 3");
 			result = CreateOrderResult.SUCCESS;
 			
 		} catch (StockLackException e) {
@@ -144,7 +138,6 @@ public class OrderCreateRentalAction implements Action {
 			
 			
 		} catch (OrderPriceException e) {
-			System.out.println("주문 금액 문제 발생");
 
 			e.printStackTrace();
 			result = CreateOrderResult.FAILED;

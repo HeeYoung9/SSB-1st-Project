@@ -13,7 +13,6 @@ public class JSMoveFunction {
 
 	// alert + location.href 기능
 	public static void alertLocation(HttpServletResponse response, String msg, String url) {
-		System.out.println(" JSMoveFunction_alertLocation()호출 ");
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -29,7 +28,6 @@ public class JSMoveFunction {
 
 	// alert + history.back() 기능
 	public static void alertBack(HttpServletResponse response, String msg) {
-		System.out.println(" JSMoveFunction_alertBack()호출 ");
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

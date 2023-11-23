@@ -16,7 +16,6 @@ public class ItemReserveAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ItemReserveAction_execute() 실행! ");
 		
 		HttpSession session = request.getSession();
 	    String userId = (String) session.getAttribute("userId");
@@ -32,12 +31,10 @@ public class ItemReserveAction implements Action {
 		locationDAO ldao = new locationDAO();
 		ArrayList locaList = ldao.getlocationRental(userId);
 		
-		System.out.println("나와라");
 		
 		request.setAttribute("itemDTO", itemDTO);
 		request.setAttribute("locaList", locaList);
 		
-		System.out.println("나와라22222");
 		ActionForward forward = new ActionForward();
 		forward.setPath("./saleItem/ItemReserve.jsp");
 		forward.setRedirect(false);

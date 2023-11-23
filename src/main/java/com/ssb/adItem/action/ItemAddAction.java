@@ -14,7 +14,6 @@ import com.ssb.util.ActionForward;
 public class ItemAddAction implements Action {
 	  @Override
 	    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	        System.out.println("\t M : ItemAddAction_execute() 호출 ");
 
 	        // 기존 카테고리 정보
 	        int categoryCode = Integer.parseInt(request.getParameter("category_code"));

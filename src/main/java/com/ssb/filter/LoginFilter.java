@@ -17,14 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class LoginFilter implements Filter{
 
-	private List<String> paths = Arrays.asList("/test","/OrderSalePay.od", "start.jsp","/Main.me");
+	private List<String> paths = Arrays.asList("/cartList.ca","/OrderSalePay.od","/location.lo","/locationPopup.lo","/OrderRentalPay.od","/OrderResult.od",
+			"/OrderRefund.od","/myPage.mp","/insertCart.ca","/myPageOrderDetail.mp","/Order.od","/MemberCloseAccount.me","/update.ud",
+			"/OrderStateUpdateRefund.od","/OrderStateUpdateCancel.od","/OrderStateUpdateBeDelivered.od","/OrderStateUpdateDelivery.od");
 
 	private boolean pathCheck(HttpServletRequest request) {
 	    String requestURI = request.getRequestURI();
-	    return !paths.stream().anyMatch(path -> requestURI.startsWith(request.getContextPath() + path));
+	    return paths.stream().anyMatch(path -> requestURI.startsWith(request.getContextPath() + path));
 	}
 	
 	@Override

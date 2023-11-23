@@ -19,7 +19,6 @@ public class RentalReserveAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("RentalReserveAction_execute() 실행! ");
 		
 		
 		// 전달정보 저장 (member_user_id, 예약선택날짜
@@ -28,7 +27,6 @@ public class RentalReserveAction implements Action {
 	     
 		String selectedDate = request.getParameter("selectedDate");
 
-		System.out.println("선택 날짜는 ? "+selectedDate);
 		
 		
 		// 선택 날짜 LocalDate 타입으로 변환하기
@@ -36,7 +34,6 @@ public class RentalReserveAction implements Action {
 		String[] strd= selectedDate.split("-");				
 		LocalDate strDate = LocalDate.of(Integer.parseInt(strd[0]) , Integer.parseInt(strd[1]), Integer.parseInt(strd[2]));
 		
-		System.out.println("LocalDate 타입 변환 날짜는????" + strDate);
 	
 		//Test
 		//Date testDate = java.sql.Date.valueOf(strDate);
@@ -54,7 +51,6 @@ public class RentalReserveAction implements Action {
 		
 		
 		
-		System.out.println("주소정보는? " +locaList);
 		
 		
 		

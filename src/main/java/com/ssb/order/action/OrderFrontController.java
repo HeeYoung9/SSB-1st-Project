@@ -17,7 +17,6 @@ import com.ssb.util.ActionForward;
 public class OrderFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println(" C : OrderFrintController");
 		
 		//-----------------------1. 가상주소 계산 시작--------------------
 		String requestURI = request.getRequestURI();
@@ -33,8 +32,6 @@ public class OrderFrontController extends HttpServlet{
 		
 		
 		if(command.equals("/OrderTest.od")) {
-			System.out.println(" C : /OrderTest.od 매핑");
-			System.out.println(" C : DB 사용 , 뷰 페이지");
 
 			action = new OrderTestAction();
 			try {
@@ -46,8 +43,6 @@ public class OrderFrontController extends HttpServlet{
 			
 		}
 		else if(command.equals("/PayTest.od")) {
-			System.out.println(" C : /Pay 매핑");
-			System.out.println(" C : 사용 ㅌ");
 			
 			forward = new ActionForward();
 			forward.setPath("./ssm/order/test/tmp_pay.jsp");
@@ -66,8 +61,6 @@ public class OrderFrontController extends HttpServlet{
 			}
 			
 		}else if(command.equals("/OrderSalePay.od")) { //주문 결제 페이지 (판매 상품)
-			System.out.println( " C : /PayPage (디자인 구현중)");
-			System.out.println(" 아무것도 없음");
 			
 			action = new OrderCreateSaleAction();
 			
@@ -79,8 +72,6 @@ public class OrderFrontController extends HttpServlet{
 			}
 			
 		}else if(command.equals("/OrderRentalPay.od")) { // 주문 결제 페이지 (렌탈 페이지)
-			System.out.println(" C : /OrderRentalPay 소환 ");
-			System.out.println(" 크흠 ");
 			
 			action = new OrderCreateRentalAction();
 			
@@ -210,8 +201,6 @@ public class OrderFrontController extends HttpServlet{
 		//-------------------Ajax 라인 시작---------------------------
 		//---------------결제 결과 검증AJAX 호출
 		else if(command.equals("PayValidationAjax.od")) {
-			System.out.println(" C : /Pay.od 매핑");
-			System.out.println(" C : AJAX 응답용");
 			
 			PayValidationAjax payValidatAction= new PayValidationAjax();
 			payValidatAction.doProcess(request, response);
@@ -223,11 +212,9 @@ public class OrderFrontController extends HttpServlet{
 		if(forward !=null) {
 			
 			if(forward.isRedirect()) {
-				System.out.println(" C : "+ forward.getPath()+"로, 이동방식 : sendRedirect()");
 			
 				response.sendRedirect(forward.getPath());
 			}else {
-				System.out.println(" C : "+ forward.getPath()+"로, 이동방식 : forward()");
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}

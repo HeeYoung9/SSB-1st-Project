@@ -1,14 +1,23 @@
 $('#options_idSelecter').change(function() {
-     var html = "<div class='cartDiv'>";
+    var html = "<div class='cartDiv'>";
     var selectedOption = $("#options_idSelecter option:selected");
     var optionsName = selectedOption.data("options-name");
     var optionsValue = selectedOption.data("options-value");
+    var cartQuantity = $("#cart_quantitySelecter").val();
+    var optionsId = $("#options_idSelecter").val();
+    
+	$("#cartPool .cartDiv").each(function() {
+		if($(this).find('.options_id').val() == optionsId){
+			alert('이미 추가된 상품입니다');
+			return false();
+		}
+	});
     
     html += "<input type='hidden' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
     html += "<span class='options_name'>" + optionsName + "</span>";
     html += "<span class='options_value'>" + optionsValue + "</span>";
-    html += "<input type='number' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "' min='1' max='10'>";
-    html += "<input type='hidden' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
+    html += "<input type='number' class='cart_quantity' value='" + cartQuantity + "' min='1' max='10'>";
+    html += "<input type='hidden' class='options_id' value='" + optionsId + "'>";
     html += "<input type='button' class='closeButton' value='close'>";
     html += "</div>";
     $("#cartPool").append(html);

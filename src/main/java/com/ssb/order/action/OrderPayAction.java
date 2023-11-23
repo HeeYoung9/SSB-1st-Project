@@ -23,12 +23,10 @@ public class OrderPayAction implements Action {
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
 		long orderId = Long.parseLong(request.getParameter("orderId"));
-		System.out.println("user Id는? "+userId);
 		// long userId = 1;
 		//long orderId = 20231111000003L;
 		
 		
-		System.out.println("호출이다 호출");
 		
 		
 		
@@ -40,17 +38,13 @@ public class OrderPayAction implements Action {
 		OrdersDTO ordersDTO = ordersDAO.findById(orderId);
 		
 		//----------------테스트 코드-------------------------------------
-		System.out.println("소환된 ID" + ordersDTO.getId());
 		//----------------------------------------------
 		
 		List<OrderDetailDTO> orderDDTOs = orderDDAO.findByOrdersId(orderId);
 		
 		//----------------------------------------------
-		System.out.println(orderDDTOs.size());
 		
 		for(OrderDetailDTO order : orderDDTOs) {
-			System.out.println(order.getOrderD_id());
-			System.out.println(order.getItem_name());
 		}
 		
 		request.setAttribute("ordersDTO", ordersDTO);

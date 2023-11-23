@@ -62,13 +62,8 @@ public class OrderRefundActionForAdmin implements Action {
 		OrdersDAO ordersDAO = new OrdersDAO();
 		OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
 		//주문번호에 해당하는 OrdersDTO 소환
-		System.out.println("OrderRefundAction의 숫자형식 값 : " + orderId);
 		OrdersDTO orderDTO = ordersDAO.findById(Long.parseLong(orderId));
 		
-		System.out.println("-----------------OrderRefundAction ------------------------------");
-		System.out.println(orderDTO.getId());
-		System.out.println(orderDTO.getOrders_state());
-		System.out.println("-----------------OrderRefundAction ------------------------------");
 		
 		if(orderDTO.getOrders_state().equals(OrdersState.DELIVERY)) {
 			String message = "물품이 배송중이므로 현재 환불을 진행 할 수 없습니다. ";
@@ -92,7 +87,6 @@ public class OrderRefundActionForAdmin implements Action {
 		}
 		
 		//환불 처리 상태로 주문 업그레이드
-		System.out.println("이거 정상 호출 맞겠지?");
 		ordersDAO.updateOrdersState(Long.parseLong(orderId), OrdersState.REFUND);
 		
 		

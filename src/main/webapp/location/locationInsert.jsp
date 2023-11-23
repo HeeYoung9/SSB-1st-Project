@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>SSB Location</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="./location/locationInsert.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -24,8 +24,8 @@
 				<col width="70%">
 			</colgroup>
 				<tr>
-					<td><label>이름</label></td>
-					<td><input type="text" id="location_name" placeholder="이름" value="${dto.location_name}" required="required"></td>
+					<td><label>받는사람</label></td>
+					<td><input type="text" id="location_name" placeholder="받는사람" value="${dto.location_name}" required="required"></td>
 				</tr>
 				<tr>
 					<td><label>전화번호</label></td>

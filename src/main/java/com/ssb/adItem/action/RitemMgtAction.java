@@ -16,13 +16,11 @@ public class RitemMgtAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("\n M: RntalItemMgt.it_execute() 호출");
 
 		
 		
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
-		System.out.println(" M : 검색어 = "+search );
 		
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
 		// RentalDAO 객체 생성 - 상품목록 조회 메서드() 
@@ -30,13 +28,10 @@ public class RitemMgtAction implements Action {
 		
 		int count = 0;
 		if(search == null) { // 검색어 X
-			System.out.println(" M : 검색어 없음! ");
 			count = rdao.getItemCount();
 		}else { // 검색어 O - 검색결과O/X 
-			System.out.println(" M : 검색어 있음! ("+search+")");
 			count = rdao.getItemCount(search);
 		}		
-		System.out.println(" M : 상품 개수 : " + count);
 
 		
 		
@@ -72,7 +67,6 @@ public class RitemMgtAction implements Action {
 		}else {
 			// 상품이 없는경우
 		}
-		System.out.println(" M : " + rItemMgt.size());
 
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달

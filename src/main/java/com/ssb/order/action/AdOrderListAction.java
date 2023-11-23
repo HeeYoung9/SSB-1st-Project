@@ -19,7 +19,6 @@ public class AdOrderListAction implements Action{
 
 		// 전달정보 검색어 정보 저장
 		String orders_state = request.getParameter("orders_state");
-		System.out.println(" M : 카테고리 = "+orders_state );
 		
 		OrdersDAO ordersDAO = new OrdersDAO();
 		
@@ -30,14 +29,11 @@ public class AdOrderListAction implements Action{
 			orders_state = request.getParameter("orders_state");
 		}
 		
-		System.out.println("입력받은 검색 상태 : "+ request.getParameter("orders_state"));
-		System.out.println("(변환)입력받은 검색 상태 : "+ orders_state);
 		
 		int count = 0;
 		count = ordersDAO.getOrderCount(orders_state);
 		
 		
-		System.out.println(" M : 총 주문 개수 : " + count);
 
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 상품 개수 설정
@@ -65,10 +61,8 @@ public class AdOrderListAction implements Action{
 		orders = ordersDAO.findByStateForAdmin(orders_state, startRow, pageSize);
 		
 		
-		System.out.println(" M orders 사이즈 : " + orders.size());
 
 		for(OrdersDTO tt : orders) {
-			System.out.println("가격 어디감 ? : "+tt.getTotal_price());
 		}
 		
 		// request영역에 정보를 저장

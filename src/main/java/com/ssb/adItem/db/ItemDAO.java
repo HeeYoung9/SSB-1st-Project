@@ -34,8 +34,6 @@ public class ItemDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 
-		System.out.println(" \n ItemDAO : 디비연결 성공!! ");
-//		System.out.println(" DAO : " + con);
 		return con;
 	}
 
@@ -104,7 +102,6 @@ public class ItemDAO {
 
 			} // while
 
-			System.out.println(" \n ItemDAO : 상품 관리 페이지가 열렸다! ");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,7 +154,6 @@ public class ItemDAO {
 
 			} // while
 
-			System.out.println(" \n ItemDAO : 상품 검색 성공! ");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -192,7 +188,6 @@ public class ItemDAO {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			System.out.println(" \n ItemDAO : 전체 상품 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -227,7 +222,6 @@ public class ItemDAO {
 			if (rs.next()) {
 				result = rs.getInt(1);
 			}
-			System.out.println(" ItemDAO : 검색 조건과 일치하는 상품 개수 " + result + "개");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -279,7 +273,6 @@ public class ItemDAO {
 
 	        } 
 	        
-	        System.out.println(" DAO: 상품 정보 조회 성공!");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -309,7 +302,6 @@ public class ItemDAO {
 
 			result = pstmt.executeUpdate();
 
-			System.out.println("DAO: 수정완료! (" + result + ")");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -351,7 +343,6 @@ public class ItemDAO {
 	            itemId = generatedKeys.getInt(1);
 	        }
 
-	        System.out.println("ItemDAO : 아이템 등록 성공! Item ID: " + itemId);
 
 	        if (itemId != -1) {
 	            addOption(dto, itemId);
@@ -387,7 +378,6 @@ public class ItemDAO {
 	        pstmt.setInt(5, itemId);
 	        pstmt.executeUpdate();
 
-	        System.out.println("OptionsDAO : 옵션 등록 성공!");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -488,7 +478,6 @@ public class ItemDAO {
 
  			} 
 
- 			System.out.println(" \n ItemDAO : 특정 상품의 옵션 목록을 가져왔어요 ");
 
  		} catch (Exception e) {
  			e.printStackTrace();
@@ -522,7 +511,6 @@ public class ItemDAO {
 				dto.setOptions_quantity(rs.getInt("options_quantity"));
 				dto.setItem_id(rs.getInt("item_id"));
 			}
-			System.out.println("DAO: 옵션 정보 조회 완료!");				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

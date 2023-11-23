@@ -26,12 +26,9 @@ import com.ssb.payment.vo.PaymentValidationCheckState;
 public class PayValidationAjax extends HttpServlet {
 
 	public void doProcess(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
-		System.out.println("pay.od 호출 ");
 
 		String result = null;
 
-		System.out.println(request.getParameter("imp_uid"));
-		System.out.println(request.getParameter("merchant_uid"));
 		
 		//포트원에서 전달받은 결제 정보 PaymentDTO 객체에 저장
 		PaymentDTO payment = PaymentDTO.createPayment(
@@ -45,7 +42,6 @@ public class PayValidationAjax extends HttpServlet {
 				);
 		
 		
-		System.out.println(payment.toString());
 		
 		OrdersDAO ordersDAO = new OrdersDAO();
 		
@@ -95,7 +91,6 @@ public class PayValidationAjax extends HttpServlet {
 			
 			result="PAYDIFF";
 		}
-		System.out.println("위변조 결과 값 : " + checkState);
 		
 		
 		

@@ -14,12 +14,9 @@ public class locationDelete implements Action {
 		// 받은정보저장
 		int location_id = Integer.parseInt(request.getParameter("location_id"));
 		int member_id = Integer.parseInt((String)request.getSession().getAttribute("member_id"));
-		System.out.println(location_id);
-		System.out.println(member_id);
 		// 데이터 처리
 		locationDAO dao = new locationDAO();
 		int result = dao.deleteLocation(location_id, member_id);
-		System.out.println(result);
 		return null;
 	}
 

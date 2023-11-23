@@ -92,7 +92,7 @@ public class OrderDetailDAO {
 		List<OrderDetailDTO> dtos = new ArrayList<>();
 
 		//---------------------------------------데이터 확인용
-		System.out.println("DAO : 입력받은 id : " + id);
+//		System.out.println("DAO : 입력받은 id : " + id);
 		//----------------------------------------
 		
 		
@@ -144,9 +144,6 @@ public class OrderDetailDAO {
 //						rs.getDate("rental_str_date"), 
 //						rs.getDate("rental_end_date"));
 //				
-				System.out.println("rs 내부 값 orderD값 : " +rs.getLong("orderD_id"));
-				System.out.println("rs 내부 값 option ID값 : " +rs.getLong("options_id"));
-				System.out.println("rs 내부 값 option 수량 : " +rs.getInt("orderD_quantity"));
 				
 				dtos.add(dto);
 			}
@@ -234,7 +231,7 @@ public class OrderDetailDAO {
 			List<OrderDetailDTO> dtos = new ArrayList<>();
 
 			//---------------------------------------데이터 확인용
-			System.out.println("DAO : 입력받은 id : " + id);
+//			System.out.println("DAO : 입력받은 id : " + id);
 			//----------------------------------------
 			
 			
@@ -285,9 +282,6 @@ public class OrderDetailDAO {
 //							rs.getDate("rental_str_date"), 
 //							rs.getDate("rental_end_date"));
 //					
-					System.out.println("rs 내부 값 orderD값 : " +rs.getLong("orderD_id"));
-					System.out.println("rs 내부 값 option ID값 : " +rs.getLong("options_id"));
-					System.out.println("rs 내부 값 option 수량 : " +rs.getInt("orderD_quantity"));
 					
 					dtos.add(dto);
 				}

@@ -16,7 +16,6 @@ public class ItemDetailsAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    System.out.println(" M : ItemDetailAction_execute() 호출! ");
 
 	    int item_id = Integer.parseInt(request.getParameter("item_id"));
 
@@ -62,7 +61,6 @@ public class ItemDetailsAction implements Action {
 			reviewList = bdao.getItemReviewList(item_id, reviewStartRow, reviewPageSize);
 		}
 		
-		System.out.println("M: size: " + reviewList.size());
 				
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("reviewList", reviewList);
@@ -105,7 +103,6 @@ public class ItemDetailsAction implements Action {
 		// 기존에 저장된 글정보를 가져와서 화면에 출력				
 		int count = 0;
 		count = bdao.getItemInquiryCount(item_id);
-		System.out.println("M: 글 개수: " + count);
 				
 		/******************************페이징처리 1******************************/
 		// 출력할 글의 개수 설정
@@ -136,7 +133,6 @@ public class ItemDetailsAction implements Action {
 			inquiryList = bdao.getItemInquiryList(item_id, startRow, pageSize);
 		}
 		
-		System.out.println("M: size: " + inquiryList.size());
 				
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("inquiryList", inquiryList);

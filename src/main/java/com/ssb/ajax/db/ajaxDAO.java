@@ -30,10 +30,8 @@ public class ajaxDAO extends DAO {
 					dto.setOptions_price(rs.getInt("options_price"));
 					dto.setOptions_quantity(rs.getInt("options_quantity"));
 					dtoArray.add(dto);
-					System.out.println("dto 추가");
 				}
 			}else {
-				System.out.println("옵션없음");
 				return null;
 			}
 		} catch (Exception e) {
@@ -55,7 +53,6 @@ public class ajaxDAO extends DAO {
 			pstmt.setString(2, option_id);
 			pstmt.setString(3, cart_quantity);
 			pstmt.setString(4, cart_id);
-			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +70,6 @@ public class ajaxDAO extends DAO {
 			sql = "DELETE FROM cart WHERE cart_id IN(" + cart_id + ") AND member_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member_id);
-			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
