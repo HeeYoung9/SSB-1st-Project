@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
+* {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+</style>
+
 <header class="navbar navbar-expand navbar-light navbar-bg">
 	<a class="sidebar-toggle js-sidebar-toggle">
 	  <i class="hamburger align-self-center"></i>

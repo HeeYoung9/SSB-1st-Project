@@ -60,14 +60,13 @@ button {
 	position: relative;
 }
 
-
 #login_wrap {
     display: flex;
     justify-content: center; 
     align-items: center;
     height: 100vh;
     position: absolute;
-    top:170px;
+    top:50px;
     left:34%;
     
 }

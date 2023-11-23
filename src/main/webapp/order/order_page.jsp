@@ -122,7 +122,7 @@
 							<th scope="col">상품명</th>
 							<th scope="col">가격</th>
 							<th scope="col">수량</th>
-							<th scope="col">옵션값</th>
+							<th scope="col">옵션</th>
 							<th scope="col">옵션추가금</th>
 							
 						</tr>

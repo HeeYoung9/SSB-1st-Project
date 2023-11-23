@@ -126,8 +126,6 @@
                 </c:forEach>
             </table>
             
-        </section>
-        
         <!--- 페이징 --->
             <div class="paging">
                 <c:if test="${startPage > pageBlock }">
@@ -144,6 +142,8 @@
                     <a href="./AdOrderList.od?pageNum=${startPage + pageBlock}&state=${param.state}">다음</a>
                 </c:if>
             </div>
+        </section>
+        
     </main>
     
     

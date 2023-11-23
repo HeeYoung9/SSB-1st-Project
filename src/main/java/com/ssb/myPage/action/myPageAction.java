@@ -20,11 +20,11 @@ public class myPageAction implements Action {
 
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("M : myPageAction_execute() 호출");
 
+    	// 현재 로그인된 사용자의 아이디를 세션에서 가져옵니다.
         String userId = (String) request.getSession().getAttribute("userId");
 
-        // updateDAO 객체 생성
+        // myPageDAO 객체 생성
         myPageDAO dao = new myPageDAO();
 
         // dao를 이용하여 현재 로그인된 사용자 정보를 가져옵니다.
@@ -33,26 +33,23 @@ public class myPageAction implements Action {
         // 가져온 정보를 request에 설정합니다.
         request.setAttribute("currentMember", mdto);
 
-        
-        //-------------------------------내 주문 상품 관련 추가------------------------------------
+        // MemberDAO를 이용하여 현재 로그인된 사용자의 정보를 가져옵니다.
         MemberDAO memberDAO = new MemberDAO();
         MemberDTO myMemberInfo = memberDAO.getMember(userId);
         
+        // 주문 상태를 받아오는데, 값이 없으면 기본값으로 PURCHASE를 설정합니다.
         String orders_state = request.getParameter("orders_state");
-        
-        
 		if(orders_state==null) {
 			orders_state = OrdersState.PURCHASE.toString();
 		}else {
 			orders_state = request.getParameter("orders_state");
 		}
         
+		// OrdersDAO 객체 생성
         OrdersDAO ordersDAO = new OrdersDAO();
         
-        System.out.println("전달받은 멤버 번호 : "+ myMemberInfo.getMember_id());
-        
+        // 해당 사용자의 주문 개수를 가져옵니다.
         int count = ordersDAO.getOrderCountForMyPage(myMemberInfo.getMember_id(), orders_state);
-        System.out.println("MyPage 내 주문 상품 테스트" +count);
         
         /********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 상품 개수 설정
@@ -75,16 +72,9 @@ public class myPageAction implements Action {
 
 		/********************* 페이징처리 1 *******************/
 
-		// DAO - 모든 회원 정보를 가져오는 메서드 호출
+		// OrdersDAO를 이용하여 해당 사용자의 주문 목록을 가져옵니다.
 		List<OrdersDTO> orders = new ArrayList<>();
 		orders = ordersDAO.findByUserAndState(myMemberInfo.getMember_id(),orders_state, startRow, pageSize);
-		
-		
-		System.out.println(" M orders 사이즈 : " + orders.size());
-
-		for(OrdersDTO tt : orders) {
-			System.out.println("가격 어디감 ? : "+tt.getTotal_price());
-		}
 		
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
@@ -122,13 +112,7 @@ public class myPageAction implements Action {
 		request.setAttribute("endPage", endPage);	
 		request.setAttribute("orders_state",orders_state);
         
-        
-        
-        
-        //-------------------------------내 주문 상품 관련 추가------------------------------------
-        
-        
-        
+		// 내 주문상품 관련 추가
         // 페이지 이동(./myPage/myPage.jsp)
         ActionForward forward = new ActionForward();
         forward.setPath("./myPage/myPage.jsp");

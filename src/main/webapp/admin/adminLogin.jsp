@@ -22,6 +22,14 @@
 	rel="stylesheet">
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="./favicon/favicon.ico">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
+* {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body>
 	<main class="d-flex w-100">

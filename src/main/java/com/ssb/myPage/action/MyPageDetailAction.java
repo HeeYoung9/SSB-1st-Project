@@ -21,19 +21,20 @@ public class MyPageDetailAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		// 주문 번호 파라미터에서 추출
+		// 클라이언트로부터 전달받은 주문 번호 파라미터를 추출합니다.
 		String orderId = request.getParameter("orders_id");
 		
-		System.out.println("MyPageDetailAction -전달받은 주문번호  " + orderId);
-		
+		// DAO 초기화
+		// 주문 정보와 상세 주문 정보를 조회하는 DAO 초기화
 		OrdersDAO ordersDAO = new OrdersDAO();
 		OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
 		
+		// 주문 번호를 기반으로 주문 정보 조회
 		OrdersDTO findOrderDTO = ordersDAO.findById(Long.parseLong(orderId));
 		
-		
-		
+		// 주문 상태에 따라 상세 주문 정보 조회
 		List<OrderDetailDTO> orderDetailDTO = new ArrayList<>();
-		
 		if(findOrderDTO.getOrders_sort().equals(OrdersSort.SALE)) {
 			orderDetailDTO = orderDetailDAO.findByOrdersId(Long.parseLong(orderId));
 		}else if(findOrderDTO.getOrders_sort().equals(OrdersSort.RENTAL)) {
@@ -41,27 +42,21 @@ public class MyPageDetailAction implements Action {
 			
 		}
 		
-		
-		
-		System.out.println("MyPageDetailAction ( 주문상세 개수 ) : " + orderDetailDTO.size());
-		
-		//주문 배송지 정보 소환
+		// 배송지 정보 조회
+		// 주문 정보에 연결된 배송지 정보를 조회합니다.
 		locationDAO locationDAO = new locationDAO();
-		
 		locationDTO locationDTO = locationDAO.findById(findOrderDTO.getLocation_id());
 		
-		
-		
-		
+		// request 영역에 필요한 정보 저장
+		// 조회한 주문 정보, 상세 주문 정보, 배송지 정보를 request 영역에 저장합니다.
 		request.setAttribute("orders_id", orderId);
 		request.setAttribute("orders_state", findOrderDTO.getOrders_state());
 		request.setAttribute("orders", findOrderDTO);
 		request.setAttribute("orderDetailDTO", orderDetailDTO);
 		request.setAttribute("location", locationDTO);
-		System.out.println(findOrderDTO.getId());
-		System.out.println(findOrderDTO.getOrders_sort());
-		System.out.println("로케이션 아이디 값 ??? "+locationDTO.getLocation_id());
 		
+		// 페이지 이동 설정
+		// 페이지 이동 정보를 설정합니다. 페이지는 "./myPage/myPageDetail.jsp"로 이동하며, 리다이렉트 방식이 아닙니다.
 		ActionForward forward = new ActionForward();
 		forward.setPath("./myPage/myPageDetail.jsp");
 		forward.setRedirect(false);

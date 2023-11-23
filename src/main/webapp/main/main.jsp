@@ -89,7 +89,7 @@
 		<!-- 본인 페이지에 맞게 수정하려면 여기 아래서부터 삭제하고, 새로 만들면 됩니다. 혹시 문제 생기면 섹션까지 삭제 해보는거 추천!!!!-->
 
 		<!-- 우측 영역 내용 추가 -->
-		<div class="right-section" style="margin-top: 170px;">
+		<div class="right-section" style="margin-top: 192px;">
 			<h2>
 				Welcome to <b style="color: blue;">S</b>SB Style
 			</h2>

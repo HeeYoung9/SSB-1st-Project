@@ -19,11 +19,7 @@ public class myPageDTO {
 	private String member_grade;
 	
 	public myPageDTO() {
-		System.out.println(" DTO : 객체 초기화(생성) 완료! ");
-		System.out.println(" DTO : DB정보를 저장할 준비 완료~! ");
-	}
-	
-	
+	}	
 	public int getMember_id() {
 		return member_id;
 	}

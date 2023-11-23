@@ -21,18 +21,18 @@ public class updateDAO {
 
     // 공통메서드(기능)
 	// 공통) 디비 연결하기(CP)
+    // 커넥션 풀을 이용하여 데이터베이스에 연결하는 메서드입니다.
 	private Connection getCon() throws Exception {
 			
 		Context initCTX = new InitialContext();
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 			
-		System.out.println("DAO: 디비 연결 성공!");
-		System.out.println("DAO: " + con);
 		return con;			
 	}
 
 	// 공통) 디비 자원해제
+	// 데이터베이스 자원을 해제하는 메서드입니다.
 	public void CloseDB() {
 			
 		try {
@@ -46,6 +46,7 @@ public class updateDAO {
 	}
 	
     // 회원정보 조회 메서드 - getMember(id)
+	// 사용자 아이디에 해당하는 회원 정보를 조회하는 메서드입니다.
     public MemberDTO getMember(String id) {
         MemberDTO dto = null;
 
@@ -76,8 +77,6 @@ public class updateDAO {
                 dto.setMember_grade(rs.getString("member_grade"));
             }
 
-            System.out.println(" DAO : 회원정보 조회 완료!");
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -89,6 +88,7 @@ public class updateDAO {
     // 회원정보 조회 메서드 - getMember(id)
 
     // 비밀번호 확인 메서드 - checkPassword(userId, password)
+    // 사용자 아이디와 비밀번호를 받아와 해당 회원의 비밀번호와 비교하여 일치 여부를 확인하는 메서드입니다.
     public boolean checkPassword(String userId, String password) {
         boolean result = false;
 
@@ -115,6 +115,7 @@ public class updateDAO {
     }
 
     // 회원정보 수정 메서드 - updateMember(mdto)
+    // 사용자 아이디와 입력된 비밀번호를 이용하여 회원의 비밀번호를 확인하고, 일치하면 회원 정보를 업데이트하는 메서드입니다. 결과에 따라 성공 여부를 반환합니다.
     public int updateMember(String userId , MemberDTO mdto) {
         int result = -1; // -1 0 1
 
@@ -140,7 +141,6 @@ public class updateDAO {
                 pstmt.setString(3, mdto.getMember_pw());
                 pstmt.setString(4, mdto.getMember_email());
                 pstmt.setString(5, userId);
-                System.out.println("업데이트한 결과 " + pstmt);
                 // 4. sql 실행
                 result = pstmt.executeUpdate();
             }else {
@@ -148,7 +148,6 @@ public class updateDAO {
                 result = 0;
             	}
             }
-            System.out.println(" DAO : 회원정보 수정완료! (" + result + ")");
 
         } catch (Exception e) {
             e.printStackTrace();
