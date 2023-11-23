@@ -16,6 +16,7 @@ public class OrdersDTO {
 	private OrdersState orders_state;
 	private Date orders_date;
 	private OrdersSort orders_sort;
+	private int original_total_price;
 	private int total_price;
 	private int location_id;
 	
@@ -171,8 +172,17 @@ public class OrdersDTO {
 		this.location_id = location_id;
 	}
 
-	
 
+	public int getOriginal_total_price() {
+		return original_total_price;
+	}
+
+
+	public void setOriginal_total_price(int original_total_price) {
+		this.original_total_price = original_total_price;
+	}
+
+	
 
 	
 	

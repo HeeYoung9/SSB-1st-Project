@@ -179,6 +179,14 @@
 					</select>
 				</div>
 				
+								<!-- 11월 23일 추가 (마일리지 사용) 시작 -->
+					<h4 class="mb-3">마일리지</h4>
+					<div class="point">
+						<label for="point">사용가능한 포인트 : ${user.member_point}</label> 
+						<input type="number" max=${user.member_point } name="usePoint" id="usePoint">
+					</div>
+				<!-- 11월 23일 추가 (마일리지 사용) 끝 -->
+				
 				<h4 class="mb-3">배송지</h4>
 				<select class="form-select form-select-lg mb-3" aria-label="Large select example" name="location_id" id="location_id">
  	 				<c:forEach var="ldto" items="${locaList}">
@@ -223,7 +231,7 @@
 		crossorigin="anonymous"></script>
 
 <script>
-
+	document.getElementById("usePoint").defaultValue = '0';
 </script>
 
 

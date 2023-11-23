@@ -36,3 +36,10 @@
 	margin-left: 5px;
 	font-size: 16px;
 }
+
+.nav-btn{
+	padding: initial;
+    margin: auto;
+    border: none;
+    background-color: transparent;
+}

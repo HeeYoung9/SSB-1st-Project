@@ -131,7 +131,7 @@
                                             console.log(kakao_account);
                                         }
                                     });
-                                    window.location.href = './main.in';
+                                    window.location.href = './Main.in';
                                 },
                                 fail: function (error) {
                                     console.log(error);

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 h1 {
-	margin-top: 50px;
+	margin-top: 50px; !important;
 	font-family: 'Arial', sans-serif;
 	font-size: 50px;
 	font-weight: bold;
@@ -12,7 +12,7 @@ h1 {
 	font-weight: bold;
 	text-align: center;
 	padding: 20px;
-	margin-top: 150px;
+	margin-top: 200px;
 	position: relative;
 }
 

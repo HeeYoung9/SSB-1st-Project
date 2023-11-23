@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ssb.location.action.locationPopupAction;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -73,9 +74,9 @@ public class ItemFrontController extends HttpServlet {
 				}
 			}
 			
-			//----------------상품 수정----------------
-			else if (command.equals("/ItemEdit.it")) {
-			//	action = new ItemEditAction();
+			//----------------상품 수정----------------( O )
+			else if (command.equals("/itemEditForm.it")) {
+				action = new ItemEditAction();
 				try {
 				  forward = action.execute(request, response);
 				} catch (Exception e) {
@@ -83,13 +84,13 @@ public class ItemFrontController extends HttpServlet {
 				}
 			}
 			else if (command.equals("/ItemEditProAction.it")) {
-			//	action = new ItemEditProAction();
+				action = new ItemEditProAction();
 				try {
 				  forward = action.execute(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			}	
 			
 			//----------------상품 삭제----------------( O )
 			else if (command.equals("/ItemDeleteAction.it")) {
@@ -103,17 +104,6 @@ public class ItemFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			
-			//----------------상품 상세----------------
-			else if (command.equals("/ItemDetail.it")) {
-			//	action = new ItemDetailAction();
-				try {
-				  forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
 			
 			
 			

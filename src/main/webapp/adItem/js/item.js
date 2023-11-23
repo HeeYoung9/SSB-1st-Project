@@ -1,5 +1,56 @@
+function getSelectedOptions() {
+    var selectedOptions = []; // 선택된 옵션 ID를 담을 배열
+    var checkboxes = document.querySelectorAll('input[name="options_id"]:checked'); // 체크된 모든 체크박스 가져오기
+
+    checkboxes.forEach(function(checkbox) {
+        selectedOptions.push(checkbox.value); // 선택된 옵션 ID를 배열에 추가
+    });
+
+    return selectedOptions; // 선택된 옵션 ID 배열 반환
+}
+
+function edit() {
+    var selectedOptions = getSelectedOptions(); // 선택된 옵션 ID 배열 가져오기
+
+    if (selectedOptions.length > 0) { // 선택된 옵션이 있는지 확인
+        // 선택된 옵션 ID를 URL 파라미터로 추가하여 수정 페이지로 이동
+        // var editUrl = './itemEditForm.it?optionsId=' + selectedOptions.join(','); // 수정 페이지 URL // js가 문자열로 보내서 탈락!
+        var editUrl = './itemEditForm.it?optionsId=' + selectedOptions.map(Number).join(',');
+
+        window.location.href = editUrl; // 수정 페이지로 이동
+    } else {
+        alert('수정할 상품을 선택해주세요.'); // 선택된 옵션이 없는 경우 알림
+    }
+}
+
+
+function getSelectedRental() {
+    var selectedRental = []; 
+    var checkboxes = document.querySelectorAll('input[name="rental_item_id"]:checked'); 
+
+    checkboxes.forEach(function(checkbox) {
+        selectedRental.push(checkbox.value); 
+    });
+
+    return selectedRental;
+}
+
+function editRental() {
+    var selectedRental = getSelectedRental(); 
+
+    if (selectedRental.length > 0) { 
+        var editUrl = './rentalEditForm.re?rentalItemId=' + selectedRental.map(Number).join(',');
+
+        window.location.href = editUrl; 
+    } else {
+        alert('수정할 상품을 선택해주세요.'); 
+    }
+}
+
+
 
  /* (1) 체크박스 제어 */
+ /*
 $(document).ready(function() {
 	$("#cbx_chkAll").click(function() {
 		if ($("#cbx_chkAll").is(":checked")) $("input[name=options_id]").prop("checked", true);
@@ -13,6 +64,34 @@ $(document).ready(function() {
 		if (total != checked) $("#cbx_chkAll").prop("checked", false);
 		else $("#cbx_chkAll").prop("checked", true);
 	});
+}); */
+
+$(document).ready(function() {
+    $("#cbx_chkAll_options").click(function() {
+        if ($("#cbx_chkAll_options").is(":checked")) $("input[name=options_id]").prop("checked", true);
+        else $("input[name=options_id]").prop("checked", false);
+    });
+
+    $("input[name=options_id]").click(function() {
+        var total = $("input[name=options_id]").length;
+        var checked = $("input[name=options_id]:checked").length;
+
+        if (total != checked) $("#cbx_chkAll_options").prop("checked", false);
+        else $("#cbx_chkAll_options").prop("checked", true);
+    });
+
+    $("#cbx_chkAll_rental").click(function() {
+        if ($("#cbx_chkAll_rental").is(":checked")) $("input[name=rental_item_id]").prop("checked", true);
+        else $("input[name=rental_item_id]").prop("checked", false);
+    });
+
+    $("input[name=rental_item_id]").click(function() {
+        var total = $("input[name=rental_item_id]").length;
+        var checked = $("input[name=rental_item_id]:checked").length;
+
+        if (total != checked) $("#cbx_chkAll_rental").prop("checked", false);
+        else $("#cbx_chkAll_rental").prop("checked", true);
+    });
 });
 
 
@@ -66,6 +145,7 @@ window.addEventListener('load', () => {
   
 
   
+  
 /* (4) 상품/옵션 삭제 처리 */
 function selectOptions(url) {
     var selectedItems = $("input[name=options_id]:checked").map(function() {
@@ -104,9 +184,6 @@ function selectOptions(url) {
 }
 
 
-
-
-/* (5) 사이드바 자동으로 접기 */
 $(document).ready(function() {
    // 로컬 스토리지에서 상태를 읽어옴
    var isSidebarCollapsed = localStorage.getItem('isSidebarCollapsed');
@@ -125,8 +202,6 @@ $(document).ready(function() {
       localStorage.setItem('isSidebarCollapsed', isCollapsed);
    });
 });
-
-
 
 
 /* (6) 상품등록창 - 불러온 카테고리 정렬 (중복제거, 가나다순) */
@@ -193,4 +268,8 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     console.log('검색어:', searchTerm);
 
 });
+
+
+
+
 

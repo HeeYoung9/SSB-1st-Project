@@ -11,6 +11,8 @@ import com.ssb.Mitem.ItemDAO;
 import com.ssb.Mitem.ItemDTO;
 import com.ssb.cart.db.cartDAO;
 import com.ssb.cart.db.cartDTO;
+import com.ssb.member.db.MemberDAO;
+import com.ssb.member.db.MemberDTO;
 import com.ssb.order.db.OrderDetailDAO;
 import com.ssb.order.db.OrderDetailDTO;
 import com.ssb.order.db.OrdersDAO;
@@ -19,9 +21,7 @@ import com.ssb.order.exception.OrderPriceException;
 import com.ssb.order.exception.StockLackException;
 import com.ssb.order.service.OrderService;
 import com.ssb.order.vo.CreateOrderResult;
-import com.ssb.order.vo.InvalidatedReason;
 import com.ssb.order.vo.OrderCheckState;
-
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 import com.ssb.util.JSMoveFunction;
@@ -115,6 +115,32 @@ public class OrderCreateSaleAction implements Action{
 				//결제완료시 장바구니 삭제 메서드
 				cartDAO.deleteCart(cartDTO.getCart_id(), member_id);
 			}
+			
+			//-------------------------11월 23일 포인트 받아오기-----------------
+			Integer usePoint = Integer.parseInt(request.getParameter("usePoint"));
+			MemberDAO memberDAO = new MemberDAO();
+					
+			HttpSession session = request.getSession();
+			String userId = (String)session.getAttribute("userId");
+					
+					
+			MemberDTO findMember = memberDAO.getMember(userId);
+					
+			int originalTotalPrice = 0;
+					
+			if(usePoint == null || usePoint == 0) {
+				originalTotalPrice = orderTotalPrice;
+						
+			}else {
+				originalTotalPrice = orderTotalPrice;			
+				orderTotalPrice = orderTotalPrice - usePoint;
+				memberDAO.updateUsePoint(findMember.getMember_id(), usePoint);
+			}
+					
+					
+			//-------------------------11월 23일 포인트 받아오기 끝-----------------
+			
+			
 			
 			
 			System.out.println("OrderCreate 호출 확인 2");

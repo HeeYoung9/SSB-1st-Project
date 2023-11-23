@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ssb.adItem.db.ItemDAO;
+import com.ssb.rental.db.RentalDAO;
 import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
@@ -15,10 +16,10 @@ public class ItemDeleteAction implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 받은 정보 저장
         int options_id = Integer.parseInt(request.getParameter("options_id"));
-
         // 데이터 처리
         ItemDAO dao = new ItemDAO();
         dao.deleteItem(options_id);
+        
 
         // 페이지 이동 준비
         ActionForward forward = new ActionForward();

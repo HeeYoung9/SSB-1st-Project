@@ -55,8 +55,8 @@ public class OrderAction implements Action {
 			total.priceUpdate(cart.getItem_price()*cart.getCart_quantity());
 		}
 		
-		
-		
+		//11월 23일 새로 추가한 내용
+		request.setAttribute("user", findMember);
 		
 		
 		//view로 넘길 내용들

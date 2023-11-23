@@ -1,19 +1,15 @@
 package com.ssb.rental.action;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.naming.java.javaURLContextFactory;
-
 import com.ssb.location.db.locationDAO;
-import com.ssb.location.db.locationDTO;
+import com.ssb.member.db.MemberDAO;
+import com.ssb.member.db.MemberDTO;
 import com.ssb.rental.db.RentalDAO;
 import com.ssb.rental.db.RentalDTO;
 import com.ssb.util.Action;
@@ -69,6 +65,13 @@ public class RentalReserveAction implements Action {
 		
 		// 가격 표시
 		//request.setAttribute("price", locaList);
+		
+		//--------------------11월 23일 새로 추가한 내용
+		MemberDAO memberDAO = new MemberDAO();
+		MemberDTO findMember = memberDAO.getMember(userId);
+		
+		request.setAttribute("user", findMember);
+		
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./rental/rental_page/reservePage.jsp");

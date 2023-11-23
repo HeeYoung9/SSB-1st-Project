@@ -172,7 +172,7 @@ public class ItemDetailsAction implements Action {
 		
 		// 답변 정보를 가져와서 화면에 출력 
 		ReplyDAO rpdao = new ReplyDAO();
-		ReplyDTO rpdto = rpdao.getRItemReply(item_id);
+		ReplyDTO rpdto = rpdao.getItemReply(item_id);
 		request.setAttribute("rpdto", rpdto);
 
 	    ActionForward forward = new ActionForward();

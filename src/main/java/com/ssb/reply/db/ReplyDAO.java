@@ -155,7 +155,6 @@ public class ReplyDAO {
 			if(rs.next()) { // 데이터가 존재할 때				
 				rdto = new ReplyDTO();
 				
-				rdto.setReply_id(rs.getInt("reply_id"));
 				rdto.setBoard_id(rs.getInt("board_id"));						
 				rdto.setReply_content(rs.getString("reply_content"));
 				rdto.setReply_writeTime(rs.getDate("reply_writeTime"));

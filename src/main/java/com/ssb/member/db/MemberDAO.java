@@ -556,7 +556,50 @@ public class MemberDAO {
 	 
 	      }
 	      //-----------------------------결제 금액 포인트 추가--------------------------
-
+	      
+	    //-------------------------------마일리지 사용--------------------------------
+		   //(11월 23일 )
+		   
+		   public void  updateUsePoint(int member_id, int use_point) {
+			   
+			   try {
+				   
+				   int originalPoint = 0;
+				   
+				con =getCon();
+				sql = "select member_point from member where member_id = ?";
+				pstmt= con.prepareStatement(sql);
+				pstmt.setInt(1, member_id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					originalPoint =rs.getInt("member_point");
+					
+					
+					sql = "update member set member_point = ( ? - ?) where member_id = ?";
+					pstmt= con.prepareStatement(sql);
+					pstmt.setInt(1, originalPoint);
+					pstmt.setInt(2, use_point);
+					pstmt.setInt(3, member_id);
+					
+					
+					pstmt.executeUpdate();
+					
+				}
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				CloseDB();
+			}
+			
+	 
+		   }
+		   
+		   //-------------------------------마일리지 사용--------------------------------
 	   
 	   //-----------------------------------임시메서드----------------------------------
 	                           
