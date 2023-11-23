@@ -63,6 +63,10 @@
 	margin: 10pt;
 }
 
+.board_content>pre {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+
 .board_tag {
 	font-size: 11pt;
 	margin: 10pt;

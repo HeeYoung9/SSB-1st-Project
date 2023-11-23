@@ -175,7 +175,7 @@
 							<td style="font-size: 20px;"><%= currentMember.getMember_regdate() %></td>
 						</tr>
 						<tr>
-							<td style="font-size: 20px;">적립금:</td>
+							<td style="font-size: 20px;">누적결제금액:</td>
 							<td style="font-size: 20px;"><fmt:formatNumber
 									value="${currentMember.getMember_payment() }" /> 원</td>
 						</tr>

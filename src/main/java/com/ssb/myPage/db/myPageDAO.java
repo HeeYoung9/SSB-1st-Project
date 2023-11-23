@@ -20,6 +20,8 @@ public class myPageDAO {
 	
 	// 공통메서드(기능)
 	// 디비연결 메서드
+	// JNDI(Java Naming and Directory Interface)를 사용하여 
+	// 디비에 연결하는 메서드입니다. context.xml에 작성된 디비 연결 정보를 불러와서 연결을 수행합니다.
 	private Connection getCon() throws Exception {
 		// 프로젝트의 정보를 확인(JNDI)
 		Context initCTX = new InitialContext();
@@ -29,26 +31,26 @@ public class myPageDAO {
 		
 		// 디비 연결 수행
 		con = ds.getConnection();
-		System.out.println(" DAO : 디비연결 성공!(커넥션풀)");
-		System.out.println(" DAO : "+ con);
 		
 		return con;
 	}
 	
 	// 디비 연결(자원) 해제 메서드
+	// ResultSet, PreparedStatement, Connection을 닫는 메서드입니다. 자원 해제를 위해 사용됩니다
 	public void CloseDB() {
 		try {
 			if(rs != null) rs.close();
 			if(pstmt != null) pstmt.close();
 			if(con != null) con.close();
 			
-			System.out.println(" DAO :  디비 자원해제 완료!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	// 회원정보 조회 메서드 - getMemberList(id)
+	// 회원 아이디를 받아 해당 회원의 정보를 조회하는 메서드입니다. SQL 쿼리를 실행하고, 
+	// 결과를 myPageDTO 객체에 저장하여 반환합니다.
 	public myPageDTO getMember(String userId) {
 		myPageDTO dto = new myPageDTO();
 		
@@ -60,6 +62,7 @@ public class myPageDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
+				// 회원 정보를 DTO에 설정
 				dto.setMember_user_id(rs.getString("member_user_id"));
 				dto.setMember_pw(rs.getString("member_pw"));
 				dto.setMember_name(rs.getString("member_name"));
@@ -75,6 +78,7 @@ public class myPageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			// 자원 해제
 			CloseDB();
 		}
 		

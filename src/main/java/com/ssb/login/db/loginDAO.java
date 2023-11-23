@@ -16,7 +16,9 @@ public class loginDAO {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     private String sql = "";
-
+    
+    
+    // 데이터베이스 연결을 위한 메서드
     private Connection getCon() throws Exception {
         try {
             Context initCTX = new InitialContext();
@@ -27,7 +29,8 @@ public class loginDAO {
         }
         return con;
     }
-
+    
+    // 데이터베이스 자원을 닫기 위한 메서드
     public void closeDB() {
         try {
             if (rs != null)
@@ -45,8 +48,7 @@ public class loginDAO {
     public int login(String member_user_id, String member_pw) {
         int result = 0;
         
-        System.out.println("DAO : "+member_user_id + member_pw);
-        try {
+      try {
             con = getCon();
             sql = "SELECT * FROM member WHERE member_user_id = ? AND member_pw = ?";
             pstmt = con.prepareStatement(sql);
@@ -66,11 +68,11 @@ public class loginDAO {
         } finally {
             closeDB();
         }
-        System.out.println("result값 : "+result);
-        return result;
+       return result;
     }
 
- // 로그인 체크 메서드 - loginMember(dto)
+    
+    // 로그인 체크 메서드 - loginMember(dto)
  	public int loginMember(MemberDTO dto) {
  		int result = -1; // -1 0 1
  		
@@ -99,7 +101,6 @@ public class loginDAO {
  				result = -1;
  			}
  			
- 			System.out.println(" DAO : 로그인 처리 완료 ("+result+")");
  		} catch (Exception e) {
  			e.printStackTrace();
  		} finally {

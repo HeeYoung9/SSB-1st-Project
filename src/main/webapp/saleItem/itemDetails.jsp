@@ -74,7 +74,7 @@ function openInquiryPop(){
 					<div class="detail">
 					<ul>
 						<li><span>판매가</span> <span class="r"> <b> <fmt:formatNumber value="${itemDTO.item_price }" />원 </b> </span></li>
-						<li><span>적립금</span> <span class="r"> 500 P </span></li>
+						<li><span>적립금</span> <span class="r"> <fmt:formatNumber type="number" maxFractionDigits="0" value="${itemDTO.item_price *0.01}"/> point</span></li>
 						<li><span>구매후기</span> 
 							<span class="star"> 
 								<c:forEach begin="1" end="4" step="1">

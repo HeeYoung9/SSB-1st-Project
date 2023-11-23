@@ -150,7 +150,8 @@
 							<td>${rdto.rental_str }</td>
 							<td>${rdto.rental_end }</td>
 							<td>${rdto.rental_item_price }</td>
-							<td>${rdto.rental_opt_quantity }</td> <!-- 렌탈제품 1개씩만 떠야함. -->
+<%-- 							<td>${rdto.rental_opt_quantity }</td> <!-- 렌탈제품 1개씩만 떠야함. --> --%>
+							<td>1</td> <!-- 렌탈제품 1개씩만 떠야함. -->
 						</tr>
 						
 						

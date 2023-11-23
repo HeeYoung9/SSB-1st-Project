@@ -16,10 +16,10 @@ import com.ssb.util.JSMoveFunction;
 
 public class loginAction implements Action {
 
-	// alt + shift + s + v
+	// Action 인터페이스의 execute 메서드를 구현
 	@Override
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		System.out.println(" M : loginAction_execute() 실행 ");
+		
 		// 한글처리 인코딩
 		request.setCharacterEncoding("UTF-8");
 		
@@ -29,39 +29,42 @@ public class loginAction implements Action {
 		MemberDTO dto = new MemberDTO();
 		dto.setMember_user_id(request.getParameter("member_user_id"));
 		dto.setMember_pw(request.getParameter("member_pw"));
-		System.out.println("비밀번호는? "+dto.getMember_pw());
+		
 		
 		// DAO객체 생성 -> 로그인 체크 메서드
 		loginDAO dao = new loginDAO();
 		
+		//로그인 체크 결과값
 		int result = dao.loginMember(dto);
-		System.out.println(" M : result : "+result);
+		
 		
 		ActionForward forward = null;
 		
-		
+		 // 로그인 체크 결과에 따른 분기 처리
 		 if(result == 2) {
+			// 회원정보가 없는 경우
 			 JSMoveFunction.alertBack(response, "회원정보가 없습니다.");
 		 }else if(result == 1) {
-			// 페이지 이동(JSP)
-			// 아이디 정보를 세션에 저장2
+	        // 로그인 성공
+
+	        // 세션에 아이디 정보 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", dto.getMember_user_id());
 			
+			// 회원 정보를 가져와 세션에 저장
 			MemberDAO mdao = new MemberDAO();
-			
 			MemberDTO mdto =  mdao.getMember(dto.getMember_user_id());
 			session.setAttribute("member_id", String.valueOf(mdto.getMember_id()));
-			System.out.println("저장된 멤버 아이디값! : "+mdto.getMember_id());
+		
 			
-			//response.sendRedirect(null);
+			// 페이지 이동 설정
 			forward = new ActionForward();
 			forward.setPath("./Main.in");
 			forward.setRedirect(true);
 			
 			return forward;			
 		}else if(result == 0) {
-			// 페이지 이동(JS)
+			// 사용자 비밀번호 오류
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println(" <script> ");
@@ -70,9 +73,9 @@ public class loginAction implements Action {
 			out.println(" </script> ");
 			out.close();
 			
-			return null; // ActionForward정보가 null=>컨트롤러 페이지이동X
+			return null; // ActionForward 정보가 null => 컨트롤러 페이지 이동하지 않음
 		}else{ //result == -1
-			// 페이지 이동(JS)
+			// 회원정보 없음
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println(" <script> ");

@@ -18,30 +18,23 @@ import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
 @WebServlet("*.ud")
-public class updateController extends HttpServlet {
+public class updateController extends HttpServlet { // 이 서블릿은 URL 패턴이 *.ud인 요청을 처리합니다.
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        System.out.println("C : updateController_doProcess() 호출");
-
-        System.out.println("\n-------------------------- 1. 가상주소 계산 시작 -------------------------------");
-        // URI = URL - (프로토콜 - IP -포트번호)
+            throws ServletException, IOException { // 서블릿의 핵심 처리를 담당하는 메서드입니다.
+    	
+    	// URI = URL - (프로토콜 - IP -포트번호)
+    	// 요청된 URI, 컨텍스트 패스, 그리고 실제 명령어를 추출합니다.
         String requestURI = request.getRequestURI();
-        System.out.println("C : requestURI : " + requestURI);
         String CTXPath = request.getContextPath();
-        System.out.println("C : CTXPath : " + CTXPath);
         String command = requestURI.substring(CTXPath.length());
-        System.out.println("C : command : " + command);
-        System.out.println("-------------------------- 1. 가상주소 계산 끝 ---------------------------------");
-
-        System.out.println("\n-------------------------- 2. 가상주소 매핑 시작 -------------------------------");
         Action action = null;
         ActionForward forward = null;
 
-        // 로그인된 사용자 정보를 request에 추가
+        // HttpSession을 통한 사용자 정보 추가
+        // 세션에서 사용자 아이디를 가져와 사용자 정보를 DB에서 조회한 후, request에 추가합니다.
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userId");
-        System.out.println("C : 로그인된 사용자 ID : " + userId);
 
         if (userId != null) {
             // 사용자 정보를 DB에서 가져오기
@@ -51,60 +44,54 @@ public class updateController extends HttpServlet {
             // 현재 로그인된 사용자의 정보를 request에 저장
             request.setAttribute("currentMember", currentMember);
         }
-
+        
+        
+        // 명령어에 따른 처리 분기
+        // 명령어에 따라 처리를 분기합니다. update.ud는 사용자 정보 업데이트 폼으로 이동하고,
+        // updateAction.ud 및 updateProAction.ud는 각각 업데이트 처리를 위한 액션 클래스를 호출합니다.
         if (command.equals("/update.ud")) {
-            System.out.println("C : /update.ud 매핑");
-            System.out.println("C : 패턴3 - DB처리O, 페이지 출력");
-
+        	// update.jsp로 이동하기 위한 설정
             forward = new ActionForward();
             forward.setPath("./update/update.jsp");
             forward.setRedirect(false);
 
         } else if (command.equals("/updateAction.ud")) {
-            System.out.println("C : /updateAction.ud 매핑");
-            System.out.println("C : 패턴2 - DB처리O, 뷰페이지 이동");
-            action = new updateAction();
+        	// 사용자 정보 업데이트를 위한 Action 클래스 호출
+        	action = new updateAction();
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (command.equals("/updateProAction.ud")) {
-            System.out.println("C : /updateProAction.ud 매핑");
-            System.out.println("C : 패턴2 - DB처리O, 뷰페이지 이동");
-            action = new updateProAction();
+        	// 사용자 정보 업데이트 처리를 위한 Action 클래스 호출
+        	action = new updateProAction();
             try {
                 forward = action.execute(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
-
-        System.out.println("\n-------------------------- 3. 가상주소 이동 시작 -------------------------------");
+        // 페이지 이동
         if (forward != null) { // 이동정보가 존재할때
             if (forward.isRedirect()) { // true
-                System.out.println("C : " + forward.getPath() + "로, 이동방식 : sendRedirect()");
-
+            	// 리다이렉트 방식으로 페이지 이동
                 response.sendRedirect(forward.getPath());
             } else { // false
-                System.out.println("C : " + forward.getPath() + "로, 이동방식 : forward()");
+            	// 포워딩 방식으로 페이지 이동
                 RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
                 dis.forward(request, response);
             }
         }
-        System.out.println("-------------------------- 3. 가상주소 이동 끝 ---------------------------------");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("C : updateController_doGet() 호출");
         doProcess(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("C : updateController_doPost() 호출");
         doProcess(request, response);
     }
 }

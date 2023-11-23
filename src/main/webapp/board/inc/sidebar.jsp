@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
+* {
+	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
+}
+</style>
+    
 <nav id="sidebar" class="sidebar js-sidebar">
   <div class="sidebar-content js-simplebar">
 	<a class="sidebar-brand" href="./NoticeList.no">

@@ -40,7 +40,7 @@ public class AdMemberListAction implements Action {
 		
 		
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
-		// MemberDAO 객체 생성 - 회원몰록 조회 메서드() 
+		// MemberDAO 객체 생성 - 회원목록 조회 메서드() 
 		
 		int count = 0;
 		if(search == null) { // 검색어 X
@@ -53,8 +53,8 @@ public class AdMemberListAction implements Action {
 		System.out.println(" M : 회원수 : " + count);
 
 		/********************* 페이징처리 1 *******************/
-		// 한 페이지에 출력할 상품 개수 설정
-		int pageSize = 10;
+		// 한 페이지에 출력할 회원 개수 설정
+		int pageSize = 15;
 
 		// 현 페이지가 몇페이지 인지확인
 		String pageNum = request.getParameter("pageNum");

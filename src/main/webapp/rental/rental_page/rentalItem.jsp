@@ -64,8 +64,12 @@ function openInquiryPop(){
 					<fmt:formatNumber value="${rdto.rental_item_price }" />
 					원
 				</p>
+				
+				<div>
+					적립금: <fmt:formatNumber type="number" maxFractionDigits="0" value="${rdto.rental_item_price*0.01 }"/> point
+				</div>
+				
 				<p>
-
 					<c:forEach begin="1" end="4" step="1">
 						<img width="20" height="20" src="./rental/icon/star.png" />
 					</c:forEach>

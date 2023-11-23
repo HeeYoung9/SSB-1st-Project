@@ -17,30 +17,24 @@ import com.ssb.util.Action;
 import com.ssb.util.ActionForward;
 
 @WebServlet("*.mp")
-public class myPageController extends HttpServlet {
+public class myPageController extends HttpServlet { // URL 매핑 설정, 해당 서블릿은 URL 패턴이 "*.mp"로 끝나는 모든 요청을 처리합니다.
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        System.out.println("C : myPageController_doProcess() 호출");
-
-        System.out.println("\n-------------------------- 1. 가상주소 계산 시작 -------------------------------");
+            throws ServletException, IOException { // doProcess()메서드 , 모든 요청에 대한 처리를 담당하는 메서드
         // URI = URL - (프로토콜 - IP -포트번호)
-        String requestURI = request.getRequestURI();
-        System.out.println("C : requestURI : " + requestURI);
+        // 요청 처리 로직 , 요청된 URI 에서 컨텍스트 패스를 제외한 부분을 추출하여 명령(command)으로 사용합니다.
+    	String requestURI = request.getRequestURI();
         String CTXPath = request.getContextPath();
-        System.out.println("C : CTXPath : " + CTXPath);
         String command = requestURI.substring(CTXPath.length());
-        System.out.println("C : command : " + command);
-        System.out.println("-------------------------- 1. 가상주소 계산 끝 ---------------------------------");
+        
 
-        System.out.println("\n-------------------------- 2. 가상주소 매핑 시작 -------------------------------");
         Action action = null;
         ActionForward forward = null;
 
         // 로그인된 사용자 정보를 request에 추가
+        // 세션을 이용한 사용자 정보 추가 , 로그인된 사용자가 있다면 해당 사용자의 정보를 DB에서 가져와서 request에 추가합니다.
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userId");
-        System.out.println("C : 로그인된 사용자 ID : " + userId);
 
         if (userId != null) {
             // 사용자 정보를 DB에서 가져오기
@@ -50,10 +44,11 @@ public class myPageController extends HttpServlet {
             // 현재 로그인된 사용자의 정보를 request에 저장
             request.setAttribute("currentMember", currentMember);
         }
-
+        
+        
+        // 요청 처리에 따른 Action 객체 생성 및 실행
+        // 각 요청에 따른 Action 객체를 생성하고 execute() 메서드를 실행합니다.
         if (command.equals("/myPage.mp")) {
-            System.out.println("C : /myPage.mp 매핑");
-            System.out.println("C : 패턴3 - DB처리O, 페이지 출력");
 
             // DB 처리를 Action 클래스에서 수행하도록 변경
             action = new myPageAction();
@@ -64,8 +59,6 @@ public class myPageController extends HttpServlet {
             }
 
         } else if (command.equals("/myPageAction.mp")) {
-            System.out.println("C : /myPageAction.mp 매핑");
-            System.out.println("C : 패턴2 - DB처리O, 뷰페이지 이동");
             action = new myPageAction();
             try {
                 forward = action.execute(request, response);
@@ -73,8 +66,8 @@ public class myPageController extends HttpServlet {
                 e.printStackTrace();
             }
         }else if (command.equals("/myPageRefundAction.mp")) {
-        	System.out.println("C : myPageRefund");
         	
+        	// 주문 환불 처리를 담당하는 Action 클래스 호출
         	action = new OrderRefundAction();
         	try {
 				forward = action.execute(request, response);
@@ -83,8 +76,9 @@ public class myPageController extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(command.equals("/myPageOrderDetail.mp")) {
-        	action = new MyPageDetailAction();
         	
+        	// 주문 상세 정보 조회를 담당하는 Action 클래스 호출
+        	action = new MyPageDetailAction();	
         	try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -92,34 +86,30 @@ public class myPageController extends HttpServlet {
 				e.printStackTrace();
 			}
         }
-        System.out.println("-------------------------- 2. 가상주소 매핑 끝 ---------------------------------");
-
-        System.out.println("\n-------------------------- 3. 가상주소 이동 시작 -------------------------------");
+        
+        // 페이지 이동 처리
+        // Action 객체에서 반환된 ActionForward에 따라 페이지 이동을 처리합니다. 페이지 리다이렉트 또는 포워드를 선택합니다.
         if (forward != null) { // 이동정보가 존재할때
             if (forward.isRedirect()) { // true
-                System.out.println("C : " + forward.getPath() + "로, 이동방식 : sendRedirect()");
-
+            	// 페이지 리다이렉트
                 response.sendRedirect(forward.getPath());
             } else { // false
-                System.out.println("C : " + forward.getPath() + "로, 이동방식 : forward()");
+            	// 포워드를 이용한 페이지 이동
                 RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
                 dis.forward(request, response);
             }
         }
-        System.out.println("-------------------------- 3. 가상주소 이동 끝 ---------------------------------");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("C : updateController_doGet() 호출");
         doProcess(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("C : updateController_doPost() 호출");
         doProcess(request, response);
     }
 
