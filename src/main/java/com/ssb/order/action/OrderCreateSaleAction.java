@@ -130,11 +130,13 @@ public class OrderCreateSaleAction implements Action{
 					
 			if(usePoint == null || usePoint == 0) {
 				originalTotalPrice = orderTotalPrice;
+				ordersDTO.setOriginal_total_price(originalTotalPrice);
 						
 			}else {
 				originalTotalPrice = orderTotalPrice;			
 				orderTotalPrice = orderTotalPrice - usePoint;
 				memberDAO.updateUsePoint(findMember.getMember_id(), usePoint);
+				ordersDTO.setOriginal_total_price(originalTotalPrice);
 			}
 					
 					
