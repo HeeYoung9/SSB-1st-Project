@@ -182,9 +182,9 @@
 								<!-- 11월 23일 추가 (마일리지 사용) 시작 -->
 					<h4 class="mb-3">마일리지</h4>
 					<div class="point">
-						<label for="point">사용가능한 포인트 : ${user.member_point}</label> 
-						<input type="number" max=${user.member_point } name="usePoint" id="usePoint">
-					</div>
+						<label for="point" class="form-label">>사용가능한 포인트 : ${user.member_point}</label> 
+						<input type="number" class="form-control" max=${user.member_point } name="usePoint" id="usePoint">
+					</div><br>
 				<!-- 11월 23일 추가 (마일리지 사용) 끝 -->
 				
 				<h4 class="mb-3">배송지</h4>
