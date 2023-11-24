@@ -560,6 +560,8 @@ public class RentalDAO {
 
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {
+				CloseDB();
 			}
 
 
