@@ -24,8 +24,8 @@
 				<col width="70%">
 			</colgroup>
 				<tr>
-					<td><label>이름</label></td>
-					<td><input type="text" id="location_name" placeholder="이름" value="${dto.location_name}" required="required"></td>
+					<td><label>받는사람</label></td>
+					<td><input type="text" id="location_name" placeholder="받는사람" value="${dto.location_name}" required="required"></td>
 				</tr>
 				<tr>
 					<td><label>전화번호</label></td>

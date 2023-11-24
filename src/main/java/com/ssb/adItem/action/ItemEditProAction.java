@@ -15,7 +15,6 @@ public class ItemEditProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			System.out.println("\nM: ItemEditProAction_execute() 호출");
 			// 전달정보 저장
 			// => ItemDTO 객체 저장
 			ItemDTO dto = new ItemDTO();

@@ -17,7 +17,6 @@ public class AdMemberListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : AdMemberListAction_execute() 호출!");
 		
 //		HttpSession session = request.getSession();
 //		String admin_id = (String) session.getAttribute("adminId");
@@ -31,7 +30,6 @@ public class AdMemberListAction implements Action {
 		
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
-		System.out.println(" M : 검색어 = "+search );
 		
 		// 회원목록 조회 메서드()
 		MemberDAO dao = new MemberDAO();
@@ -44,13 +42,10 @@ public class AdMemberListAction implements Action {
 		
 		int count = 0;
 		if(search == null) { // 검색어 X
-			System.out.println(" M : 검색어 없음! ");
 			count = dao.getMemberCount();
 		}else { // 검색어 O - 검색결과O/X 
-			System.out.println(" M : 검색어 있음! ("+search+")");
 			count = dao.getMemberCount(search);
 		}		
-		System.out.println(" M : 회원수 : " + count);
 
 		/********************* 페이징처리 1 *******************/
 		// 한 페이지에 출력할 회원 개수 설정
@@ -82,7 +77,6 @@ public class AdMemberListAction implements Action {
 		}else {
 			// 상품이 없는경우
 		}
-//		System.out.println(" M : " + memberList.size());
 
 		// request영역에 정보를 저장
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달

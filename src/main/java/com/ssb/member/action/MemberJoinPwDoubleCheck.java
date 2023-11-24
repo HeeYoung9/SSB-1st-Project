@@ -12,7 +12,6 @@ public class MemberJoinPwDoubleCheck implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : MemberJoinPwDoubleCheck_execute() 호출");
 		
 		
 		String member_pw2 = request.getParameter("userPw2");

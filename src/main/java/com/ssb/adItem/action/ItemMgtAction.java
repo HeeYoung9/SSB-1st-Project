@@ -16,16 +16,13 @@ public class ItemMgtAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("\n M: ItemMgtAction_execute() 호출");
 
 		
 		
 		// 전달정보 검색어 정보 저장
 		String search = request.getParameter("search");
-		System.out.println(" M : 검색어 = "+search );
 		
 		String itemStyle = request.getParameter("item_style");
-		System.out.println("선택된 아이템 스타일은? "+itemStyle);
 		
 		// 기존에 저장된 상품 정보를 가져와서 화면에 출력
 		// ItemDAO 객체 생성 - 상품목록 조회 메서드() 
@@ -36,22 +33,16 @@ public class ItemMgtAction implements Action {
 		int count = 0;
 		if(itemStyle==null || itemStyle.equals("sale")) {
 			if(search == null) { // 검색어 X
-				System.out.println(" M : 검색어 없음! ");
 				count = idao.getItemCount();
 			}else { // 검색어 O - 검색결과O/X 
-				System.out.println(" M : 검색어 있음! ("+search+")");
 				count = idao.getItemCount(search);
 			}		
-			System.out.println(" M : 상품 개수 : " + count);
 		}else if(itemStyle.equals("rental")) {
 			if(search == null) { // 검색어 X
-				System.out.println(" M : 검색어 없음! ");
 				count = rdao.getItemCount();
 			}else { // 검색어 O - 검색결과O/X 
-				System.out.println(" M : 검색어 있음! ("+search+")");
 				count = rdao.getItemCount(search);
 			}		
-			System.out.println(" M : 상품 개수 : " + count);
 		}
 		
 		
@@ -88,7 +79,6 @@ public class ItemMgtAction implements Action {
 			}else {
 				// 상품이 없는경우
 			}
-			System.out.println(" M : " + ItemMgt.size());
 		}else if(itemStyle.equals("rental")) {
 			if (count > 0 && search == null) {
 				rItemMgt = rdao.rGetItemMgt(startRow, pageSize);
@@ -97,7 +87,6 @@ public class ItemMgtAction implements Action {
 			}else {
 				// 상품이 없는경우
 			}
-			System.out.println(" M : " + rItemMgt.size());
 		}
 		
 		// request영역에 정보를 저장

@@ -32,8 +32,6 @@ public class MemberDAO {
 		
 		// 디비 연결 수행
 		con = ds.getConnection();
-		System.out.println(" DAO : 디비연결 성공!(커넥션풀)");
-		System.out.println(" DAO : "+ con);
 		
 		return con;
 	}
@@ -45,7 +43,6 @@ public class MemberDAO {
 				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 				
-				System.out.println(" DAO :  디비 자원해제 완료!");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -55,7 +52,6 @@ public class MemberDAO {
 	public void insertMember(MemberDTO dto) {
 		try {
 			con = getCon();
-			System.out.println("DAO : DB 연결!");
 			
 			sql = "insert into member (member_user_id,member_pw,member_name,member_birth,member_gender,"
 					+ "member_email,member_phone,member_regdate,member_situation,member_agree) values(?,?,?,?,?,?,?,?,?,?)";
@@ -75,7 +71,6 @@ public class MemberDAO {
 			// 4. sql 실행
 			pstmt.executeUpdate();
 			
-			System.out.println("DAO : 회원가입 성공!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -88,7 +83,6 @@ public class MemberDAO {
 	public int checkId(String member_user_id) { // 유저가 입력한 값을 매개변수로 한다
 		int result = 2;
 		String input = member_user_id;
-//		System.out.println("input : " +input);
 		
 		if(member_user_id.contains("admin")) {
 			// "admin" 이 포함된 경우, 생성 불가능
@@ -124,7 +118,6 @@ public class MemberDAO {
 				CloseDB();
 			}
 		}
-		System.out.println("DAO : 회원가입 아이디 제어 완료("+result+")");
 		
 		return result;
 	}
@@ -153,7 +146,6 @@ public class MemberDAO {
 					result = false;
 				}
 				
-				System.out.println("pwcheck : "+result);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -190,7 +182,6 @@ public class MemberDAO {
 					result = false;
 				}
 				
-				System.out.println("DAO : 회원탈퇴(수정) 완료! ("+result+")");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -217,7 +208,6 @@ public class MemberDAO {
 				
 				result = pstmt.executeUpdate();
 				
-				System.out.println("DAO : 회원정보 삭제 완료!("+result+")");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -285,14 +275,12 @@ public class MemberDAO {
 				
 				// 4. sql 실행
 				rs = pstmt.executeQuery();
-				System.out.println(" SQL 실행! ");
 				
 				// 5. 데이터 처리 - 개수를 저장
 				if(rs.next()) {
 					result = rs.getInt(1);
 				}
 				
-				System.out.println(" DAO : 개수 "+result+"개");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -325,14 +313,12 @@ public class MemberDAO {
  			
 			// 4. sql 실행
 			rs = pstmt.executeQuery();
-			System.out.println(" SQL 실행! ");
 			
 			// 5. 데이터 처리 - 개수를 저장
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}
 			
-			System.out.println(" DAO : 개수 "+result+"개");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -399,8 +385,6 @@ public class MemberDAO {
 
 	        } // while
 
-	        System.out.println("DAO: 게시판 글 목록 조회 성공!");
-	        System.out.println("DAO: " + memberList.size());
 
 	    } catch (SQLException e) {
 	        e.printStackTrace(); // SQLException 출력
@@ -466,8 +450,6 @@ public class MemberDAO {
 
 	        } // while
 
-	        System.out.println(" DAO: 게시판 글 목록 조회 성공!");
-	        System.out.println(" DAO: " + memberList.size());
 
 	    } catch (Exception e) {
 	        e.printStackTrace();

@@ -23,7 +23,6 @@ public class OrderResultAction implements Action {
 		
 		request.setAttribute("payment", paymentDTO);
 		
-		System.out.println(mid);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./order/order_result.jsp");

@@ -15,7 +15,6 @@ public class MemberCloseAccountPwCheck implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("M : MemberCloseAccountPwCheck_excute() 호출");
 		
 		HttpSession session = request.getSession();
 		String userId =  (String) session.getAttribute("userId"); 
@@ -33,14 +32,11 @@ public class MemberCloseAccountPwCheck implements Action {
 		
 		if(result) {
 			checkPwCase = 1;
-			System.out.println("결과 : " + checkPwCase);
 		}else {
 			checkPwCase = 0;
-			System.out.println("결과 : " + checkPwCase);
 		}
 		out.write(checkPwCase+"");
 		
-		System.out.println();
 		return null;
 	}
 

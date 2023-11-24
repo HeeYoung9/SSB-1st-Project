@@ -18,7 +18,6 @@ public class RentalItemAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("RentalItemAction_execute() 호출");
 
 			
 		// 전달정보 저장
@@ -66,7 +65,6 @@ public class RentalItemAction implements Action {
 			reviewList = bdao.getRItemReviewList(rItemId, reviewStartRow, reviewPageSize);
 		}
 
-		System.out.println("M: size: " + reviewList.size());
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("reviewList", reviewList);
@@ -109,7 +107,6 @@ public class RentalItemAction implements Action {
 		// 기존에 저장된 글정보를 가져와서 화면에 출력				
 		int count = 0;
 		count = bdao.getRItemInquiryCount(rItemId);
-		System.out.println("M: 글 개수: " + count);
 
 		/******************************페이징처리 1******************************/
 		// 출력할 글의 개수 설정
@@ -140,7 +137,6 @@ public class RentalItemAction implements Action {
 			inquiryList = bdao.getRItemInquiryList(rItemId, startRow, pageSize);
 		}
 
-		System.out.println("M: size: " + inquiryList.size());
 
 		// 리스트를 출력 => 연결된 뷰페이지에서 출력하도록 정보 전달
 		request.setAttribute("inquiryList", inquiryList);
@@ -151,7 +147,6 @@ public class RentalItemAction implements Action {
 		// 전체 페이지수
 		int pageCount = count / pageSize + (count % pageSize == 0? 0:1);
 		
-		System.out.println("pageCount: " + pageCount);
 
 		// 한 화면에 보여줄 페이지 블럭 개수
 		int pageBlock = 5;
@@ -159,12 +154,10 @@ public class RentalItemAction implements Action {
 		// 페이지 블럭의 시작 번호 계산
 		int startPage = ((currentPage - 1)/pageBlock) * pageBlock + 1;
 		
-		System.out.println("startPage: " + startPage);
 
 		// 페이지 블럭의 마지막 번호 계산
 		int endPage = startPage + pageBlock - 1;
 		
-		System.out.println("endPage: " + endPage);
 
 		// 페이지의 글이 없는 경우
 		if(endPage > pageCount) {

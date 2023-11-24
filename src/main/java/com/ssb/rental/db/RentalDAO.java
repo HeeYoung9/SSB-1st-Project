@@ -33,8 +33,6 @@ public class RentalDAO {
 		con = ds.getConnection();
 
 
-		System.out.println("DAO : 디비 연결 성공!");
-		System.out.println("DAO : "+con);
 
 		return con;
 
@@ -78,8 +76,6 @@ public class RentalDAO {
 				rentalList.add(rdto);
 
 			}
-			System.out.println("DAO : 렌탈아이템 조회 성공!");
-			System.out.println("DAO 조회 행수 : "+rentalList.size());
 
 		} catch (Exception e) {
 
@@ -120,8 +116,6 @@ public class RentalDAO {
 				itemList.add(rdto);
 
 			}
-			System.out.println("DAO : 렌탈아이템 조회 성공!");
-			System.out.println("DAO 조회 행수 : "+itemList.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -166,7 +160,6 @@ public class RentalDAO {
 				rdto.setCategory_id(rs.getInt("category_id"));
 
 			}
-			System.out.println("DAO : 제품 정보 조회 완료!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -209,7 +202,6 @@ public class RentalDAO {
 				categoryList.add(rdto);
 
 			}
-			System.out.println("DAo : 카테고리별 목록 조회 완료! ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -250,7 +242,6 @@ public class RentalDAO {
 					categoryList.add(rdto);
 
 				}
-				System.out.println("DAo : 카테고리별 목록 조회 완료! ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -291,7 +282,6 @@ public class RentalDAO {
 					categoryList.add(rdto);
 
 				}
-				System.out.println("DAo : 카테고리별 목록 조회 완료! ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -335,7 +325,6 @@ public class RentalDAO {
 			pstmt.setInt(10, rdto.getRental_days());
 			pstmt.executeUpdate();
 
-			System.out.println("RentalDAO : 렌탈 등록 성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -377,7 +366,6 @@ public class RentalDAO {
 				}
 
 			}
-			System.out.println("DAO : 제품 정보 조회 완료!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -434,7 +422,6 @@ public class RentalDAO {
 
 			} // while
 
-			System.out.println(" \n ItemDAO : 상품 관리 페이지가 열렸다! ");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -483,7 +470,6 @@ public class RentalDAO {
 
 				} // while
 
-				System.out.println(" \n ItemDAO : 상품 검색 성공! ");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -514,7 +500,6 @@ public class RentalDAO {
 				if (rs.next()) {
 					result = rs.getInt(1);
 				}
-				System.out.println(" \n RentalDAO : 전체 상품 개수 " + result + "개");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -545,7 +530,6 @@ public class RentalDAO {
 				if (rs.next()) {
 					result = rs.getInt(1);
 				}
-				System.out.println(" ItemDAO : 검색 조건과 일치하는 상품 개수 " + result + "개");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -576,6 +560,8 @@ public class RentalDAO {
 
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {
+				CloseDB();
 			}
 
 

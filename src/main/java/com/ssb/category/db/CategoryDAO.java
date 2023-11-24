@@ -31,8 +31,6 @@ public class CategoryDAO {
 		DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/ssb");
 		con = ds.getConnection();
 
-		System.out.println(" \n ItemDAO : 디비연결 성공!! ");
-//		System.out.println(" DAO : " + con);
 		return con;
 	}
 
@@ -79,7 +77,6 @@ public class CategoryDAO {
 	            CategoryList.add(dto);
 	        } // while
 	        
-	        System.out.println("\nCategoryDAO: 카테고리 목록을 불러왔다!");
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace(); 
@@ -118,7 +115,6 @@ public class CategoryDAO {
  	            categoryId = rs.getInt("category_id");
  	        }
 
- 	        System.out.println(" CategoryDAO : 일치하는 카테고리ID를 찾아왔어요 ");
 
  	    } catch (Exception e) {
  	        e.printStackTrace();
@@ -175,7 +171,6 @@ public class CategoryDAO {
 					newCategoryId = rs.getInt("newCategoryId");
 				}
 
-				System.out.println("CategoryDAO : 카테고리 등록 성공! 새로운 Category ID: " + newCategoryId + "번");
 
 			} catch (Exception e) {
 				e.printStackTrace();

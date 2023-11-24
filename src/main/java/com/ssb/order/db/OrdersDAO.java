@@ -30,7 +30,6 @@ public class OrdersDAO {
 	
 	//-------------------------- 렌탈 주문 생성 시작 --------------------------------------
 		public void saveRentalOrders(OrdersDTO dto) throws OrderPriceException{
-			System.out.println("saveRentalOrder 호출 확인");
 			
 			try {
 				// 1.2 디비 연결
@@ -62,7 +61,6 @@ public class OrdersDAO {
 				
 				pstmt.executeUpdate();
 				
-				System.out.println("order 정상영업");
 				
 				
 				//트랜잭션 커밋
@@ -84,7 +82,6 @@ public class OrdersDAO {
 	
 	//-------------------------- 주문 생성 시작 --------------------------------------
 	public void saveSaleOrders(OrdersDTO dto) throws OrderPriceException{
-		System.out.println("saveSaleOrder 호출 확인");
 		
 		try {
 			// 1.2 디비 연결
@@ -116,7 +113,6 @@ public class OrdersDAO {
 			
 			pstmt.executeUpdate();
 			
-			System.out.println("order 정상영업");
 			
 			
 			//트랜잭션 커밋
@@ -193,14 +189,6 @@ public class OrdersDAO {
 						//-----------------------------------------------------
 						);
 						
-						System.out.println("ordersDAO : orders_id 값 : " + rs.getLong("orders_id"));
-						System.out.println("ordersDAO : orders_멤버 ID 값 : " + rs.getLong("member_id"));
-						System.out.println("ordersDAO : orders_orders_state 값 : "+ rs.getString("orders_state"));
-						System.out.println("ordersDAO : orders_sort 값 : " + rs.getString("orders_sort"));
-						System.out.println("ordersDAO : orders_total_price : " + rs.getInt("orders_total_price"));
-						
-						System.out.println("ordersDAO : 변환 후 orders_state 값 : " + transStateStringToEnum(rs.getString("orders_state")));
-						System.out.println("ordersDAO : 변환 후 orders_sort 값 : " + transSortStringToEnum(rs.getString("orders_sort")));
 			}
 			
 		} catch (Exception e) {
@@ -237,14 +225,11 @@ public class OrdersDAO {
 			pstmt.setInt(3, s-1); // 시작행 번호-1
 			pstmt.setInt(4, p); // 페이지 개수
 			
-			System.out.println("호출도 안되는건가?");
 			
 			rs= pstmt.executeQuery();
 				
 				while(rs.next()) {
 					
-					System.out.println("이건 호출 안되나?");
-					System.out.println("orders의 ID값 : "+rs.getLong("orders_id"));
 					
 					
 					OrdersDTO dto = new OrdersDTO();
@@ -305,23 +290,17 @@ public class OrdersDAO {
 					+ " order by orders_id desc limit ?,?";
 			
 			
-			System.out.println("OrdersDAO 입력받은 state " + state);
-			System.out.println("입력받은 s "+ s);
-			System.out.println("입력받은 i "+ p);
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, state);
 			pstmt.setInt(2, s-1); // 시작행 번호-1
 			pstmt.setInt(3, p); // 페이지 개수
 			
-			System.out.println("호출도 안되는건가?");
 			
 			rs= pstmt.executeQuery();
 				
 				while(rs.next()) {
 					
-					System.out.println("이건 호출 안되나?");
-					System.out.println("orders의 ID값 : "+rs.getLong("orders_id"));
 					
 					
 					OrdersDTO dto = new OrdersDTO();
@@ -336,12 +315,6 @@ public class OrdersDAO {
 					//-------------------------11월 16일 추가---------------------------
 					dto.setLocation_id(rs.getInt("location_id"));
 					//-----------------------------------------------------------------
-					
-					System.out.println(rs.getLong("orders_id"));
-					System.out.println(rs.getLong("member_id"));
-					System.out.println(rs.getString("member_user_id"));
-					System.out.println(transStateStringToEnum(rs.getString("orders_state")));
-					System.out.println(rs.getDate("orders_date"));
 					
 					
 					orders.add(dto);
@@ -438,8 +411,6 @@ public class OrdersDAO {
 			
 			
 			pstmt.executeUpdate();
-			System.out.println("OrdersDAO : 주문서 상태 변경 완료");
-			System.out.println("OrdersDAO : 주문서 상태 변경 후 적용 상태 "+ state);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -469,7 +440,6 @@ public class OrdersDAO {
 				result = rs.getInt(1);
 			}
 					
-			System.out.println("타입별 주문 개수 " + result);
 					
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -632,7 +602,6 @@ public class OrdersDAO {
 					result = rs.getInt(1);
 				}
 						
-				System.out.println("타입별 주문 개수 " + result);
 						
 			} catch (Exception e) {
 				e.printStackTrace();

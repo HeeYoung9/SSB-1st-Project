@@ -18,10 +18,6 @@ public class ActionForward {
 	
 	
 	public ActionForward() {
-		System.out.println("----------------------------------");
-		System.out.println("티켓정보 생성");
-		System.out.println("목적지 x, 방식 x");
-		System.out.println("----------------------------------");
 	}
 	public String getPath() {
 		return path;

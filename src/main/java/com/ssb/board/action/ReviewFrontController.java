@@ -72,14 +72,12 @@ public class ReviewFrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: ReviewFrontController_doGet() 호출");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("\nC: ReviewFrontController_doPost() 호출");
 		doProcess(request, response);
 	}
 	

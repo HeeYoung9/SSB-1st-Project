@@ -30,8 +30,6 @@ public class ItemDAO {
 		con = ds.getConnection();
 		
 		
-		System.out.println("DAO : 디비 연결 성공!");
-		System.out.println("DAO : "+con);
 		
 		return con;
 		
@@ -74,8 +72,6 @@ public class ItemDAO {
 				itemlList.add(idto);
 				
 			}
-			System.out.println("DAO : 렌탈아이템 조회 성공!");
-			System.out.println("DAO 조회 행수 : "+itemlList.size());
 			
 		} catch (Exception e) {
 		
@@ -116,8 +112,6 @@ public class ItemDAO {
 				itemList.add(idto);
 				
 			}
-			System.out.println("DAO : 렌탈아이템 조회 성공!");
-			System.out.println("DAO 조회 행수 : "+itemList.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -158,7 +152,6 @@ public class ItemDAO {
 				categoryList.add(idto);
 
 			}
-			System.out.println("DAo : 카테고리별 목록 조회 완료! ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -196,7 +189,6 @@ public class ItemDAO {
 				categoryList.add(idto);
 
 			}
-			System.out.println("DAo : 카테고리별 목록 조회 완료! ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -238,7 +230,6 @@ public class ItemDAO {
 					categorySubList.add(idto);
 
 				}
-				System.out.println("DAo : 카테고리 소분류별 목록 조회 완료! ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
@@ -275,7 +266,6 @@ public class ItemDAO {
 					categorySubList.add(idto);
 
 				}
-				System.out.println("DAo : 카테고리 중분류별 목록 조회 완료! ");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {

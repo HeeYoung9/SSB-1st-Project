@@ -41,7 +41,6 @@ public class PaymentService {
 	public static void validationCheck(PaymentDTO payment, OrdersDTO ordersDTO) throws PriceValidationException, PayFailedValidationException {
 		
 		if(payment.getMerchantUid()!=ordersDTO.getId()) {
-			System.out.println("말도안되는 오류");
 		}else if(payment.isSuccess()==false){
 			throw new PayFailedValidationException("결제가 정상적으로 처리되지 않았습니다.");
 			
@@ -49,7 +48,6 @@ public class PaymentService {
 			throw new PriceValidationException("결제된 금액에 문제가 발생하였습니다");
 			
 		}else if(payment.getStatus().equals("paid")&& ordersDTO.getTotal_price() == payment.getPaidAmount()) {
-			System.out.println("결제가 정상적으로 처리되었습니다.");
 		}
 	}
 	
@@ -79,7 +77,6 @@ public class PaymentService {
 			HttpEntity httpEntity = httpRes.getEntity();
 			
 			String tokenJson = EntityUtils.toString(httpEntity);
-			System.out.println(tokenJson.toString());
 			
 			Gson gson = new Gson();
 			String response = gson.fromJson(tokenJson,Map.class).get("response").toString();
@@ -92,7 +89,7 @@ public class PaymentService {
 			}
 
 			
-		System.out.println("발급받은 토큰의 값은 : " +token);
+//		System.out.println("발급받은 토큰의 값은 : " +token);
 			
 			
 			
@@ -118,7 +115,6 @@ public class PaymentService {
 			StringEntity entity = new StringEntity(myInfoJson.toString(), ContentType.APPLICATION_JSON);
 
 			
-			System.out.println("[환불] 보낼려는 JSON의 값 : "+entity.toString());
 			
 			HttpPost post = new HttpPost(refundURL);
 			post.setHeader("Authorization",token);
@@ -131,7 +127,6 @@ public class PaymentService {
 			
 			String response = EntityUtils.toString(httpEntity);
 			
-			System.out.println("[환불] 반환된 값의 내용 : "+response.toString());
 			
 			Gson gson = new Gson();
 			result = gson.fromJson(response,Map.class).get("response").toString();

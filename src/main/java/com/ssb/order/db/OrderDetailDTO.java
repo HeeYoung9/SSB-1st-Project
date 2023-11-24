@@ -37,7 +37,6 @@ public class OrderDetailDTO {
 		orderDetailDTO.type = ItemType.SALE;
 		orderDetailDTO.totalPrice = OrderDetailDTO.calTotalPrice(price, quantity);
 		
-		System.out.println(" 주문상세 토탈 가격 : "+ orderDetailDTO.totalPrice);
 		return orderDetailDTO;
 	}
 	

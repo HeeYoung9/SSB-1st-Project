@@ -42,6 +42,10 @@ function getCartDiv(){
 
 function addCart(type) {
 	var arr = getCartDiv();
+	if(arr.length == 0){
+		alert('옵션을 선택해 주세요');
+		return false;
+	}
 	$.ajax({
 		type: "POST",
 		url: "./insertCart.ca",

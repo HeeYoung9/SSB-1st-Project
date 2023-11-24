@@ -23,7 +23,6 @@ public class AdOrderDetailAction implements Action {
 
 		String orderId = request.getParameter("orders_id");
 		
-		System.out.println("AdOrderDetailAction -전달받은 주문번호  " + orderId);
 		
 		OrdersDAO ordersDAO = new OrdersDAO();
 		OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
@@ -43,7 +42,6 @@ public class AdOrderDetailAction implements Action {
 		
 		
 		
-		System.out.println("AdOrderDetailAction ( 주문상세 개수 ) : " + orderDetailDTO.size());
 		
 		//주문 배송지 정보 소환
 		locationDAO locationDAO = new locationDAO();
@@ -58,8 +56,6 @@ public class AdOrderDetailAction implements Action {
 		request.setAttribute("orders", findOrderDTO);
 		request.setAttribute("orderDetailDTO", orderDetailDTO);
 		request.setAttribute("location", locationDTO);
-		System.out.println(findOrderDTO.getId());
-		System.out.println(findOrderDTO.getOrders_sort());
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./adOrderList/adOrderDetail.jsp");
