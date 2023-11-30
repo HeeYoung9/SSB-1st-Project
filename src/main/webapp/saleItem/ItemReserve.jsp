@@ -40,6 +40,9 @@
 <link rel="shortcut icon" href="./favicon/favicon.ico">
 <!------------ common CSS ------------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/saleItem/itemD.css">
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<div class="header">

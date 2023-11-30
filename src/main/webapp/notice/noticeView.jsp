@@ -25,7 +25,7 @@
 <!------------- 공통 헤더 ------------->
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 
 <!-- 공지사항 본문 CSS -->
 <style>

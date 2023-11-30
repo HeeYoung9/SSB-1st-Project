@@ -6,6 +6,8 @@
     <title>Find ID</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="findID.css">
+    <!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<div class="container">

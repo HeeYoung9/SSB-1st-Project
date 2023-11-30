@@ -94,7 +94,7 @@
 </style>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 
 <body>
@@ -104,13 +104,10 @@
 </div>
 <!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->
 
-<!-- 
-	  로그인을 수행한 관리자만 접근 가능 
-	  로그인 없이 접근한 경우 로그인페이지로 이동
-   -->
+<!-- 로그인 없이 접근한 경우 로그인페이지로 이동  -->
   <%-- <c:if test="${id == null }"> --%>
   <c:if test="${empty userId }">
-	<c:redirect url="./MemberLogin.me"/>  	
+	<c:redirect url="./MemberLogin.me"/>  
   </c:if>
 
 

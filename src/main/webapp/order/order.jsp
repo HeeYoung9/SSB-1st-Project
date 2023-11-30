@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <!-- ÆÄºñÄÜ -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<table border="1px solid black">

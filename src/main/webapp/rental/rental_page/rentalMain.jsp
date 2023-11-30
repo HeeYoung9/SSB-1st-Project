@@ -66,7 +66,7 @@
 <script src="./wishlist/wishlist.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 
 <body>
@@ -100,7 +100,7 @@
 
 					<div class="carousel-item active">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/polaris_event.png" alt="폴라리스슬라이드">
+							src="${pageContext.request.contextPath}/upload/polaris_event.png" alt="폴라리스슬라이드">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
@@ -108,18 +108,18 @@
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block" 
-							src="./main/item_img/polaris_event2.png" alt="폴라리스슬라이드2"> </a>
+							src="${pageContext.request.contextPath}/upload/polaris_event2.png" alt="폴라리스슬라이드2"> </a>
 							<!-- DB에서 이미지 파일 가져올때 업로드 폴더 및 파일명 경로로 -->
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/yonex_event.png" alt="요넥스이벤트"> </a>
+							src="${pageContext.request.contextPath}/upload/yonex_event.png" alt="요넥스이벤트"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/ak_event.png" alt="ak이벤트"> </a>
+							src="${pageContext.request.contextPath}/upload/ak_event.png" alt="ak이벤트"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					<button class="carousel-control-prev" type="button"
@@ -148,14 +148,14 @@
 							<!-- brand logo -->
 							<c:if test="${!empty rdto.rental_img_logo }">
 							<div class="position-absolute" style="top: 0.5rem; right: 0.5rem">
-								<img height="30" width="50" src="./main/rental_item/${rdto.rental_img_logo }"/>
+								<img height="30" width="50" src="${pageContext.request.contextPath}/upload/${rdto.rental_img_logo }"/>
 							</div>
 							</c:if>
 							<!-- Product image-->
 							<a href="./RentalItem.re?rental_item_id=${rdto.rental_item_id }">
 
 							<img class="card-img-top" width="450" height="300"
-								src="./main/rental_item/${rdto.rental_img_main }" alt="캠핑용품" />
+								src="${pageContext.request.contextPath}/upload/${rdto.rental_img_main }" alt="캠핑용품" />
 							
 							<!-- Product details-->
 							<div class="card-body p-4">

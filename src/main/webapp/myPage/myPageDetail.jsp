@@ -38,7 +38,7 @@
 <script src="${pageContext.request.contextPath}/admin/toggle.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 
 <!-- 후기작성 클릭 시 팝업창 띄우기 -->
 <script type="text/javascript">

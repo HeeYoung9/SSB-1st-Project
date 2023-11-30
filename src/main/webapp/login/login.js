@@ -12,3 +12,11 @@ function showLoginFailedMessage() {
 function redirectToLoginPage() {
     window.location.href = "login.jsp";
 }
+
+var referrer = document.referrer
+
+if(referrer.indexOf(page)!=-1){
+	window.location.href="./Main.in";
+}else{
+	window.location.href=referrer;
+}

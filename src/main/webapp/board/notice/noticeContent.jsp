@@ -83,7 +83,7 @@
 
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<!-- 로그인 세션 제어 -->

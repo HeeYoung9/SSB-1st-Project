@@ -21,7 +21,7 @@
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
 	rel="stylesheet">
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');

@@ -38,7 +38,7 @@
 <script src="${pageContext.request.contextPath}/admin/toggle.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 

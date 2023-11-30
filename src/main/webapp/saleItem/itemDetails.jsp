@@ -15,10 +15,6 @@
 
 <!-------------- jQuery --------------->
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
-<!------------- 공통 헤더 ------------->
-	<div class="header">
-	<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8"/>
-	</div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
@@ -34,7 +30,13 @@ function openInquiryPop(){
 
 </script>
 
-	
+<!-- 파비콘 -->	
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico" >
+
+<!------------- 공통 헤더 ------------->
+	<div class="header">
+	<c:import url="../Mcommon/top.jsp" charEncoding="UTF-8"/>
+	</div>
 	
 </head>
 <body>
@@ -52,10 +54,10 @@ function openInquiryPop(){
 				<div class="leftBigBox">
 					<div class="brandLogo"> 
 					<c:if test="${!empty itemDTO.item_img_logo }">
-					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_logo}" alt="브랜드로고">
+					<img src="${pageContext.request.contextPath}/upload/${itemDTO.item_img_logo}" alt="브랜드로고">
 					</c:if>
 					</div>
-					<img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_main}" alt="상품이미지">
+					<img src="${pageContext.request.contextPath}/upload/${itemDTO.item_img_main}" alt="상품이미지">
 					<p></p>
 					
 				</div>
@@ -74,13 +76,14 @@ function openInquiryPop(){
 					<div class="detail">
 					<ul>
 						<li><span>판매가</span> <span class="r"> <b> <fmt:formatNumber value="${itemDTO.item_price }" />원 </b> </span></li>
-						<li><span>적립금</span> <span class="r"> 500 P </span></li>
+						<li><span>적립금</span> 
+						<span class="r"> <fmt:formatNumber type="number" maxFractionDigits="0" value="${itemDTO.item_price*0.01 }"/> </span></li>
 						<li><span>구매후기</span> 
 							<span class="star"> 
 								<c:forEach begin="1" end="4" step="1">
-									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/star.png"/>
+									<img width="20" height="20" src="${pageContext.request.contextPath}/upload/star.png"/>
 								</c:forEach>
-									<img width="20" height="20" src="${pageContext.request.contextPath}/rental/icon/harfStar.png"/> 
+									<img width="20" height="20" src="${pageContext.request.contextPath}/upload/harfStar.png"/> 
 									<a href="#review">&nbsp;4.5/5 <b>리뷰</b> </a> 
 							</span></li>
 						<li><span>배송비</span> <span class="r">무료</span></li>
@@ -150,7 +153,7 @@ function openInquiryPop(){
 
     <div class="detailinfo showstep1">
         <div class="content">
-            <img src="${pageContext.request.contextPath}/main/item_img/${itemDTO.item_img_sub}" alt="상세이미지">
+            <img src="${pageContext.request.contextPath}/upload/${itemDTO.item_img_sub}" alt="상세이미지">
         </div>
     </div>
 

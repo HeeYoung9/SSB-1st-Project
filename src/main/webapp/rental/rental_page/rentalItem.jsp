@@ -35,7 +35,7 @@ function openInquiryPop(){
 </script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 
 </head>
 <body>
@@ -53,7 +53,7 @@ function openInquiryPop(){
 	<section class="subscript">
 		<div class="product-container">
 			<div class="product-image">
-				<img src="./main/rental_item/${rdto.rental_img_main }" alt="제품 이미지">
+				<img src="${pageContext.request.contextPath}/upload/${rdto.rental_img_main }" alt="제품 이미지">
 			</div>
 			<div class="product-details">
 				<h1>${rdto.rental_item_name }</h1>
@@ -71,9 +71,9 @@ function openInquiryPop(){
 				
 				<p>
 					<c:forEach begin="1" end="4" step="1">
-						<img width="20" height="20" src="./rental/icon/star.png" />
+						<img width="20" height="20" src="${pageContext.request.contextPath}/upload/star.png" />
 					</c:forEach>
-					<img width="20" height="20" src="./rental/icon/harfStar.png" /> <a
+					<img width="20" height="20" src="${pageContext.request.contextPath}/upload/harfStar.png" /> <a
 						href="#review"> 4/5 리뷰</a>
 				</p>
 
@@ -96,15 +96,12 @@ function openInquiryPop(){
 				</form>
 
 
-				<%-- <br> <a href="./RentalReserve.re?rental_item_id=${rdto.rental_item_id }" style="color: white;">
-					<button class="reserve-button">예약하기</button>
-				</a> --%>
 			</div>
 		</div>
 		<div id="midBox">
 			<div class="detailinfo showstep1">
 				<div class="content">
-					<img src="./main/rental_item/${rdto.rental_img_sub }"
+					<img src="${pageContext.request.contextPath}/upload/${rdto.rental_img_sub }"
 						alt="상품 상세 이미지">
 				</div>
 			</div>

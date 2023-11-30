@@ -235,7 +235,7 @@
         }
     </script>
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<!-- 헤더/ 상단메뉴바 영역 top.jsp 공통 페이지 사용 -->

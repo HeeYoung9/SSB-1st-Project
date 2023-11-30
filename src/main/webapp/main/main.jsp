@@ -67,7 +67,7 @@
 <link href="./main/main.css" rel="stylesheet">
 <script src="./wishlist/wishlist.js"></script>
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 
 <body>
@@ -105,7 +105,7 @@
 					
 					<div class="carousel-item active">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/malbon_event.png" alt="말본이벤트슬라이드">
+							src="${pageContext.request.contextPath}/upload/malbon_event.png" alt="말본이벤트슬라이드">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
@@ -113,20 +113,20 @@
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/newbal_event.png" alt="뉴발란스슬라이드">
+							src="${pageContext.request.contextPath}/upload/newbal_event.png" alt="뉴발란스슬라이드">
 						</a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/nb_event.png" alt="뉴발멤버이벤트"> </a>
+							src="${pageContext.request.contextPath}/upload/nb_event.png" alt="뉴발멤버이벤트"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 
 					<div class="carousel-item">
 						<a href="#"><img class="d-block"
-							src="./main/item_img/head_event.png" alt="블랙프라이데이"> </a>
+							src="${pageContext.request.contextPath}/upload/head_event.png" alt="블랙프라이데이"> </a>
 						<div class="carousel-caption d-none d-md-block"></div>
 					</div>
 					
@@ -162,16 +162,16 @@
 									style="top: 0.5rem; right: 0.5rem">
 									<c:if test="${!empty idto.item_img_logo }">
 									<img height="15" width="35"
-										src="./main/item_img/${idto.item_img_logo }" alt="헤드로고" />
+										src="${pageContext.request.contextPath}/upload/${idto.item_img_logo }" alt="헤드로고" />
 									</c:if>	
 									
 									<c:if test="${empty idto.item_img_logo }">
 									<img height="15" width="35" style="opacity: 0;"
-										src="./main/img/star.png" alt="투명 공간용" />
+										src="${pageContext.request.contextPath}/upload/star.png" alt="투명 공간용" />
 									</c:if>
 									<!-- wish 하트 위치 -->	
 									<div class="wishlist" value="${idto.item_id }">
-										<img width="22" height="22" src="./main/img/heart.png" alt="위시리스트">
+										<img width="22" height="22" src="${pageContext.request.contextPath}/upload/heart.png" alt="위시리스트">
 									</div>
 								</div>
 								<!-- Product image-->
@@ -179,7 +179,7 @@
 								<!-- 제품 상세페이지 이동 주소 여기 있어요. -->
 								<a href="./itemDetails.in?item_id=${idto.item_id }"> <img
 									class="card-img-top" width="450" height="300"
-									src="./main/item_img/${idto.item_img_main }" alt="head 스커트 블랙" />
+									src="${pageContext.request.contextPath}/upload/${idto.item_img_main }" alt="head 스커트 블랙" />
 									<!-- Product details-->
 									<div class="card-body p-4">
 										<div class="text-center">
@@ -192,13 +192,7 @@
 										</div>
 									</div>
 								</a>
-								<!-- Product actions-->
-								
-								<%-- <!-- 위시리스트 담기 -->
-								<div class="wishlist" value="${idto.item_id }">
-									<img width="25" height="25" src="./main/img/heart.png" alt="위시리스트">
-								</div>
-								<!-- 위시리스트 담기 --> --%>
+							
 								
 							</div>
 						</div>

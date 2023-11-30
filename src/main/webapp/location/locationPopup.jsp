@@ -10,8 +10,8 @@
 <script type="text/javascript" src="./Mcommon/util.js"></script>
 <link rel="stylesheet" href="./location/locationPopup.css">
 
-<!-- �ĺ��� -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 	<main>

@@ -27,8 +27,8 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <!------------------- common CSS ------------------>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/adItem/css/itemMgt.css">
-<!-------------------- 파비콘 --------------------->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 <!-- 사이드바 공통 토글 -->
 <script src="${pageContext.request.contextPath}/admin/toggle.js"></script>
 
@@ -123,8 +123,9 @@
 								</label></td>
 
 								<td><c:out value="${dto.item_id }"></c:out></td>
-								<td><a href="#" class="thumb"> <img alt="제품이미지"
-										src="./main/item_img/${dto.item_img_main }">
+								<td><a href="#" class="thumb">
+								<img src="${pageContext.request.contextPath}/upload/${dto.item_img_main }"
+													style="width: 50px; height: 50px;" alt="제품이미지">
 								</a></td>
 								<td>${dto.item_name }</td>
 								<td><fmt:formatNumber type="number" maxFractionDigits="3"
@@ -163,8 +164,9 @@
 								</label></td>
 
 								<td><c:out value="${rdto.rental_item_id }"></c:out></td>
-								<td><a href="#" class="thumb"> <img alt="제품이미지"
-										src="./main/rental_item/${rdto.rental_img_main }">
+								<td><a href="#" class="thumb"> 
+								<img src="${pageContext.request.contextPath}/upload/${rdto.rental_img_main }"
+													style="width: 50px; height: 50px;" alt="제품이미지">
 								</a></td>
 								<td>${rdto.rental_item_name }</td>
 								<td><fmt:formatNumber type="number" maxFractionDigits="3"

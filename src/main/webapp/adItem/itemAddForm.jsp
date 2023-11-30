@@ -24,7 +24,7 @@
 </style>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./favicon/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
 
@@ -54,7 +54,8 @@
 						<!----------------------------------- 상품 (판매용) 등록 폼 ------------------------------------>
 						<!---------------------------------------------------------------------------------------------->
 						
-						<form id="saleForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
+						<!--enctype="multipart/form-data" 만 추가함 폼태그에-->
+						<form enctype="multipart/form-data" id="saleForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
 						<input type="hidden" name="category_code" value="1">
 
 						<div class="row" >
@@ -172,7 +173,7 @@
 						<!----------------------------------- 상품 (렌탈용) 등록 폼 ------------------------------------>
 						<!---------------------------------------------------------------------------------------------->
 						
-						<form id="rentalForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
+						<form enctype="multipart/form-data" id="rentalForm" action="./ItemAddAction.it" method="post" style="display: none;" class="validation-form" novalidate >
 						<input type="hidden" name="category_code" value="2">
 
 						<div class="row" >

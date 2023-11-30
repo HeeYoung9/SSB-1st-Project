@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Find Password</title>
+    
+    <!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 </head>
 <body>
     <h1>비밀번호 찾기</h1>

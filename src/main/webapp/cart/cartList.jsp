@@ -18,7 +18,7 @@
 <script src="./cart/cartListJS.js"></script>
 <!-- 자바스크립트 -->
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="./main/img/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico">
 <!-- 파비콘 -->
 </head>
 <body>

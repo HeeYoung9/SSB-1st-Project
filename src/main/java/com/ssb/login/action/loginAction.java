@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.Document;
 
 import com.ssb.login.db.loginDAO;
 import com.ssb.member.db.MemberDAO;
@@ -20,12 +21,12 @@ public class loginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
+		
 		// 한글처리 인코딩
 		request.setCharacterEncoding("UTF-8");
 		
 		// 전달정보 저장(id,pw)
-		//String id = request.getParameter("id");
-		//String pw = request.getParameter("pw");
+
 		MemberDTO dto = new MemberDTO();
 		dto.setMember_user_id(request.getParameter("member_user_id"));
 		dto.setMember_pw(request.getParameter("member_pw"));
