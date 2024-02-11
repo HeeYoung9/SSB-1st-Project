@@ -104,9 +104,9 @@ public class ItemAddAction implements Action {
     	rdto.setRental_item_name(multi.getParameter("rental_item_name"));
     	rdto.setRental_item_price(Integer.parseInt(multi.getParameter("rental_item_price")));
     	rdto.setRental_days(Integer.parseInt(multi.getParameter("rental_days")));
-    	rdto.setRental_img_main(multi.getParameter("rental_img_main"));
-    	rdto.setRental_img_sub(multi.getParameter("rental_img_sub"));
-    	rdto.setRental_img_logo(multi.getParameter("rental_img_logo"));
+    	rdto.setRental_img_main(multi.getFilesystemName("rental_img_main"));
+    	rdto.setRental_img_sub(multi.getFilesystemName("rental_img_sub"));
+    	rdto.setRental_img_logo(multi.getFilesystemName("rental_img_logo"));
     	rdto.setRental_opt_name(multi.getParameter("rental_opt_name"));
     	rdto.setRental_opt_value(multi.getParameter("rental_opt_value"));
     	rdto.setRental_opt_quantity(Integer.parseInt(multi.getParameter("rental_opt_quantity")));

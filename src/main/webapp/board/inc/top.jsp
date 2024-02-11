@@ -12,7 +12,7 @@
 </style>
 
 <header class="navbar navbar-expand navbar-light navbar-bg">
-	<a class="sidebar-toggle js-sidebar-toggle">
+	<a class="sidebar-toggle js-sidebar-toggle" onclick="toggleSidebar()">
 	  <i class="hamburger align-self-center"></i>
     </a>
     <a href="./Main.in">

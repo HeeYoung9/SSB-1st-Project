@@ -3,14 +3,31 @@
     
     
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-  
+@import
+	url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 * {
 	font-family: 'Archivo', 'Noto Sans KR', sans-serif;
 }
+
+.sidebar {
+	display: none;
+}
 </style>
-    
+
+<script>
+  function toggleSidebar() {
+    var sidebar = document.querySelector("#sidebar");
+
+    if (sidebar) {
+      sidebar.style.display = (sidebar.style.display === "none" || sidebar.style.display === "") ? "block" : "none";
+    }
+  }
+</script>   
+
 <nav id="sidebar" class="sidebar js-sidebar">
   <div class="sidebar-content js-simplebar">
 	<a class="sidebar-brand" href="./NoticeList.no">

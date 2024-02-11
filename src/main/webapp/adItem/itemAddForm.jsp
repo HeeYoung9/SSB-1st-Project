@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.ssb.adItem.db.ItemDAO"%>
@@ -21,6 +20,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/adItem/css/itemMgt.css">
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 </style>
 
 <!-- 파비콘 -->
@@ -103,7 +104,7 @@
 							
 							<div class="Add-D">
 								<label for="item">상품 가격</label> 
-									<input type="text" class="form-control" name="item_price" placeholder="" required>
+									<input type="text" class="form-control" name="item_price" placeholder="" oninput="validateNumberInput(this)" required>
 										<div class="invalid-feedback">값을 입력해주세요.</div>
 							</div>
 						</div>
@@ -153,7 +154,7 @@
 						<div class="row">
 							<div class="Add-E">
 							<label for="item">잔여 재고</label> 
-								<input type="text" class="form-control" name="options_quantity" placeholder="" required>
+								<input type="number" class="form-control" name="options_quantity" placeholder="" min=0 required>
 									<div class="invalid-feedback">재고 수량을 입력해주세요.</div>
 							</div>
 
@@ -165,7 +166,7 @@
 						
 						</div>
 						<hr class="mc">
-						<input type="submit" id="saleSubmitButton" value="등록">
+						<input type="submit" id="saleSubmitButton" value="등록" style="margin-right: 20px;">
 
 						</form>
 
@@ -220,7 +221,7 @@
 							
 							<div class="Add-D">
 								<label for="item">렌탈 비용</label> 
-									<input type="text" class="form-control" name="rental_item_price" placeholder="" required>
+									<input type="text" class="form-control" name="rental_item_price" placeholder="" oninput="validateNumberInput(this)" required>
 										<div class="invalid-feedback">렌탈비를 입력해주세요.</div>
 							</div>
 						</div>
@@ -256,7 +257,7 @@
 						<div class="row">
 							<div class="Add-G"> 
 							<label for="name">렌탈 옵션명</label> 
-								<input type="text"class="form-control" name="rental_opt_name" placeholder="대여일수" value="" required>
+								<input type="text"class="form-control" name="rental_opt_name" placeholder="대여일수" value="대여일수" required>
 									<div class="invalid-feedback">렌탈 옵션명을 입력해주세요.</div>
 							</div>
 
@@ -270,19 +271,19 @@
 						<div class="row">
 							<div class="Add-E">
 							<label for="item">렌탈 재고</label> 
-								<input type="text" class="form-control" name="rental_opt_quantity" placeholder="" required>
+								<input type="number" class="form-control" name="rental_opt_quantity" placeholder="" min=0 required>
 									<div class="invalid-feedback">재고 수량을 입력해주세요.</div>
 							</div>
 
 							<div class="Add-F">
-							<label for="item">렌탈대여일</label> 
-								<input type="number" class="form-control" name="rental_days" placeholder="days">
+							<label for="item">렌탈 대여일</label> 
+								<input type="number" class="form-control" name="rental_days" placeholder="days" min=0 required>
 							</div>
 						</div>
 
 	
 						<hr class="mc">
-						<input type="submit" id="rentalSubmitButton" value="등록">
+						<input type="submit" id="rentalSubmitButton" value="등록" style="margin-right: 20px;">
 
 						</form>
 						
@@ -301,6 +302,11 @@
 	</div>
 
 	<script src="${pageContext.request.contextPath}/adItem/js/item.js"></script>
+	<script>
+		function validateNumberInput(input) {
+			input.value = input.value.replace(/[^0-9]/g, '');
+		}
+	</script>
 
 </body>
 </html>

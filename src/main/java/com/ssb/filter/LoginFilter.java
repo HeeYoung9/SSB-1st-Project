@@ -1,6 +1,7 @@
 package com.ssb.filter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +47,9 @@ public class LoginFilter implements Filter{
 				
 				HttpSession session = httpRequest.getSession(false);
 				if(session == null || session.getAttribute("userId") == null) {
-					
+					PrintWriter w = response.getWriter();
+					String msg = "로그인 후 이용해주세요.";
+					w.write("<script>alert('"+msg+"');</script>");
 					httpResponse.sendRedirect("./MemberLogin.me");
 					
 					return;

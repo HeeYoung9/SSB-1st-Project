@@ -16,9 +16,12 @@ $('#options_idSelecter').change(function() {
     html += "<input type='hidden' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
     html += "<span class='options_name'>" + optionsName + "</span>";
     html += "<span class='options_value'>" + optionsValue + "</span>";
-    html += "<input type='number' class='cart_quantity' value='" + cartQuantity + "' min='1' max='10'>";
+//  html += "<input type='number' class='cart_quantity' value='" + cartQuantity + "' min='1' max='10'>"; // 2월9일 
+    html += "<input type='button' class='cart_minus' onclick='decreaseQuantity()'value='-'>"; // 2월9일 추가
+    html += "<input type='number' class='cart_quantity' value='1' onkeyup='checkReg(event)' min='1' max='100' readonly>"; // 2월9일 추가
+    html += "<input type='button' class='cart_plus' onclick='increaseQuantity()' value='+'>"; // 2월9일 추가
     html += "<input type='hidden' class='options_id' value='" + optionsId + "'>";
-    html += "<input type='button' class='closeButton' value='close'>";
+    html += "<input type='button' class='closeButton' value='×'>";
     html += "</div>";
     $("#cartPool").append(html);
 });
@@ -84,7 +87,7 @@ function setCart(){
 	html += "<input type='input' class='item_id' value='" + $("#item_idSelecter").val() + "'>";
 	html += "<input type='input' class='cart_quantity' value='" + $("#cart_quantitySelecter").val() + "'>";
 	html += "<input type='input' class='options_id' value='" + $("#options_idSelecter").val() + "'>";
-	html += "<input type='button' class='closeButton' value='close'>";
+	html += "<input type='button' class='closeButton' value='×'>";
 	html += "</div>";
 	$("#cartPool").append(html);
 }
@@ -151,13 +154,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnClose = document.querySelector('.btn_close');
 
     btnOpen.addEventListener('click', function(e) {
-        content.style.maxHeight = 'none'; // 변경된 부분
+        content.style.maxHeight = 'none'; 
         btnOpen.classList.add('hide');
         btnClose.classList.remove('hide');
     });
 
     btnClose.addEventListener('click', function(e) {
-        content.style.maxHeight = '300px'; // 변경된 부분
+        content.style.maxHeight = '300px'; 
         btnOpen.classList.remove('hide');
         btnClose.classList.add('hide');
     });
@@ -193,8 +196,24 @@ window.onload = () => {
 	    };
 	  });
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+// 2월9일 추가함 (옵션 선택 - 수량 변경 버튼)
+$(document).on("click", ".cart_minus", function() {  
+    var cartQuantityInput = $(this).parent().find('.cart_quantity');
+    var currentValue = parseInt(cartQuantityInput.val());
+    if (currentValue > 1) {
+        cartQuantityInput.val(currentValue - 1);
+    }
+});
+
+$(document).on("click", ".cart_plus", function() {   
+    var cartQuantityInput = $(this).parent().find('.cart_quantity');
+    var currentValue = parseInt(cartQuantityInput.val());
+    cartQuantityInput.val(currentValue + 1);
+});

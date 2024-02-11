@@ -12,13 +12,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <!------------ common CSS ------------->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/saleItem/itemD.css">
-
 <!-------------- jQuery --------------->
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+  
 </style>
 
 <script type="text/javascript">
@@ -29,6 +29,7 @@ function openInquiryPop(){
 	}
 
 </script>
+
 
 <!-- 파비콘 -->	
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/upload/favicon.ico" >
@@ -101,14 +102,13 @@ function openInquiryPop(){
 							
 					
 					<!---------------------- 수량!! ---------------------------------->
-					<div class="pick"> 
-						<!-- <label> > 수량 </label> -->
+<!-- 				<div class="pick"> 
+						<label> > 수량 </label>
 						<input class="form-control" id="cart_quantitySelecter" type="number" max="10" min="1" value="1" placeholder="-&nbsp;[필수] 수량을 선택해 주세요" required > 
-					</div>
+					</div> -->
 					
 					<!---------------------- 옵션!! ---------------------------------->
 					<div class="pick"> 
-						<%-- <label> > ${itemDTO.options_name } </label> --%>
 						<select id="options_idSelecter" class="form-control" name="options_value" required="required">
         						<option value="" disabled selected>-&nbsp;[필수] 옵션을 선택해 주세요</option>
             					<c:forEach var="optList" items="${getOptList}" >
@@ -122,10 +122,8 @@ function openInquiryPop(){
 			</div>
 					
 					
-						<div id="cartPool">   
-						
-						
-						</div>
+			<div id="cartPool">   
+			</div>
 					
 
 			</div>
@@ -140,7 +138,7 @@ function openInquiryPop(){
 					</span>
 
 	
-								</div> <!-- 2번째 -->
+			</div> <!-- 2번째 -->
 
 
 
@@ -358,6 +356,6 @@ function openInquiryPop(){
 	
 
 	<script src="${pageContext.request.contextPath}/saleItem/itemD.js"></script>
-	
+
 </body>
 </html>

@@ -6,7 +6,7 @@ $(function() {
 		url: "./getWishlist.wl",
 		dataType: "text",
 		data: {
-
+			
 		},
 		error: function() {
 			//alert('통신실패!!');

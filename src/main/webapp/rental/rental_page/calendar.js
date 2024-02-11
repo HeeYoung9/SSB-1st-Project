@@ -25,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function generateCalendar() {
+	
+	
     const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+    
+    
     const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
     const daysInMonth = lastDayOfMonth.getDate();

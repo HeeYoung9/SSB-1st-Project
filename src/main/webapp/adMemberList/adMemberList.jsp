@@ -66,7 +66,7 @@
 		<!-- 메인 시작 -->
 		<div class="main">
 			<header class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle"> <i
+				<a class="sidebar-toggle js-sidebar-toggle" onclick="toggleSidebar()"> <i
 					class="hamburger align-self-center"></i>
 				</a> <a href="./Main.in"> <img class="home" alt="home"
 					src="./adImg/icons/home.png" width="22" height="22">
